@@ -1,0 +1,2 @@
+pyqt6 == 6.10.2
+opencv-python==4.13.0.92

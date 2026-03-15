@@ -273,3 +273,11 @@ Arduino libraries required (Arduino Library Manager):
 | `jaguar_full` | CMake | MoveIt 2 config, launch files, controller YAML |
 | `ginkgo_odrive_bridge` | Python | Joint 1–3 CAN bridge (ODrive via Ginkgo adapter) |
 | `jaguar_teleop` | Python | Joystick, keyboard, GUI, serial bridge |
+
+
+
+# TO DO: Reconfigure ODrive motors to reduce jitter
+
+odrv0.axis0.trap_traj.config.vel_limit   = 1.5   # turns/s — tune up if too slow
+odrv0.axis0.trap_traj.config.accel_limit = 3.0
+odrv0.axis0.trap_traj.config.decel_limit = 3.0

@@ -1,0 +1,2 @@
+# Python dependencies outside of ROS 2 managed packages
+pyserial>=3.5

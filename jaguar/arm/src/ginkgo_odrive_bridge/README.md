@@ -195,3 +195,21 @@ python sencan_odrive_pca.py <channel> <kbps> <odrive_node> <servo0_ch> <servo0_a
 - Legacy files were not deleted; they were moved to `legacy/` so nothing is lost.
 - On Linux, ROS 2 runs still need USB permissions for the Ginkgo adapter. Use
   `sudo` or configure udev rules.
+
+                                 ,,,,,,,,,,,,,,,,,,,,,
+           M                  , '                     ',
+         {|  M            , '                           ',
+        { |    M      , '                                 ',
+       {./       >,,'                             ;         ;,
+ ======;;;;;    __>                               ;         ; ',
+=====,'   @    (__                                ;         ;   ',
+___ /         .../                                ;         ;
+\,/                  ',         ',               ;         ;
+ (  ^     , '''''',,,,,',         ',            ,;        ;',
+  \//_, '         ;     ;',        ;,,,,,,,'''';  ;      ;   ',
+                 ;     ;   ',      ;      ;    ;   ;     ;     ',
+                ;    ;       ;     ;     ;    ;    ;    ;        '
+               ;    ;        ;    ;     ;    ;     ;    ;
+              ;    ;         ;    ;    (/(/(/      ;    ;
+             (/(/(/          ;    ;                (/(/(/
+                             (/(/(/

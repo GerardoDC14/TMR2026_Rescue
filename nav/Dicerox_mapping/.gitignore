@@ -1,0 +1,12 @@
+build/
+install/
+log/
+bags/
+maps/
+__pycache__/
+*.pyc
+*.posegraph
+*.data
+frames_*.pdf
+frames_*.gv
+cyclonedds_*.xml

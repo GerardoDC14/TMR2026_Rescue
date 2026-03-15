@@ -1,0 +1,7 @@
+# ROS 2 Humble — install with apt
+# sudo apt install $(cat requirements.txt | grep ^ros | tr '\n' ' ')
+
+ros-humble-slam-toolbox
+ros-humble-tf2-ros
+ros-humble-rviz2
+ros-humble-robot-state-publisher

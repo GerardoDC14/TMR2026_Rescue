@@ -1,0 +1,159 @@
+ODrive Configuration – GIM8108-48 (24V)
+================================================
+
+Created: 2026-01-23 00:56:21
+ODrive: ODrive v3.11-4V BL72.CyberBeast.cn (firmware v0.6.0)
+odrivetool: v0.6.10.post0
+
+Notes
+-----
+1) Supply:
+   - Tuned for ~24V bus (6S LiPo/Li-ion).
+   - Bus protection levels set accordingly.
+
+2) Encoder:
+   - Using the motor's built-in encoder. No external SPI wiring needed.
+   - Don't force SPI CS pin / SPI ABS mode here.
+   - If the vendor firmware already set an encoder mode, leave it alone unless there's a reason to change it.
+
+3) Reconnect behavior:
+   - `save_configuration()` and `reboot()` will drop the connection briefly.
+     "Oh no odrv0 disappeared" in odrivetool is normal, just wait for reconnect.
+
+4) Regen / brake:
+   - If you have a brake resistor, keep brake resistance configured.
+   - Without one on a battery pack, watch out for overvoltage trips during decel/regen.
+
+5) Quick encoder check:
+   - `odrv0.axis0.encoder.pos_abs` should change when you spin the shaft.
+
+================================================
+A) (Optional) Wipe and start fresh
+================================================
+# WARNING: erases all stored parameters.
+# odrv0.erase_configuration()     # wait for reconnect before continuing
+
+================================================
+B) Bus protection & brake resistor (24V)
+================================================
+# Undervoltage cutoff ~19V (≈3.2V/cell on 6S)
+odrv0.config.dc_bus_undervoltage_trip_level = 19.5
+
+# Overvoltage cutoff ~26V (leaves margin above 6S full charge at 25.2V)
+odrv0.config.dc_bus_overvoltage_trip_level  = 26.0
+
+odrv0.config.enable_brake_resistor = False
+
+# Set to match your actual resistor if you have one
+odrv0.config.brake_resistance = 2.0
+
+# Regen current limit – device default was -10.0 A.
+# With a brake resistor: something like 8 A is a safe starting point.
+# Without one: leaving it at 0 avoids pushing current back into the bus.
+# odrv0.config.dc_max_negative_current = 8
+
+================================================
+C) Motor (Axis0)
+================================================
+odrv0.axis0.motor.config.motor_type              = 0      # HIGH_CURRENT
+odrv0.axis0.motor.config.pole_pairs              = 21
+odrv0.axis0.motor.config.calibration_current     = 5.0
+odrv0.axis0.motor.config.requested_current_range = 60.0
+odrv0.axis0.motor.config.current_lim             = 40.0   # adjust for your thermal limits
+
+================================================
+D) Encoder (Axis0) – embedded encoder
+================================================
+# Leave SPI settings alone; the vendor encoder config handles it.
+# Bandwidth can be tweaked if needed:
+# odrv0.axis0.encoder.config.bandwidth = 500.0
+
+# Raw absolute position read – should move when you rotate the shaft:
+# odrv0.axis0.encoder.pos_abs
+
+================================================
+E) Save & reboot
+================================================
+odrv0.save_configuration()
+odrv0.reboot()
+
+================================================
+F) One-time calibration
+================================================
+# Motor calibration – run once, then mark pre-calibrated below
+odrv0.axis0.requested_state = AXIS_STATE_MOTOR_CALIBRATION
+# wait for it to finish, then check: dump_errors(odrv0)
+
+# Encoder offset calibration
+odrv0.axis0.requested_state = AXIS_STATE_ENCODER_OFFSET_CALIBRATION
+# dump_errors(odrv0)
+
+# Skip re-calibration on future power-ups
+odrv0.axis0.motor.config.pre_calibrated   = True
+odrv0.axis0.encoder.config.pre_calibrated = True
+
+# Don't run encoder calibration at boot
+odrv0.axis0.config.startup_encoder_offset_calibration = False
+
+# Don't auto-enter closed loop at boot – do it explicitly from your script
+odrv0.axis0.config.startup_closed_loop_control        = False
+
+odrv0.save_configuration()
+odrv0.reboot()
+
+================================================
+G) Controller – position control + trapezoidal trajectory
+================================================
+odrv0.axis0.controller.config.control_mode = CONTROL_MODE_POSITION_CONTROL
+odrv0.axis0.controller.config.input_mode   = INPUT_MODE_TRAP_TRAJ
+
+# Gains – starting point, tune to your mechanics
+odrv0.axis0.controller.config.pos_gain            = 20.0
+odrv0.axis0.controller.config.vel_gain            = 0.10
+odrv0.axis0.controller.config.vel_integrator_gain = 0.05
+
+# Trajectory limits (turns/s and turns/s^2)
+odrv0.axis0.trap_traj.config.vel_limit   = 20.0
+odrv0.axis0.trap_traj.config.accel_limit = 40.0
+odrv0.axis0.trap_traj.config.decel_limit = 40.0
+
+# Hard velocity limit – keep this above trap vel_limit
+odrv0.axis0.controller.config.vel_limit  = 25.0
+
+odrv0.save_configuration()
+odrv0.reboot()
+
+================================================
+H) Entering closed loop (manual sequence)
+================================================
+# Check axis is idle first
+# odrv0.axis0.current_state  # should be 1
+
+# Set target position before enabling, so it doesn't jump
+odrv0.axis0.controller.input_pos = 0.0
+
+# Enable closed loop
+odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+
+# Move (units: turns)
+# odrv0.axis0.controller.input_pos = 0.5
+# odrv0.axis0.controller.input_pos = 0.0
+
+
+#CAN CONFIG 
+In [50]: odrv0.axis0.config.can.node_id = 0x010
+
+In [51]: odrv0.can.config.baud_rate = 500000
+
+In [52]: odrv0.axis0.config.can.node_id
+Out[52]: 16
+
+In [53]: odrv0.save_configuration()
+Oh no odrv0 disappeared
+
+Reconnected to ODrive v3.11-4V BL72.CyberBeast.cn (firmware v0.6.0) as odrv0
+In [54]: odrv0.reboot()
+Oh no odrv0 disappeared
+
+Reconnected to ODrive v3.11-4V BL72.CyberBeast.cn (firmware v0.6.0) as odrv0
+In [55]:

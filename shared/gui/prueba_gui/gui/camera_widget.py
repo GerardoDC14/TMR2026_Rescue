@@ -16,17 +16,19 @@ class CameraWidget(QLabel):
         self.setText(name)
         self.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.setStyleSheet(
-            """
+        self.setStyleSheet("""
             background-color: black;
             color: white;
             border: 2px solid gray;
-            """
-        )
+        """)
+
+        # ESTA LINEA ES CLAVE
+        self.setScaledContents(True)
 
     def mousePressEvent(self, event):
 
-        self.clicked.emit(self)
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.clicked.emit(self)
 
     def update_frame(self, frame):
 
@@ -43,10 +45,5 @@ class CameraWidget(QLabel):
 
         pixmap = QPixmap.fromImage(image)
 
-        pixmap = pixmap.scaled(
-            self.width(),
-            self.height(),
-            Qt.AspectRatioMode.KeepAspectRatio
-        )
-
+        # SIN scaled()
         self.setPixmap(pixmap)

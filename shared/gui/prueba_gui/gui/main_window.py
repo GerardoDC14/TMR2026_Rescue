@@ -20,16 +20,14 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.demo_mode = demo_mode
+        self.expanded_camera = None
+        self.gui_ready = False
 
         self.setWindowTitle("RoboCup Rescue GUI")
         self.resize(1400, 900)
 
-        # estado de cámaras
-        self.expanded_camera = None
-        self.gui_ready = False
-
         main_widget = QWidget()
-        main_layout = QVBoxLayout()
+        self.main_layout = QVBoxLayout()
 
         # -----------------------
         # TOP SECTION
@@ -63,7 +61,6 @@ class MainWindow(QMainWindow):
         self.camera_layout.addWidget(self.arm_cam)
         self.camera_layout.addWidget(self.rear_cam)
 
-        # conectar click
         self.front_cam.clicked.connect(self.expand_camera)
         self.arm_cam.clicked.connect(self.expand_camera)
         self.rear_cam.clicked.connect(self.expand_camera)
@@ -74,18 +71,22 @@ class MainWindow(QMainWindow):
 
         self.telemetry = TelemetryWidget()
 
-        main_layout.addLayout(top_layout)
-        main_layout.addLayout(self.camera_layout)
-        main_layout.addWidget(self.telemetry)
+        # -----------------------
+        # BUILD LAYOUT
+        # -----------------------
 
-        main_widget.setLayout(main_layout)
+        self.main_layout.addLayout(top_layout)
+        self.main_layout.addLayout(self.camera_layout)
+        self.main_layout.addWidget(self.telemetry)
+
+        main_widget.setLayout(self.main_layout)
         self.setCentralWidget(main_widget)
 
-        # activar GUI después de iniciar
-        QTimer.singleShot(100, self.enable_gui)
+        # permitir clicks después de iniciar
+        QTimer.singleShot(200, self.enable_gui)
 
         # -----------------------
-        # DEMO OR ROS MODE
+        # DEMO / ROS
         # -----------------------
 
         if self.demo_mode:
@@ -114,33 +115,26 @@ class MainWindow(QMainWindow):
 
         frame = np.zeros((480,640,3), dtype=np.uint8)
 
-        cv2.putText(
-            frame,"Front Camera",(180,240),
-            cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2
-        )
+        cv2.putText(frame,"Front Camera",(180,240),
+                    cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
 
         self.front_cam.update_frame(frame)
 
         frame2 = np.zeros((480,640,3), dtype=np.uint8)
 
-        cv2.putText(
-            frame2,"Arm Camera",(180,240),
-            cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),2
-        )
+        cv2.putText(frame2,"Arm Camera",(180,240),
+                    cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),2)
 
         self.arm_cam.update_frame(frame2)
 
         frame3 = np.zeros((480,640,3), dtype=np.uint8)
 
-        cv2.putText(
-            frame3,"Rear Camera",(180,240),
-            cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2
-        )
+        cv2.putText(frame3,"Rear Camera",(180,240),
+                    cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)
 
         self.rear_cam.update_frame(frame3)
 
         joints = np.random.uniform(-3.14,3.14,6)
-
         self.telemetry.update_joints(joints)
 
     # ------------------------------------------------
@@ -157,22 +151,29 @@ class MainWindow(QMainWindow):
 
         self.expanded_camera = camera
 
+        # quitar todas del layout
         for cam in [self.front_cam, self.arm_cam, self.rear_cam]:
+            self.camera_layout.removeWidget(cam)
+            cam.hide()
 
-            if cam != camera:
-                cam.hide()
-
-        camera.setMinimumHeight(600)
+        # mostrar solo la seleccionada
+        camera.show()
+        self.camera_layout.addWidget(camera)
 
     def restore_cameras(self):
 
         if self.expanded_camera is None:
             return
 
-        for cam in [self.front_cam, self.arm_cam, self.rear_cam]:
-            cam.show()
+        self.camera_layout.removeWidget(self.expanded_camera)
 
-        self.expanded_camera.setMinimumHeight(200)
+        self.front_cam.show()
+        self.arm_cam.show()
+        self.rear_cam.show()
+
+        self.camera_layout.addWidget(self.front_cam)
+        self.camera_layout.addWidget(self.arm_cam)
+        self.camera_layout.addWidget(self.rear_cam)
 
         self.expanded_camera = None
 

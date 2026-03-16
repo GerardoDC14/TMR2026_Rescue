@@ -15,11 +15,10 @@ class CameraWidget(QLabel):
 
         self.setText(name)
         self.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
+        
         self.setStyleSheet("""
             background-color: black;
-            color: white;
-            border: 2px solid gray;
+            border: 2px solid #444;
         """)
 
         # ESTA LINEA ES CLAVE
@@ -31,7 +30,6 @@ class CameraWidget(QLabel):
             self.clicked.emit(self)
 
     def update_frame(self, frame):
-
         height, width, channel = frame.shape
         bytes_per_line = 3 * width
 

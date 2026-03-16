@@ -1,6 +1,7 @@
 import threading
 import cv2
 import numpy as np
+from .operator_panel_widget import OperatorPanelWidget
 
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtWidgets import (
@@ -28,10 +29,7 @@ class MainWindow(QMainWindow):
 
         main_widget = QWidget()
         self.main_layout = QVBoxLayout()
-
-        # -----------------------
-        # TOP SECTION
-        # -----------------------
+        #TOP
 
         top_layout = QHBoxLayout()
 
@@ -41,15 +39,13 @@ class MainWindow(QMainWindow):
         )
 
         self.arm_control = ArmControlWidget()
-        self.sensors_panel = QLabel("Sensors Panel")
+        self.operator_panel = OperatorPanelWidget()
 
         top_layout.addWidget(self.rviz_placeholder, 4)
         top_layout.addWidget(self.arm_control, 2)
-        top_layout.addWidget(self.sensors_panel, 1)
+        top_layout.addWidget(self.operator_panel, 1)
 
-        # -----------------------
         # CAMERAS
-        # -----------------------
 
         self.camera_layout = QHBoxLayout()
 
@@ -65,15 +61,11 @@ class MainWindow(QMainWindow):
         self.arm_cam.clicked.connect(self.expand_camera)
         self.rear_cam.clicked.connect(self.expand_camera)
 
-        # -----------------------
         # TELEMETRY
-        # -----------------------
 
         self.telemetry = TelemetryWidget()
 
-        # -----------------------
         # BUILD LAYOUT
-        # -----------------------
 
         self.main_layout.addLayout(top_layout)
         self.main_layout.addLayout(self.camera_layout)
@@ -85,25 +77,20 @@ class MainWindow(QMainWindow):
         # permitir clicks después de iniciar
         QTimer.singleShot(200, self.enable_gui)
 
-        # -----------------------
+
         # DEMO / ROS
-        # -----------------------
 
         if self.demo_mode:
             self.start_demo_mode()
         else:
             self.start_ros_mode()
 
-    # ------------------------------------------------
     # GUI READY
-    # ------------------------------------------------
 
     def enable_gui(self):
         self.gui_ready = True
 
-    # ------------------------------------------------
     # DEMO MODE
-    # ------------------------------------------------
 
     def start_demo_mode(self):
 
@@ -137,9 +124,8 @@ class MainWindow(QMainWindow):
         joints = np.random.uniform(-3.14,3.14,6)
         self.telemetry.update_joints(joints)
 
-    # ------------------------------------------------
     # CAMERA EXPANSION
-    # ------------------------------------------------
+
 
     def expand_camera(self, camera):
 
@@ -182,9 +168,7 @@ class MainWindow(QMainWindow):
         if event.key() == Qt.Key.Key_Escape:
             self.restore_cameras()
 
-    # ------------------------------------------------
-    # ROS MODE
-    # ------------------------------------------------
+    #ROS MODE
 
     def start_ros_mode(self):
 

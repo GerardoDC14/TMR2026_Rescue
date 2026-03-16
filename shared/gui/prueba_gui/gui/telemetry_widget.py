@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QProgressBar
 
 
 class TelemetryWidget(QWidget):
@@ -11,14 +11,20 @@ class TelemetryWidget(QWidget):
 
         layout.addWidget(QLabel("Arm Telemetry"))
 
-        self.labels = []
+        self.bars = []
 
         for i in range(6):
 
-            label = QLabel(f"Joint {i+1}: 0.0")
-            layout.addWidget(label)
+            label = QLabel(f"Joint {i+1}")
 
-            self.labels.append(label)
+            bar = QProgressBar()
+            bar.setMinimum(-314)
+            bar.setMaximum(314)
+
+            layout.addWidget(label)
+            layout.addWidget(bar)
+
+            self.bars.append(bar)
 
         self.setLayout(layout)
 
@@ -26,6 +32,4 @@ class TelemetryWidget(QWidget):
 
         for i, value in enumerate(positions):
 
-            self.labels[i].setText(
-                f"Joint {i+1}: {value:.3f}"
-            )
+            self.bars[i].setValue(int(value * 100))

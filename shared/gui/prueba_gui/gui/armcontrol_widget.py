@@ -24,6 +24,9 @@ class ArmControlWidget(QWidget):
 
         layout.addWidget(QPushButton("Plan"))
         layout.addWidget(QPushButton("Execute"))
-        layout.addWidget(QPushButton("Stop"))
+
+        stop_button = QPushButton("STOP")
+        stop_button.setStyleSheet("background-color:red")
+        layout.addWidget(stop_button)
 
         self.setLayout(layout)

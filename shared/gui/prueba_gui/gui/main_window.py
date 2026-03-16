@@ -1,7 +1,6 @@
 import threading
 import cv2
 import numpy as np
-from .operator_panel_widget import OperatorPanelWidget
 
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtWidgets import (
@@ -12,6 +11,7 @@ from PyQt6.QtWidgets import (
 from .camera_widget import CameraWidget
 from .armcontrol_widget import ArmControlWidget
 from .telemetry_widget import TelemetryWidget
+from .operator_panel_widget import OperatorPanelWidget
 
 
 class MainWindow(QMainWindow):
@@ -21,31 +21,40 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.demo_mode = demo_mode
-        self.expanded_camera = None
         self.gui_ready = False
 
         self.setWindowTitle("RoboCup Rescue GUI")
-        self.resize(1400, 900)
+        self.resize(1500, 900)
 
         main_widget = QWidget()
         self.main_layout = QVBoxLayout()
-        #TOP
+
+        # -----------------------
+        # TOP PANEL
+        # -----------------------
 
         top_layout = QHBoxLayout()
 
-        self.rviz_placeholder = QLabel("RViz View")
-        self.rviz_placeholder.setStyleSheet(
-            "background-color: black; color:white"
-        )
+        self.arm_cam_big = CameraWidget("Arm Camera")
 
         self.arm_control = ArmControlWidget()
+
         self.operator_panel = OperatorPanelWidget()
 
-        top_layout.addWidget(self.rviz_placeholder, 4)
-        top_layout.addWidget(self.arm_control, 2)
+        top_layout.addWidget(self.arm_cam_big, 3)
+        top_layout.addWidget(self.arm_control, 1)
         top_layout.addWidget(self.operator_panel, 1)
 
+        # -----------------------
+        # RVIZ
+        # -----------------------
+
+        self.rviz_placeholder = QLabel("RViz View")
+        self.rviz_placeholder.setStyleSheet("background-color:black")
+
+        # -----------------------
         # CAMERAS
+        # -----------------------
 
         self.camera_layout = QHBoxLayout()
 
@@ -57,40 +66,37 @@ class MainWindow(QMainWindow):
         self.camera_layout.addWidget(self.arm_cam)
         self.camera_layout.addWidget(self.rear_cam)
 
-        self.front_cam.clicked.connect(self.expand_camera)
-        self.arm_cam.clicked.connect(self.expand_camera)
-        self.rear_cam.clicked.connect(self.expand_camera)
-
+        # -----------------------
         # TELEMETRY
+        # -----------------------
 
         self.telemetry = TelemetryWidget()
 
+        # -----------------------
         # BUILD LAYOUT
+        # -----------------------
 
         self.main_layout.addLayout(top_layout)
+        self.main_layout.addWidget(self.rviz_placeholder, 3)
         self.main_layout.addLayout(self.camera_layout)
         self.main_layout.addWidget(self.telemetry)
 
         main_widget.setLayout(self.main_layout)
         self.setCentralWidget(main_widget)
 
-        # permitir clicks después de iniciar
         QTimer.singleShot(200, self.enable_gui)
-
-
-        # DEMO / ROS
 
         if self.demo_mode:
             self.start_demo_mode()
         else:
             self.start_ros_mode()
 
-    # GUI READY
-
     def enable_gui(self):
         self.gui_ready = True
 
+    # -----------------------
     # DEMO MODE
+    # -----------------------
 
     def start_demo_mode(self):
 
@@ -101,74 +107,27 @@ class MainWindow(QMainWindow):
     def update_fake_data(self):
 
         frame = np.zeros((480,640,3), dtype=np.uint8)
-
         cv2.putText(frame,"Front Camera",(180,240),
                     cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
-
         self.front_cam.update_frame(frame)
 
         frame2 = np.zeros((480,640,3), dtype=np.uint8)
-
         cv2.putText(frame2,"Arm Camera",(180,240),
                     cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),2)
-
         self.arm_cam.update_frame(frame2)
+        self.arm_cam_big.update_frame(frame2)
 
         frame3 = np.zeros((480,640,3), dtype=np.uint8)
-
         cv2.putText(frame3,"Rear Camera",(180,240),
                     cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)
-
         self.rear_cam.update_frame(frame3)
 
         joints = np.random.uniform(-3.14,3.14,6)
         self.telemetry.update_joints(joints)
 
-    # CAMERA EXPANSION
-
-
-    def expand_camera(self, camera):
-
-        if not self.gui_ready:
-            return
-
-        if self.expanded_camera is not None:
-            return
-
-        self.expanded_camera = camera
-
-        # quitar todas del layout
-        for cam in [self.front_cam, self.arm_cam, self.rear_cam]:
-            self.camera_layout.removeWidget(cam)
-            cam.hide()
-
-        # mostrar solo la seleccionada
-        camera.show()
-        self.camera_layout.addWidget(camera)
-
-    def restore_cameras(self):
-
-        if self.expanded_camera is None:
-            return
-
-        self.camera_layout.removeWidget(self.expanded_camera)
-
-        self.front_cam.show()
-        self.arm_cam.show()
-        self.rear_cam.show()
-
-        self.camera_layout.addWidget(self.front_cam)
-        self.camera_layout.addWidget(self.arm_cam)
-        self.camera_layout.addWidget(self.rear_cam)
-
-        self.expanded_camera = None
-
-    def keyPressEvent(self, event):
-
-        if event.key() == Qt.Key.Key_Escape:
-            self.restore_cameras()
-
-    #ROS MODE
+    # -----------------------
+    # ROS MODE
+    # -----------------------
 
     def start_ros_mode(self):
 

@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+"""
+gst_bridge — gui package, runs on the laptop.
+
+Subscribes to /config (transient_local) to discover how many cameras the
+robot is streaming, then opens one GStreamer/UDP H.264 pipeline per camera
+(ports 5000, 5001, …) and republishes each decoded frame as a
+sensor_msgs/Image on the topic names given in the config.
+"""
+
+import json
+import threading
+
+import cv2
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import (DurabilityPolicy, HistoryPolicy, QoSProfile,
+                        ReliabilityPolicy)
+from sensor_msgs.msg import Image
+from std_msgs.msg import String
+
+try:
+    from cv_bridge import CvBridge
+except ImportError:
+    print("ERROR: cv_bridge not found. Install with: sudo apt install ros-humble-cv-bridge")
+    raise
+
+BASE_PORT    = 5000
+FEC_ENABLED  = True   # must match the robot's start_robot.sh
+
+
+def _build_pipeline(port: int) -> str:
+    fec = "rtpulpfecdec pt=122 ! rtpstorage size-time=220000000 !" if FEC_ENABLED else ""
+    return (
+        f"udpsrc port={port} "
+        f"caps=application/x-rtp,media=video,encoding-name=H264,payload=96 ! "
+        f"rtpjitterbuffer latency=20 ! "
+        f"{fec} "
+        f"rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! "
+        f"video/x-raw,format=BGR ! appsink drop=true max-buffers=1 sync=false"
+    )
+
+
+class GstBridgeNode(Node):
+    def __init__(self):
+        super().__init__("gst_bridge")
+        self._bridge  = CvBridge()
+        self._threads: list[threading.Thread] = []
+        self._running = True
+
+        latched_qos = QoSProfile(
+            depth=1,
+            durability=DurabilityPolicy.TRANSIENT_LOCAL,
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,
+        )
+        # Keep a reference so the subscription isn't garbage-collected
+        self._config_sub = self.create_subscription(
+            String, "/config", self._on_config, latched_qos)
+
+        self.get_logger().info("Waiting for /config …")
+
+    # ── config callback ────────────────────────────────────────────────────
+
+    def _on_config(self, msg: String):
+        try:
+            data   = json.loads(msg.data)
+            topics = data.get("camera_topics", [])
+        except (json.JSONDecodeError, AttributeError) as exc:
+            self.get_logger().error(f"Malformed /config payload: {exc}")
+            return
+
+        if not topics:
+            self.get_logger().warn("No camera_topics in /config — nothing to stream.")
+            return
+
+        self.get_logger().info(
+            f"Config received: {len(topics)} camera(s), UDP ports {BASE_PORT}–{BASE_PORT + len(topics) - 1}")
+
+        img_qos = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10,
+        )
+
+        for i, topic in enumerate(topics):
+            port = BASE_PORT + i
+            pub  = self.create_publisher(Image, topic, img_qos)
+            t    = threading.Thread(
+                target=self._stream_loop,
+                args=(port, topic, pub),
+                daemon=True,
+            )
+            t.start()
+            self._threads.append(t)
+            self.get_logger().info(f"  UDP {port} → {topic}")
+
+    # ── per-stream loop (runs in its own thread) ───────────────────────────
+
+    def _stream_loop(self, port: int, topic: str, pub):
+        pipeline = _build_pipeline(port)
+        cap      = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
+
+        if not cap.isOpened():
+            self.get_logger().error(
+                f"Cannot open GStreamer pipeline for {topic} (UDP {port}).\n"
+                "Check that OpenCV was built with GStreamer support:\n"
+                "  python3 -c \"import cv2; print(cv2.getBuildInformation())\" | grep GStreamer\n"
+                "Fix: sudo apt install python3-opencv")
+            return
+
+        self.get_logger().info(f"Stream active: {topic} (UDP {port})")
+        frame_id = topic.strip("/").split("/")[-1]
+
+        while self._running and rclpy.ok():
+            ret, frame = cap.read()
+            if not ret:
+                continue
+            img_msg                  = self._bridge.cv2_to_imgmsg(frame, encoding="bgr8")
+            img_msg.header.stamp     = self.get_clock().now().to_msg()
+            img_msg.header.frame_id  = frame_id
+            pub.publish(img_msg)
+
+        cap.release()
+
+    # ── cleanup ────────────────────────────────────────────────────────────
+
+    def destroy_node(self):
+        self._running = False
+        super().destroy_node()
+
+
+def main(args=None):
+    # Early GStreamer support check
+    for line in cv2.getBuildInformation().splitlines():
+        if "GStreamer" in line and "NO" in line.upper():
+            print("WARNING: OpenCV has no GStreamer support — streams will fail.")
+            print("Fix:     sudo apt install python3-opencv")
+            print("         (or rebuild OpenCV with -D WITH_GSTREAMER=ON)")
+            break
+
+    rclpy.init(args=args)
+    node = GstBridgeNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()

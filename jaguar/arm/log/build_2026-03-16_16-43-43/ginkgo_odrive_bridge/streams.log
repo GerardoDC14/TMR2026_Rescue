@@ -1,0 +1,82 @@
+[1.340s] Invoking command in '/home/arepo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge': PYTHONPATH=/home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ginkgo_odrive_bridge build --build-base /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build install --record /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/install.log --single-version-externally-managed install_data
+[1.560s] running egg_info
+[1.560s] creating ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info
+[1.576s] writing ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/PKG-INFO
+[1.576s] writing dependency_links to ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/dependency_links.txt
+[1.576s] writing entry points to ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/entry_points.txt
+[1.577s] writing requirements to ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/requires.txt
+[1.577s] writing top-level names to ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/top_level.txt
+[1.577s] writing manifest file '../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/SOURCES.txt'
+[1.611s] reading manifest file '../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/SOURCES.txt'
+[1.613s] writing manifest file '../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/SOURCES.txt'
+[1.613s] running build
+[1.613s] running build_py
+[1.614s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build
+[1.614s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build/lib
+[1.614s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge
+[1.614s] copying ginkgo_odrive_bridge/joint_state_bridge.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge
+[1.614s] copying ginkgo_odrive_bridge/__init__.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge
+[1.614s] running install
+[1.618s] running install_lib
+[1.634s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge
+[1.634s] copying /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge/joint_state_bridge.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge
+[1.634s] copying /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge/__init__.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge
+[1.635s] byte-compiling /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge/joint_state_bridge.py to joint_state_bridge.cpython-310.pyc
+[1.637s] byte-compiling /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge/__init__.py to __init__.cpython-310.pyc
+[1.637s] running install_data
+[1.637s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ament_index
+[1.637s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ament_index/resource_index
+[1.638s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ament_index/resource_index/packages
+[1.638s] copying resource/ginkgo_odrive_bridge -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ament_index/resource_index/packages
+[1.638s] copying package.xml -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge
+[1.638s] copying README.md -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge
+[1.638s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/config
+[1.638s] copying config/joint_state_bridge.yaml -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/config
+[1.638s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/launch
+[1.638s] copying launch/joint_state_bridge.launch.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/launch
+[1.638s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits
+[1.638s] copying Python_USB_CAN_Test_64bits/ControlCAN.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits
+[1.638s] copying Python_USB_CAN_Test_64bits/ErrorType.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits
+[1.638s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can
+[1.639s] copying Python_USB_CAN_Test_64bits/ginkgo_can/odrive.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can
+[1.639s] copying Python_USB_CAN_Test_64bits/ginkgo_can/__init__.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can
+[1.639s] copying Python_USB_CAN_Test_64bits/ginkgo_can/bus.py -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can
+[1.639s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib
+[1.639s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos
+[1.639s] copying Python_USB_CAN_Test_64bits/lib/macos/libusb-0.1.4.dylib -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos
+[1.639s] copying Python_USB_CAN_Test_64bits/lib/macos/libGinkgo_Driver.dylib -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos
+[1.639s] copying Python_USB_CAN_Test_64bits/lib/macos/libusb-1.0.0.dylib -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos
+[1.640s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows
+[1.640s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/32bit
+[1.640s] copying Python_USB_CAN_Test_64bits/lib/windows/32bit/Ginkgo_Driver.lib -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/32bit
+[1.640s] copying Python_USB_CAN_Test_64bits/lib/windows/32bit/Ginkgo_Driver.dll -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/32bit
+[1.640s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.640s] copying Python_USB_CAN_Test_64bits/lib/windows/64bit/libusb0.zip -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.640s] copying Python_USB_CAN_Test_64bits/lib/windows/64bit/64bit.zip -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.641s] copying Python_USB_CAN_Test_64bits/lib/windows/64bit/Ginkgo_Driver.lib -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.641s] copying Python_USB_CAN_Test_64bits/lib/windows/64bit/libusb0.dll -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.641s] copying Python_USB_CAN_Test_64bits/lib/windows/64bit/libusb0.dll.x86.bak -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.641s] copying Python_USB_CAN_Test_64bits/lib/windows/64bit/Ginkgo_Driver.dll -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit
+[1.641s] creating /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.641s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlPMBus.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.641s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlCAN.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlSMBus.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/Control1Wire.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlGPIO.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlTest.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlCNT.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlPWM.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlSPI.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlADC.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlI2C.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.642s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlBoot.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.643s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlUART.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.643s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlSDI.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.643s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlDAC.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.643s] copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlDigRF.h -> /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header
+[1.643s] running install_egg_info
+[1.660s] Copying ../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info to /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge-0.1.0-py3.10.egg-info
+[1.661s] running install_scripts
+[1.827s] Installing joint_state_bridge script to /home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/ginkgo_odrive_bridge
+[1.827s] writing list of installed files to '/home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/install.log'
+[1.864s] Invoked command in '/home/arepo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge' returned '0': PYTHONPATH=/home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/jaguar/arm/install/ginkgo_odrive_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ginkgo_odrive_bridge build --build-base /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/build install --record /home/arepo/TMR2026_Rescue/jaguar/arm/build/ginkgo_odrive_bridge/install.log --single-version-externally-managed install_data

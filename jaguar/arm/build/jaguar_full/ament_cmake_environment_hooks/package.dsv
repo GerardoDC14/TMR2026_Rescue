@@ -1,0 +1,4 @@
+source;share/jaguar_full/local_setup.bash
+source;share/jaguar_full/local_setup.dsv
+source;share/jaguar_full/local_setup.sh
+source;share/jaguar_full/local_setup.zsh

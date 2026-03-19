@@ -1,0 +1,5 @@
+[console_scripts]
+joystick_servo = jaguar_teleop.joystick_servo:main
+keyboard_servo = jaguar_teleop.keyboard_servo:main
+serial_bridge = jaguar_teleop.serial_bridge:main
+teleop_tk = jaguar_teleop.teleop_tk:main

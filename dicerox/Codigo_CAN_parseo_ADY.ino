@@ -12,7 +12,7 @@ void convert_data(const twai_message_t &msg){
 
     switch(cmd){
 
-    case 9: //Status 1
+    case 9:{ //Status 1
         int32_t erpm = ((int32_t)msg.data[0] << 24) |
                        ((int32_t)msg.data[1] << 16) |
                        ((int32_t)msg.data[2] << 8)  |
@@ -29,9 +29,9 @@ void convert_data(const twai_message_t &msg){
         Serial.print(", Current: "); Serial.print(current);
         Serial.print(", Duty: "); Serial.println(duty_cycle);
         Serial.println("------");
-        break;
+        break;}
 
-    case 14: // Status 2
+    case 14:{ // Status 2
         int32_t amp_hours_CAN = ((int32_t)msg.data[0] << 24) |
                        ((int32_t)msg.data[1] << 16) |
                        ((int32_t)msg.data[2] << 8)  |
@@ -50,9 +50,9 @@ void convert_data(const twai_message_t &msg){
         Serial.print(", Amp hours: "); Serial.print(amp_hours);
         Serial.print(", Amp hours charged: "); Serial.println(amp_hours_charged);
         Serial.println("------");
-        break;
+        break;}
 
-    case 15: //Status 3
+    case 15:{ //Status 3
         int32_t watt_hours_CAN = ((int32_t)msg.data[0] << 24) |
                        ((int32_t)msg.data[1] << 16) |
                        ((int32_t)msg.data[2] << 8)  |
@@ -71,9 +71,9 @@ void convert_data(const twai_message_t &msg){
         Serial.print(", Watt hours: "); Serial.print(watt_hours);
         Serial.print(", Watt hours charged: "); Serial.println(watt_hours_charged);
         Serial.println("------");
-        break;
+        break;}
 
-    case 16: //Status 4
+    case 16: {//Status 4
 
         int16_t temp_fet_CAN = ((int16_t)msg.data[0] << 8) | msg.data[1];
         float temp_fet = temp_fet_CAN * 0.1;
@@ -94,9 +94,9 @@ void convert_data(const twai_message_t &msg){
         Serial.print(", Current in: "); Serial.print(current_in);
         Serial.print(", Pid Pos now: "); Serial.println(pid_pos_now);
         Serial.println("------");
-        break;
+        break;}
 
-    case 27: //Status 5
+    case 27:{ //Status 5
         int32_t tacho_value = ((int32_t)msg.data[0] << 24) |
                        ((int32_t)msg.data[1] << 16) |
                        ((int32_t)msg.data[2] << 8)  |
@@ -109,15 +109,15 @@ void convert_data(const twai_message_t &msg){
         Serial.print(", Tacho value: "); Serial.print(tacho_value);
         Serial.print(", Voltage in: "); Serial.println(v_in);
         Serial.println("------");
-        break;
-    default: break;
+        break;}
+    default: {break;}
 }}
 
 
 
 void setup() {
   Serial.begin(115200);
-  delay(1000);
+  delay(5000);
   Serial.println("Starting CAN sniffer...");
 
   twai_general_config_t g_config =
@@ -125,7 +125,6 @@ void setup() {
 
   twai_timing_config_t t_config = TWAI_TIMING_CONFIG_500KBITS();
   twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
-
   esp_err_t err = twai_driver_install(&g_config, &t_config, &f_config);
   Serial.print("driver_install: ");
   Serial.println(err);
@@ -141,6 +140,7 @@ void setup() {
 
 void loop() {
   twai_message_t msg;
+
   esp_err_t err = twai_receive(&msg, pdMS_TO_TICKS(200));
 
   if (err == ESP_OK) {

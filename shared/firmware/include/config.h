@@ -61,26 +61,64 @@
 #define PWM_PERIOD_US    20000   // = 1/50 Hz in µs
 
 // ─── Quadrature Encoders (PCNT hardware) ─────────────────────────────────────
+// Pins shared by both robots (track encoders)
 #define PIN_ENC_LEFT_A      32
 #define PIN_ENC_LEFT_B      33
 #define PIN_ENC_RIGHT_A     35   // input-only
 #define PIN_ENC_RIGHT_B     36   // input-only
-#define PIN_ENC_FLIP_A      13
-#define PIN_ENC_FLIP_B      14
 
+// PCNT units 0–1 are always LEFT and RIGHT tracks
 #define PCNT_UNIT_LEFT       0
 #define PCNT_UNIT_RIGHT      1
-#define PCNT_UNIT_FLIPPER    2
 #define PCNT_HIGH_LIM    30000   // overflow threshold (must fit int16_t)
 #define PCNT_LOW_LIM    -30000
 
-// Robot-specific encoder constants — fill from datasheet / measurement
+// ROBOT_MAIN: one joined flipper on unit 2
 #ifdef ROBOT_MAIN
+  #define PIN_ENC_FLIP_A      13
+  #define PIN_ENC_FLIP_B      14
+  #define PCNT_UNIT_FLIPPER    2
+  #define NUM_ENCODER_UNITS    3
+
+  // Encoder constants — fill from datasheet / measurement
   #define ENC_CPR_TRACK        1000.0f   // counts per motor revolution (after 4× decode)
   #define ENC_CPR_FLIPPER      1000.0f
   #define TRACK_GEAR_RATIO       20.0f   // motor→wheel reduction
   #define FLIPPER_GEAR_RATIO     30.0f
   #define FLIPPER_ANGLE_MIN     -10.0f   // mechanical limits (degrees)
+  #define FLIPPER_ANGLE_MAX     120.0f
+
+  // Flipper position PID coefficients — tune on bench
+  #define FLIPPER_PID_KP        1.0f   // proportional gain
+  #define FLIPPER_PID_KI        0.0f   // integral gain
+  #define FLIPPER_PID_KD        0.0f   // derivative gain
+  #define FLIPPER_PID_I_MAX     0.5f   // integral windup clamp (normalised effort units)
+#endif
+
+// ROBOT_SECONDARY: 4 independent flippers on units 2–5
+// Pin assignments use GPIOs freed from LEDC (25/26/27) plus spare pins.
+// TODO: confirm physical wiring before deploying.
+#ifdef ROBOT_SECONDARY
+  #define PIN_ENC_FLIP_FL_A   12   // front-left flipper — TODO: confirm
+  #define PIN_ENC_FLIP_FL_B   13
+  #define PIN_ENC_FLIP_FR_A   14   // front-right flipper — TODO: confirm
+  #define PIN_ENC_FLIP_FR_B   15
+  #define PIN_ENC_FLIP_RL_A   25   // rear-left  flipper — TODO: confirm
+  #define PIN_ENC_FLIP_RL_B   26
+  #define PIN_ENC_FLIP_RR_A   27   // rear-right flipper — TODO: confirm
+  #define PIN_ENC_FLIP_RR_B    2
+  #define PCNT_UNIT_FLIP_FL    2
+  #define PCNT_UNIT_FLIP_FR    3
+  #define PCNT_UNIT_FLIP_RL    4
+  #define PCNT_UNIT_FLIP_RR    5
+  #define NUM_ENCODER_UNITS    6
+
+  // Encoder constants — TODO: fill from motor/encoder datasheet
+  #define ENC_CPR_TRACK        1000.0f
+  #define ENC_CPR_FLIPPER      1000.0f   // shared by all 4 flipper encoders
+  #define TRACK_GEAR_RATIO       20.0f
+  #define FLIPPER_GEAR_RATIO     30.0f
+  #define FLIPPER_ANGLE_MIN     -10.0f
   #define FLIPPER_ANGLE_MAX     120.0f
 #endif
 
@@ -138,6 +176,8 @@
 #define MLX90640_I2C_ADDR    0x33
 #define MLX90640_REFRESH_HZ     4        // valid: 1 2 4 8 16 32 64
 
+#define BNO055_I2C_ADDR      0x28        // SA0=GND; use 0x29 if SA0=VCC
+
 #define MQ2_RL_KOHM          10.0f       // load resistor on MQ2 board (kΩ)
 #define MQ2_RO_KOHM          10.0f       // Rs in clean air — calibrate on bench
 #define MQ2_SAMPLE_COUNT        10       // ADC samples to average per reading
@@ -146,6 +186,7 @@
 #define SENSOR_BIT_MAG       (1 << 0)
 #define SENSOR_BIT_THERMAL   (1 << 1)
 #define SENSOR_BIT_GAS       (1 << 2)
+#define SENSOR_BIT_IMU       (1 << 3)
 
 // ─── Mini-PC Binary Protocol ──────────────────────────────────────────────────
 // Frame: [0xAA][0x55][TYPE:1][LEN_H:1][LEN_L:1][PAYLOAD:LEN][CRC:1]
@@ -157,15 +198,18 @@
 // ESP32 → PC message types
 #define MSG_TELEMETRY        0x01        // PPM + encoder + state, ~50 Hz
 #define MSG_SENSOR_THERMAL   0x02        // 32×24 thermal pixels (int16 ×10 °C)
-#define MSG_SENSOR_MAG       0x03        // magnetometer XYZ + heading
-#define MSG_SENSOR_GAS       0x04        // gas sensor ratios + estimated PPM
+#define MSG_SENSOR_MAG       0x03        // magnetometer XYZ
+#define MSG_SENSOR_GAS       0x04        // gas sensor Rs/Ro ratio
 #define MSG_STATUS           0x05        // system status / heartbeat
+#define MSG_SENSOR_IMU       0x06        // BNO055 orientation + accel + gyro
+#define MSG_ENCODER_EXT      0x07        // ROBOT_SECONDARY: 4 independent flipper angles
 
 // PC → ESP32 message types
 #define MSG_ARM_JOINTS       0x10        // 6 × int16 joint angles (×100 deg)
 #define MSG_SENSOR_ENABLE    0x11        // 1-byte bitmask
 #define MSG_ESTOP            0x12        // 0-byte payload — immediate stop
 #define MSG_ESTOP_CLEAR      0x13        // 0-byte payload — resume
+#define MSG_KEYBIND          0x14        // 15 bytes: 3 modes × 5 channel slots
 
 // ─── FreeRTOS Task Config ────────────────────────────────────────────────────
 // Core 0: protocol tasks (comms + CAN)

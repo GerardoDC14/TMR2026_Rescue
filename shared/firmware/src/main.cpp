@@ -75,6 +75,11 @@ static void commsTask(void* /*arg*/) {
             telem.uptime_ms     = status.uptime_ms;
 
             Comms::sendTelemetry(telem);
+
+#ifdef ROBOT_SECONDARY
+            // Send independent flipper angles at the same 50 Hz rate
+            Comms::sendEncoderExt(enc);
+#endif
         }
 
         // Yield briefly so other Core 0 tasks get time
@@ -122,6 +127,12 @@ static void sensorTask(void* /*arg*/) {
             GasData gas;
             Sensors::getGas(gas);
             if (gas.valid) Comms::sendGasData(gas);
+        }
+
+        if (mask & SENSOR_BIT_IMU) {
+            ImuData imu;
+            Sensors::getImu(imu);
+            if (imu.valid) Comms::sendImuData(imu);
         }
 
         // Yield for at least one tick between sensor sweeps

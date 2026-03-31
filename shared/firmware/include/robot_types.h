@@ -14,6 +14,27 @@ enum class RobotMode : uint8_t {
                   //   four independent via CAN on ROBOT_SECONDARY
 };
 
+// ─── Channel Function (keybind system) ───────────────────────────────────────
+// What a PPM channel can be bound to.  Values match the GUI enum.
+enum class ChannelFunction : uint8_t {
+    NONE         = 0,
+    TRACTION_FWD = 1,   // forward / back
+    TRACTION_TURN = 2,  // left / right differential
+    FLIPPER_ALL  = 3,   // all flippers move together
+    FLIPPER_FL   = 4,   // individual front-left
+    FLIPPER_FR   = 5,   // individual front-right
+    FLIPPER_RL   = 6,   // individual rear-left
+    FLIPPER_RR   = 7,   // individual rear-right
+    ARM_FWD      = 8,   // forward to mini-PC for arm IK
+    ESTOP        = 9,   // virtual e-stop
+};
+
+// Keybind table: 3 Ch5 lever positions × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
+struct KeybindTable {
+    ChannelFunction map[3][5];
+    bool valid;
+};
+
 // ─── PPM / RC ────────────────────────────────────────────────────────────────
 struct PPMFrame {
     uint16_t ch[PPM_CHANNELS];  // raw µs values, index 0 = channel 1
@@ -33,12 +54,21 @@ inline float ppmNormalise(uint16_t raw_us) {
 
 // ─── Encoder / Drive ─────────────────────────────────────────────────────────
 struct EncoderState {
+    // Track encoders — present on both robots
     int32_t  count_left;
     int32_t  count_right;
-    int32_t  count_flipper;
     float    speed_left_rpm;
     float    speed_right_rpm;
+
+    // ROBOT_MAIN: single joined flipper
+    int32_t  count_flipper;
     float    flipper_angle_deg;
+
+    // ROBOT_SECONDARY: four independent flippers (zero on ROBOT_MAIN)
+    int32_t  count_flip_fl, count_flip_fr, count_flip_rl, count_flip_rr;
+    float    flipper_angle_fl_deg, flipper_angle_fr_deg;
+    float    flipper_angle_rl_deg, flipper_angle_rr_deg;
+
     uint32_t timestamp_ms;
 };
 
@@ -54,25 +84,37 @@ struct ArmEndEffector {
     float roll, pitch, yaw;
 };
 
+// ─── IMU ─────────────────────────────────────────────────────────────────────
+struct ImuData {
+    // Euler angles (degrees, BNO055 fused output)
+    float yaw_deg, pitch_deg, roll_deg;
+
+    // Linear acceleration (m/s², gravity-compensated)
+    float accel_x, accel_y, accel_z;
+
+    // Angular velocity (rad/s)
+    float gyro_x, gyro_y, gyro_z;
+
+    // Packed calibration: bits[7:6]=sys, bits[5:4]=gyro, bits[3:2]=accel, bits[1:0]=mag
+    // Each field is 0–3 (3 = fully calibrated)
+    uint8_t calib;
+
+    bool valid;
+};
+
 // ─── Sensor Data ─────────────────────────────────────────────────────────────
 struct MagData {
     float x_uT, y_uT, z_uT;
-    float heading_deg;    // 0–360°, North referenced if calibrated
     bool  valid;
 };
 
 struct ThermalData {
     float pixels[32 * 24];   // °C, row-major (32 columns × 24 rows)
-    float ambient_temp_C;
-    float max_temp_C;
     bool  valid;
 };
 
 struct GasData {
     float rs_ro_ratio;    // sensor ratio (lower → more gas)
-    float ppm_lpg;
-    float ppm_co;
-    float ppm_smoke;
     bool  valid;
 };
 
@@ -114,21 +156,44 @@ struct MagPayload {
     int16_t x_uT100;           // µT × 100
     int16_t y_uT100;
     int16_t z_uT100;
-    int16_t heading_deg10;     // degrees × 10
 };
 
 struct GasPayload {
     int16_t rs_ro_100;         // ratio × 100
-    int16_t ppm_lpg;
-    int16_t ppm_co;
-    int16_t ppm_smoke;
 };
 
-// ThermalPayload: 32×24 int16_t (°C × 10) + 1 int16_t ambient = 769 int16_t = 1538 bytes
-// Sent as raw int16_t array — ambient is last element
+// ThermalPayload: 32×24 int16_t (°C × 10) = 1536 bytes
 struct ThermalPayload {
     int16_t pixels[32 * 24];   // °C × 10
-    int16_t ambient_C10;
+};
+
+// ImuPayload (MSG_SENSOR_IMU = 0x06) — 19 bytes
+struct ImuPayload {
+    int16_t yaw_deg10;          // degrees × 10
+    int16_t pitch_deg10;
+    int16_t roll_deg10;
+    int16_t accel_x_ms2_100;    // m/s² × 100
+    int16_t accel_y_ms2_100;
+    int16_t accel_z_ms2_100;
+    int16_t gyro_x_rads1000;    // rad/s × 1000
+    int16_t gyro_y_rads1000;
+    int16_t gyro_z_rads1000;
+    uint8_t calib;              // bits[7:6]=sys, bits[5:4]=gyro, bits[3:2]=accel, bits[1:0]=mag
+};
+
+// EncoderExtPayload (MSG_ENCODER_EXT = 0x07) — ROBOT_SECONDARY only — 8 bytes
+struct EncoderExtPayload {
+    int16_t flipper_fl_deg10;   // angle × 10 degrees; front-left
+    int16_t flipper_fr_deg10;   // front-right
+    int16_t flipper_rl_deg10;   // rear-left
+    int16_t flipper_rr_deg10;   // rear-right
+};
+
+// KeybindPayload (MSG_KEYBIND = 0x14) — 15 bytes
+// 3 modes (Ch5 lever positions) × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
+// Each byte is a ChannelFunction enum value.
+struct KeybindPayload {
+    uint8_t map[3][5];
 };
 
 #pragma pack(pop)

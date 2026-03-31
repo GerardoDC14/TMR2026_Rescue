@@ -1,0 +1,66 @@
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found rclcpp: 16.0.14 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found urdf: 2.6.1 (/opt/ros/humble/share/urdf/cmake)
+-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done (0.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui
+[  0%] [0mBuilt target gui_autogen_timestamp_deps[0m
+[  5%] [1m[34mAutomatic MOC and UIC for target gui[0m
+[  5%] [0mBuilt target gui_autogen[0m
+[ 11%] [32mBuilding CXX object CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/gui.dir/src/gui.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/gui.dir/src/main_window.cpp.o[0m
+[ 27%] [32mBuilding CXX object CMakeFiles/gui.dir/src/video_widget.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/gui.dir/src/video_panel.cpp.o[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/gui.dir/src/dashboard_panel.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/gui.dir/src/odometry_panel.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/gui.dir/src/speech_processor.cpp.o[0m
+[ 55%] [32mBuilding CXX object CMakeFiles/gui.dir/src/filters.cpp.o[0m
+[ 61%] [32mBuilding CXX object CMakeFiles/gui.dir/src/app_settings.cpp.o[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/gui.dir/src/keybind_dialog.cpp.o[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/gui.dir/src/settings_dialog.cpp.o[0m
+[ 77%] [1m[32mLinking CXX executable gui[0m
+[100%] [0mBuilt target gui[0m
+-- Install configuration: ""
+-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui
+-- Set non-toolchain portion of runtime path of "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui" to ""
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gst_bridge
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/vision
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/audio
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch/gui.launch.py
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/package_run_dependencies/gui
+-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/parent_prefix_path/gui
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.sh
+-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.sh
+-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.dsv
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.bash
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.sh
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.zsh
+-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.dsv
+-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.dsv
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/packages/gui
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig.cmake
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig-version.cmake
+-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.xml

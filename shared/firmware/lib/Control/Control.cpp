@@ -13,33 +13,65 @@ RobotMode    Control::s_mode        = RobotMode::INIT;
 ArmJoints    Control::s_arm_joints  = {};
 uint8_t      Control::s_sensor_mask = 0;
 
-// File-level mutex: keeps FreeRTOS types out of the class header
+// Default keybind table (matches original hardcoded behaviour)
+KeybindTable Control::s_keybind = {{
+    // mode0 (Ch5 low):  FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
+    {ChannelFunction::FLIPPER_ALL, ChannelFunction::TRACTION_FWD, ChannelFunction::NONE,
+     ChannelFunction::TRACTION_TURN, ChannelFunction::NONE},
+    // mode1 (Ch5 mid):  same as mode0
+    {ChannelFunction::FLIPPER_ALL, ChannelFunction::TRACTION_FWD, ChannelFunction::NONE,
+     ChannelFunction::TRACTION_TURN, ChannelFunction::NONE},
+    // mode2 (Ch5 high): ARM on all channels
+    {ChannelFunction::ARM_FWD, ChannelFunction::ARM_FWD, ChannelFunction::ARM_FWD,
+     ChannelFunction::ARM_FWD, ChannelFunction::NONE},
+}, true};
+
+// File-level mutex
 static portMUX_TYPE s_mux = portMUX_INITIALIZER_UNLOCKED;
 
-// ─── begin() — called once from setup() ──────────────────────────────────────
+// ─── Flipper PID (ROBOT_MAIN only) ──────────────────────────────────────────
+#ifdef ROBOT_MAIN
+float Control::s_pid_integral = 0.0f;
+float Control::s_pid_prev_err = 0.0f;
+
+float Control::flipperPID(float setpoint_deg, float measured_deg) {
+    constexpr float dt = 1.0f / CONTROL_LOOP_HZ;
+    float err         = setpoint_deg - measured_deg;
+    s_pid_integral   += err * dt;
+    if (s_pid_integral >  FLIPPER_PID_I_MAX) s_pid_integral =  FLIPPER_PID_I_MAX;
+    if (s_pid_integral < -FLIPPER_PID_I_MAX) s_pid_integral = -FLIPPER_PID_I_MAX;
+    float deriv     = (err - s_pid_prev_err) / dt;
+    s_pid_prev_err  = err;
+    float effort = FLIPPER_PID_KP * err
+                 + FLIPPER_PID_KI * s_pid_integral
+                 + FLIPPER_PID_KD * deriv;
+    if (effort >  1.0f) effort =  1.0f;
+    if (effort < -1.0f) effort = -1.0f;
+    return effort;
+}
+#endif
+
+// ─── begin() ─────────────────────────────────────────────────────────────────
 void Control::begin() {
-    // Wire up callbacks from Comms to Control setters
     Comms::onArmJoints(   [](const ArmJointsPayload& p) { Control::setArmJoints(p); });
     Comms::onSensorEnable([](uint8_t mask)              { Control::setSensorMask(mask); });
     Comms::onEstop(       [](bool active)               {
         if (active) Control::triggerEstop();
         else        Control::clearEstop();
     });
+    Comms::onKeybind([](const KeybindPayload& p) { Control::setKeybind(p); });
 
     s_mode = RobotMode::STANDBY;
-    // Note: setArmJoints callback is wired for both robots.
-    // On ROBOT_MAIN the received joints are unused (arm has its own ESP32).
-    // On ROBOT_SECONDARY they are forwarded via CAN in updateArmMode().
 }
 
-// ─── tick() — called from control task at CONTROL_LOOP_HZ ────────────────────
+// ─── tick() — called at CONTROL_LOOP_HZ ─────────────────────────────────────
 void Control::tick() {
     PPMFrame     ppm;
     EncoderState enc;
     bool         have_ppm = RC::getFrame(ppm);
     Encoders::getState(enc);
 
-    // ── ESTOP: override everything ────────────────────────────────────────────
+    // ── ESTOP: override everything ──────────────────────────────────────────
     portENTER_CRITICAL(&s_mux);
     RobotMode current = s_mode;
     portEXIT_CRITICAL(&s_mux);
@@ -49,7 +81,7 @@ void Control::tick() {
         return;
     }
 
-    // ── PPM link watchdog: go to STANDBY if signal lost ──────────────────────
+    // ── PPM link watchdog ───────────────────────────────────────────────────
     if (!RC::isConnected()) {
         Locomotion::neutralise();
         portENTER_CRITICAL(&s_mux);
@@ -58,112 +90,178 @@ void Control::tick() {
         return;
     }
 
-    // ── Mode transition from Ch5 (3-position lever) ──────────────────────────
-    if (have_ppm) {
-        RobotMode decoded = decodeModeFromCh5(ppm);
-        portENTER_CRITICAL(&s_mux);
-        // ESTOP can only be cleared by mini PC; all other transitions follow Ch5
-        if (s_mode != RobotMode::ESTOP) {
-            s_mode = decoded;
-        }
-        current = s_mode;
-        portEXIT_CRITICAL(&s_mux);
-    }
+    if (!have_ppm) return;
 
-    // ── Per-mode update ───────────────────────────────────────────────────────
-    if (have_ppm) {
-        switch (current) {
-            case RobotMode::NORMAL:  updateNormalMode(ppm, enc);  break;
-            case RobotMode::FLIPPER: updateFlipperMode(ppm, enc); break;
-            case RobotMode::ARM:     updateArmMode(ppm);          break;
-            default: break;
-        }
-    }
+    // ── Decode Ch5 lever → mode index (0, 1, 2) ────────────────────────────
+    int mode_idx = decodeModeIndex(ppm);
 
-    // ── Periodic telemetry to mini PC ─────────────────────────────────────────
-    // (Triggered by the comms task reading the shared state; nothing to do here.)
-
-    // ── Sensor data forwarding (when enabled) ────────────────────────────────
-    // Sent from the sensor task after each successful reading cycle.
-}
-
-// ─── NORMAL mode ─────────────────────────────────────────────────────────────
-// Ch2/Ch4 → tank-drive tracks.
-// ROBOT_MAIN also drives the single forward flipper from Ch1.
-// ROBOT_SECONDARY leaves flippers at neutral (controlled only in FLIPPER mode).
-void Control::updateNormalMode(const PPMFrame& ppm, const EncoderState& /*enc*/) {
-    float forward = ppmNormalise(ppm.ch[PPM_CH_FORWARD - 1]);
-    float turn    = ppmNormalise(ppm.ch[PPM_CH_TURN    - 1]);
-
-    constexpr float kDeadband = 0.05f;
-    if (fabsf(forward) < kDeadband) forward = 0.0f;
-    if (fabsf(turn)    < kDeadband) turn    = 0.0f;
-
-    Locomotion::setDriveCommand(forward, turn);
-
-#ifdef ROBOT_MAIN
-    float flipper_norm  = ppmNormalise(ppm.ch[PPM_CH_FLIPPER - 1]);
-    float flipper_angle = flipper_norm * FLIPPER_ANGLE_MAX;
-    Locomotion::setFlipperTarget(flipper_angle);
-#elif defined(ROBOT_SECONDARY)
-    // No flipper in normal mode on ROBOT_SECONDARY
-#endif
-}
-
-// ─── FLIPPER mode ────────────────────────────────────────────────────────────
-// ROBOT_MAIN: identical to NORMAL — tracks on Ch2/Ch4, single flipper on Ch1.
-//   (Both modes behave the same because the joined front flippers are always
-//    part of normal driving on ROBOT_MAIN.)
-// ROBOT_SECONDARY: Ch1-4 drive each of the four flippers independently;
-//   tracks are stopped.
-void Control::updateFlipperMode(const PPMFrame& ppm, const EncoderState& enc) {
-#ifdef ROBOT_MAIN
-    // Same behaviour as NORMAL mode on ROBOT_MAIN
-    updateNormalMode(ppm, enc);
-
-#elif defined(ROBOT_SECONDARY)
-    // Tracks stopped while operating flippers
-    Locomotion::setDriveCommand(0.0f, 0.0f);
-
-    // Ch1-4 map individually to FL, FR, RL, RR flippers
-    // TODO: confirm which physical flipper each channel maps to.
-    float fl = ppmNormalise(ppm.ch[0]);   // Ch1
-    float fr = ppmNormalise(ppm.ch[1]);   // Ch2
-    float rl = ppmNormalise(ppm.ch[2]);   // Ch3
-    float rr = ppmNormalise(ppm.ch[3]);   // Ch4
-    Locomotion::setFlipperTargets(fl, fr, rl, rr);
-#endif
-}
-
-// ─── ARM mode ────────────────────────────────────────────────────────────────
-// All channels forwarded to mini PC for IK on both robots.
-// ROBOT_MAIN:      arm has its own ESP32; this ESP32 just sends PPM and waits.
-// ROBOT_SECONDARY: this ESP32 also receives the resulting joint angles from the
-//                  mini PC and forwards them via CAN to the 6DOF arm.
-void Control::updateArmMode(const PPMFrame& ppm) {
-    // Halt tracks while the arm is active (both robots)
-    Locomotion::setDriveCommand(0.0f, 0.0f);
-
-    // Send all raw PPM channels to the mini PC so it can run IK.
-    // The comms task populates encoder/speed fields from shared state.
-    TelemetryPayload telem;
-    telem.mode  = static_cast<uint8_t>(RobotMode::ARM);
-    telem.flags = 0;
-    for (int i = 0; i < PPM_CHANNELS; i++) telem.ppm[i] = ppm.ch[i];
-    Comms::sendTelemetry(telem);
-
-#ifdef ROBOT_SECONDARY
-    // Relay the joint angles received from the mini PC to the arm over CAN
+    // Determine the high-level RobotMode for telemetry/status reporting
+    // by scanning what functions are bound in this mode row
     portENTER_CRITICAL(&s_mux);
-    ArmJoints joints = s_arm_joints;
+    KeybindTable kb = s_keybind;
     portEXIT_CRITICAL(&s_mux);
 
-    if (joints.valid) {
-        CANInterface::sendArmJoints(joints.angle_deg);
+    bool has_arm = false;
+    bool has_traction = false;
+    bool has_flipper = false;
+    bool has_estop = false;
+    for (int c = 0; c < 5; ++c) {
+        auto fn = kb.map[mode_idx][c];
+        if (fn == ChannelFunction::ARM_FWD) has_arm = true;
+        if (fn == ChannelFunction::TRACTION_FWD || fn == ChannelFunction::TRACTION_TURN) has_traction = true;
+        if (fn >= ChannelFunction::FLIPPER_ALL && fn <= ChannelFunction::FLIPPER_RR) has_flipper = true;
+        if (fn == ChannelFunction::ESTOP) has_estop = true;
     }
-    // ROBOT_MAIN does NOT relay joints — the arm's dedicated ESP32 handles that
-    // communication independently with the mini PC.
+
+    // Virtual ESTOP from keybind: neutralise but don't lock into ESTOP state
+    // (the real ESTOP from MSG_ESTOP is handled at the top of tick())
+    if (has_estop) {
+        Locomotion::neutralise();
+        portENTER_CRITICAL(&s_mux);
+        if (s_mode != RobotMode::ESTOP)
+            s_mode = RobotMode::STANDBY;  // report as STANDBY, not hard ESTOP
+        portEXIT_CRITICAL(&s_mux);
+        return;
+    }
+
+    RobotMode new_mode;
+    if (has_arm && !has_traction && !has_flipper) {
+        new_mode = RobotMode::ARM;
+    } else if (has_flipper && !has_traction) {
+        new_mode = RobotMode::FLIPPER;
+    } else {
+        new_mode = RobotMode::NORMAL;
+    }
+
+    portENTER_CRITICAL(&s_mux);
+    if (s_mode != RobotMode::ESTOP)
+        s_mode = new_mode;
+    current = s_mode;
+    portEXIT_CRITICAL(&s_mux);
+
+    if (current == RobotMode::ESTOP) {
+        Locomotion::neutralise();
+        return;
+    }
+
+    // ── Apply the keybind row ───────────────────────────────────────────────
+    applyKeybindRow(mode_idx, ppm, enc);
+}
+
+// ─── Apply keybind row ──────────────────────────────────────────────────────
+// Maps each channel to its bound function and actuates accordingly.
+void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
+                              const EncoderState& enc) {
+    portENTER_CRITICAL(&s_mux);
+    KeybindTable kb = s_keybind;
+    portEXIT_CRITICAL(&s_mux);
+
+    // Channel slot → raw PPM channel index mapping: slot 0=Ch1, 1=Ch2, 2=Ch3, 3=Ch4, 4=Ch6
+    static const int slot_to_ppm[5] = {0, 1, 2, 3, 5};
+
+    constexpr float kDeadband = 0.05f;
+
+    // Accumulate traction and flipper commands from all channels
+    float forward = 0.0f;
+    float turn = 0.0f;
+    float flipper_all = 0.0f;
+    float flipper_fl = 0.0f, flipper_fr = 0.0f, flipper_rl = 0.0f, flipper_rr = 0.0f;
+    bool has_traction = false;
+    bool has_flipper = false;
+    bool has_arm = false;
+
+    for (int c = 0; c < 5; ++c) {
+        ChannelFunction fn = kb.map[mode_idx][c];
+        if (fn == ChannelFunction::NONE) continue;
+
+        float val = ppmNormalise(ppm.ch[slot_to_ppm[c]]);
+        if (fabsf(val) < kDeadband) val = 0.0f;
+
+        switch (fn) {
+            case ChannelFunction::TRACTION_FWD:
+                forward = val;
+                has_traction = true;
+                break;
+            case ChannelFunction::TRACTION_TURN:
+                turn = val;
+                has_traction = true;
+                break;
+            case ChannelFunction::FLIPPER_ALL:
+                flipper_all = val;
+                has_flipper = true;
+                break;
+            case ChannelFunction::FLIPPER_FL:
+                flipper_fl = val;
+                has_flipper = true;
+                break;
+            case ChannelFunction::FLIPPER_FR:
+                flipper_fr = val;
+                has_flipper = true;
+                break;
+            case ChannelFunction::FLIPPER_RL:
+                flipper_rl = val;
+                has_flipper = true;
+                break;
+            case ChannelFunction::FLIPPER_RR:
+                flipper_rr = val;
+                has_flipper = true;
+                break;
+            case ChannelFunction::ARM_FWD:
+                has_arm = true;
+                break;
+            default:
+                break;
+        }
+    }
+
+    // ── Apply traction ──────────────────────────────────────────────────────
+    if (has_traction) {
+        Locomotion::setDriveCommand(forward, turn);
+    } else if (!has_arm) {
+        // No traction bound and not in arm mode — stop tracks
+        Locomotion::setDriveCommand(0.0f, 0.0f);
+    }
+
+    // ── Apply flippers ──────────────────────────────────────────────────────
+    if (has_flipper) {
+#ifdef ROBOT_MAIN
+        // Jaguar: single joined flipper — use FLIPPER_ALL value (or first individual)
+        float target_norm = flipper_all;
+        if (target_norm == 0.0f) target_norm = flipper_fl;  // fallback to individual
+        float target_deg = target_norm * FLIPPER_ANGLE_MAX;
+        Locomotion::setFlipperEffort(flipperPID(target_deg, enc.flipper_angle_deg));
+#elif defined(ROBOT_SECONDARY)
+        // Dicerox: 4 independent flippers
+        if (flipper_all != 0.0f) {
+            // FLIPPER_ALL: all four get the same value
+            Locomotion::setFlipperTargets(flipper_all, flipper_all, flipper_all, flipper_all);
+        } else {
+            Locomotion::setFlipperTargets(flipper_fl, flipper_fr, flipper_rl, flipper_rr);
+        }
 #endif
+    }
+
+    // ── Apply arm mode ──────────────────────────────────────────────────────
+    if (has_arm) {
+        // Halt tracks
+        Locomotion::setDriveCommand(0.0f, 0.0f);
+
+        // Forward all PPM to mini PC for IK
+        TelemetryPayload telem;
+        telem.mode  = static_cast<uint8_t>(RobotMode::ARM);
+        telem.flags = 0;
+        for (int i = 0; i < PPM_CHANNELS; i++) telem.ppm[i] = ppm.ch[i];
+        Comms::sendTelemetry(telem);
+
+#ifdef ROBOT_SECONDARY
+        // Relay joint angles from mini PC to arm over CAN
+        portENTER_CRITICAL(&s_mux);
+        ArmJoints joints = s_arm_joints;
+        portEXIT_CRITICAL(&s_mux);
+        if (joints.valid)
+            CANInterface::sendArmJoints(joints.angle_deg);
+#endif
+    }
 }
 
 // ─── Callbacks ────────────────────────────────────────────────────────────────
@@ -182,9 +280,8 @@ void Control::clearEstop() {
 
 void Control::setArmJoints(const ArmJointsPayload& payload) {
     portENTER_CRITICAL(&s_mux);
-    for (int i = 0; i < 6; i++) {
-        s_arm_joints.angle_deg[i] = payload.joint[i] * 0.01f;   // ×100 → degrees
-    }
+    for (int i = 0; i < 6; i++)
+        s_arm_joints.angle_deg[i] = payload.joint[i] * 0.01f;
     s_arm_joints.valid = true;
     portEXIT_CRITICAL(&s_mux);
 }
@@ -194,6 +291,15 @@ void Control::setSensorMask(uint8_t mask) {
     s_sensor_mask = mask;
     portEXIT_CRITICAL(&s_mux);
     Sensors::setEnabledMask(mask);
+}
+
+void Control::setKeybind(const KeybindPayload& payload) {
+    portENTER_CRITICAL(&s_mux);
+    for (int m = 0; m < 3; ++m)
+        for (int c = 0; c < 5; ++c)
+            s_keybind.map[m][c] = static_cast<ChannelFunction>(payload.map[m][c]);
+    s_keybind.valid = true;
+    portEXIT_CRITICAL(&s_mux);
 }
 
 // ─── Accessors ────────────────────────────────────────────────────────────────
@@ -217,15 +323,12 @@ void Control::getSystemStatus(SystemStatus& out) {
 }
 
 // ─── Helper ───────────────────────────────────────────────────────────────────
-// Ch5 is a 3-position lever:
-//   ~1000 µs  →  FLIPPER
-//   ~1500 µs  →  NORMAL
-//   ~2000 µs  →  ARM
-RobotMode Control::decodeModeFromCh5(const PPMFrame& ppm) {
-    constexpr uint16_t kLow  = PPM_MIN_US + (PPM_MAX_US - PPM_MIN_US) / 4;  // ~1250 µs
-    constexpr uint16_t kHigh = PPM_MAX_US - (PPM_MAX_US - PPM_MIN_US) / 4;  // ~1750 µs
+// Decode Ch5 3-position lever into mode index 0, 1, or 2
+int Control::decodeModeIndex(const PPMFrame& ppm) {
+    constexpr uint16_t kLow  = PPM_MIN_US + (PPM_MAX_US - PPM_MIN_US) / 4;  // ~1250
+    constexpr uint16_t kHigh = PPM_MAX_US - (PPM_MAX_US - PPM_MIN_US) / 4;  // ~1750
     uint16_t ch5 = ppm.ch[PPM_CH_MODE - 1];
-    if (ch5 < kLow)  return RobotMode::FLIPPER;
-    if (ch5 > kHigh) return RobotMode::ARM;
-    return RobotMode::NORMAL;
+    if (ch5 < kLow)  return 0;   // low position
+    if (ch5 > kHigh) return 2;   // high position
+    return 1;                     // mid position
 }

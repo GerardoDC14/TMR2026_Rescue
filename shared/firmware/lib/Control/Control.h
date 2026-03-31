@@ -6,24 +6,22 @@
 //
 // State transitions:
 //
-//  INIT ──(hw ready)──► STANDBY ──(PPM link)──► NORMAL / FLIPPER / ARM
-//                                                         (follows Ch5)
+//  INIT ──(hw ready)──► STANDBY ──(PPM link)──► active mode (follows Ch5)
 //
-//  Ch5 positions (3-position lever):
-//    ~1000 µs  →  FLIPPER  (ROBOT_MAIN: tracks+flipper same as NORMAL;
-//                           ROBOT_SECONDARY: Ch1-4 control individual flippers)
-//    ~1500 µs  →  NORMAL   (Ch2/Ch4 tracks; Ch1 flipper on ROBOT_MAIN)
-//    ~2000 µs  →  ARM      (all channels forwarded to mini PC for IK;
-//                           ROBOT_SECONDARY also relays returned joint angles via CAN)
+//  Ch5 positions (3-position lever) select which row of the keybind table
+//  is active.  Each row maps channels 1-4,6 to a ChannelFunction.
+//
+//  The keybind table is received from the mini PC (MSG_KEYBIND).
+//  Until a keybind is received, the default mapping is used:
+//    mode0: Ch1=FLIPPER_ALL Ch2=TRACTION_FWD Ch4=TRACTION_TURN
+//    mode1: Ch1=FLIPPER_ALL Ch2=TRACTION_FWD Ch4=TRACTION_TURN
+//    mode2: Ch1-4=ARM_FWD
 //
 //  Any state ──(ESTOP from mini PC)──► ESTOP ──(ESTOP_CLEAR)──► STANDBY
 
 class Control {
 public:
-    // One-time setup: register callbacks and store latest state.
     static void begin();
-
-    // Main loop body — call from the control FreeRTOS task.
     static void tick();
 
     // ── Setters called from other tasks / callbacks ───────────────────────────
@@ -31,22 +29,28 @@ public:
     static void clearEstop();
     static void setArmJoints(const ArmJointsPayload& payload);
     static void setSensorMask(uint8_t mask);
+    static void setKeybind(const KeybindPayload& payload);
 
     static RobotMode getMode();
     static void      getSystemStatus(SystemStatus& out);
 
 private:
-    // Per-mode update functions
-    static void updateNormalMode(const PPMFrame& ppm, const EncoderState& enc);
-    static void updateFlipperMode(const PPMFrame& ppm, const EncoderState& enc);
-    static void updateArmMode(const PPMFrame& ppm);
+    // Apply the active keybind row to PPM channels
+    static void applyKeybindRow(int mode_index, const PPMFrame& ppm,
+                                const EncoderState& enc);
 
-    // Decode the 3-position Ch5 lever into a target RobotMode.
-    // Returns NORMAL, FLIPPER, or ARM; never INIT / STANDBY / ESTOP.
-    static RobotMode decodeModeFromCh5(const PPMFrame& ppm);
+    // Decode the 3-position Ch5 lever into a mode index (0, 1, or 2)
+    static int decodeModeIndex(const PPMFrame& ppm);
 
-    static RobotMode  s_mode;
-    static ArmJoints  s_arm_joints;
-    static uint8_t    s_sensor_mask;
-    // s_mux lives as a file-level static in Control.cpp (avoids FreeRTOS header in .h)
+    static RobotMode     s_mode;
+    static ArmJoints     s_arm_joints;
+    static uint8_t       s_sensor_mask;
+    static KeybindTable  s_keybind;
+
+    // Flipper PID state (ROBOT_MAIN)
+#ifdef ROBOT_MAIN
+    static float s_pid_integral;
+    static float s_pid_prev_err;
+    static float flipperPID(float setpoint_deg, float measured_deg);
+#endif
 };

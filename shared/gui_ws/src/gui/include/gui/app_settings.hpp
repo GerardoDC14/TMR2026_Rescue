@@ -1,6 +1,7 @@
 #pragma once
 
 #include <atomic>
+#include <cstdint>
 #include <mutex>
 #include <string>
 
@@ -30,6 +31,19 @@ struct AppSettings {
 
     // Audio
     std::atomic<bool> audio_start_enabled{true};
+
+    // Robot type: 0 = Jaguar (ROBOT_MAIN), 1 = Dicerox (ROBOT_SECONDARY)
+    std::atomic<int> robot_type{0};
+
+    // Keybind configuration — 3 modes × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
+    // Values are ChannelFunction enum (see keybind_dialog.hpp)
+    std::mutex  keybind_mutex;
+    uint8_t     keybind[3][5] = {
+        // Default Jaguar: mode0=FLIPPER, mode1=NORMAL, mode2=ARM
+        {3, 1, 0, 2, 0},   // mode0: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
+        {3, 1, 0, 2, 0},   // mode1: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
+        {8, 8, 8, 8, 0},   // mode2: ARM x4, NONE
+    };
 
     // Speech — comma-separated vocabulary, empty = unrestricted
     std::mutex  strings_mutex;

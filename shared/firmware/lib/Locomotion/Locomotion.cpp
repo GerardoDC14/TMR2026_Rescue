@@ -117,6 +117,10 @@ void Locomotion::applyFlipperSpeeds(float fl, float fr, float rl, float rr) {
 #endif
 }
 
+void Locomotion::setFlipperEffort(float norm) {
+    applyFlipperPWM(clampf(norm, -1.0f, 1.0f));
+}
+
 void Locomotion::setFlipperTargets(float fl, float fr, float rl, float rr) {
     // Clamp all four to [-1, 1] before forwarding to CAN
     fl = clampf(fl, -1.0f, 1.0f);

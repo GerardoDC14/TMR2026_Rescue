@@ -11,11 +11,6 @@
 #define PIN_I2C_SDA         21
 #define PIN_I2C_SCL         22
 
-// ─── SPI (sensors only — I2C SDA/SCL still on 21/22) ─────────────────────────
-#define PIN_SPI_MOSI        23
-#define PIN_SPI_MISO        19
-#define PIN_SPI_SCK         18
-
 // ─── TWAI (ESP32 built-in CAN) + SN65HVD230 transceiver ──────────────────────
 // GPIO assignments — route TX→CTX and RX←CRX on the SN65HVD230.
 // TODO: confirm physical wiring; these are common spare GPIOs on the DevKit.

@@ -4,6 +4,7 @@
 #include <QSplitter>
 
 #include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/u_int8_multi_array.hpp>
 
 #include <atomic>
 #include <memory>
@@ -26,6 +27,8 @@ private slots:
     void onSourcesUpdated();
     void onSettingsRequested();
     void onSettingsApplied();
+    void onRobotTypeChanged(int type);
+    void publishKeybind();
 
 private:
     void startRosSpinThread();
@@ -39,6 +42,9 @@ private:
     std::shared_ptr<CameraHub> camera_hub_;
 
     SettingsDialog* settings_dialog_{nullptr};
+
+    // Keybind publisher
+    rclcpp::Publisher<std_msgs::msg::UInt8MultiArray>::SharedPtr keybind_pub_;
 
     std::thread ros_thread_;
     std::atomic<bool> ros_running_{true};

@@ -29,6 +29,9 @@ public:
     // Clamps to [FLIPPER_ANGLE_MIN, FLIPPER_ANGLE_MAX].
     static void setFlipperTarget(float angle_deg);
 
+    // ROBOT_MAIN: apply a normalised effort [-1,1] directly (used by PID).
+    static void setFlipperEffort(float norm);
+
     // ROBOT_SECONDARY: command all four independent flippers individually.
     // Each value is normalised [-1,1].  Order: front-left, front-right,
     // rear-left, rear-right.

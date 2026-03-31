@@ -12,9 +12,10 @@ uint8_t         Comms::s_rx_buf[PROTO_MAX_PAYLOAD];
 uint8_t         Comms::s_rx_crc    = 0;
 uint32_t        Comms::s_last_rx_ms = 0;
 
-ArmJointsCallback    Comms::s_cb_arm    = nullptr;
-SensorEnableCallback Comms::s_cb_sensor = nullptr;
-EstopCallback        Comms::s_cb_estop  = nullptr;
+ArmJointsCallback    Comms::s_cb_arm     = nullptr;
+SensorEnableCallback Comms::s_cb_sensor  = nullptr;
+EstopCallback        Comms::s_cb_estop   = nullptr;
+KeybindCallback      Comms::s_cb_keybind = nullptr;
 
 static HardwareSerial& s_uart = Serial;   // UART0 — shared with USB cable
 
@@ -108,6 +109,14 @@ void Comms::processFrame(uint8_t type, const uint8_t* buf, uint16_t len) {
             if (s_cb_estop) s_cb_estop(false);
             break;
 
+        case MSG_KEYBIND:
+            if (len == sizeof(KeybindPayload) && s_cb_keybind) {
+                KeybindPayload p;
+                memcpy(&p, buf, sizeof(p));
+                s_cb_keybind(p);
+            }
+            break;
+
         default:
             // Unknown type — silently discard
             break;
@@ -145,10 +154,9 @@ void Comms::sendTelemetry(const TelemetryPayload& p) {
 
 void Comms::sendMagData(const MagData& mag) {
     MagPayload p;
-    p.x_uT100      = static_cast<int16_t>(mag.x_uT * 100.0f);
-    p.y_uT100      = static_cast<int16_t>(mag.y_uT * 100.0f);
-    p.z_uT100      = static_cast<int16_t>(mag.z_uT * 100.0f);
-    p.heading_deg10 = static_cast<int16_t>(mag.heading_deg * 10.0f);
+    p.x_uT100 = static_cast<int16_t>(mag.x_uT * 100.0f);
+    p.y_uT100 = static_cast<int16_t>(mag.y_uT * 100.0f);
+    p.z_uT100 = static_cast<int16_t>(mag.z_uT * 100.0f);
     sendFrame(MSG_SENSOR_MAG,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
@@ -159,7 +167,6 @@ void Comms::sendThermalData(const ThermalData& thermal) {
     for (int i = 0; i < 32 * 24; i++) {
         p.pixels[i] = static_cast<int16_t>(thermal.pixels[i] * 10.0f);
     }
-    p.ambient_C10 = static_cast<int16_t>(thermal.ambient_temp_C * 10.0f);
     sendFrame(MSG_SENSOR_THERMAL,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
@@ -168,10 +175,35 @@ void Comms::sendThermalData(const ThermalData& thermal) {
 void Comms::sendGasData(const GasData& gas) {
     GasPayload p;
     p.rs_ro_100 = static_cast<int16_t>(gas.rs_ro_ratio * 100.0f);
-    p.ppm_lpg   = static_cast<int16_t>(gas.ppm_lpg);
-    p.ppm_co    = static_cast<int16_t>(gas.ppm_co);
-    p.ppm_smoke = static_cast<int16_t>(gas.ppm_smoke);
     sendFrame(MSG_SENSOR_GAS,
+              reinterpret_cast<const uint8_t*>(&p),
+              sizeof(p));
+}
+
+void Comms::sendImuData(const ImuData& imu) {
+    ImuPayload p;
+    p.yaw_deg10       = static_cast<int16_t>(imu.yaw_deg   * 10.0f);
+    p.pitch_deg10     = static_cast<int16_t>(imu.pitch_deg * 10.0f);
+    p.roll_deg10      = static_cast<int16_t>(imu.roll_deg  * 10.0f);
+    p.accel_x_ms2_100 = static_cast<int16_t>(imu.accel_x * 100.0f);
+    p.accel_y_ms2_100 = static_cast<int16_t>(imu.accel_y * 100.0f);
+    p.accel_z_ms2_100 = static_cast<int16_t>(imu.accel_z * 100.0f);
+    p.gyro_x_rads1000 = static_cast<int16_t>(imu.gyro_x * 1000.0f);
+    p.gyro_y_rads1000 = static_cast<int16_t>(imu.gyro_y * 1000.0f);
+    p.gyro_z_rads1000 = static_cast<int16_t>(imu.gyro_z * 1000.0f);
+    p.calib           = imu.calib;
+    sendFrame(MSG_SENSOR_IMU,
+              reinterpret_cast<const uint8_t*>(&p),
+              sizeof(p));
+}
+
+void Comms::sendEncoderExt(const EncoderState& enc) {
+    EncoderExtPayload p;
+    p.flipper_fl_deg10 = static_cast<int16_t>(enc.flipper_angle_fl_deg * 10.0f);
+    p.flipper_fr_deg10 = static_cast<int16_t>(enc.flipper_angle_fr_deg * 10.0f);
+    p.flipper_rl_deg10 = static_cast<int16_t>(enc.flipper_angle_rl_deg * 10.0f);
+    p.flipper_rr_deg10 = static_cast<int16_t>(enc.flipper_angle_rr_deg * 10.0f);
+    sendFrame(MSG_ENCODER_EXT,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
 }

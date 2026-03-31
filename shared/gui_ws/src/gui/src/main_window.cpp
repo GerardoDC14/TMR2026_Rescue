@@ -7,6 +7,7 @@
 #include "gui/filter_registry.hpp"
 #include "gui/app_settings.hpp"
 #include "gui/settings_dialog.hpp"
+#include "gui/odometry_panel.hpp"
 
 MainWindow::MainWindow(rclcpp::Node::SharedPtr node, QWidget* parent)
     : QMainWindow(parent), node_(node)
@@ -53,12 +54,22 @@ MainWindow::MainWindow(rclcpp::Node::SharedPtr node, QWidget* parent)
     // Load persisted settings before anything else runs
     AppSettings::instance().load();
 
+    // Apply initial robot type to odometry panel
+    video_panel_->odometryPanel()->setRobotType(AppSettings::instance().robot_type.load());
+
     connect(dashboard_panel_, &DashboardPanel::settingsRequested,
             this, &MainWindow::onSettingsRequested);
+
+    // Keybind publisher
+    keybind_pub_ = node_->create_publisher<std_msgs::msg::UInt8MultiArray>(
+        "/robot/keybind", rclcpp::QoS(1).reliable().transient_local());
 
     // Start ROS spin thread, then discover sources
     startRosSpinThread();
     source_manager_->discoverSources();
+
+    // Publish initial keybind
+    publishKeybind();
 }
 
 MainWindow::~MainWindow()
@@ -85,6 +96,8 @@ void MainWindow::onSettingsRequested()
         settings_dialog_ = new SettingsDialog(this);
         connect(settings_dialog_, &SettingsDialog::settingsApplied,
                 this, &MainWindow::onSettingsApplied);
+        connect(settings_dialog_, &SettingsDialog::robotTypeChanged,
+                this, &MainWindow::onRobotTypeChanged);
     }
     settings_dialog_->reloadFromSettings();
     settings_dialog_->show();
@@ -103,6 +116,29 @@ void MainWindow::onSettingsApplied()
     }
     dashboard_panel_->setSpeechGrammar(grammar);
     dashboard_panel_->setPlaybackEnabled(S.audio_start_enabled.load());
+
+    // Republish keybind whenever settings change
+    publishKeybind();
+}
+
+void MainWindow::onRobotTypeChanged(int type)
+{
+    video_panel_->odometryPanel()->setRobotType(type);
+}
+
+void MainWindow::publishKeybind()
+{
+    auto& S = AppSettings::instance();
+    std_msgs::msg::UInt8MultiArray msg;
+    // Flat array: 15 bytes = 3 modes × 5 channels
+    msg.data.resize(15);
+    {
+        std::lock_guard<std::mutex> lk(S.keybind_mutex);
+        for (int m = 0; m < 3; ++m)
+            for (int c = 0; c < 5; ++c)
+                msg.data[m * 5 + c] = S.keybind[m][c];
+    }
+    keybind_pub_->publish(msg);
 }
 
 void MainWindow::onSourcesUpdated()

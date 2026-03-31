@@ -1,4 +1,5 @@
 #include "gui/settings_dialog.hpp"
+#include "gui/keybind_dialog.hpp"
 #include "gui/app_settings.hpp"
 
 #include <QCheckBox>
@@ -73,6 +74,23 @@ SettingsDialog::SettingsDialog(QWidget* parent)
         return fl;
     };
 
+    // ── Robot ─────────────────────────────────────────────────────────────────
+    auto* robot_group = new QGroupBox("Robot", this);
+    auto* rf = make_form(robot_group);
+
+    robot_type_combo_ = new QComboBox(robot_group);
+    robot_type_combo_->addItems({"Jaguar (Main)", "Dicerox (Secondary)"});
+    rf->addRow("Robot:", robot_type_combo_);
+
+    keybind_btn_ = new QPushButton("Change Keybinds...", robot_group);
+    keybind_btn_->setStyleSheet(
+        "QPushButton { background-color: #2a4a7f; border-color: #3a5a9f; }"
+        "QPushButton:hover { background-color: #3a5a9f; }");
+    connect(keybind_btn_, &QPushButton::clicked, this, &SettingsDialog::onKeybindClicked);
+    rf->addRow("Controls:", keybind_btn_);
+
+    root->addWidget(robot_group);
+
     // ── Audio ──────────────────────────────────────────────────────────────────
     auto* audio_group = new QGroupBox("Audio", this);
     auto* af = new QVBoxLayout(audio_group);
@@ -113,7 +131,7 @@ SettingsDialog::SettingsDialog(QWidget* parent)
     tf->addRow("Interpolation:", interp_combo_);
 
     upscale_combo_ = new QComboBox(thermal_group);
-    upscale_combo_->addItems({"Auto", "160×120", "320×240", "640×480"});
+    upscale_combo_->addItems({"Auto", "160x120", "320x240", "640x480"});
     tf->addRow("Upscale:", upscale_combo_);
 
     root->addWidget(thermal_group);
@@ -180,6 +198,7 @@ void SettingsDialog::reloadFromSettings()
     interp_combo_->setCurrentIndex(indexOfInterp(S.thermal_interp.load()));
     upscale_combo_->setCurrentIndex(indexOfUpscale(S.thermal_upscale_w.load()));
     font_scale_slider_->setValue(S.label_font_scale_x100.load());
+    robot_type_combo_->setCurrentIndex(S.robot_type.load());
 
     std::string grammar;
     {
@@ -198,6 +217,7 @@ void SettingsDialog::captureOriginals()
     orig_upscale_w_       = S.thermal_upscale_w.load();
     orig_upscale_h_       = S.thermal_upscale_h.load();
     orig_font_scale_x100_ = S.label_font_scale_x100.load();
+    orig_robot_type_      = S.robot_type.load();
     {
         std::lock_guard<std::mutex> lk(S.strings_mutex);
         orig_grammar_ = S.vosk_grammar;
@@ -213,6 +233,7 @@ void SettingsDialog::restoreOriginals()
     S.thermal_upscale_w   .store(orig_upscale_w_);
     S.thermal_upscale_h   .store(orig_upscale_h_);
     S.label_font_scale_x100.store(orig_font_scale_x100_);
+    S.robot_type          .store(orig_robot_type_);
     {
         std::lock_guard<std::mutex> lk(S.strings_mutex);
         S.vosk_grammar = orig_grammar_;
@@ -232,6 +253,13 @@ void SettingsDialog::applyToSettings()
     S.thermal_upscale_w   .store(UPSCALE_W[ui]);
     S.thermal_upscale_h   .store(UPSCALE_H[ui]);
     S.label_font_scale_x100.store(font_scale_slider_->value());
+
+    int new_robot_type = robot_type_combo_->currentIndex();
+    int old_robot_type = S.robot_type.load();
+    S.robot_type.store(new_robot_type);
+    if (new_robot_type != old_robot_type)
+        emit robotTypeChanged(new_robot_type);
+
     {
         std::lock_guard<std::mutex> lk(S.strings_mutex);
         S.vosk_grammar = grammar_edit_->text().trimmed().toStdString();
@@ -259,4 +287,18 @@ void SettingsDialog::onCancel()
     restoreOriginals();
     reloadFromSettings();     // sync widgets back to the restored values
     emit settingsApplied();   // let MainWindow revert grammar in SpeechProcessor
+}
+
+void SettingsDialog::onKeybindClicked()
+{
+    if (!keybind_dialog_) {
+        keybind_dialog_ = new KeybindDialog(this);
+        // Forward keybind changes as settingsApplied so MainWindow republishes
+        connect(keybind_dialog_, &KeybindDialog::keybindChanged,
+                this, &SettingsDialog::settingsApplied);
+    }
+    keybind_dialog_->reloadFromSettings();
+    keybind_dialog_->show();
+    keybind_dialog_->activateWindow();
+    keybind_dialog_->raise();
 }

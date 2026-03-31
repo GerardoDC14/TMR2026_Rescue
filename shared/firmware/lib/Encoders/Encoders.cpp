@@ -6,14 +6,15 @@
 #include "esp_intr_alloc.h"
 
 // ─── Per-unit overflow accumulators (written in ISR) ─────────────────────────
-static volatile int32_t s_overflow[3] = {0, 0, 0};
+// Sized for the maximum possible unit count (ROBOT_SECONDARY = 6).
+static volatile int32_t s_overflow[6] = {};
 
 // ─── Derived state (protected by mutex) ──────────────────────────────────────
 static portMUX_TYPE  s_mux = portMUX_INITIALIZER_UNLOCKED;
 static EncoderState  s_state = {};
 
 // Previous raw counts for delta calculation
-static int32_t s_prev_count[3] = {0, 0, 0};
+static int32_t  s_prev_count[6] = {};
 static uint32_t s_last_update_ms = 0;
 
 // ─── PCNT overflow ISR ────────────────────────────────────────────────────────
@@ -22,7 +23,7 @@ void IRAM_ATTR Encoders::overflowISR(void* /*arg*/) {
     uint32_t status = PCNT.int_st.val;
     PCNT.int_clr.val = status;
 
-    for (int u = 0; u < 3; u++) {
+    for (int u = 0; u < NUM_ENCODER_UNITS; u++) {
         if (status & BIT(u)) {
             if (PCNT.status_unit[u].h_lim_lat) {
                 s_overflow[u] += PCNT_HIGH_LIM;
@@ -41,10 +42,10 @@ void Encoders::initUnit(int unit, int pin_a, int pin_b) {
     pcnt_config_t cfg_a = {
         .pulse_gpio_num = pin_a,
         .ctrl_gpio_num  = pin_b,
-        .lctrl_mode     = PCNT_MODE_REVERSE,  // B=LOW  → reverse count direction
-        .hctrl_mode     = PCNT_MODE_KEEP,     // B=HIGH → normal count direction
-        .pos_mode       = PCNT_COUNT_INC,     // rising A  → increment
-        .neg_mode       = PCNT_COUNT_DEC,     // falling A → decrement
+        .lctrl_mode     = PCNT_MODE_REVERSE,
+        .hctrl_mode     = PCNT_MODE_KEEP,
+        .pos_mode       = PCNT_COUNT_INC,
+        .neg_mode       = PCNT_COUNT_DEC,
         .counter_h_lim  = PCNT_HIGH_LIM,
         .counter_l_lim  = PCNT_LOW_LIM,
         .unit           = u,
@@ -67,11 +68,9 @@ void Encoders::initUnit(int unit, int pin_a, int pin_b) {
     };
     pcnt_unit_config(&cfg_b);
 
-    // Enable glitch filter (100 ns min pulse) to reject electrical noise
     pcnt_set_filter_value(u, 100);
     pcnt_filter_enable(u);
 
-    // Enable overflow events on this unit
     pcnt_event_enable(u, PCNT_EVT_H_LIM);
     pcnt_event_enable(u, PCNT_EVT_L_LIM);
 
@@ -83,7 +82,6 @@ void Encoders::initUnit(int unit, int pin_a, int pin_b) {
 int32_t Encoders::getCount(int unit) {
     int16_t raw = 0;
     pcnt_get_counter_value(static_cast<pcnt_unit_t>(unit), &raw);
-    // s_overflow is written in ISR — read with a critical section snapshot
     portENTER_CRITICAL(&s_mux);
     int32_t ov = s_overflow[unit];
     portEXIT_CRITICAL(&s_mux);
@@ -92,55 +90,89 @@ int32_t Encoders::getCount(int unit) {
 
 // ─── Public API ──────────────────────────────────────────────────────────────
 void Encoders::begin() {
-    initUnit(PCNT_UNIT_LEFT,    PIN_ENC_LEFT_A,  PIN_ENC_LEFT_B);
-    initUnit(PCNT_UNIT_RIGHT,   PIN_ENC_RIGHT_A, PIN_ENC_RIGHT_B);
-    initUnit(PCNT_UNIT_FLIPPER, PIN_ENC_FLIP_A,  PIN_ENC_FLIP_B);
+    // Track encoders — common to both robots
+    initUnit(PCNT_UNIT_LEFT,  PIN_ENC_LEFT_A,  PIN_ENC_LEFT_B);
+    initUnit(PCNT_UNIT_RIGHT, PIN_ENC_RIGHT_A, PIN_ENC_RIGHT_B);
 
-    // Register a single ISR for all PCNT units
+#ifdef ROBOT_MAIN
+    // Single joined flipper on unit 2
+    initUnit(PCNT_UNIT_FLIPPER, PIN_ENC_FLIP_A, PIN_ENC_FLIP_B);
+#endif
+
+#ifdef ROBOT_SECONDARY
+    // Four independent flipper encoders on units 2–5
+    initUnit(PCNT_UNIT_FLIP_FL, PIN_ENC_FLIP_FL_A, PIN_ENC_FLIP_FL_B);
+    initUnit(PCNT_UNIT_FLIP_FR, PIN_ENC_FLIP_FR_A, PIN_ENC_FLIP_FR_B);
+    initUnit(PCNT_UNIT_FLIP_RL, PIN_ENC_FLIP_RL_A, PIN_ENC_FLIP_RL_B);
+    initUnit(PCNT_UNIT_FLIP_RR, PIN_ENC_FLIP_RR_A, PIN_ENC_FLIP_RR_B);
+#endif
+
+    // Single shared ISR for all PCNT units
     pcnt_isr_register(overflowISR, nullptr, 0, nullptr);
-    pcnt_intr_enable(PCNT_UNIT_0);
-    pcnt_intr_enable(PCNT_UNIT_1);
-    pcnt_intr_enable(PCNT_UNIT_2);
+    for (int u = 0; u < NUM_ENCODER_UNITS; u++) {
+        pcnt_intr_enable(static_cast<pcnt_unit_t>(u));
+    }
 
     s_last_update_ms = millis();
 }
 
 void Encoders::updateDerivedValues() {
-    const uint32_t now    = millis();
-    const float    dt_s   = (now - s_last_update_ms) * 1e-3f;
+    const uint32_t now  = millis();
+    const float    dt_s = (now - s_last_update_ms) * 1e-3f;
     if (dt_s <= 0.0f) return;
     s_last_update_ms = now;
 
-    const int32_t cnt_left    = getCount(PCNT_UNIT_LEFT);
-    const int32_t cnt_right   = getCount(PCNT_UNIT_RIGHT);
-    const int32_t cnt_flipper = getCount(PCNT_UNIT_FLIPPER);
+    const int32_t cnt_left  = getCount(PCNT_UNIT_LEFT);
+    const int32_t cnt_right = getCount(PCNT_UNIT_RIGHT);
 
-    // Delta counts since last call
-    const int32_t d_left    = cnt_left    - s_prev_count[PCNT_UNIT_LEFT];
-    const int32_t d_right   = cnt_right   - s_prev_count[PCNT_UNIT_RIGHT];
-    const int32_t d_flipper = cnt_flipper - s_prev_count[PCNT_UNIT_FLIPPER];
+    const int32_t d_left  = cnt_left  - s_prev_count[PCNT_UNIT_LEFT];
+    const int32_t d_right = cnt_right - s_prev_count[PCNT_UNIT_RIGHT];
+    s_prev_count[PCNT_UNIT_LEFT]  = cnt_left;
+    s_prev_count[PCNT_UNIT_RIGHT] = cnt_right;
 
-    s_prev_count[PCNT_UNIT_LEFT]    = cnt_left;
-    s_prev_count[PCNT_UNIT_RIGHT]   = cnt_right;
-    s_prev_count[PCNT_UNIT_FLIPPER] = cnt_flipper;
-
-    // Speed: (counts / CPR) / dt * 60 / gear_ratio → output shaft RPM
-    const float rpm_left  = (d_left  / ENC_CPR_TRACK)   / dt_s * 60.0f / TRACK_GEAR_RATIO;
-    const float rpm_right = (d_right / ENC_CPR_TRACK)    / dt_s * 60.0f / TRACK_GEAR_RATIO;
-
-    // Flipper angle: cumulative position from power-on (or last reset)
-    const float angle_deg = (static_cast<float>(cnt_flipper) / ENC_CPR_FLIPPER)
-                            * 360.0f / FLIPPER_GEAR_RATIO;
+    const float rpm_left  = (d_left  / ENC_CPR_TRACK) / dt_s * 60.0f / TRACK_GEAR_RATIO;
+    const float rpm_right = (d_right / ENC_CPR_TRACK) / dt_s * 60.0f / TRACK_GEAR_RATIO;
 
     portENTER_CRITICAL(&s_mux);
-    s_state.count_left        = cnt_left;
-    s_state.count_right       = cnt_right;
-    s_state.count_flipper     = cnt_flipper;
-    s_state.speed_left_rpm    = rpm_left;
-    s_state.speed_right_rpm   = rpm_right;
-    s_state.flipper_angle_deg = angle_deg;
-    s_state.timestamp_ms      = now;
+    s_state.count_left       = cnt_left;
+    s_state.count_right      = cnt_right;
+    s_state.speed_left_rpm   = rpm_left;
+    s_state.speed_right_rpm  = rpm_right;
+    s_state.timestamp_ms     = now;
     portEXIT_CRITICAL(&s_mux);
+
+#ifdef ROBOT_MAIN
+    const int32_t cnt_flip = getCount(PCNT_UNIT_FLIPPER);
+    const float angle_deg  = (static_cast<float>(cnt_flip) / ENC_CPR_FLIPPER)
+                              * 360.0f / FLIPPER_GEAR_RATIO;
+    portENTER_CRITICAL(&s_mux);
+    s_state.count_flipper    = cnt_flip;
+    s_state.flipper_angle_deg = angle_deg;
+    portEXIT_CRITICAL(&s_mux);
+#endif
+
+#ifdef ROBOT_SECONDARY
+    const int32_t c_fl = getCount(PCNT_UNIT_FLIP_FL);
+    const int32_t c_fr = getCount(PCNT_UNIT_FLIP_FR);
+    const int32_t c_rl = getCount(PCNT_UNIT_FLIP_RL);
+    const int32_t c_rr = getCount(PCNT_UNIT_FLIP_RR);
+
+    const float a_fl = (static_cast<float>(c_fl) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
+    const float a_fr = (static_cast<float>(c_fr) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
+    const float a_rl = (static_cast<float>(c_rl) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
+    const float a_rr = (static_cast<float>(c_rr) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
+
+    portENTER_CRITICAL(&s_mux);
+    s_state.count_flip_fl       = c_fl;
+    s_state.count_flip_fr       = c_fr;
+    s_state.count_flip_rl       = c_rl;
+    s_state.count_flip_rr       = c_rr;
+    s_state.flipper_angle_fl_deg = a_fl;
+    s_state.flipper_angle_fr_deg = a_fr;
+    s_state.flipper_angle_rl_deg = a_rl;
+    s_state.flipper_angle_rr_deg = a_rr;
+    portEXIT_CRITICAL(&s_mux);
+#endif
 }
 
 void Encoders::getState(EncoderState& out) {
@@ -150,17 +182,29 @@ void Encoders::getState(EncoderState& out) {
 }
 
 void Encoders::resetFlipperAngle() {
+#ifdef ROBOT_MAIN
     portENTER_CRITICAL(&s_mux);
-    s_overflow[PCNT_UNIT_FLIPPER] = 0;
+    s_overflow[PCNT_UNIT_FLIPPER]   = 0;
     s_prev_count[PCNT_UNIT_FLIPPER] = 0;
     portEXIT_CRITICAL(&s_mux);
     pcnt_counter_clear(static_cast<pcnt_unit_t>(PCNT_UNIT_FLIPPER));
+#endif
+#ifdef ROBOT_SECONDARY
+    for (int u : {PCNT_UNIT_FLIP_FL, PCNT_UNIT_FLIP_FR,
+                  PCNT_UNIT_FLIP_RL, PCNT_UNIT_FLIP_RR}) {
+        portENTER_CRITICAL(&s_mux);
+        s_overflow[u]   = 0;
+        s_prev_count[u] = 0;
+        portEXIT_CRITICAL(&s_mux);
+        pcnt_counter_clear(static_cast<pcnt_unit_t>(u));
+    }
+#endif
 }
 
 void Encoders::resetTrackCounts() {
     for (int u : {PCNT_UNIT_LEFT, PCNT_UNIT_RIGHT}) {
         portENTER_CRITICAL(&s_mux);
-        s_overflow[u] = 0;
+        s_overflow[u]   = 0;
         s_prev_count[u] = 0;
         portEXIT_CRITICAL(&s_mux);
         pcnt_counter_clear(static_cast<pcnt_unit_t>(u));

@@ -1,0 +1,6 @@
+[01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/urdf_viewer.cpp:57:20:[m[K [01;35m[Kwarning: [m[K‘[01m[KGRID_FRAG[m[K’ defined but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   57 | static const char* [01;35m[KGRID_FRAG[m[K = R"(
+      |                    [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/urdf_viewer.cpp:45:20:[m[K [01;35m[Kwarning: [m[K‘[01m[KGRID_VERT[m[K’ defined but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   45 | static const char* [01;35m[KGRID_VERT[m[K = R"(
+      |                    [01;35m[K^~~~~~~~~[m[K

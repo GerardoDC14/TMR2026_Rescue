@@ -124,7 +124,7 @@ static bool odriveReadEncoderZero(uint8_t node_id, float& out_turns) {
     rtr.extd       = 0;
     rtr.rtr        = 1;
     rtr.identifier = odriveCOBID(node_id, ODRIVE_CMD_GET_ENCODER_EST);
-    rtr.data_length_code = 0;
+    rtr.data_length_code = 8;   // GET_ENCODER_EST response is float32 pos + float32 vel
     twaiSend(rtr);
 
     uint32_t deadline = millis() + ODRIVE_ZERO_TIMEOUT_MS;

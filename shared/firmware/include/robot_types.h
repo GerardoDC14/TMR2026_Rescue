@@ -196,4 +196,24 @@ struct KeybindPayload {
     uint8_t map[3][5];
 };
 
+// VescStatusPayload (MSG_VESC_STATUS = 0x08) — per-controller status
+// Sent from ROBOT_SECONDARY for each VESC that broadcasts status frames.
+struct VescStatusPayload {
+    uint8_t vesc_id;            // VESC controller ID (1–6)
+    int32_t erpm;               // electrical RPM
+    int16_t current_10;         // motor current × 10 (A)
+    int16_t duty_1000;          // duty cycle × 1000
+    int16_t temp_fet_10;        // FET temperature × 10 (°C)
+    int16_t temp_motor_10;      // motor temperature × 10 (°C)
+    int16_t v_in_10;            // input voltage × 10 (V)
+};
+
+// MainMotorPayload (MSG_MOTOR_MAIN = 0x09) — ROBOT_MAIN only — 6 bytes
+// Commanded normalised effort for each actuator, scaled × 1000.
+struct MainMotorPayload {
+    int16_t duty_left_1000;     // left track effort × 1000 (−1000 to +1000)
+    int16_t duty_right_1000;    // right track effort × 1000
+    int16_t duty_flipper_1000;  // flipper effort × 1000
+};
+
 #pragma pack(pop)

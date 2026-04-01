@@ -58,4 +58,14 @@ private:
     static uint32_t normToDuty(float norm);
 
     static float  s_flipper_target_deg;
+
+    // Last commanded normalised efforts (ROBOT_MAIN only); read by commsTask.
+    static float  s_track_left_norm;
+    static float  s_track_right_norm;
+    static float  s_flipper_effort_norm;
+
+public:
+    static float getTrackLeft()      { return s_track_left_norm; }
+    static float getTrackRight()     { return s_track_right_norm; }
+    static float getFlipperEffort()  { return s_flipper_effort_norm; }
 };

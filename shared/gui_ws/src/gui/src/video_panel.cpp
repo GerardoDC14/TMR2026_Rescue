@@ -22,6 +22,8 @@ VideoPanel::VideoPanel(rclcpp::Node::SharedPtr node,
         connect(widgets_[i], &VideoWidget::displayClicked, this, [this, i]() {
             onWidgetClicked(i);
         });
+        connect(widgets_[i], &VideoWidget::thermalActiveChanged,
+                this, &VideoPanel::onWidgetThermalChanged);
     }
 
     // Odometry panel in bottom-right (1, 1)
@@ -45,6 +47,19 @@ void VideoPanel::updateFilters(const QStringList& names)
 {
     for (int i = 0; i < 3; ++i)
         widgets_[i]->updateFilters(names);
+}
+
+void VideoPanel::onWidgetThermalChanged(bool active)
+{
+    int prev = thermal_count_.load();
+    int next = active ? prev + 1 : std::max(0, prev - 1);
+    thermal_count_ = next;
+
+    // Emit on transitions: 0→1 (any widget picked thermal) or N→0 (last one dropped it)
+    if (prev == 0 && next == 1)
+        emit thermalActiveChanged(true);
+    else if (prev > 0 && next == 0)
+        emit thermalActiveChanged(false);
 }
 
 void VideoPanel::onWidgetClicked(int index)

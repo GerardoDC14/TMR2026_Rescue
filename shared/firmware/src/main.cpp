@@ -15,6 +15,7 @@ static TaskHandle_t h_control = nullptr;
 static TaskHandle_t h_comms   = nullptr;
 static TaskHandle_t h_can     = nullptr;
 static TaskHandle_t h_sensors = nullptr;
+static TaskHandle_t h_thermal = nullptr;
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Core 1 — Control task
@@ -80,6 +81,15 @@ static void commsTask(void* /*arg*/) {
             // Send independent flipper angles at the same 50 Hz rate
             Comms::sendEncoderExt(enc);
 #endif
+
+#ifdef ROBOT_MAIN
+            // Send commanded duty cycles for both track motors and the flipper
+            MainMotorPayload motors;
+            motors.duty_left_1000    = static_cast<int16_t>(Locomotion::getTrackLeft()     * 1000.0f);
+            motors.duty_right_1000   = static_cast<int16_t>(Locomotion::getTrackRight()    * 1000.0f);
+            motors.duty_flipper_1000 = static_cast<int16_t>(Locomotion::getFlipperEffort() * 1000.0f);
+            Comms::sendMainMotorStatus(motors);
+#endif
         }
 
         // Yield briefly so other Core 0 tasks get time
@@ -89,7 +99,7 @@ static void commsTask(void* /*arg*/) {
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Core 0 — CAN task
-//  Polls the TWAI driver for incoming frames (arm status, faults).
+//  Polls the TWAI driver for incoming frames and forwards VESC feedback.
 // ─────────────────────────────────────────────────────────────────────────────
 static void canTask(void* /*arg*/) {
     const TickType_t period = pdMS_TO_TICKS(5);   // 200 Hz poll
@@ -97,45 +107,65 @@ static void canTask(void* /*arg*/) {
 
     for (;;) {
         CANInterface::poll();
+
+#ifdef ROBOT_SECONDARY
+        // Forward any fresh VESC feedback to mini PC
+        for (uint8_t id = 1; id <= VESC_MAX_CONTROLLERS; id++) {
+            VescStatusPayload v;
+            if (CANInterface::getVescStatus(id, v)) {
+                Comms::sendVescStatus(v);
+            }
+        }
+#endif
+
         vTaskDelayUntil(&last, period);
     }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Core 1 — Sensor task  (low priority, background)
-//  Runs sensor state machines and sends data to mini PC when new data arrives.
+//  Core 1 — Fast sensor task  (mag / gas / imu)
+//  Rate-limited internally by Sensors::runOnce(); never blocks.
 // ─────────────────────────────────────────────────────────────────────────────
 static void sensorTask(void* /*arg*/) {
     for (;;) {
-        Sensors::runOnce();
+        uint8_t fresh = Sensors::runOnce();   // only reads sensors whose interval elapsed
 
-        uint8_t mask = Sensors::getEnabledMask();
-
-        if (mask & SENSOR_BIT_MAG) {
+        if (fresh & SENSOR_BIT_MAG) {
             MagData mag;
             Sensors::getMag(mag);
             if (mag.valid) Comms::sendMagData(mag);
         }
 
-        if (mask & SENSOR_BIT_THERMAL) {
-            ThermalData thermal;
-            Sensors::getThermal(thermal);
-            if (thermal.valid) Comms::sendThermalData(thermal);
-        }
-
-        if (mask & SENSOR_BIT_GAS) {
+        if (fresh & SENSOR_BIT_GAS) {
             GasData gas;
             Sensors::getGas(gas);
             if (gas.valid) Comms::sendGasData(gas);
         }
 
-        if (mask & SENSOR_BIT_IMU) {
+        if (fresh & SENSOR_BIT_IMU) {
             ImuData imu;
             Sensors::getImu(imu);
             if (imu.valid) Comms::sendImuData(imu);
         }
 
-        // Yield for at least one tick between sensor sweeps
+        vTaskDelay(1);
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Core 1 — Thermal task  (lowest priority, blocks on MLX90640 getFrame)
+//  Runs independently so the ~250 ms blocking read doesn't stall fast sensors.
+// ─────────────────────────────────────────────────────────────────────────────
+static void thermalTask(void* /*arg*/) {
+    for (;;) {
+        Sensors::runThermalOnce();   // blocks until frame ready (~250 ms @ 4 Hz)
+
+        if (Sensors::getEnabledMask() & SENSOR_BIT_THERMAL) {
+            ThermalData thermal;
+            Sensors::getThermal(thermal);
+            if (thermal.valid) Comms::sendThermalData(thermal);
+        }
+
         vTaskDelay(1);
     }
 }
@@ -166,11 +196,14 @@ void setup() {
                             PRIO_CAN,     &h_can,   TASK_CORE_CAN);
 
     // ── Core 1: control + sensor tasks ───────────────────────────────────────
-    xTaskCreatePinnedToCore(controlTask, "Control", STACK_CONTROL, nullptr,
+    xTaskCreatePinnedToCore(controlTask,  "Control",  STACK_CONTROL, nullptr,
                             PRIO_CONTROL, &h_control, TASK_CORE_CONTROL);
 
-    xTaskCreatePinnedToCore(sensorTask,  "Sensors", STACK_SENSORS, nullptr,
+    xTaskCreatePinnedToCore(sensorTask,   "Sensors",  STACK_SENSORS, nullptr,
                             PRIO_SENSORS, &h_sensors, TASK_CORE_SENSORS);
+
+    xTaskCreatePinnedToCore(thermalTask,  "Thermal",  STACK_THERMAL, nullptr,
+                            PRIO_THERMAL, &h_thermal, TASK_CORE_THERMAL);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

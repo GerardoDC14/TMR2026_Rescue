@@ -101,6 +101,8 @@ gui_autogen/timestamp: /home/arepo/.local/lib/python3.10/site-packages/cmake/dat
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__builder.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
@@ -431,12 +433,22 @@ gui_autogen/timestamp: /home/arepo/.local/lib/python3.10/site-packages/cmake/dat
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__traits.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__builder.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__struct.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__traits.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__type_support.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/image.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/joint_state.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/magnetic_field.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__builder.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp \
@@ -451,28 +463,20 @@ gui_autogen/timestamp: /home/arepo/.local/lib/python3.10/site-packages/cmake/dat
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__builder.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
@@ -489,11 +493,9 @@ gui_autogen/timestamp: /home/arepo/.local/lib/python3.10/site-packages/cmake/dat
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/empty.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/float64_multi_array.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/int16_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/int32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/string.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
@@ -1979,6 +1981,8 @@ CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o: gui_autogen/mocs_compilat
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__builder.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
@@ -2309,12 +2313,22 @@ CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o: gui_autogen/mocs_compilat
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__traits.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__builder.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__struct.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__traits.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__type_support.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/image.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/joint_state.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/magnetic_field.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__builder.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp \
@@ -2329,28 +2343,20 @@ CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o: gui_autogen/mocs_compilat
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__builder.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
@@ -2367,11 +2373,9 @@ CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o: gui_autogen/mocs_compilat
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/empty.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/float64_multi_array.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/int16_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/int32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/string.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
@@ -3877,12 +3881,10 @@ CMakeFiles/gui.dir/src/dashboard_panel.cpp.o: /home/arepo/TMR2026_Rescue/shared/
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__builder.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__type_support.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/vector3.hpp \
   /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/collector.hpp \
   /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/generate_statistics_message.hpp \
   /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/metric_details_interface.hpp \
@@ -4203,6 +4205,17 @@ CMakeFiles/gui.dir/src/dashboard_panel.cpp.o: /home/arepo/TMR2026_Rescue/shared/
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp \
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/service_type_support.hpp \
   /opt/ros/humble/include/rosidl_typesupport_interface/rosidl_typesupport_interface/macros.h \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/magnetic_field.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__builder.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__traits.hpp \
@@ -4216,26 +4229,33 @@ CMakeFiles/gui.dir/src/dashboard_panel.cpp.o: /home/arepo/TMR2026_Rescue/shared/
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__builder.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/empty.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/int16_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/int32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
   /opt/ros/humble/include/tracetools/tracetools/config.h \
   /opt/ros/humble/include/tracetools/tracetools/tracetools.h \
   /opt/ros/humble/include/tracetools/tracetools/utils.hpp \
@@ -6431,6 +6451,8 @@ CMakeFiles/gui.dir/src/main_window.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui_
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__builder.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
@@ -6757,11 +6779,21 @@ CMakeFiles/gui.dir/src/main_window.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui_
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp \
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/service_type_support.hpp \
   /opt/ros/humble/include/rosidl_typesupport_interface/rosidl_typesupport_interface/macros.h \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__builder.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__struct.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__traits.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/joint_state.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/magnetic_field.hpp \
   /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__builder.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp \
@@ -6776,20 +6808,16 @@ CMakeFiles/gui.dir/src/main_window.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui_
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
@@ -6806,9 +6834,8 @@ CMakeFiles/gui.dir/src/main_window.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui_
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/empty.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/int32.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/string.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
@@ -11744,10 +11771,6 @@ CMakeFiles/gui.dir/src/video_panel.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui_
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
@@ -11763,7 +11786,6 @@ CMakeFiles/gui.dir/src/video_panel.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui_
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/float64_multi_array.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/string.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
@@ -12739,18 +12761,8 @@ CMakeFiles/gui.dir/src/video_widget.cpp.o: /home/arepo/TMR2026_Rescue/shared/gui
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/statistic_data_point__traits.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/metrics_message.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__type_support.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/float64_multi_array.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/tracetools/tracetools/config.h \
   /opt/ros/humble/include/tracetools/tracetools/tracetools.h \
   /opt/ros/humble/include/tracetools/tracetools/utils.hpp \
@@ -13598,6 +13610,8 @@ gui_autogen/BMPI5EA7AM/moc_digital_twin_panel.cpp:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6DBusTools/Qt6DBusToolsDependencies.cmake:
 
+/usr/lib/x86_64-linux-gnu/cmake/Qt6DBusTools/Qt6DBusToolsConfigVersionImpl.cmake:
+
 /usr/lib/x86_64-linux-gnu/cmake/Qt6DBusTools/Qt6DBusToolsConfigVersion.cmake:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6DBusTools/Qt6DBusToolsConfig.cmake:
@@ -13858,8 +13872,6 @@ gui_autogen/BMPI5EA7AM/moc_video_widget.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qpoint.h:
-
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs_impl.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs.h:
@@ -13949,6 +13961,8 @@ gui_autogen/BMPI5EA7AM/moc_video_widget.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -14130,6 +14144,8 @@ gui_autogen/BMPI5EA7AM/moc_video_widget.cpp:
 
 /usr/include/opencv4/opencv2/imgproc.hpp:
 
+/usr/include/opencv4/opencv2/highgui.hpp:
+
 /usr/include/c++/11/pstl/pstl_config.h:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6OpenGL/Qt6OpenGLConfigVersion.cmake:
@@ -14210,13 +14226,13 @@ gui_autogen/BMPI5EA7AM/moc_urdf_viewer.cpp:
 
 /usr/include/opencv4/opencv2/core/neon_utils.hpp:
 
-/usr/include/opencv4/opencv2/core/mat.inl.hpp:
-
 /usr/include/opencv4/opencv2/core/hal/interface.h:
 
 /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp:
 
 /usr/include/opencv4/opencv2/core/cvstd.hpp:
+
+/usr/include/opencv4/opencv2/core/cvdef.h:
 
 /usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
 
@@ -14490,6 +14506,12 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
+/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtFeatureCommon.cmake:
+
+/usr/include/linux/limits.h:
+
+/usr/include/c++/11/bits/allocator.h:
+
 /usr/include/assimp/matrix3x3.h:
 
 /usr/include/c++/11/bits/allocated_ptr.h:
@@ -14590,9 +14612,9 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/share/std_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:
 
-/usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusConfig.cmake:
+/usr/include/zbar.h:
 
-/opt/ros/humble/share/ament_cmake_core/cmake/core/python.cmake:
+/opt/ros/humble/share/std_msgs/cmake/export_std_msgs__rosidl_typesupport_fastrtps_cppExport.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qshareddata.h:
 
@@ -14662,14 +14684,6 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/moving_average_statistics/moving_average.hpp:
 
-/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtFeatureCommon.cmake:
-
-/usr/include/linux/limits.h:
-
-/usr/include/c++/11/bits/allocator.h:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/empty.hpp:
-
 /usr/include/c++/11/bits/concept_check.h:
 
 /usr/include/c++/11/bits/char_traits.h:
@@ -14692,13 +14706,9 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/share/ament_cmake_export_dependencies/cmake/ament_cmake_export_dependenciesConfig-version.cmake:
 
-/opt/ros/humble/share/rclcpp/cmake/rclcppExport-none.cmake:
-
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h:
 
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__traits.hpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h:
 
@@ -14711,14 +14721,6 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_waitables_interface.hpp:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiAdditionalTargetInfo.cmake:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt6DBusTools/Qt6DBusToolsConfigVersionImpl.cmake:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__traits.hpp:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__struct.hpp:
 
@@ -14735,16 +14737,6 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/parameter_event_handler.hpp:
-
-/usr/include/opencv4/opencv2/flann/any.h:
-
-/opt/ros/humble/share/fastrtps/cmake/fast-discovery-server-targets.cmake:
-
-/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:
 
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp:
 
@@ -14788,6 +14780,16 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp:
 
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/magnetic_field.hpp:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/imu.hpp:
+
+/opt/ros/humble/share/ament_cmake_export_definitions/cmake/ament_cmake_export_definitionsConfig-version.cmake:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__builder.hpp:
+
+/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/Linker/GNU.cmake:
+
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLabel:
 
 /opt/ros/humble/share/rmw_dds_common/cmake/export_rmw_dds_common__rosidl_typesupport_fastrtps_cExport-none.cmake:
@@ -14797,6 +14799,10 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__traits.hpp:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qpoint.h:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp:
 
 /opt/ros/humble/include/rosidl_typesupport_interface/rosidl_typesupport_interface/macros.h:
 
@@ -14813,6 +14819,8 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_runtime_cpp/traits.hpp:
 
 /opt/ros/humble/include/rcutils/rcutils/macros.h:
+
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__traits.hpp:
 
 /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h:
 
@@ -14938,6 +14946,10 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/share/rcl_logging_interface/cmake/ament_cmake_export_include_directories-extras.cmake:
 
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__struct.hpp:
+
+/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/gui.cpp:
+
 /usr/include/c++/11/math.h:
 
 /opt/ros/humble/include/rcutils/rcutils/types/string_map.h:
@@ -14952,11 +14964,11 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/include/rcl/rcl/arguments.h:
 
-/opt/ros/humble/include/rclcpp/rclcpp/logger.hpp:
-
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringliteral.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/type_support_decl.hpp:
+
+/opt/ros/humble/include/rclcpp/rclcpp/logger.hpp:
 
 /usr/include/c++/11/string:
 
@@ -14976,8 +14988,6 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/include/rcpputils/rcpputils/shared_library.hpp:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp:
-
 /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__type_support.hpp:
 
 /opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_common__rosidl_typesupport_cppExport-none.cmake:
@@ -14992,8 +15002,6 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 
 /opt/ros/humble/include/rcpputils/rcpputils/filesystem_helper.hpp:
 
-/opt/ros/humble/share/spdlog_vendor/cmake/spdlog_vendorConfig.cmake:
-
 /opt/ros/humble/share/ament_cmake_export_targets/cmake/ament_cmake_export_targetsConfig.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/static_storage.hpp:
@@ -15001,14 +15009,6 @@ gui_autogen/BMPI5EA7AM/moc_source_manager.cpp:
 /opt/ros/humble/share/class_loader/cmake/class_loaderExport.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/detail/synchronization_policy_common.hpp:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qatomic_cxx11.h:
-
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
-/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_common__rosidl_typesupport_introspection_cExport.cmake:
-
-/opt/ros/humble/include/rclcpp/rclcpp/subscription_options.hpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qutf8stringview.h:
 
@@ -15041,10 +15041,6 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qflags.h:
 
 /opt/ros/humble/share/rmw_implementation_cmake/cmake/call_for_each_rmw_implementation.cmake:
-
-/opt/ros/humble/include/rcutils/rcutils/types/string_array.h:
-
-/opt/ros/humble/include/rmw/rmw/events_statuses/events_statuses.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/subscription_factory.hpp:
 
@@ -15130,8 +15126,6 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__type_support.hpp:
-
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_parameters_interface.hpp:
 
 /opt/ros/humble/cmake/yamlConfig.cmake:
@@ -15148,11 +15142,11 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/share/rcutils/cmake/ament_cmake_export_link_flags-extras.cmake:
 
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QRect:
 
 /opt/ros/humble/include/rmw/rmw/events_statuses/liveliness_lost.h:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__type_support.hpp:
 
 /usr/include/ctype.h:
 
@@ -15244,6 +15238,20 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_common_libraryExport.cmake:
 
+/opt/ros/humble/include/rclcpp/rclcpp/experimental/executable_list.hpp:
+
+/opt/ros/humble/share/ament_cmake_core/cmake/core/ament_register_extension.cmake:
+
+/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_libraries-extras.cmake:
+
+/opt/ros/humble/include/rclcpp/rclcpp/experimental/create_intra_process_buffer.hpp:
+
+/usr/include/c++/11/bits/fstream.tcc:
+
+/opt/ros/humble/share/fastrtps_cmake_module/cmake/fastrtps_cmake_module-extras.cmake:
+
+/opt/ros/humble/share/statistics_msgs/cmake/ament_cmake_export_targets-extras.cmake:
+
 /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_target_interfaces.cmake:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake:
@@ -15253,6 +15261,10 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 /opt/ros/humble/share/ament_cmake_export_link_flags/cmake/ament_cmake_export_link_flags-extras.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/qos.hpp:
+
+/usr/include/opencv4/opencv2/core/mat.inl.hpp:
+
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__builder.hpp:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/parameter_value.hpp:
 
@@ -15268,9 +15280,21 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/received_message_age.hpp:
 
+/usr/lib/x86_64-linux-gnu/cmake/Qt6Gui/Qt6GuiAdditionalTargetInfo.cmake:
+
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatastream.h:
 
 /opt/ros/humble/include/rcl/rcl/logging_rosout.h:
+
+/opt/ros/humble/include/rclcpp/rclcpp/parameter_event_handler.hpp:
+
+/usr/include/opencv4/opencv2/flann/any.h:
+
+/opt/ros/humble/share/fastrtps/cmake/fast-discovery-server-targets.cmake:
+
+/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcborvalue.h:
 
@@ -15289,12 +15313,6 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
 
 /opt/ros/humble/share/rcpputils/cmake/rcpputilsExport.cmake:
-
-/usr/include/opencv4/opencv2/core/types.hpp:
-
-/usr/include/c++/11/typeindex:
-
-/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgs__rosidl_typesupport_cExport-none.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:
 
@@ -15318,9 +15336,39 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/share/rcl_yaml_param_parser/cmake/ament_cmake_export_dependencies-extras.cmake:
 
+/opt/ros/humble/share/rclcpp/cmake/rclcppExport-none.cmake:
+
+/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp:
+
+/usr/include/c++/11/pstl/glue_memory_defs.h:
+
+/opt/ros/humble/share/libyaml_vendor/cmake/libyaml_vendor-extras.cmake:
+
+/opt/ros/humble/include/rmw/rmw/events_statuses/events_statuses.h:
+
+/opt/ros/humble/include/rcutils/rcutils/types/string_array.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qatomic_cxx11.h:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/opt/ros/humble/include/rclcpp/rclcpp/subscription_options.hpp:
+
+/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_common__rosidl_typesupport_introspection_cExport.cmake:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/QMatrix4x4:
+
+/opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/detail/write_preferring_read_write_lock.hpp:
+
+/opt/ros/humble/share/ament_cmake_core/cmake/core/stamp.cmake:
+
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qopengl.h:
 
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:
+
+/opt/ros/humble/share/fastrtps/cmake/fast-discovery-server-targets-none.cmake:
+
+/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCInformation.cmake:
 
 /opt/ros/humble/share/class_loader/cmake/class_loaderConfig-version.cmake:
 
@@ -15438,10 +15486,6 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/include/rmw/rmw/subscription_content_filter_options.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h:
-
-/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__builder.hpp:
-
 /opt/ros/humble/include/rclcpp/rclcpp/wait_result.hpp:
 
 /opt/ros/humble/share/ament_cmake_include_directories/cmake/ament_cmake_include_directoriesConfig.cmake:
@@ -15465,6 +15509,12 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 /opt/ros/humble/share/ament_cmake_version/cmake/ament_cmake_version-extras.cmake:
 
 /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/settings_dialog.hpp:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h:
+
+/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__builder.hpp:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__traits.hpp:
 
 /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/video_panel.hpp:
 
@@ -15554,10 +15604,6 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgs__rosidl_typesupport_cExport.cmake:
 
-/usr/include/opencv4/opencv2/highgui.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__builder.hpp:
-
 /home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/DartConfiguration.tcl.in:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/get_parameter_types.hpp:
@@ -15572,15 +15618,13 @@ gui_autogen/BMPI5EA7AM/moc_main_window.cpp:
 
 /opt/ros/humble/share/ament_cmake_core/cmake/uninstall_target/ament_cmake_uninstall_target.cmake.in:
 
+/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__traits.hpp:
+
+/usr/include/c++/11/bits/string_view.tcc:
+
+/opt/ros/humble/share/ament_cmake_xmllint/cmake/ament_xmllint.cmake:
+
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
-
-/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
-/opt/ros/humble/share/ament_cmake_gen_version_h/cmake/ament_cmake_gen_version_hConfig.cmake:
-
-/usr/include/c++/11/ctime:
-
-/opt/ros/humble/share/rcpputils/cmake/ament_cmake_export_libraries-extras.cmake:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h:
 
@@ -15631,8 +15675,6 @@ ament_cmake_package_templates/templates.cmake:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qtcore-config.h:
 
 /home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/Platform/UnixPaths.cmake:
-
-/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/Linker/GNU.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_topics_interface.hpp:
 
@@ -15692,6 +15734,12 @@ CMakeFiles/4.1.0/CMakeCXXCompiler.cmake:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/set_parameters_result__type_support.hpp:
 
+/usr/include/c++/11/bits/alloc_traits.h:
+
+/opt/ros/humble/share/rcl_interfaces/cmake/export_rcl_interfaces__rosidl_generator_cExport.cmake:
+
+/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeParseArguments.cmake:
+
 /usr/include/c++/11/bits/move.h:
 
 /opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgs__rosidl_typesupport_cExport-none.cmake:
@@ -15723,28 +15771,6 @@ CMakeFiles/4.1.0/CMakeCXXCompiler.cmake:
 /opt/ros/humble/include/rcpputils/rcpputils/scope_exit.hpp:
 
 /opt/ros/humble/share/ament_cmake_export_libraries/cmake/ament_export_library_names.cmake:
-
-/opt/ros/humble/include/rcutils/rcutils/logging_macros.h:
-
-/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/FindPython3.cmake:
-
-ament_cmake_core/package.cmake:
-
-/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__type_support.hpp:
-
-gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp:
-
-/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgs__rosidl_typesupport_introspection_cExport.cmake:
-
-/opt/ros/humble/share/ament_cmake_target_dependencies/cmake/ament_get_recursive_properties.cmake:
-
-/usr/include/c++/11/bits/codecvt.h:
-
-/opt/ros/humble/include/rcpputils/rcpputils/join.hpp:
-
-/opt/ros/humble/include/rcutils/rcutils/allocator.h:
-
-/opt/ros/humble/include/rcl/rcl/init_options.h:
 
 /opt/ros/humble/share/ament_cmake_core/cmake/ament_cmake_index-extras.cmake:
 
@@ -15786,11 +15812,21 @@ gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp:
 
 /opt/ros/humble/share/rosidl_typesupport_fastrtps_cpp/cmake/ament_cmake_export_libraries-extras.cmake:
 
+ament_cmake_core/package.cmake:
+
+/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/FindPython3.cmake:
+
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__type_support.hpp:
+
 /opt/ros/humble/include/rcl/rcl/event.h:
 
 /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__builder.hpp:
 
 /home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/CheckCSourceCompiles.cmake:
+
+/opt/ros/humble/include/rcutils/rcutils/logging_macros.h:
+
+/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__type_support.hpp:
 
 /opt/ros/humble/share/ament_cmake_core/cmake/ament_cmake_environment-extras.cmake:
 
@@ -15799,6 +15835,12 @@ gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp:
 /usr/include/unistd.h:
 
 /home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/FindVulkan.cmake:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__type_support.hpp:
+
+/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/CMakeCommonCompilerMacros.cmake:
+
+/opt/ros/humble/include/rcl_yaml_param_parser/rcl_yaml_param_parser/visibility_control.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:
 
@@ -15815,8 +15857,6 @@ gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp:
 /opt/ros/humble/share/rosgraph_msgs/cmake/export_rosgraph_msgs__rosidl_typesupport_fastrtps_cppExport.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/create_generic_subscription.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__struct.hpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasicatomic.h:
 
@@ -15845,8 +15885,6 @@ gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qeventloop.h:
 
 /opt/ros/humble/share/rcl_logging_spdlog/cmake/rcl_logging_spdlogExport.cmake:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__struct.hpp:
 
 /opt/ros/humble/share/std_msgs/cmake/std_msgsConfig.cmake:
 
@@ -15992,16 +16030,6 @@ gui_autogen/moc_predefs.h:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/set_parameters.hpp:
 
-/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/gui.cpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/experimental/create_intra_process_buffer.hpp:
-
-/usr/include/c++/11/bits/fstream.tcc:
-
-/opt/ros/humble/share/fastrtps_cmake_module/cmake/fastrtps_cmake_module-extras.cmake:
-
-/opt/ros/humble/share/statistics_msgs/cmake/ament_cmake_export_targets-extras.cmake:
-
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__type_support.hpp:
 
 /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/source_manager.hpp:
@@ -16031,6 +16059,14 @@ gui_autogen/moc_predefs.h:
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__traits.hpp:
 
 /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/CMakeLists.txt:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/opt/ros/humble/include/rcpputils/rcpputils/join.hpp:
+
+/opt/ros/humble/include/rcutils/rcutils/allocator.h:
+
+/opt/ros/humble/include/rcl/rcl/init_options.h:
 
 /opt/ros/humble/share/std_msgs/cmake/rosidl_cmake-extras.cmake:
 
@@ -16090,16 +16126,6 @@ gui_autogen/moc_predefs.h:
 
 /opt/ros/humble/share/rcl_yaml_param_parser/cmake/ament_cmake_export_libraries-extras.cmake:
 
-/usr/include/c++/11/pstl/glue_memory_defs.h:
-
-/opt/ros/humble/share/libyaml_vendor/cmake/libyaml_vendor-extras.cmake:
-
-/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__traits.hpp:
-
-/usr/include/c++/11/bits/string_view.tcc:
-
-/opt/ros/humble/share/ament_cmake_xmllint/cmake/ament_xmllint.cmake:
-
 /home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCommonLanguageInclude.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainerfwd.h:
@@ -16107,12 +16133,6 @@ gui_autogen/moc_predefs.h:
 /opt/ros/humble/lib/python3.10/site-packages/ament_package/template/package_level/local_setup.bash.in:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__builder.hpp:
-
-/usr/include/c++/11/pstl/glue_algorithm_defs.h:
-
-/opt/ros/humble/include/rclcpp/rclcpp/experimental/buffers/intra_process_buffer.hpp:
-
-/opt/ros/humble/share/rosidl_cmake/cmake/rosidl_get_typesupport_target.cmake:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__type_support.hpp:
 
@@ -16195,6 +16215,14 @@ gui_autogen/moc_predefs.h:
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/parameter_service.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/opt/ros/humble/share/builtin_interfaces/cmake/export_builtin_interfaces__rosidl_typesupport_fastrtps_cExport-none.cmake:
+
+/opt/ros/humble/include/rclcpp/rclcpp/context.hpp:
 
 /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/speech_processor.cpp:
 
@@ -16306,8 +16334,6 @@ gui_autogen/moc_predefs.h:
 
 /opt/ros/humble/share/ament_cmake_core/cmake/ament_cmake_environment_hooks-extras.cmake:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp:
-
 /opt/ros/humble/share/ament_cmake_test/cmake/ament_cmake_test-extras.cmake:
 
 /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/filters.hpp:
@@ -16336,21 +16362,11 @@ gui_autogen/moc_predefs.h:
 
 /opt/ros/humble/share/rosidl_runtime_cpp/cmake/ament_cmake_export_targets-extras.cmake:
 
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp:
-
-/opt/ros/humble/share/rosgraph_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:
-
 /usr/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp:
 
 CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/ament_cmake_export_targets/cmake/ament_export_targets.cmake:
-
-/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/CMakeCommonCompilerMacros.cmake:
-
-/opt/ros/humble/include/rcl_yaml_param_parser/rcl_yaml_param_parser/visibility_control.h:
 
 /opt/ros/humble/share/std_msgs/cmake/std_msgs__rosidl_typesupport_cExport-none.cmake:
 
@@ -16358,31 +16374,21 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/parameter_value.hpp:
 
-/usr/include/x86_64-linux-gnu/qt6/QtGui/QMatrix4x4:
-
-/opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/detail/write_preferring_read_write_lock.hpp:
-
-/opt/ros/humble/share/ament_cmake_core/cmake/core/stamp.cmake:
-
 /opt/ros/humble/include/rclcpp/rclcpp/contexts/default_context.hpp:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-none.cmake:
 
 /opt/ros/humble/include/rclcpp/rclcpp/create_service.hpp:
 
+/opt/ros/humble/share/spdlog_vendor/cmake/spdlog_vendorConfig.cmake:
+
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__struct.hpp:
+
 /opt/ros/humble/include/rclcpp/rclcpp/detail/rmw_implementation_specific_payload.hpp:
 
 /opt/ros/humble/share/rosidl_generator_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:
 
 /opt/ros/humble/share/rmw/cmake/rmwExport-none.cmake:
-
-/usr/include/opencv4/opencv2/core/cvdef.h:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/float64_multi_array.hpp:
-
-/opt/ros/humble/share/ament_lint_common/cmake/ament_lint_commonConfig.cmake:
-
-/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/cmake/ament_cmake_export_targets-extras.cmake:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
@@ -16404,17 +16410,15 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/std_msgs/cmake/ament_cmake_export_include_directories-extras.cmake:
 
-/opt/ros/humble/include/rclcpp/rclcpp/experimental/executable_list.hpp:
+/usr/include/c++/11/pstl/glue_algorithm_defs.h:
 
-/opt/ros/humble/share/ament_cmake_core/cmake/core/ament_register_extension.cmake:
+/opt/ros/humble/share/rosidl_cmake/cmake/rosidl_get_typesupport_target.cmake:
 
-/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_libraries-extras.cmake:
+/opt/ros/humble/include/rclcpp/rclcpp/experimental/buffers/intra_process_buffer.hpp:
 
-/usr/include/c++/11/bits/alloc_traits.h:
+/usr/lib/x86_64-linux-gnu/cmake/Qt6DBus/Qt6DBusConfig.cmake:
 
-/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeParseArguments.cmake:
-
-/opt/ros/humble/share/rcl_interfaces/cmake/export_rcl_interfaces__rosidl_generator_cExport.cmake:
+/opt/ros/humble/share/ament_cmake_core/cmake/core/python.cmake:
 
 /opt/ros/humble/share/ament_cmake_core/cmake/core/templates/nameConfig.cmake.in:
 
@@ -16468,6 +16472,12 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/ament_cmake_cppcheck/cmake/ament_cppcheck.cmake:
 
+/opt/ros/humble/share/std_msgs/cmake/export_std_msgs__rosidl_typesupport_fastrtps_cppExport-none.cmake:
+
+/opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_type_support_struct.h:
+
+/opt/ros/humble/share/ament_cmake_export_definitions/cmake/ament_cmake_export_definitions-extras.cmake:
+
 /usr/include/opencv4/opencv2/flann/logger.h:
 
 /opt/ros/humble/share/fastrtps_cmake_module/cmake/fastrtps_cmake_moduleConfig-version.cmake:
@@ -16477,8 +16487,6 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 /opt/ros/humble/share/rosidl_typesupport_cpp/cmake/ament_cmake_export_targets-extras.cmake:
 
 /opt/ros/humble/share/rosidl_typesupport_introspection_c/cmake/rosidl_typesupport_introspection_cConfig-version.cmake:
-
-/opt/ros/humble/share/ament_cmake_export_definitions/cmake/ament_cmake_export_definitionsConfig-version.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontiguouscache.h:
 
@@ -16538,6 +16546,14 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/rmw_dds_common/cmake/export_rmw_dds_common__rosidl_generator_cExport-none.cmake:
 
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
+
+/opt/ros/humble/share/ament_cmake_gen_version_h/cmake/ament_cmake_gen_version_hConfig.cmake:
+
+/usr/include/c++/11/ctime:
+
+/opt/ros/humble/share/rcpputils/cmake/ament_cmake_export_libraries-extras.cmake:
+
 /opt/ros/humble/share/ament_cmake_gen_version_h/cmake/ament_generate_version_header.cmake:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt6CoreTools/Qt6CoreToolsConfig.cmake:
@@ -16560,11 +16576,11 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/ament_cmake_libraries/cmake/ament_cmake_libraries-extras.cmake:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__builder.hpp:
-
 /opt/ros/humble/share/ament_cmake_lint_cmake/cmake/ament_cmake_lint_cmake-extras.cmake:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QDir:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp:
 
 /opt/ros/humble/share/ament_cmake_lint_cmake/cmake/ament_cmake_lint_cmakeConfig-version.cmake:
 
@@ -16642,6 +16658,12 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/ament_cmake_target_dependencies/cmake/ament_cmake_target_dependenciesConfig.cmake:
 
+gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp:
+
+/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgs__rosidl_typesupport_introspection_cExport.cmake:
+
+/opt/ros/humble/share/ament_cmake_target_dependencies/cmake/ament_get_recursive_properties.cmake:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainertools_impl.h:
 
 /opt/ros/humble/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:
@@ -16673,6 +16695,8 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 /usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6VersionlessTargets.cmake:
 
 /opt/ros/humble/share/ament_cmake_uncrustify/cmake/ament_cmake_uncrustifyConfig.cmake:
+
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp:
 
 /opt/ros/humble/share/rosidl_cmake/cmake/string_camel_case_to_lower_case_underscore.cmake:
 
@@ -16724,6 +16748,10 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/ament_lint_common/cmake/ament_lint_commonConfig-version.cmake:
 
+/opt/ros/humble/share/ament_lint_common/cmake/ament_lint_commonConfig.cmake:
+
+/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/cmake/ament_cmake_export_targets-extras.cmake:
+
 /usr/include/x86_64-linux-gnu/qt6/QtGui/QSurfaceFormat:
 
 /opt/ros/humble/include/rmw/rmw/ret_types.h:
@@ -16756,10 +16784,6 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfaces__rosidl_typesupport_cExport.cmake:
 
-/home/arepo/.local/lib/python3.10/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCInformation.cmake:
-
-/opt/ros/humble/share/fastrtps/cmake/fast-discovery-server-targets-none.cmake:
-
 /opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfaces__rosidl_typesupport_cppExport.cmake:
 
 /opt/ros/humble/share/std_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:
@@ -16774,13 +16798,7 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/builtin_interfaces/cmake/export_builtin_interfaces__rosidl_generator_pyExport-none.cmake:
 
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/opt/ros/humble/include/rclcpp/rclcpp/context.hpp:
-
-/opt/ros/humble/share/builtin_interfaces/cmake/export_builtin_interfaces__rosidl_typesupport_fastrtps_cExport-none.cmake:
+/opt/ros/humble/include/std_msgs/std_msgs/msg/float32.hpp:
 
 /opt/ros/humble/share/builtin_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:
 
@@ -16971,8 +16989,6 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_cmakeConfig.cmake:
 
 /usr/include/c++/11/bits/basic_string.h:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/int32.hpp:
 
 /opt/ros/humble/share/rcl_interfaces/cmake/export_rcl_interfaces__rosidl_generator_cExport-none.cmake:
 
@@ -17196,6 +17212,8 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/rmw_fastrtps_shared_cppConfig-version.cmake:
 
+/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp:
+
 /opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/rmw_fastrtps_shared_cppConfig.cmake:
 
 /opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/rmw_fastrtps_shared_cppExport.cmake:
@@ -17292,9 +17310,7 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/rosidl_typesupport_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:
 
-/usr/include/zbar.h:
-
-/opt/ros/humble/share/std_msgs/cmake/export_std_msgs__rosidl_typesupport_fastrtps_cppExport.cmake:
+/opt/ros/humble/share/rosgraph_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__traits.hpp:
 
@@ -17480,6 +17496,12 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 
 /opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:
 
+/usr/include/opencv4/opencv2/core/types.hpp:
+
+/usr/include/c++/11/typeindex:
+
+/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgs__rosidl_typesupport_cExport-none.cmake:
+
 /usr/include/c++/11/bits/ranges_cmp.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/detail/resolve_intra_process_buffer_type.hpp:
@@ -17563,9 +17585,3 @@ CMakeFiles/4.1.0/CMakeCCompiler.cmake:
 /opt/ros/humble/share/rmw_dds_common/cmake/export_rmw_dds_common__rosidl_generator_cppExport.cmake:
 
 /opt/ros/humble/share/std_msgs/cmake/export_std_msgs__rosidl_typesupport_fastrtps_cExport.cmake:
-
-/opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_type_support_struct.h:
-
-/opt/ros/humble/share/ament_cmake_export_definitions/cmake/ament_cmake_export_definitions-extras.cmake:
-
-/opt/ros/humble/share/std_msgs/cmake/export_std_msgs__rosidl_typesupport_fastrtps_cppExport-none.cmake:

@@ -40,6 +40,7 @@ void SourceManager::discoverSources()
 
     probe_thread_ = std::thread([this]() {
         probeLocalCameras();
+        probeThermalTopics();
         rebuildSourceList();
         probing_ = false;
         emit sourcesUpdated();
@@ -84,6 +85,31 @@ void SourceManager::probeLocalCameras()
 
     std::lock_guard<std::mutex> lock(local_mutex_);
     local_camera_ids_ = std::move(found);
+}
+
+void SourceManager::probeThermalTopics()
+{
+    // Query ROS for any sensor_msgs/Image topics whose name contains "thermal".
+    // This makes the thermal source discoverable even when cams.py is not running.
+    auto topic_map = node_->get_topic_names_and_types();
+    std::vector<std::string> found;
+    for (const auto& [name, types] : topic_map) {
+        for (const auto& type : types) {
+            if (type == "sensor_msgs/msg/Image" &&
+                name.find("thermal") != std::string::npos) {
+                found.push_back(name);
+            }
+        }
+    }
+
+    if (!found.empty()) {
+        std::lock_guard<std::mutex> lock(config_mutex_);
+        for (const auto& t : found) {
+            if (std::find(thermal_topics_.begin(), thermal_topics_.end(), t)
+                    == thermal_topics_.end())
+                thermal_topics_.push_back(t);
+        }
+    }
 }
 
 void SourceManager::onConfigReceived(const std_msgs::msg::String::SharedPtr msg)

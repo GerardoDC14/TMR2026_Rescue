@@ -116,7 +116,8 @@ class GstToRos2Node(Node):
 
         config_msg = String()
         config_msg.data = json.dumps({
-            "camera_topics":  [topic for _, topic in CAMERA_STREAMS]
+            "camera_topics":  [topic for _, topic in CAMERA_STREAMS],
+            "thermal_topics": ["/sensors/thermal"],
         })
         self._pub_config.publish(config_msg)
         self.get_logger().info(f"Published /config: {config_msg.data}")

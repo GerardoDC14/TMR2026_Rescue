@@ -44,6 +44,10 @@ MainWindow::MainWindow(rclcpp::Node::SharedPtr node, QWidget* parent)
     connect(dashboard_panel_, &DashboardPanel::resetSourcesRequested,
             source_manager_, &SourceManager::discoverSources);
 
+    // Selecting/deselecting a thermal video source auto-enables the sensor mask bit
+    connect(video_panel_, &VideoPanel::thermalActiveChanged,
+            dashboard_panel_, &DashboardPanel::setThermalEnabled);
+
     // Populate filters from registry
     QStringList filter_names;
     filter_names << "None";

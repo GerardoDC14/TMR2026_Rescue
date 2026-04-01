@@ -8,20 +8,16 @@
 // #define ROBOT_SECONDARY
 
 // ─── I2C ─────────────────────────────────────────────────────────────────────
-#define PIN_I2C_SDA         21
-#define PIN_I2C_SCL         22
+#define PIN_I2C_SDA         33
+#define PIN_I2C_SCL         25
 
 // ─── TWAI (ESP32 built-in CAN) + SN65HVD230 transceiver ──────────────────────
 // GPIO assignments — route TX→CTX and RX←CRX on the SN65HVD230.
-// TODO: confirm physical wiring; these are common spare GPIOs on the DevKit.
-#define PIN_CAN_TX           4   // ESP32 CTX → SN65HVD230 D
-#define PIN_CAN_RX           5   // ESP32 CRX ← SN65HVD230 R
+#define PIN_CAN_TX          22   // ESP32 CTX → SN65HVD230 D
+#define PIN_CAN_RX          21   // ESP32 CRX ← SN65HVD230 R
 #define CAN_BITRATE_BPS  500000  // 500 kbps
 
 // ─── UART2 — Mini PC ─────────────────────────────────────────────────────────
-#define PIN_UART_TX         17
-#define PIN_UART_RX         16
-#define MINIPC_UART_PORT     2   // Hardware UART number
 #define MINIPC_BAUD     921600
 
 // ─── PPM input ───────────────────────────────────────────────────────────────
@@ -39,9 +35,9 @@
 #define PPM_CH_MODE          5   // Ch5 → main mode vs arm mode switch
 
 // ─── Motor PWM outputs (servo-style: 50 Hz, 1000–2000 µs) ───────────────────
-#define PIN_MOTOR_LEFT      25
-#define PIN_MOTOR_RIGHT     26
-#define PIN_MOTOR_FLIPPER   27
+#define PIN_MOTOR_LEFT      16
+#define PIN_MOTOR_RIGHT     23
+#define PIN_MOTOR_FLIPPER   17
 
 #define MOTOR_NEUTRAL_US  1500   // no movement
 #define MOTOR_MIN_US      1000   // full reverse
@@ -57,10 +53,10 @@
 
 // ─── Quadrature Encoders (PCNT hardware) ─────────────────────────────────────
 // Pins shared by both robots (track encoders)
-#define PIN_ENC_LEFT_A      32
-#define PIN_ENC_LEFT_B      33
+#define PIN_ENC_LEFT_A      36
+#define PIN_ENC_LEFT_B      39
 #define PIN_ENC_RIGHT_A     35   // input-only
-#define PIN_ENC_RIGHT_B     36   // input-only
+#define PIN_ENC_RIGHT_B     32   // input-only
 
 // PCNT units 0–1 are always LEFT and RIGHT tracks
 #define PCNT_UNIT_LEFT       0
@@ -70,8 +66,8 @@
 
 // ROBOT_MAIN: one joined flipper on unit 2
 #ifdef ROBOT_MAIN
-  #define PIN_ENC_FLIP_A      13
-  #define PIN_ENC_FLIP_B      14
+  #define PIN_ENC_FLIP_A      26
+  #define PIN_ENC_FLIP_B       4
   #define PCNT_UNIT_FLIPPER    2
   #define NUM_ENCODER_UNITS    3
 
@@ -88,20 +84,33 @@
   #define FLIPPER_PID_KI        0.0f   // integral gain
   #define FLIPPER_PID_KD        0.0f   // derivative gain
   #define FLIPPER_PID_I_MAX     0.5f   // integral windup clamp (normalised effort units)
+
+  // ── ODrive arm J1–J3 (joints 4–6 are servos on a separate ESP32) ────────────
+  #define ODRIVE_MAIN_NUM_JOINTS    3
+  #define ODRIVE_NODE_J1          0x10   // same CAN nodes as secondary robot
+  #define ODRIVE_NODE_J2          0x11
+  #define ODRIVE_NODE_J3          0x12
+  #define ODRIVE_GEAR_J1          48.0f
+  #define ODRIVE_GEAR_J2          48.0f
+  #define ODRIVE_GEAR_J3          48.0f
+  #define ODRIVE_DIR_J1          (-1.0f)
+  #define ODRIVE_DIR_J2          (-1.0f)
+  #define ODRIVE_DIR_J3          (-1.0f)
+  #define ODRIVE_ZERO_TIMEOUT_MS  50
 #endif
 
 // ROBOT_SECONDARY: 4 independent flippers on units 2–5
 // Pin assignments use GPIOs freed from LEDC (25/26/27) plus spare pins.
 // TODO: confirm physical wiring before deploying.
 #ifdef ROBOT_SECONDARY
-  #define PIN_ENC_FLIP_FL_A   12   // front-left flipper — TODO: confirm
-  #define PIN_ENC_FLIP_FL_B   13
-  #define PIN_ENC_FLIP_FR_A   14   // front-right flipper — TODO: confirm
-  #define PIN_ENC_FLIP_FR_B   15
-  #define PIN_ENC_FLIP_RL_A   25   // rear-left  flipper — TODO: confirm
-  #define PIN_ENC_FLIP_RL_B   26
-  #define PIN_ENC_FLIP_RR_A   27   // rear-right flipper — TODO: confirm
-  #define PIN_ENC_FLIP_RR_B    2
+  #define PIN_ENC_FLIP_FL_A   26   // front-left flipper — TODO: confirm
+  #define PIN_ENC_FLIP_FL_B    4
+  #define PIN_ENC_FLIP_FR_A   16   // front-right flipper — TODO: confirm
+  #define PIN_ENC_FLIP_FR_B   13
+  #define PIN_ENC_FLIP_RL_A   23   // rear-left  flipper — TODO: confirm
+  #define PIN_ENC_FLIP_RL_B   19
+  #define PIN_ENC_FLIP_RR_A   28   // rear-right flipper — TODO: confirm
+  #define PIN_ENC_FLIP_RR_B   17
   #define PCNT_UNIT_FLIP_FL    2
   #define PCNT_UNIT_FLIP_FR    3
   #define PCNT_UNIT_FLIP_RL    4
@@ -117,7 +126,7 @@
   #define FLIPPER_ANGLE_MAX     120.0f
 #endif
 
-// ROBOT_SECONDARY: VESC motor controllers over CAN (500 kbps, MCP_8MHZ)
+// ROBOT_SECONDARY: VESC motor controllers over CAN (500 kbps, TWAI)
 // IDs are set in VESC Tool under "Controller ID".
 // Currents are the peak value commanded at full stick deflection; tune on bench.
 #ifdef ROBOT_SECONDARY
@@ -166,7 +175,7 @@
 #define ENC_SPEED_INTERVAL_MS   50       // speed recalculation period
 
 // ─── Sensors ─────────────────────────────────────────────────────────────────
-#define PIN_MQ2              39   // input-only GPIO; connect to MQ2 AOUT
+#define PIN_MQ2              27   // input-only GPIO; connect to MQ2 AOUT
 
 #define MLX90640_I2C_ADDR    0x33
 #define MLX90640_REFRESH_HZ     4        // valid: 1 2 4 8 16 32 64
@@ -175,7 +184,7 @@
 
 #define MQ2_RL_KOHM          10.0f       // load resistor on MQ2 board (kΩ)
 #define MQ2_RO_KOHM          10.0f       // Rs in clean air — calibrate on bench
-#define MQ2_SAMPLE_COUNT        10       // ADC samples to average per reading
+#define MQ2_SAMPLE_COUNT         5       // ADC samples to average per reading
 
 // Sensor enable bitmask bits
 #define SENSOR_BIT_MAG       (1 << 0)
@@ -198,6 +207,8 @@
 #define MSG_STATUS           0x05        // system status / heartbeat
 #define MSG_SENSOR_IMU       0x06        // BNO055 orientation + accel + gyro
 #define MSG_ENCODER_EXT      0x07        // ROBOT_SECONDARY: 4 independent flipper angles
+#define MSG_VESC_STATUS      0x08        // ROBOT_SECONDARY: per-VESC feedback (erpm, current, temp, voltage)
+#define MSG_MOTOR_MAIN       0x09        // ROBOT_MAIN: track + flipper duty cycles
 
 // PC → ESP32 message types
 #define MSG_ARM_JOINTS       0x10        // 6 × int16 joint angles (×100 deg)
@@ -206,22 +217,32 @@
 #define MSG_ESTOP_CLEAR      0x13        // 0-byte payload — resume
 #define MSG_KEYBIND          0x14        // 15 bytes: 3 modes × 5 channel slots
 
+// ─── Sensor rate caps (Hz) ────────────────────────────────────────────────────
+// Throttle individual sensors so we don't flood the UART or waste CPU.
+// Thermal is hardware-limited by MLX90640_REFRESH_HZ and runs in its own task.
+#define SENSOR_MAG_HZ           50
+#define SENSOR_IMU_HZ           50
+#define SENSOR_GAS_HZ           10
+
 // ─── FreeRTOS Task Config ────────────────────────────────────────────────────
 // Core 0: protocol tasks (comms + CAN)
-// Core 1: control + sensor tasks
+// Core 1: control + sensor tasks (thermal gets its own task)
 #define TASK_CORE_COMMS      0
 #define TASK_CORE_CAN        0
 #define TASK_CORE_CONTROL    1
 #define TASK_CORE_SENSORS    1
+#define TASK_CORE_THERMAL    1
 
 #define STACK_CONTROL        5120
 #define STACK_COMMS          4096
 #define STACK_CAN            3072
-#define STACK_SENSORS        8192    // MLX90640 needs a bigger stack
+#define STACK_SENSORS        4096    // fast sensors only (mag/gas/imu)
+#define STACK_THERMAL        8192   // MLX90640 needs a bigger stack
 
 #define PRIO_CONTROL            5    // highest — real-time loop
 #define PRIO_COMMS              4
 #define PRIO_CAN                4
-#define PRIO_SENSORS            2    // lowest — background only
+#define PRIO_SENSORS            2    // low priority — background
+#define PRIO_THERMAL            1    // lowest — thermal never blocks anything
 
 #define CONTROL_LOOP_HZ        50    // target control cycle rate

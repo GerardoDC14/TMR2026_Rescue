@@ -18,9 +18,14 @@ class Sensors {
 public:
     static bool begin();          // returns false if any mandatory init fails
 
-    // Called from the sensor FreeRTOS task.  Non-blocking: each invocation
-    // advances state machines for whichever sensors are active.
-    static void runOnce();
+    // Called from the fast-sensor FreeRTOS task (mag/gas/imu).
+    // Rate-limited internally; safe to call in a tight loop with vTaskDelay(1).
+    // Returns bitmask of sensors that were actually read this tick (SENSOR_BIT_*).
+    static uint8_t runOnce();
+
+    // Called from the dedicated thermal FreeRTOS task.
+    // Blocks on MLX90640 getFrame() (~250 ms at 4 Hz); never call from runOnce().
+    static void runThermalOnce();
 
     // Enable/disable sensors at runtime (called by Comms on MSG_SENSOR_ENABLE).
     static void setEnabledMask(uint8_t mask);
@@ -44,7 +49,7 @@ private:
     static ThermalData    s_thermal;
     static GasData        s_gas;
     static ImuData        s_imu;
-    static bool           s_lis_ok;
+    static bool           s_mag_ok;
     static bool           s_mlx_ok;
     static bool           s_bno_ok;
 };

@@ -36,6 +36,8 @@ public:
     static void sendGasData(const GasData& gas);
     static void sendImuData(const ImuData& imu);
     static void sendEncoderExt(const EncoderState& enc);   // ROBOT_SECONDARY flipper angles
+    static void sendVescStatus(const VescStatusPayload& v); // ROBOT_SECONDARY VESC feedback
+    static void sendMainMotorStatus(const MainMotorPayload& p); // ROBOT_MAIN duty cycles
     static void sendStatus(const SystemStatus& status);
 
     // ── Callback registration ─────────────────────────────────────────────────

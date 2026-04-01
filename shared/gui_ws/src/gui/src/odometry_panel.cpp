@@ -1,6 +1,8 @@
 #include "gui/odometry_panel.hpp"
 #include <QMouseEvent>
 
+static const char* VESC_NAMES[7] = {"?", "TL", "TR", "FL", "FR", "RL", "RR"};
+
 OdometryPanel::OdometryPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     : QWidget(parent), node_(node)
 {
@@ -19,6 +21,10 @@ OdometryPanel::OdometryPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
             this, &OdometryPanel::onFlagsUpdated, Qt::QueuedConnection);
     connect(this, &OdometryPanel::tracksUpdated,
             this, &OdometryPanel::onTracksUpdated, Qt::QueuedConnection);
+    connect(this, &OdometryPanel::vescStatusUpdated,
+            this, &OdometryPanel::onVescStatusUpdated, Qt::QueuedConnection);
+    connect(this, &OdometryPanel::mainMotorUpdated,
+            this, &OdometryPanel::onMainMotorUpdated, Qt::QueuedConnection);
 
     // ── ROS subscriptions ────────────────────────────────────────────────────
     auto qos = rclcpp::QoS(10).best_effort();
@@ -54,6 +60,25 @@ OdometryPanel::OdometryPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
         [this](geometry_msgs::msg::Vector3::SharedPtr msg) {
             emit tracksUpdated(msg->x, msg->y);
         });
+
+    // VESC status (secondary robot): [vesc_id, erpm, current_A, duty, temp_fet, temp_motor, voltage]
+    vesc_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>(
+        "/motors/vesc_status", qos,
+        [this](std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+            if (msg->data.size() >= 7)
+                emit vescStatusUpdated(
+                    static_cast<int>(msg->data[0]),
+                    msg->data[1], msg->data[2], msg->data[3],
+                    msg->data[4], msg->data[5], msg->data[6]);
+        });
+
+    // Main robot motor commands: [left_duty, right_duty, flipper_duty] (−1..+1)
+    main_motor_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>(
+        "/motors/main_status", qos,
+        [this](std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+            if (msg->data.size() >= 3)
+                emit mainMotorUpdated(msg->data[0], msg->data[1], msg->data[2]);
+        });
 }
 
 // ── Layout ───────────────────────────────────────────────────────────────────
@@ -64,9 +89,6 @@ void OdometryPanel::buildLayout()
     main_layout_->setContentsMargins(8, 6, 8, 6);
     main_layout_->setSpacing(4);
 
-    auto hdr_style = QString("color: #aaa; font-weight: bold; font-size: 11px;");
-    auto lbl_style = QString("color: #888; font-size: 10px;");
-
     // ── Title ────────────────────────────────────────────────────────────────
     auto* title = new QLabel("Odometry Dashboard", this);
     title->setAlignment(Qt::AlignHCenter);
@@ -75,7 +97,7 @@ void OdometryPanel::buildLayout()
 
     main_layout_->addWidget(makeHSep());
 
-    // ── Mode / Status row ────────────────────────────────────────────────────
+    // ── Mode / Flags row (uptime moved to dashboard panel) ───────────────────
     auto* status_hdr = makeHeaderLabel("Status");
     main_layout_->addWidget(status_hdr);
 
@@ -85,10 +107,6 @@ void OdometryPanel::buildLayout()
     status_grid->addWidget(makeAxisLabel("Mode"), 0, 0);
     mode_label_ = makeValueLabel("--");
     status_grid->addWidget(mode_label_, 0, 1);
-
-    status_grid->addWidget(makeAxisLabel("Uptime"), 0, 2);
-    uptime_label_ = makeValueLabel("--");
-    status_grid->addWidget(uptime_label_, 0, 3);
 
     status_grid->addWidget(makeAxisLabel("Flags"), 1, 0);
     flags_label_ = makeValueLabel("--");
@@ -127,12 +145,93 @@ void OdometryPanel::buildLayout()
 
     rebuildFlipperSection();
 
+    // ── VESC telemetry section (secondary robot) ─────────────────────────────
+    main_layout_->addWidget(makeHSep());
+
+    vesc_section_ = new QWidget(this);
+    {
+        auto* vl = new QVBoxLayout(vesc_section_);
+        vl->setContentsMargins(0, 0, 0, 0);
+        vl->setSpacing(3);
+
+        vl->addWidget(makeHeaderLabel("Motor Telemetry"));
+
+        // Column headers
+        auto* hdr_grid = new QGridLayout();
+        hdr_grid->setSpacing(2);
+        hdr_grid->addWidget(makeAxisLabel("ID"),    0, 0);
+        hdr_grid->addWidget(makeAxisLabel("eRPM"),  0, 1);
+        hdr_grid->addWidget(makeAxisLabel("A"),     0, 2);
+        hdr_grid->addWidget(makeAxisLabel("Duty"),  0, 3);
+        hdr_grid->addWidget(makeAxisLabel("Tfet"),  0, 4);
+        hdr_grid->addWidget(makeAxisLabel("Tmot"),  0, 5);
+        vl->addLayout(hdr_grid);
+
+        // One row per VESC (IDs 1-6)
+        for (int id = 1; id <= 6; ++id) {
+            auto* row = new QGridLayout();
+            row->setSpacing(2);
+
+            auto* id_lbl = makeAxisLabel(VESC_NAMES[id]);
+            row->addWidget(id_lbl, 0, 0);
+
+            vesc_rows_[id].erpm      = makeValueLabel("--");
+            vesc_rows_[id].current   = makeValueLabel("--");
+            vesc_rows_[id].duty      = makeValueLabel("--");
+            vesc_rows_[id].temp_fet  = makeValueLabel("--");
+            vesc_rows_[id].temp_motor = makeValueLabel("--");
+
+            // Smaller font for the dense table
+            for (QLabel* l : {vesc_rows_[id].erpm, vesc_rows_[id].current,
+                               vesc_rows_[id].duty, vesc_rows_[id].temp_fet,
+                               vesc_rows_[id].temp_motor}) {
+                l->setStyleSheet("color: #4fc3f7; font-size: 10px;");
+            }
+
+            row->addWidget(vesc_rows_[id].erpm,      0, 1);
+            row->addWidget(vesc_rows_[id].current,   0, 2);
+            row->addWidget(vesc_rows_[id].duty,      0, 3);
+            row->addWidget(vesc_rows_[id].temp_fet,  0, 4);
+            row->addWidget(vesc_rows_[id].temp_motor, 0, 5);
+            vl->addLayout(row);
+        }
+    }
+    main_layout_->addWidget(vesc_section_);
+
+    // ── Main robot motor commands section (primary robot) ────────────────────
+    main_layout_->addWidget(makeHSep());
+
+    main_motor_section_ = new QWidget(this);
+    {
+        auto* vl = new QVBoxLayout(main_motor_section_);
+        vl->setContentsMargins(0, 0, 0, 0);
+        vl->setSpacing(3);
+
+        vl->addWidget(makeHeaderLabel("Motor Commands"));
+
+        auto* mg = new QGridLayout();
+        mg->setSpacing(3);
+        mg->addWidget(makeAxisLabel("Left"),    0, 0);
+        mg->addWidget(makeAxisLabel("Right"),   0, 1);
+        mg->addWidget(makeAxisLabel("Flipper"), 0, 2);
+        main_left_duty_  = makeValueLabel("--");
+        main_right_duty_ = makeValueLabel("--");
+        main_flip_duty_  = makeValueLabel("--");
+        mg->addWidget(main_left_duty_,  1, 0);
+        mg->addWidget(main_right_duty_, 1, 1);
+        mg->addWidget(main_flip_duty_,  1, 2);
+        vl->addLayout(mg);
+    }
+    main_layout_->addWidget(main_motor_section_);
+
     main_layout_->addStretch();
+
+    // Show/hide motor sections based on initial robot type
+    updateMotorSectionVisibility();
 }
 
 void OdometryPanel::rebuildFlipperSection()
 {
-    // Remove old container if present
     if (flipper_container_) {
         main_layout_->removeWidget(flipper_container_);
         delete flipper_container_;
@@ -145,7 +244,6 @@ void OdometryPanel::rebuildFlipperSection()
     fl->setSpacing(3);
 
     if (robot_type_ == 0) {
-        // Jaguar: single flipper set
         auto* hdr = makeHeaderLabel("Flippers (deg)");
         fl->addWidget(hdr);
 
@@ -157,7 +255,6 @@ void OdometryPanel::rebuildFlipperSection()
 
         flip_fl_ = flip_fr_ = flip_rl_ = flip_rr_ = nullptr;
     } else {
-        // Dicerox: 4 independent flippers
         auto* hdr = makeHeaderLabel("Flippers (deg)");
         fl->addWidget(hdr);
 
@@ -185,9 +282,14 @@ void OdometryPanel::rebuildFlipperSection()
         flip_angle_ = nullptr;
     }
 
-    // Insert before the stretch
     int idx = main_layout_->indexOf(flipper_sep_) + 1;
     main_layout_->insertWidget(idx, flipper_container_);
+}
+
+void OdometryPanel::updateMotorSectionVisibility()
+{
+    if (vesc_section_)       vesc_section_->setVisible(robot_type_ == 1);
+    if (main_motor_section_) main_motor_section_->setVisible(robot_type_ == 0);
 }
 
 void OdometryPanel::setRobotType(int type)
@@ -195,6 +297,7 @@ void OdometryPanel::setRobotType(int type)
     if (robot_type_ == type) return;
     robot_type_ = type;
     rebuildFlipperSection();
+    updateMotorSectionVisibility();
 }
 
 // ── Factory helpers ──────────────────────────────────────────────────────────
@@ -233,13 +336,12 @@ QFrame* OdometryPanel::makeHSep()
 
 // ── Slots ────────────────────────────────────────────────────────────────────
 
-void OdometryPanel::onTelemetryUpdated(float spd_l, float spd_r, float flip_angle, float uptime)
+void OdometryPanel::onTelemetryUpdated(float spd_l, float spd_r, float flip_angle, float /*uptime*/)
 {
     trac_left_rpm_->setText(QString::number(spd_l, 'f', 1));
     trac_right_rpm_->setText(QString::number(spd_r, 'f', 1));
     if (robot_type_ == 0 && flip_angle_)
         flip_angle_->setText(QString::number(flip_angle, 'f', 1));
-    uptime_label_->setText(QString::number(uptime, 'f', 0) + "s");
 }
 
 void OdometryPanel::onFlipperExtUpdated(float fl, float fr, float rl, float rr)
@@ -250,7 +352,6 @@ void OdometryPanel::onFlipperExtUpdated(float fl, float fr, float rl, float rr)
         if (flip_rl_) flip_rl_->setText(QString::number(rl, 'f', 1));
         if (flip_rr_) flip_rr_->setText(QString::number(rr, 'f', 1));
     } else if (robot_type_ == 0 && flip_angle_) {
-        // On Jaguar, flipper_sub also publishes [angle, 0, 0, 0]
         flip_angle_->setText(QString::number(fl, 'f', 1));
     }
 }
@@ -259,7 +360,6 @@ void OdometryPanel::onModeUpdated(const QString& mode)
 {
     mode_label_->setText(mode);
 
-    // Color code the mode
     if (mode == "ESTOP")
         mode_label_->setStyleSheet("color: #cc3333; font-size: 12px; font-weight: bold;");
     else if (mode == "STANDBY")
@@ -286,10 +386,30 @@ void OdometryPanel::onTracksUpdated(double left_rpm, double right_rpm)
     trac_right_rpm_->setText(QString::number(right_rpm, 'f', 1));
 }
 
+void OdometryPanel::onVescStatusUpdated(int id, float erpm, float current, float duty,
+                                        float temp_fet, float temp_motor, float /*voltage*/)
+{
+    if (id < 1 || id > 6) return;
+    auto& row = vesc_rows_[id];
+    row.erpm->setText(QString::number(static_cast<int>(erpm)));
+    row.current->setText(QString::number(current, 'f', 1) + "A");
+    row.duty->setText(QString::number(duty * 100.0f, 'f', 0) + "%");
+    row.temp_fet->setText(QString::number(temp_fet, 'f', 0) + "°");
+    row.temp_motor->setText(QString::number(temp_motor, 'f', 0) + "°");
+}
+
+void OdometryPanel::onMainMotorUpdated(float left_duty, float right_duty, float flipper_duty)
+{
+    auto fmt = [](float v) {
+        return QString::number(v * 100.0f, 'f', 0) + "%";
+    };
+    if (main_left_duty_)  main_left_duty_->setText(fmt(left_duty));
+    if (main_right_duty_) main_right_duty_->setText(fmt(right_duty));
+    if (main_flip_duty_)  main_flip_duty_->setText(fmt(flipper_duty));
+}
+
 // ── Mouse click → signal ─────────────────────────────────────────────────────
 void OdometryPanel::mousePressEvent(QMouseEvent* event)
 {
     Q_UNUSED(event);
-    // Don't emit panelClicked — the odometry panel itself shouldn't enlarge.
-    // The VideoPanel handles click-to-enlarge only for video widgets.
 }

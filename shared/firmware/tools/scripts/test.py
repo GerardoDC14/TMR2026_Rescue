@@ -150,7 +150,7 @@ def test_telemetry_content(ser, parser, _=None):
     assert t is not None, "FAIL: no telemetry received"
     print(f"    mode       = {t['mode']}        (expect MAIN or STANDBY — PPM valid)")
     print(f"    ppm_ok     = {t['ppm_ok']}      (expect True — emulator running)")
-    print(f"    can_ok     = {t['can_ok']}       (expect False — no MCP2515)")
+    print(f"    can_ok     = {t['can_ok']}       (expect False — no CAN bus)")
     print(f"    uptime_ms  = {t['uptime_ms']}")
     print(f"    ppm[0..5]  = {list(t['ppm'])}")
     # With a valid PPM signal the robot transitions STANDBY → MAIN; both are acceptable here

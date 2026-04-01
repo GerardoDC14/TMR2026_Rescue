@@ -118,7 +118,6 @@ void Comms::processFrame(uint8_t type, const uint8_t* buf, uint16_t len) {
             break;
 
         default:
-            // Unknown type — silently discard
             break;
     }
 }
@@ -204,6 +203,18 @@ void Comms::sendEncoderExt(const EncoderState& enc) {
     p.flipper_rl_deg10 = static_cast<int16_t>(enc.flipper_angle_rl_deg * 10.0f);
     p.flipper_rr_deg10 = static_cast<int16_t>(enc.flipper_angle_rr_deg * 10.0f);
     sendFrame(MSG_ENCODER_EXT,
+              reinterpret_cast<const uint8_t*>(&p),
+              sizeof(p));
+}
+
+void Comms::sendVescStatus(const VescStatusPayload& v) {
+    sendFrame(MSG_VESC_STATUS,
+              reinterpret_cast<const uint8_t*>(&v),
+              sizeof(v));
+}
+
+void Comms::sendMainMotorStatus(const MainMotorPayload& p) {
+    sendFrame(MSG_MOTOR_MAIN,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
 }

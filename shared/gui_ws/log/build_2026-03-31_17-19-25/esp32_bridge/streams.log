@@ -1,0 +1,24 @@
+[0.668s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge': PYTHONPATH=/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/esp32_bridge build --build-base /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build install --record /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log --single-version-externally-managed install_data
+[0.865s] running egg_info
+[0.879s] writing ../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO
+[0.879s] writing dependency_links to ../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt
+[0.880s] writing entry points to ../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt
+[0.880s] writing requirements to ../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt
+[0.880s] writing top-level names to ../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt
+[0.910s] reading manifest file '../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+[0.911s] writing manifest file '../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+[0.911s] running build
+[0.911s] running build_py
+[0.911s] copying esp32_bridge/esp32_bridge_node.py -> /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build/lib/esp32_bridge
+[0.911s] running install
+[0.915s] running install_lib
+[0.930s] copying /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build/lib/esp32_bridge/esp32_bridge_node.py -> /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.931s] byte-compiling /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/esp32_bridge_node.py to esp32_bridge_node.cpython-310.pyc
+[0.933s] running install_data
+[0.933s] running install_egg_info
+[0.950s] removing '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info' (and everything under it)
+[0.950s] Copying ../../build/esp32_bridge/esp32_bridge.egg-info to /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info
+[0.950s] running install_scripts
+[1.102s] Installing esp32_bridge_node script to /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/esp32_bridge
+[1.102s] writing list of installed files to '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log'
+[1.125s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge' returned '0': PYTHONPATH=/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/esp32_bridge build --build-base /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build install --record /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log --single-version-externally-managed install_data

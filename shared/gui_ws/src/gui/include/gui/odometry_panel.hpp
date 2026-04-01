@@ -15,6 +15,7 @@
 #include <geometry_msgs/msg/vector3.hpp>
 
 #include <atomic>
+#include <array>
 
 class OdometryPanel : public QWidget {
     Q_OBJECT
@@ -31,6 +32,9 @@ signals:
     void modeUpdated(const QString& mode);
     void flagsUpdated(int flags);
     void tracksUpdated(double left_rpm, double right_rpm);
+    void vescStatusUpdated(int id, float erpm, float current, float duty,
+                           float temp_fet, float temp_motor, float voltage);
+    void mainMotorUpdated(float left_duty, float right_duty, float flipper_duty);
 
 private slots:
     void onTelemetryUpdated(float spd_l, float spd_r, float flip_angle, float uptime);
@@ -38,6 +42,9 @@ private slots:
     void onModeUpdated(const QString& mode);
     void onFlagsUpdated(int flags);
     void onTracksUpdated(double left_rpm, double right_rpm);
+    void onVescStatusUpdated(int id, float erpm, float current, float duty,
+                             float temp_fet, float temp_motor, float voltage);
+    void onMainMotorUpdated(float left_duty, float right_duty, float flipper_duty);
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -45,6 +52,7 @@ protected:
 private:
     void buildLayout();
     void rebuildFlipperSection();
+    void updateMotorSectionVisibility();
     QLabel* makeValueLabel(const QString& initial = "--");
     QLabel* makeHeaderLabel(const QString& text);
     QLabel* makeAxisLabel(const QString& text);
@@ -58,15 +66,14 @@ private:
     QLabel* trac_right_rpm_;
 
     // Flippers — Jaguar: only flip_angle_ used; Dicerox: fl/fr/rl/rr used
-    QLabel* flip_angle_;     // Jaguar single flipper
-    QLabel* flip_fl_;        // Dicerox front-left
-    QLabel* flip_fr_;        // Dicerox front-right
-    QLabel* flip_rl_;        // Dicerox rear-left
-    QLabel* flip_rr_;        // Dicerox rear-right
+    QLabel* flip_angle_;
+    QLabel* flip_fl_;
+    QLabel* flip_fr_;
+    QLabel* flip_rl_;
+    QLabel* flip_rr_;
 
-    // Status
+    // Status (uptime removed — now in dashboard panel)
     QLabel* mode_label_;
-    QLabel* uptime_label_;
     QLabel* flags_label_;
 
     // Flipper container (swapped when robot type changes)
@@ -74,10 +81,31 @@ private:
     QVBoxLayout* main_layout_{nullptr};
     QFrame* flipper_sep_{nullptr};
 
+    // ── Motor telemetry sections ─────────────────────────────────────────────
+
+    // VESC section (secondary robot) — one row per motor ID 1-6
+    QWidget* vesc_section_{nullptr};
+    struct VescRow {
+        QLabel* erpm;
+        QLabel* current;
+        QLabel* duty;
+        QLabel* temp_fet;
+        QLabel* temp_motor;
+    };
+    std::array<VescRow, 7> vesc_rows_{};   // index 0 unused; IDs 1-6
+
+    // Main motor section (primary robot)
+    QWidget* main_motor_section_{nullptr};
+    QLabel* main_left_duty_{nullptr};
+    QLabel* main_right_duty_{nullptr};
+    QLabel* main_flip_duty_{nullptr};
+
     // ROS subscriptions
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr telem_sub_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr flipper_sub_;
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr mode_sub_;
     rclcpp::Subscription<std_msgs::msg::UInt8>::SharedPtr flags_sub_;
     rclcpp::Subscription<geometry_msgs::msg::Vector3>::SharedPtr tracks_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr vesc_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr main_motor_sub_;
 };

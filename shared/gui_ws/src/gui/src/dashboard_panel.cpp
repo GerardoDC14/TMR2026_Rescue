@@ -2,6 +2,8 @@
 #include "gui/speech_processor.hpp"
 #include "gui/app_settings.hpp"
 
+#include <cmath>
+
 DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     : QWidget(parent), node_(node)
 {
@@ -26,13 +28,17 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     conn_label_ = new QLabel("Offline", this);
     conn_label_->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     conn_label_->setStyleSheet(lbl_style);
+    uptime_label_ = new QLabel("--", this);
+    uptime_label_->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    uptime_label_->setStyleSheet("color: #4fc3f7; font-size: 12px;");
     conn_row->addStretch();
     conn_row->addWidget(conn_indicator_);
     conn_row->addWidget(conn_label_);
     conn_row->addStretch();
+    conn_row->addWidget(uptime_label_);
     layout->addLayout(conn_row);
 
-    // Smooth opacity pulse on heartbeat
+    // Smooth opacity pulse on telemetry received
     auto* opacity = new QGraphicsOpacityEffect(conn_indicator_);
     conn_indicator_->setGraphicsEffect(opacity);
     pulse_anim_ = new QPropertyAnimation(opacity, "opacity", this);
@@ -47,16 +53,16 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     sep2->setStyleSheet("color: #444;");
     layout->addWidget(sep2);
 
-    // ── Magnetometer | Gas ────────────────────────────────────────────────────
+    // ── Helper lambdas ────────────────────────────────────────────────────────
     auto make_val = [&]() {
         auto* l = new QLabel("--", this);
-        l->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter); // change to AlignLeft to left-align
+        l->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         l->setStyleSheet(val_style);
         return l;
     };
     auto make_axis = [&](const char* text) {
         auto* l = new QLabel(text, this);
-        l->setAlignment(Qt::AlignHCenter); // change to AlignLeft to left-align
+        l->setAlignment(Qt::AlignHCenter);
         l->setStyleSheet(lbl_style);
         return l;
     };
@@ -67,16 +73,41 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
         return s;
     };
 
+    // Sensor toggle button factory — small inline enable/disable toggle
+    auto make_sensor_toggle = [&]() {
+        auto* btn = new QPushButton("OFF", this);
+        btn->setCheckable(true);
+        btn->setFixedSize(36, 18);
+        QFont f = btn->font();
+        f.setPointSize(7);
+        btn->setFont(f);
+        btn->setStyleSheet(
+            "QPushButton { background-color: #3a2a2a; color: #888; padding: 1px; "
+            "border: 1px solid #5a3a3a; border-radius: 3px; }"
+            "QPushButton:hover { background-color: #4a3030; }"
+            "QPushButton:checked { background-color: #1a5a1a; color: #8afa8a; "
+            "border-color: #2a8a2a; }");
+        return btn;
+    };
+
+    // ── Magnetometer | Gas ────────────────────────────────────────────────────
     auto* sensors_row = new QHBoxLayout();
     sensors_row->setSpacing(8);
 
     // Left: Magnetometer
     auto* mag_col = new QVBoxLayout();
     mag_col->setSpacing(3);
-    auto* mag_hdr = new QLabel("Magnetometer (µT)", this);
-    mag_hdr->setAlignment(Qt::AlignHCenter);
-    mag_hdr->setStyleSheet(hdr_style);
-    mag_col->addWidget(mag_hdr);
+    {
+        auto* mag_hdr_row = new QHBoxLayout();
+        mag_hdr_row->setSpacing(4);
+        auto* mag_hdr = new QLabel("Magnetometer (µT)", this);
+        mag_hdr->setStyleSheet(hdr_style);
+        mag_toggle_ = make_sensor_toggle();
+        connect(mag_toggle_, &QPushButton::toggled, this, &DashboardPanel::onSensorToggled);
+        mag_hdr_row->addWidget(mag_hdr, 1);
+        mag_hdr_row->addWidget(mag_toggle_);
+        mag_col->addLayout(mag_hdr_row);
+    }
     mag_x_ = make_val(); mag_y_ = make_val(); mag_z_ = make_val();
     for (auto [lbl, val] : {std::pair{"X", mag_x_}, {"Y", mag_y_}, {"Z", mag_z_}}) {
         auto* row = new QHBoxLayout();
@@ -88,10 +119,17 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     // Right: Gas
     auto* gas_col = new QVBoxLayout();
     gas_col->setSpacing(3);
-    auto* gas_hdr = new QLabel("Gas (ppm)", this);
-    gas_hdr->setAlignment(Qt::AlignHCenter);
-    gas_hdr->setStyleSheet(hdr_style);
-    gas_col->addWidget(gas_hdr);
+    {
+        auto* gas_hdr_row = new QHBoxLayout();
+        gas_hdr_row->setSpacing(4);
+        auto* gas_hdr = new QLabel("Gas (Rs/Ro)", this);
+        gas_hdr->setStyleSheet(hdr_style);
+        gas_toggle_ = make_sensor_toggle();
+        connect(gas_toggle_, &QPushButton::toggled, this, &DashboardPanel::onSensorToggled);
+        gas_hdr_row->addWidget(gas_hdr, 1);
+        gas_hdr_row->addWidget(gas_toggle_);
+        gas_col->addLayout(gas_hdr_row);
+    }
     gas_value_ = make_val();
     gas_col->addWidget(gas_value_);
     gas_col->addStretch();
@@ -100,6 +138,39 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     sensors_row->addWidget(make_vsep());
     sensors_row->addLayout(gas_col, 1);
     layout->addLayout(sensors_row);
+
+    auto* sep_imu = new QFrame(this);
+    sep_imu->setFrameShape(QFrame::HLine);
+    sep_imu->setStyleSheet("color: #444;");
+    layout->addWidget(sep_imu);
+
+    // ── IMU Orientation ──────────────────────────────────────────────────────
+    {
+        auto* imu_hdr_row = new QHBoxLayout();
+        imu_hdr_row->setSpacing(4);
+        auto* imu_hdr = new QLabel("IMU Orientation (deg)", this);
+        imu_hdr->setAlignment(Qt::AlignHCenter);
+        imu_hdr->setStyleSheet(hdr_style);
+        imu_toggle_ = make_sensor_toggle();
+        connect(imu_toggle_, &QPushButton::toggled, this, &DashboardPanel::onSensorToggled);
+        imu_hdr_row->addStretch();
+        imu_hdr_row->addWidget(imu_hdr);
+        imu_hdr_row->addStretch();
+        imu_hdr_row->addWidget(imu_toggle_);
+        layout->addLayout(imu_hdr_row);
+    }
+
+    auto* imu_row = new QHBoxLayout();
+    imu_row->setSpacing(8);
+    imu_yaw_ = make_val(); imu_pitch_ = make_val(); imu_roll_ = make_val();
+    for (auto [lbl, val] : {std::pair{"Yaw", imu_yaw_}, {"Pitch", imu_pitch_}, {"Roll", imu_roll_}}) {
+        auto* col = new QVBoxLayout();
+        col->setSpacing(1);
+        col->addWidget(make_axis(lbl));
+        col->addWidget(val);
+        imu_row->addLayout(col);
+    }
+    layout->addLayout(imu_row);
 
     auto* sep3 = new QFrame(this);
     sep3->setFrameShape(QFrame::HLine);
@@ -126,32 +197,78 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
             this, &DashboardPanel::onMagnetometerUpdated, Qt::QueuedConnection);
     connect(this, &DashboardPanel::gasUpdated,
             this, &DashboardPanel::onGasUpdated, Qt::QueuedConnection);
-    connect(this, &DashboardPanel::heartbeatReceived,
-            this, &DashboardPanel::onHeartbeatReceived, Qt::QueuedConnection);
+    connect(this, &DashboardPanel::imuUpdated,
+            this, &DashboardPanel::onImuUpdated, Qt::QueuedConnection);
+    connect(this, &DashboardPanel::telemetryReceived,
+            this, &DashboardPanel::onTelemetryReceived, Qt::QueuedConnection);
+    connect(this, &DashboardPanel::uptimeUpdated,
+            this, &DashboardPanel::onUptimeUpdated, Qt::QueuedConnection);
 
     auto sensor_qos = rclcpp::QoS(10).best_effort();
 
-    mag_sub_ = node_->create_subscription<geometry_msgs::msg::Vector3>(
-        "/sensor/magnetometer", sensor_qos,
-        [this](geometry_msgs::msg::Vector3::SharedPtr msg) {
-            emit magnetometerUpdated(msg->x, msg->y, msg->z);
+    // Magnetometer: /sensors/mag (sensor_msgs/MagneticField)
+    mag_sub_ = node_->create_subscription<sensor_msgs::msg::MagneticField>(
+        "/sensors/mag", sensor_qos,
+        [this](sensor_msgs::msg::MagneticField::SharedPtr msg) {
+            emit magnetometerUpdated(
+                msg->magnetic_field.x * 1e6,
+                msg->magnetic_field.y * 1e6,
+                msg->magnetic_field.z * 1e6);
         });
 
-    gas_sub_ = node_->create_subscription<std_msgs::msg::Int32>(
-        "/sensor/gas", sensor_qos,
-        [this](std_msgs::msg::Int32::SharedPtr msg) {
-            emit gasUpdated(msg->data);
+    // Gas sensor: /sensors/gas (std_msgs/Float32)
+    gas_sub_ = node_->create_subscription<std_msgs::msg::Float32>(
+        "/sensors/gas", sensor_qos,
+        [this](std_msgs::msg::Float32::SharedPtr msg) {
+            emit gasUpdated(static_cast<double>(msg->data));
         });
 
-    heartbeat_sub_ = node_->create_subscription<std_msgs::msg::Empty>(
-        "/heartbeat", rclcpp::QoS(10).best_effort(),
-        [this](std_msgs::msg::Empty::SharedPtr) { emit heartbeatReceived(); });
+    // IMU: /sensors/imu (sensor_msgs/Imu) — quaternion → euler
+    imu_sub_ = node_->create_subscription<sensor_msgs::msg::Imu>(
+        "/sensors/imu", sensor_qos,
+        [this](sensor_msgs::msg::Imu::SharedPtr msg) {
+            double qw = msg->orientation.w;
+            double qx = msg->orientation.x;
+            double qy = msg->orientation.y;
+            double qz = msg->orientation.z;
+
+            double sinr = 2.0 * (qw * qx + qy * qz);
+            double cosr = 1.0 - 2.0 * (qx * qx + qy * qy);
+            double roll = std::atan2(sinr, cosr) * 180.0 / M_PI;
+
+            double sinp = 2.0 * (qw * qy - qz * qx);
+            double pitch;
+            if (std::abs(sinp) >= 1.0)
+                pitch = std::copysign(90.0, sinp);
+            else
+                pitch = std::asin(sinp) * 180.0 / M_PI;
+
+            double siny = 2.0 * (qw * qz + qx * qy);
+            double cosy = 1.0 - 2.0 * (qy * qy + qz * qz);
+            double yaw = std::atan2(siny, cosy) * 180.0 / M_PI;
+
+            emit imuUpdated(yaw, pitch, roll);
+        });
+
+    // Connection status + uptime: /robot/telemetry as heartbeat (50 Hz)
+    telemetry_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>(
+        "/robot/telemetry", sensor_qos,
+        [this](std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+            emit telemetryReceived();
+            if (msg->data.size() >= 4)
+                emit uptimeUpdated(msg->data[3]);
+        });
 
     // 1s repeating timer — counts missed heartbeat intervals
     heartbeat_timer_ = new QTimer(this);
     heartbeat_timer_->setInterval(1000);
     connect(heartbeat_timer_, &QTimer::timeout, this, &DashboardPanel::onHeartbeatCheck);
     heartbeat_timer_->start();
+
+    // ── Sensor enable mask publisher ─────────────────────────────────────────
+    sensor_mask_pub_ = node_->create_publisher<std_msgs::msg::UInt8>("/sensors/enable_mask", 10);
+    // Publish 0x00 immediately so firmware starts with all sensors off
+    publishSensorMask();
 
     // ── Speech processor ─────────────────────────────────────────────────────
     speech_processor_ = new SpeechProcessor(node_, this);
@@ -186,7 +303,6 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     layout->addWidget(audio_btn_);
 
     audio_pub_ = node_->create_publisher<std_msgs::msg::Bool>("/audio_enable", 10);
-
 
     layout->addSpacing(4);
 
@@ -246,8 +362,9 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
 
     layout->addLayout(btn_row);
 
+    // E-STOP publisher
     auto estop_qos = rclcpp::QoS(10).reliable().transient_local();
-    estop_pub_ = node_->create_publisher<std_msgs::msg::Bool>("/estop", estop_qos);
+    estop_pub_ = node_->create_publisher<std_msgs::msg::Bool>("/robot/estop", estop_qos);
 
     estop_timer_ = new QTimer(this);
     connect(estop_timer_, &QTimer::timeout, this, &DashboardPanel::publishEstopState);
@@ -263,9 +380,16 @@ void DashboardPanel::setConnState(const QString& color, const QString& label)
     conn_label_->setText(label);
 }
 
+void DashboardPanel::publishSensorMask()
+{
+    auto msg = std_msgs::msg::UInt8();
+    msg.data = sensor_mask_;
+    sensor_mask_pub_->publish(msg);
+}
+
 // ── Slots ─────────────────────────────────────────────────────────────────────
 
-void DashboardPanel::onHeartbeatReceived()
+void DashboardPanel::onTelemetryReceived()
 {
     hb_received_ = true;
     conn_label_->setText("Online");
@@ -277,12 +401,26 @@ void DashboardPanel::onHeartbeatReceived()
     }
 }
 
+void DashboardPanel::onUptimeUpdated(float uptime_s)
+{
+    int secs  = static_cast<int>(uptime_s);
+    int mins  = secs / 60;
+    int hours = mins / 60;
+    QString text;
+    if (hours > 0)
+        text = QString("%1h%2m").arg(hours).arg(mins % 60);
+    else if (mins > 0)
+        text = QString("%1m%2s").arg(mins).arg(secs % 60);
+    else
+        text = QString("%1s").arg(secs);
+    uptime_label_->setText(text);
+}
+
 void DashboardPanel::onHeartbeatCheck()
 {
     if (hb_received_) {
         hb_received_ = false;
         hb_miss_count_ = 0;
-        // Visual already handled in onHeartbeatReceived
         return;
     }
 
@@ -292,7 +430,43 @@ void DashboardPanel::onHeartbeatCheck()
         setConnState("#ccaa00", "Pending");
     } else if (hb_miss_count_ == 5) {
         setConnState("#cc3333", "Offline");
+        uptime_label_->setText("--");
     }
+}
+
+void DashboardPanel::onSensorToggled()
+{
+    // Preserve SENSOR_BIT_THERMAL (bit 1) — it is controlled by setThermalEnabled()
+    sensor_mask_ &= (1 << 1);
+
+    if (mag_toggle_->isChecked()) {
+        sensor_mask_ |= (1 << 0);   // SENSOR_BIT_MAG
+        mag_toggle_->setText("ON");
+    } else {
+        mag_toggle_->setText("OFF");
+    }
+    if (gas_toggle_->isChecked()) {
+        sensor_mask_ |= (1 << 2);   // SENSOR_BIT_GAS
+        gas_toggle_->setText("ON");
+    } else {
+        gas_toggle_->setText("OFF");
+    }
+    if (imu_toggle_->isChecked()) {
+        sensor_mask_ |= (1 << 3);   // SENSOR_BIT_IMU
+        imu_toggle_->setText("ON");
+    } else {
+        imu_toggle_->setText("OFF");
+    }
+    publishSensorMask();
+}
+
+void DashboardPanel::setThermalEnabled(bool enabled)
+{
+    if (enabled)
+        sensor_mask_ |=  static_cast<uint8_t>(1 << 1);   // SENSOR_BIT_THERMAL
+    else
+        sensor_mask_ &= ~static_cast<uint8_t>(1 << 1);
+    publishSensorMask();
 }
 
 void DashboardPanel::onEstopToggled(bool checked)
@@ -317,9 +491,16 @@ void DashboardPanel::onMagnetometerUpdated(double x, double y, double z)
     mag_z_->setText(QString::number(z, 'f', 2));
 }
 
-void DashboardPanel::onGasUpdated(int value)
+void DashboardPanel::onGasUpdated(double value)
 {
-    gas_value_->setText(QString::number(value));
+    gas_value_->setText(QString::number(value, 'f', 2));
+}
+
+void DashboardPanel::onImuUpdated(double yaw, double pitch, double roll)
+{
+    imu_yaw_->setText(QString::number(yaw, 'f', 1) + "°");
+    imu_pitch_->setText(QString::number(pitch, 'f', 1) + "°");
+    imu_roll_->setText(QString::number(roll, 'f', 1) + "°");
 }
 
 void DashboardPanel::onTranscriptionUpdated(const QString& text)
@@ -336,6 +517,9 @@ void DashboardPanel::onClearAll()
     mag_y_->setText("--");
     mag_z_->setText("--");
     gas_value_->setText("--");
+    imu_yaw_->setText("--");
+    imu_pitch_->setText("--");
+    imu_roll_->setText("--");
     speech_processor_->clearTranscription();
 }
 

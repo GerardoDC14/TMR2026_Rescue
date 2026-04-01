@@ -11,12 +11,10 @@
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__builder.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__type_support.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/vector3.hpp \
   /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/collector.hpp \
   /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/generate_statistics_message.hpp \
   /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/metric_details_interface.hpp \
@@ -337,6 +335,17 @@
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp \
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/service_type_support.hpp \
   /opt/ros/humble/include/rosidl_typesupport_interface/rosidl_typesupport_interface/macros.h \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__builder.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__struct.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__traits.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/magnetic_field__type_support.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/magnetic_field.hpp \
+  /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__builder.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp \
   /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__traits.hpp \
@@ -350,17 +359,28 @@
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int32__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/empty.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/int32.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__builder.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__struct.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__traits.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__type_support.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
   /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
   /opt/ros/humble/include/tracetools/tracetools/config.h \
   /opt/ros/humble/include/tracetools/tracetools/tracetools.h \
   /opt/ros/humble/include/tracetools/tracetools/utils.hpp \

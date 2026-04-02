@@ -4,6 +4,7 @@
 #include "BMPI5EA7AM/moc_keybind_dialog.cpp"
 #include "BMPI5EA7AM/moc_main_window.cpp"
 #include "BMPI5EA7AM/moc_odometry_panel.cpp"
+#include "BMPI5EA7AM/moc_ppm_calib_dialog.cpp"
 #include "BMPI5EA7AM/moc_settings_dialog.cpp"
 #include "BMPI5EA7AM/moc_source_manager.cpp"
 #include "BMPI5EA7AM/moc_speech_processor.cpp"

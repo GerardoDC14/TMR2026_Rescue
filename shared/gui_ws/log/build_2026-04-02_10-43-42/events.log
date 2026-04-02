@@ -1,0 +1,320 @@
+[0.000000] (-) TimerEvent: {}
+[0.000103] (esp32_bridge) JobQueued: {'identifier': 'esp32_bridge', 'dependencies': OrderedDict()}
+[0.000145] (gui) JobQueued: {'identifier': 'gui', 'dependencies': OrderedDict()}
+[0.000177] (esp32_bridge) JobStarted: {'identifier': 'esp32_bridge'}
+[0.007045] (gui) JobStarted: {'identifier': 'gui'}
+[0.099001] (-) TimerEvent: {}
+[0.199282] (-) TimerEvent: {}
+[0.252241] (gui) JobProgress: {'identifier': 'gui', 'progress': 'cmake'}
+[0.253068] (gui) JobProgress: {'identifier': 'gui', 'progress': 'build'}
+[0.253747] (gui) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui', '--', '-j16', '-l16'], 'cwd': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/arepo'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('PLATFORMIO_CALLER', 'vscode'), ('USER', 'arepo'), ('CLAUDE_CODE_ENTRYPOINT', 'claude-vscode'), ('LC_TIME', 'es_MX.UTF-8'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('GIT_EDITOR', 'true'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('CLAUDE_AGENT_SDK_VERSION', '0.2.89'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12.6/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/arepo'), ('CHROME_DESKTOP', 'code.desktop'), ('OLDPWD', '/home/arepo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('NO_PROXY', '127.0.0.1'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-53149cac-1.11-main.sock'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('PLATFORMIO_IDE', '3.3.4'), ('MANAGERPID', '1576'), ('SYSTEMD_EXEC_PID', '1830'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2448'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('VSCODE_L10N_BUNDLE_LOCATION', ''), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'arepo'), ('JOURNAL_STREAM', '8:17848'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'arepo'), ('OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE', 'delta'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/usr/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify:/home/arepo/.spicetify'), ('SESSION_MANAGER', 'local/arepo-Legion:@/tmp/.ICE-unix/1802,unix/arepo-Legion:/tmp/.ICE-unix/1802'), ('INVOCATION_ID', '371c8359cee24df4b84a3a00a412ce71'), ('COREPACK_ENABLE_AUTO_PIN', '0'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('PLATFORMIO_PATH', '/home/arepo/.platformio/penv/bin:/home/arepo/.platformio/penv:/home/arepo/.platformio/python3/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify'), ('NoDefaultCurrentDirectoryInExePath', '1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING', 'true'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CLAUDECODE', '1'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('VIRTUAL_ENV', '/usr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('VSCODE_CODE_CACHE_PATH', '/home/arepo/.config/Code/CachedData/ce099c1ed25d9eb3076c11e4a280f3eb52b4fbeb'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VSCODE_PID', '2448'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.299414] (-) TimerEvent: {}
+[0.399751] (-) TimerEvent: {}
+[0.405985] (gui) StdoutLine: {'line': b'[  0%] Built target gui_autogen_timestamp_deps\n'}
+[0.437766] (gui) StdoutLine: {'line': b'[  5%] Automatic MOC and UIC for target gui\n'}
+[0.499858] (-) TimerEvent: {}
+[0.600152] (-) TimerEvent: {}
+[0.700401] (-) TimerEvent: {}
+[0.782332] (gui) StdoutLine: {'line': b'[  5%] Built target gui_autogen\n'}
+[0.800539] (-) TimerEvent: {}
+[0.881431] (gui) StdoutLine: {'line': b'[ 11%] Building CXX object CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o\n'}
+[0.882514] (gui) StdoutLine: {'line': b'[ 16%] Building CXX object CMakeFiles/gui.dir/src/main_window.cpp.o\n'}
+[0.882979] (gui) StdoutLine: {'line': b'[ 22%] Building CXX object CMakeFiles/gui.dir/src/video_widget.cpp.o\n'}
+[0.883199] (gui) StdoutLine: {'line': b'[ 27%] Building CXX object CMakeFiles/gui.dir/src/video_panel.cpp.o\n'}
+[0.884368] (gui) StdoutLine: {'line': b'[ 33%] Building CXX object CMakeFiles/gui.dir/src/source_manager.cpp.o\n'}
+[0.887241] (gui) StdoutLine: {'line': b'[ 38%] Building CXX object CMakeFiles/gui.dir/src/dashboard_panel.cpp.o\n'}
+[0.900745] (-) TimerEvent: {}
+[0.988295] (esp32_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/esp32_bridge', 'build', '--build-base', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build', 'install', '--record', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/arepo', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'PLATFORMIO_CALLER': 'vscode', 'USER': 'arepo', 'CLAUDE_CODE_ENTRYPOINT': 'claude-vscode', 'LC_TIME': 'es_MX.UTF-8', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'GIT_EDITOR': 'true', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'x11', 'CLAUDE_AGENT_SDK_VERSION': '0.2.89', 'SHLVL': '0', 'LD_LIBRARY_PATH': '/usr/local/cuda-12.6/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/arepo', 'CHROME_DESKTOP': 'code.desktop', 'OLDPWD': '/home/arepo/TMR2026_Rescue/shared', 'DESKTOP_SESSION': 'ubuntu', 'NO_PROXY': '127.0.0.1', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-53149cac-1.11-main.sock', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'PLATFORMIO_IDE': '3.3.4', 'MANAGERPID': '1576', 'SYSTEMD_EXEC_PID': '1830', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '2448', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'VSCODE_L10N_BUNDLE_LOCATION': '', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'arepo', 'JOURNAL_STREAM': '8:17848', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'arepo', 'OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE': 'delta', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/usr/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify:/home/arepo/.spicetify', 'SESSION_MANAGER': 'local/arepo-Legion:@/tmp/.ICE-unix/1802,unix/arepo-Legion:/tmp/.ICE-unix/1802', 'INVOCATION_ID': '371c8359cee24df4b84a3a00a412ce71', 'COREPACK_ENABLE_AUTO_PIN': '0', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'PLATFORMIO_PATH': '/home/arepo/.platformio/penv/bin:/home/arepo/.platformio/penv:/home/arepo/.platformio/python3/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify', 'NoDefaultCurrentDirectoryInExePath': '1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING': 'true', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CLAUDECODE': '1', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'VIRTUAL_ENV': '/usr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'VSCODE_CODE_CACHE_PATH': '/home/arepo/.config/Code/CachedData/ce099c1ed25d9eb3076c11e4a280f3eb52b4fbeb', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VSCODE_PID': '2448'}, 'shell': False}
+[1.000942] (-) TimerEvent: {}
+[1.101491] (-) TimerEvent: {}
+[1.201848] (-) TimerEvent: {}
+[1.302164] (-) TimerEvent: {}
+[1.345714] (esp32_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[1.381531] (esp32_bridge) StdoutLine: {'line': b'writing ../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO\n'}
+[1.382359] (esp32_bridge) StdoutLine: {'line': b'writing dependency_links to ../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt\n'}
+[1.382994] (esp32_bridge) StdoutLine: {'line': b'writing entry points to ../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt\n'}
+[1.383326] (esp32_bridge) StdoutLine: {'line': b'writing requirements to ../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt\n'}
+[1.383640] (esp32_bridge) StdoutLine: {'line': b'writing top-level names to ../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt\n'}
+[1.402324] (-) TimerEvent: {}
+[1.478270] (esp32_bridge) StdoutLine: {'line': b"reading manifest file '../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.480233] (esp32_bridge) StdoutLine: {'line': b"writing manifest file '../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.480865] (esp32_bridge) StdoutLine: {'line': b'running build\n'}
+[1.481124] (esp32_bridge) StdoutLine: {'line': b'running build_py\n'}
+[1.482011] (esp32_bridge) StdoutLine: {'line': b'running install\n'}
+[1.495246] (esp32_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[1.502521] (-) TimerEvent: {}
+[1.537412] (esp32_bridge) StdoutLine: {'line': b'running install_data\n'}
+[1.537840] (esp32_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.577360] (esp32_bridge) StdoutLine: {'line': b"removing '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.578543] (esp32_bridge) StdoutLine: {'line': b'Copying ../../build/esp32_bridge/esp32_bridge.egg-info to /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info\n'}
+[1.581807] (esp32_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[1.602684] (-) TimerEvent: {}
+[1.703036] (-) TimerEvent: {}
+[1.803362] (-) TimerEvent: {}
+[1.842471] (esp32_bridge) StdoutLine: {'line': b'Installing esp32_bridge_node script to /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.842949] (esp32_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log'\n"}
+[1.894302] (esp32_bridge) CommandEnded: {'returncode': 0}
+[1.903512] (-) TimerEvent: {}
+[1.909479] (esp32_bridge) JobEnded: {'identifier': 'esp32_bridge', 'rc': 0}
+[2.003668] (-) TimerEvent: {}
+[2.103923] (-) TimerEvent: {}
+[2.204169] (-) TimerEvent: {}
+[2.304432] (-) TimerEvent: {}
+[2.404711] (-) TimerEvent: {}
+[2.504965] (-) TimerEvent: {}
+[2.605217] (-) TimerEvent: {}
+[2.705464] (-) TimerEvent: {}
+[2.805726] (-) TimerEvent: {}
+[2.905987] (-) TimerEvent: {}
+[3.006240] (-) TimerEvent: {}
+[3.106500] (-) TimerEvent: {}
+[3.206742] (-) TimerEvent: {}
+[3.306999] (-) TimerEvent: {}
+[3.407250] (-) TimerEvent: {}
+[3.507501] (-) TimerEvent: {}
+[3.607739] (-) TimerEvent: {}
+[3.707986] (-) TimerEvent: {}
+[3.808249] (-) TimerEvent: {}
+[3.908509] (-) TimerEvent: {}
+[4.008766] (-) TimerEvent: {}
+[4.109012] (-) TimerEvent: {}
+[4.209290] (-) TimerEvent: {}
+[4.309576] (-) TimerEvent: {}
+[4.409826] (-) TimerEvent: {}
+[4.510052] (-) TimerEvent: {}
+[4.610289] (-) TimerEvent: {}
+[4.710537] (-) TimerEvent: {}
+[4.810799] (-) TimerEvent: {}
+[4.911061] (-) TimerEvent: {}
+[5.011307] (-) TimerEvent: {}
+[5.111546] (-) TimerEvent: {}
+[5.211789] (-) TimerEvent: {}
+[5.312035] (-) TimerEvent: {}
+[5.412271] (-) TimerEvent: {}
+[5.512510] (-) TimerEvent: {}
+[5.612750] (-) TimerEvent: {}
+[5.713002] (-) TimerEvent: {}
+[5.813238] (-) TimerEvent: {}
+[5.913474] (-) TimerEvent: {}
+[6.013707] (-) TimerEvent: {}
+[6.113936] (-) TimerEvent: {}
+[6.214157] (-) TimerEvent: {}
+[6.314366] (-) TimerEvent: {}
+[6.414571] (-) TimerEvent: {}
+[6.514791] (-) TimerEvent: {}
+[6.614995] (-) TimerEvent: {}
+[6.715214] (-) TimerEvent: {}
+[6.816727] (-) TimerEvent: {}
+[6.916958] (-) TimerEvent: {}
+[7.017193] (-) TimerEvent: {}
+[7.117550] (-) TimerEvent: {}
+[7.217720] (-) TimerEvent: {}
+[7.318070] (-) TimerEvent: {}
+[7.418631] (-) TimerEvent: {}
+[7.518888] (-) TimerEvent: {}
+[7.619262] (-) TimerEvent: {}
+[7.719604] (-) TimerEvent: {}
+[7.819845] (-) TimerEvent: {}
+[7.922730] (-) TimerEvent: {}
+[8.022967] (-) TimerEvent: {}
+[8.123226] (-) TimerEvent: {}
+[8.223471] (-) TimerEvent: {}
+[8.323716] (-) TimerEvent: {}
+[8.423933] (-) TimerEvent: {}
+[8.524171] (-) TimerEvent: {}
+[8.624735] (-) TimerEvent: {}
+[8.724963] (-) TimerEvent: {}
+[8.825189] (-) TimerEvent: {}
+[8.925438] (-) TimerEvent: {}
+[9.025726] (-) TimerEvent: {}
+[9.125989] (-) TimerEvent: {}
+[9.226272] (-) TimerEvent: {}
+[9.326551] (-) TimerEvent: {}
+[9.426819] (-) TimerEvent: {}
+[9.527313] (-) TimerEvent: {}
+[9.627590] (-) TimerEvent: {}
+[9.728401] (-) TimerEvent: {}
+[9.828711] (-) TimerEvent: {}
+[9.928961] (-) TimerEvent: {}
+[10.029210] (-) TimerEvent: {}
+[10.129460] (-) TimerEvent: {}
+[10.229735] (-) TimerEvent: {}
+[10.330008] (-) TimerEvent: {}
+[10.430276] (-) TimerEvent: {}
+[10.530563] (-) TimerEvent: {}
+[10.630825] (-) TimerEvent: {}
+[10.731070] (-) TimerEvent: {}
+[10.831307] (-) TimerEvent: {}
+[10.931561] (-) TimerEvent: {}
+[11.031829] (-) TimerEvent: {}
+[11.132764] (-) TimerEvent: {}
+[11.233028] (-) TimerEvent: {}
+[11.333292] (-) TimerEvent: {}
+[11.433562] (-) TimerEvent: {}
+[11.533838] (-) TimerEvent: {}
+[11.634104] (-) TimerEvent: {}
+[11.734346] (-) TimerEvent: {}
+[11.834602] (-) TimerEvent: {}
+[11.934872] (-) TimerEvent: {}
+[12.035135] (-) TimerEvent: {}
+[12.135379] (-) TimerEvent: {}
+[12.235637] (-) TimerEvent: {}
+[12.335907] (-) TimerEvent: {}
+[12.436160] (-) TimerEvent: {}
+[12.536420] (-) TimerEvent: {}
+[12.636692] (-) TimerEvent: {}
+[12.737118] (-) TimerEvent: {}
+[12.837373] (-) TimerEvent: {}
+[12.937619] (-) TimerEvent: {}
+[13.037871] (-) TimerEvent: {}
+[13.138125] (-) TimerEvent: {}
+[13.238368] (-) TimerEvent: {}
+[13.338620] (-) TimerEvent: {}
+[13.438889] (-) TimerEvent: {}
+[13.539131] (-) TimerEvent: {}
+[13.639385] (-) TimerEvent: {}
+[13.739630] (-) TimerEvent: {}
+[13.839898] (-) TimerEvent: {}
+[13.940170] (-) TimerEvent: {}
+[14.040450] (-) TimerEvent: {}
+[14.140713] (-) TimerEvent: {}
+[14.240948] (-) TimerEvent: {}
+[14.341188] (-) TimerEvent: {}
+[14.441430] (-) TimerEvent: {}
+[14.541691] (-) TimerEvent: {}
+[14.641929] (-) TimerEvent: {}
+[14.742178] (-) TimerEvent: {}
+[14.842415] (-) TimerEvent: {}
+[14.942666] (-) TimerEvent: {}
+[15.042908] (-) TimerEvent: {}
+[15.143147] (-) TimerEvent: {}
+[15.243405] (-) TimerEvent: {}
+[15.343662] (-) TimerEvent: {}
+[15.443905] (-) TimerEvent: {}
+[15.544140] (-) TimerEvent: {}
+[15.644373] (-) TimerEvent: {}
+[15.744605] (-) TimerEvent: {}
+[15.844847] (-) TimerEvent: {}
+[15.945064] (-) TimerEvent: {}
+[16.045275] (-) TimerEvent: {}
+[16.145484] (-) TimerEvent: {}
+[16.245710] (-) TimerEvent: {}
+[16.345924] (-) TimerEvent: {}
+[16.446149] (-) TimerEvent: {}
+[16.546369] (-) TimerEvent: {}
+[16.646578] (-) TimerEvent: {}
+[16.746790] (-) TimerEvent: {}
+[16.846997] (-) TimerEvent: {}
+[16.947214] (-) TimerEvent: {}
+[17.047430] (-) TimerEvent: {}
+[17.147646] (-) TimerEvent: {}
+[17.247886] (-) TimerEvent: {}
+[17.348106] (-) TimerEvent: {}
+[17.448328] (-) TimerEvent: {}
+[17.548580] (-) TimerEvent: {}
+[17.648819] (-) TimerEvent: {}
+[17.749063] (-) TimerEvent: {}
+[17.849328] (-) TimerEvent: {}
+[17.949592] (-) TimerEvent: {}
+[18.049858] (-) TimerEvent: {}
+[18.150098] (-) TimerEvent: {}
+[18.250344] (-) TimerEvent: {}
+[18.350555] (-) TimerEvent: {}
+[18.450766] (-) TimerEvent: {}
+[18.551028] (-) TimerEvent: {}
+[18.651255] (-) TimerEvent: {}
+[18.751484] (-) TimerEvent: {}
+[18.851731] (-) TimerEvent: {}
+[18.951963] (-) TimerEvent: {}
+[19.052212] (-) TimerEvent: {}
+[19.152448] (-) TimerEvent: {}
+[19.252706] (-) TimerEvent: {}
+[19.352959] (-) TimerEvent: {}
+[19.453228] (-) TimerEvent: {}
+[19.503002] (gui) StdoutLine: {'line': b'[ 44%] Linking CXX executable gui\n'}
+[19.553452] (-) TimerEvent: {}
+[19.653774] (-) TimerEvent: {}
+[19.754012] (-) TimerEvent: {}
+[19.854216] (-) TimerEvent: {}
+[19.954453] (-) TimerEvent: {}
+[20.054743] (-) TimerEvent: {}
+[20.155027] (-) TimerEvent: {}
+[20.255313] (-) TimerEvent: {}
+[20.355590] (-) TimerEvent: {}
+[20.455903] (-) TimerEvent: {}
+[20.556174] (-) TimerEvent: {}
+[20.656452] (-) TimerEvent: {}
+[20.756750] (-) TimerEvent: {}
+[20.857056] (-) TimerEvent: {}
+[20.957332] (-) TimerEvent: {}
+[21.057585] (-) TimerEvent: {}
+[21.157895] (-) TimerEvent: {}
+[21.258185] (-) TimerEvent: {}
+[21.358502] (-) TimerEvent: {}
+[21.458791] (-) TimerEvent: {}
+[21.559077] (-) TimerEvent: {}
+[21.659374] (-) TimerEvent: {}
+[21.759691] (-) TimerEvent: {}
+[21.859989] (-) TimerEvent: {}
+[21.960294] (-) TimerEvent: {}
+[22.060596] (-) TimerEvent: {}
+[22.160902] (-) TimerEvent: {}
+[22.261212] (-) TimerEvent: {}
+[22.361543] (-) TimerEvent: {}
+[22.461837] (-) TimerEvent: {}
+[22.562130] (-) TimerEvent: {}
+[22.662405] (-) TimerEvent: {}
+[22.762751] (-) TimerEvent: {}
+[22.863029] (-) TimerEvent: {}
+[22.963295] (-) TimerEvent: {}
+[23.063534] (-) TimerEvent: {}
+[23.163723] (-) TimerEvent: {}
+[23.264099] (-) TimerEvent: {}
+[23.364329] (-) TimerEvent: {}
+[23.464556] (-) TimerEvent: {}
+[23.564747] (-) TimerEvent: {}
+[23.664978] (-) TimerEvent: {}
+[23.765210] (-) TimerEvent: {}
+[23.865451] (-) TimerEvent: {}
+[23.965706] (-) TimerEvent: {}
+[24.065953] (-) TimerEvent: {}
+[24.166197] (-) TimerEvent: {}
+[24.266430] (-) TimerEvent: {}
+[24.366689] (-) TimerEvent: {}
+[24.466943] (-) TimerEvent: {}
+[24.567166] (-) TimerEvent: {}
+[24.667400] (-) TimerEvent: {}
+[24.767641] (-) TimerEvent: {}
+[24.867937] (-) TimerEvent: {}
+[24.906550] (gui) StdoutLine: {'line': b'[100%] Built target gui\n'}
+[24.941998] (gui) CommandEnded: {'returncode': 0}
+[24.943337] (gui) JobProgress: {'identifier': 'gui', 'progress': 'install'}
+[24.952881] (gui) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui'], 'cwd': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/arepo'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('PLATFORMIO_CALLER', 'vscode'), ('USER', 'arepo'), ('CLAUDE_CODE_ENTRYPOINT', 'claude-vscode'), ('LC_TIME', 'es_MX.UTF-8'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('GIT_EDITOR', 'true'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('CLAUDE_AGENT_SDK_VERSION', '0.2.89'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12.6/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/arepo'), ('CHROME_DESKTOP', 'code.desktop'), ('OLDPWD', '/home/arepo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('NO_PROXY', '127.0.0.1'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-53149cac-1.11-main.sock'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('PLATFORMIO_IDE', '3.3.4'), ('MANAGERPID', '1576'), ('SYSTEMD_EXEC_PID', '1830'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2448'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('VSCODE_L10N_BUNDLE_LOCATION', ''), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'arepo'), ('JOURNAL_STREAM', '8:17848'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'arepo'), ('OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE', 'delta'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/usr/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify:/home/arepo/.spicetify'), ('SESSION_MANAGER', 'local/arepo-Legion:@/tmp/.ICE-unix/1802,unix/arepo-Legion:/tmp/.ICE-unix/1802'), ('INVOCATION_ID', '371c8359cee24df4b84a3a00a412ce71'), ('COREPACK_ENABLE_AUTO_PIN', '0'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('PLATFORMIO_PATH', '/home/arepo/.platformio/penv/bin:/home/arepo/.platformio/penv:/home/arepo/.platformio/python3/bin:/home/arepo/.local/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify'), ('NoDefaultCurrentDirectoryInExePath', '1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING', 'true'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CLAUDECODE', '1'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('VIRTUAL_ENV', '/usr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('VSCODE_CODE_CACHE_PATH', '/home/arepo/.config/Code/CachedData/ce099c1ed25d9eb3076c11e4a280f3eb52b4fbeb'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VSCODE_PID', '2448'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[24.964861] (gui) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[24.966076] (gui) StdoutLine: {'line': b'-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui\n'}
+[24.968031] (-) TimerEvent: {}
+[24.988470] (gui) StdoutLine: {'line': b'-- Set runtime path of "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui" to ""\n'}
+[24.992902] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gst_bridge\n'}
+[24.993392] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets\n'}
+[24.993671] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/vision\n'}
+[24.993744] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/audio\n'}
+[24.993792] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch\n'}
+[24.993838] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch/gui.launch.py\n'}
+[24.993878] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/package_run_dependencies/gui\n'}
+[24.993927] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/parent_prefix_path/gui\n'}
+[24.993967] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.sh\n'}
+[24.994007] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.dsv\n'}
+[24.994049] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.sh\n'}
+[24.994087] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.dsv\n'}
+[24.994124] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.bash\n'}
+[24.994162] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.sh\n'}
+[24.994199] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.zsh\n'}
+[24.994247] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.dsv\n'}
+[24.994288] (gui) StdoutLine: {'line': b'-- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.dsv\n'}
+[24.994326] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/packages/gui\n'}
+[24.994365] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig.cmake\n'}
+[24.994402] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig-version.cmake\n'}
+[24.994438] (gui) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.xml\n'}
+[24.996162] (gui) CommandEnded: {'returncode': 0}
+[25.005587] (gui) JobEnded: {'identifier': 'gui', 'rc': 0}
+[25.006110] (-) EventReactorShutdown: {}

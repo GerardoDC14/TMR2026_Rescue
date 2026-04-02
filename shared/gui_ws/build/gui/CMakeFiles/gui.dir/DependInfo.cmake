@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/keybind_dialog.cpp" "CMakeFiles/gui.dir/src/keybind_dialog.cpp.o" "gcc" "CMakeFiles/gui.dir/src/keybind_dialog.cpp.o.d"
   "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp" "CMakeFiles/gui.dir/src/main_window.cpp.o" "gcc" "CMakeFiles/gui.dir/src/main_window.cpp.o.d"
   "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/odometry_panel.cpp" "CMakeFiles/gui.dir/src/odometry_panel.cpp.o" "gcc" "CMakeFiles/gui.dir/src/odometry_panel.cpp.o.d"
+  "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/ppm_calib_dialog.cpp" "CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o" "gcc" "CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o.d"
   "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/settings_dialog.cpp" "CMakeFiles/gui.dir/src/settings_dialog.cpp.o" "gcc" "CMakeFiles/gui.dir/src/settings_dialog.cpp.o.d"
   "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/source_manager.cpp" "CMakeFiles/gui.dir/src/source_manager.cpp.o" "gcc" "CMakeFiles/gui.dir/src/source_manager.cpp.o.d"
   "/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/speech_processor.cpp" "CMakeFiles/gui.dir/src/speech_processor.cpp.o" "gcc" "CMakeFiles/gui.dir/src/speech_processor.cpp.o.d"

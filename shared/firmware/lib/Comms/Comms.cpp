@@ -12,10 +12,11 @@ uint8_t         Comms::s_rx_buf[PROTO_MAX_PAYLOAD];
 uint8_t         Comms::s_rx_crc    = 0;
 uint32_t        Comms::s_last_rx_ms = 0;
 
-ArmJointsCallback    Comms::s_cb_arm     = nullptr;
-SensorEnableCallback Comms::s_cb_sensor  = nullptr;
-EstopCallback        Comms::s_cb_estop   = nullptr;
-KeybindCallback      Comms::s_cb_keybind = nullptr;
+ArmJointsCallback    Comms::s_cb_arm          = nullptr;
+SensorEnableCallback Comms::s_cb_sensor       = nullptr;
+EstopCallback        Comms::s_cb_estop        = nullptr;
+KeybindCallback      Comms::s_cb_keybind      = nullptr;
+PpmCalibCallback     Comms::s_cb_ppm_calib    = nullptr;
 
 static HardwareSerial& s_uart = Serial;   // UART0 — shared with USB cable
 
@@ -114,6 +115,14 @@ void Comms::processFrame(uint8_t type, const uint8_t* buf, uint16_t len) {
                 KeybindPayload p;
                 memcpy(&p, buf, sizeof(p));
                 s_cb_keybind(p);
+            }
+            break;
+
+        case MSG_PPM_CALIB:
+            if (len == sizeof(PpmCalibPayload) && s_cb_ppm_calib) {
+                PpmCalibPayload p;
+                memcpy(&p, buf, sizeof(p));
+                s_cb_ppm_calib(p);
             }
             break;
 

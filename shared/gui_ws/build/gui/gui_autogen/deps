@@ -62,6 +62,7 @@ gui_autogen/timestamp: \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/keybind_dialog.hpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/main_window.hpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/odometry_panel.hpp \
+	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/ppm_calib_dialog.hpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/settings_dialog.hpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/source_manager.hpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/speech_processor.hpp \
@@ -77,6 +78,7 @@ gui_autogen/timestamp: \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/keybind_dialog.cpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/odometry_panel.cpp \
+	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/ppm_calib_dialog.cpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/settings_dialog.cpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/source_manager.cpp \
 	/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/speech_processor.cpp \
@@ -482,6 +484,10 @@ gui_autogen/timestamp: \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/string__struct.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/string__traits.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/string__type_support.hpp \
+	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__builder.hpp \
+	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__struct.hpp \
+	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__traits.hpp \
+	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__type_support.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__builder.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__struct.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8__traits.hpp \
@@ -495,6 +501,7 @@ gui_autogen/timestamp: \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/int16_multi_array.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/string.hpp \
+	/opt/ros/humble/include/std_msgs/std_msgs/msg/u_int16_multi_array.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8.hpp \
 	/opt/ros/humble/include/std_msgs/std_msgs/msg/u_int8_multi_array.hpp \
 	/opt/ros/humble/include/tracetools/tracetools/config.h \
@@ -1604,6 +1611,7 @@ gui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QStringList \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QVector \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractanimation.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qalgorithms.h \
@@ -1695,6 +1703,7 @@ gui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvariantanimation.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvector.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QFont \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QImage \

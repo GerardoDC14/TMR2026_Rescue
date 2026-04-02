@@ -1,0 +1,39 @@
+[0.249s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[0.399s] [  0%] Built target gui_autogen_timestamp_deps
+[0.431s] [  5%] Automatic MOC and UIC for target gui
+[0.775s] [  5%] Built target gui_autogen
+[0.875s] [ 11%] Building CXX object CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o
+[0.876s] [ 16%] Building CXX object CMakeFiles/gui.dir/src/main_window.cpp.o
+[0.876s] [ 22%] Building CXX object CMakeFiles/gui.dir/src/video_widget.cpp.o
+[0.876s] [ 27%] Building CXX object CMakeFiles/gui.dir/src/video_panel.cpp.o
+[0.877s] [ 33%] Building CXX object CMakeFiles/gui.dir/src/source_manager.cpp.o
+[0.880s] [ 38%] Building CXX object CMakeFiles/gui.dir/src/dashboard_panel.cpp.o
+[19.496s] [ 44%] Linking CXX executable gui
+[24.900s] [100%] Built target gui
+[24.935s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[24.946s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui
+[24.958s] -- Install configuration: ""
+[24.959s] -- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui
+[24.982s] -- Set runtime path of "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui" to ""
+[24.986s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gst_bridge
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/vision
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/audio
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch/gui.launch.py
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/package_run_dependencies/gui
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/parent_prefix_path/gui
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.sh
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.dsv
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.sh
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.dsv
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.bash
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.sh
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.zsh
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.dsv
+[24.987s] -- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.dsv
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/packages/gui
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig.cmake
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig-version.cmake
+[24.987s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.xml
+[24.989s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui

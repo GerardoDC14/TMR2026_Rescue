@@ -26682,3 +26682,3922 @@ events:
       CMAKE_SYSTEM_LIBRARY_PATH:
         - "/usr/lib/X11"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rclcpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librclcpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "libstatistics_collector"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/liblibstatistics_collector.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "builtin_interfaces__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libbuiltin_interfaces__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "builtin_interfaces__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libbuiltin_interfaces__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "builtin_interfaces__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcutils/cmake/rcutilsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rosidl_runtime_c/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rosidl_runtime_c/cmake/rosidl_runtime_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcutils"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcutils.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake:110 (find_library)"
+      - "/opt/ros/humble/share/rcutils/cmake/rcutilsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rosidl_runtime_c/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rosidl_runtime_c/cmake/rosidl_runtime_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dl"
+    candidate_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+      - "/opt/ros/humble/lib/"
+      - "/opt/ros/humble/"
+      - "/usr/local/cuda-12.6/bin/"
+      - "/opt/ros/humble/bin/"
+      - "/home/arepo/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/home/arepo/.spicetify/"
+      - "/usr/local/lib/x86_64-linux-gnu/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib/x86_64-linux-gnu/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib/x86_64-linux-gnu/"
+      - "/lib/"
+      - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data/lib/x86_64-linux-gnu/"
+      - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data/lib/"
+      - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data/"
+      - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/x86_64-linux-gnu/"
+      - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/"
+      - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/"
+      - "/usr/X11R6/lib/x86_64-linux-gnu/"
+      - "/usr/X11R6/lib/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/lib/x86_64-linux-gnu/"
+      - "/usr/pkg/lib/"
+      - "/usr/pkg/"
+      - "/opt/lib/x86_64-linux-gnu/"
+      - "/opt/lib/"
+      - "/opt/"
+      - "/usr/lib/X11/"
+    searched_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+      - "/opt/ros/humble/lib/"
+      - "/opt/ros/humble/"
+      - "/usr/local/cuda-12.6/bin/"
+      - "/opt/ros/humble/bin/"
+      - "/home/arepo/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/home/arepo/.spicetify/"
+      - "/usr/local/lib/x86_64-linux-gnu/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+    found: "/usr/lib/x86_64-linux-gnu/libdl.a"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_runtime_c/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_runtime_c/cmake/rosidl_runtime_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_runtime_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_runtime_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/cmake/rosidl_typesupport_fastrtps_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw/cmake/rmwConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rosidl_typesupport_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rosidl_typesupport_fastrtps_cpp/cmake/rosidl_typesupport_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_typesupport_fastrtps_cpp/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_typesupport_fastrtps_cpp/cmake/rosidl_typesupport_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_typesupport_introspection_c/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_typesupport_introspection_c/cmake/rosidl_typesupport_introspection_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rosidl_typesupport_c/cmake/rosidl_typesupport_c-extras.cmake:13 (find_package)"
+      - "/opt/ros/humble/share/rosidl_typesupport_c/cmake/rosidl_typesupport_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_typesupport_introspection_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_typesupport_introspection_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcpputils/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcpputils/cmake/rcpputilsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rosidl_typesupport_c/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rosidl_typesupport_c/cmake/rosidl_typesupport_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcpputils"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcpputils.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_typesupport_c/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_typesupport_c/cmake/rosidl_typesupport_cConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/cmake/rosidl_typesupport_introspection_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rosidl_typesupport_cpp/cmake/rosidl_typesupport_cpp-extras.cmake:13 (find_package)"
+      - "/opt/ros/humble/share/rosidl_typesupport_cpp/cmake/rosidl_typesupport_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_typesupport_introspection_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_typesupport_introspection_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosidl_typesupport_cpp/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosidl_typesupport_cpp/cmake/rosidl_typesupport_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "builtin_interfaces__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libbuiltin_interfaces__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "builtin_interfaces__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libbuiltin_interfaces__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rcl_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_interfaces__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_interfaces__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rcl_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_interfaces__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_interfaces__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rcl_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_interfaces__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_interfaces__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rcl_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_interfaces__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_interfaces__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/rcl_interfaces/cmake/rcl_interfacesConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_interfaces__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_interfaces__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_yaml_param_parser/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcl_yaml_param_parser/cmake/rcl_yaml_param_parserConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_yaml_param_parser"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_yaml_param_parser.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/libyaml_vendor/cmake/ament_cmake_export_libraries-extras.cmake:110 (find_library)"
+      - "/opt/ros/humble/share/libyaml_vendor/cmake/libyaml_vendorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl_yaml_param_parser/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl_yaml_param_parser/cmake/rcl_yaml_param_parserConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "yaml"
+    candidate_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+      - "/opt/ros/humble/lib/"
+      - "/opt/ros/humble/"
+      - "/usr/local/cuda-12.6/bin/"
+      - "/opt/ros/humble/bin/"
+      - "/home/arepo/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/home/arepo/.spicetify/"
+      - "/usr/local/lib/x86_64-linux-gnu/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib/x86_64-linux-gnu/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib/x86_64-linux-gnu/"
+      - "/lib/"
+      - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data/lib/x86_64-linux-gnu/"
+      - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data/lib/"
+      - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data/"
+      - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/x86_64-linux-gnu/"
+      - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/"
+      - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/"
+      - "/usr/X11R6/lib/x86_64-linux-gnu/"
+      - "/usr/X11R6/lib/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/lib/x86_64-linux-gnu/"
+      - "/usr/pkg/lib/"
+      - "/usr/pkg/"
+      - "/opt/lib/x86_64-linux-gnu/"
+      - "/opt/lib/"
+      - "/opt/"
+      - "/usr/lib/X11/"
+    searched_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+    found: "/opt/ros/humble/lib/libyaml.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_commonConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_dds_common__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_dds_common__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_commonConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_dds_common__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_dds_common__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_commonConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_dds_common__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_dds_common__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_commonConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_dds_common"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_dds_common.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_commonConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_dds_common__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_dds_common__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/rmw_dds_common/cmake/rmw_dds_commonConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_dds_common__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_dds_common__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/rmw_fastrtps_shared_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rmw_fastrtps_shared_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librmw_fastrtps_shared_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/tracetools/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/tracetools/cmake/tracetoolsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_shared_cpp/cmake/rmw_fastrtps_shared_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rmw_fastrtps_cpp/cmake/rmw_fastrtps_cppConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rmw_implementation_cmake/cmake/get_default_rmw_implementation.cmake:64 (find_package)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementation-extras.cmake:19 (get_default_rmw_implementation)"
+      - "/opt/ros/humble/share/rmw_implementation/cmake/rmw_implementationConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tracetools"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libtracetools.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rcl_logging_spdlog/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rcl_logging_spdlog/cmake/rcl_logging_spdlogConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rcl/cmake/rclConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rcl_logging_spdlog"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librcl_logging_spdlog.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/statistics_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "statistics_msgs__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstatistics_msgs__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/statistics_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "statistics_msgs__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstatistics_msgs__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/statistics_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "statistics_msgs__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstatistics_msgs__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/statistics_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "statistics_msgs__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstatistics_msgs__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/statistics_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/statistics_msgs/cmake/statistics_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "statistics_msgs__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstatistics_msgs__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/std_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "std_msgs__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstd_msgs__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/std_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "std_msgs__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstd_msgs__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/std_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "std_msgs__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstd_msgs__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/std_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "std_msgs__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstd_msgs__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/std_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/libstatistics_collector/cmake/libstatistics_collectorConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "std_msgs__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libstd_msgs__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosgraph_msgs__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosgraph_msgs__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosgraph_msgs__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosgraph_msgs__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosgraph_msgs__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosgraph_msgs__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosgraph_msgs__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosgraph_msgs__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/rosgraph_msgs/cmake/rosgraph_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/rclcpp/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake:41 (include)"
+      - "CMakeLists.txt:14 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rosgraph_msgs__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/librosgraph_msgs__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/geometry_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/geometry_msgs/cmake/geometry_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "geometry_msgs__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libgeometry_msgs__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/geometry_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/geometry_msgs/cmake/geometry_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "geometry_msgs__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libgeometry_msgs__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/geometry_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/geometry_msgs/cmake/geometry_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "geometry_msgs__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libgeometry_msgs__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/geometry_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/geometry_msgs/cmake/geometry_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "geometry_msgs__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/geometry_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/geometry_msgs/cmake/geometry_msgsConfig.cmake:41 (include)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "geometry_msgs__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "sensor_msgs__rosidl_generator_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libsensor_msgs__rosidl_generator_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "sensor_msgs__rosidl_typesupport_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libsensor_msgs__rosidl_typesupport_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/sensor_msgs/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "sensor_msgs__rosidl_typesupport_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libsensor_msgs__rosidl_typesupport_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/sensor_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "sensor_msgs__rosidl_typesupport_fastrtps_c"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libsensor_msgs__rosidl_typesupport_fastrtps_c.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/sensor_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake:18 (find_library)"
+      - "/opt/ros/humble/share/sensor_msgs/cmake/sensor_msgsConfig.cmake:41 (include)"
+      - "CMakeLists.txt:16 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "sensor_msgs__rosidl_typesupport_fastrtps_cpp"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/libsensor_msgs__rosidl_typesupport_fastrtps_cpp.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/share/urdf/cmake/ament_cmake_export_libraries-extras.cmake:40 (find_library)"
+      - "/opt/ros/humble/share/urdf/cmake/urdfConfig.cmake:41 (include)"
+      - "CMakeLists.txt:18 (find_package)"
+    mode: "library"
+    variable: "_lib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "urdf"
+    candidate_directories:
+      - "/opt/ros/humble/lib/"
+    found: "/opt/ros/humble/lib/liburdf.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/urdfdom/cmake/urdfdom-config.cmake:11 (find_library)"
+      - "/opt/ros/humble/share/urdf/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/urdf/cmake/urdfConfig.cmake:41 (include)"
+      - "CMakeLists.txt:18 (find_package)"
+    mode: "library"
+    variable: "onelib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "urdfdom_sensor"
+    candidate_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+    found: "/opt/ros/humble/lib/x86_64-linux-gnu/liburdfdom_sensor.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/urdfdom/cmake/urdfdom-config.cmake:11 (find_library)"
+      - "/opt/ros/humble/share/urdf/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/urdf/cmake/urdfConfig.cmake:41 (include)"
+      - "CMakeLists.txt:18 (find_package)"
+    mode: "library"
+    variable: "onelib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "urdfdom_model_state"
+    candidate_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+    found: "/opt/ros/humble/lib/x86_64-linux-gnu/liburdfdom_model_state.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/urdfdom/cmake/urdfdom-config.cmake:11 (find_library)"
+      - "/opt/ros/humble/share/urdf/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/urdf/cmake/urdfConfig.cmake:41 (include)"
+      - "CMakeLists.txt:18 (find_package)"
+    mode: "library"
+    variable: "onelib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "urdfdom_model"
+    candidate_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+    found: "/opt/ros/humble/lib/x86_64-linux-gnu/liburdfdom_model.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/urdfdom/cmake/urdfdom-config.cmake:11 (find_library)"
+      - "/opt/ros/humble/share/urdf/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)"
+      - "/opt/ros/humble/share/urdf/cmake/urdfConfig.cmake:41 (include)"
+      - "CMakeLists.txt:18 (find_package)"
+    mode: "library"
+    variable: "onelib"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "urdfdom_world"
+    candidate_directories:
+      - "/opt/ros/humble/lib/x86_64-linux-gnu/"
+    found: "/opt/ros/humble/lib/x86_64-linux-gnu/liburdfdom_world.so"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/opt/ros/humble"
+      ENV{PATH}:
+        - "/usr/local/cuda-12.6/bin"
+        - "/opt/ros/humble/bin"
+        - "/home/arepo/.local/bin"
+        - "/home/arepo/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/snap/bin"
+        - "/home/arepo/.spicetify"
+      CMAKE_INSTALL_PREFIX: "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/home/arepo/.local/lib/python3.10/site-packages/cmake/data"
+        - "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+...

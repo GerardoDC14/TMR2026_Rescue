@@ -1,0 +1,61 @@
+[0.197s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[0.280s] [  0%] [0mBuilt target gui_autogen_timestamp_deps[0m
+[0.318s] [  5%] [0mBuilt target gui_autogen[0m
+[0.407s] [ 11%] [32mBuilding CXX object CMakeFiles/gui.dir/src/main_window.cpp.o[0m
+[4.057s] [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:[m[K In member function ‘[01m[Kvoid MainWindow::publishPpmCalib()[m[K’:
+[4.057s] [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:159:33:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct AppSettings[m[K’ has no member named ‘[01m[Kppm_min_us[m[K’
+[4.057s]   159 |         static_cast<uint16_t>(S.[01;31m[Kppm_min_us[m[K.load()),
+[4.058s]       |                                 [01;31m[K^~~~~~~~~~[m[K
+[4.058s] [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:160:33:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct AppSettings[m[K’ has no member named ‘[01m[Kppm_neutral_us[m[K’
+[4.058s]   160 |         static_cast<uint16_t>(S.[01;31m[Kppm_neutral_us[m[K.load()),
+[4.058s]       |                                 [01;31m[K^~~~~~~~~~~~~~[m[K
+[4.058s] [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:161:33:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct AppSettings[m[K’ has no member named ‘[01m[Kppm_max_us[m[K’
+[4.058s]   161 |         static_cast<uint16_t>(S.[01;31m[Kppm_max_us[m[K.load())
+[4.058s]       |                                 [01;31m[K^~~~~~~~~~[m[K
+[4.058s] [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:162:5:[m[K [01;31m[Kerror: [m[Kno match for ‘[01m[Koperator=[m[K’ (operand types are ‘[01m[Kstd_msgs::msg::UInt16MultiArray_<std::allocator<void> >::_data_type[m[K’ {aka ‘[01m[Kstd::vector<short unsigned int, std::allocator<short unsigned int> >[m[K’} and ‘[01m[K<brace-enclosed initializer list>[m[K’)
+[4.058s]   162 |     [01;31m[K}[m[K;
+[4.058s]       |     [01;31m[K^[m[K
+[4.058s] In file included from [01m[K/usr/include/c++/11/vector:72[m[K,
+[4.058s]                  from [01m[K/usr/include/c++/11/functional:62[m[K,
+[4.058s]                  from [01m[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13[m[K,
+[4.059s]                  from [01m[K/usr/include/c++/11/algorithm:74[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtCore/qglobal.h:137[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h:43[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h:43[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h:43[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow:1[m[K,
+[4.059s]                  from [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/main_window.hpp:3[m[K,
+[4.059s]                  from [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:1[m[K:
+[4.059s] [01m[K/usr/include/c++/11/bits/vector.tcc:198:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = short unsigned int; _Alloc = std::allocator<short unsigned int>][m[K’
+[4.059s]   198 |     [01;36m[Kvector<_Tp, _Alloc>[m[K::
+[4.059s]       |     [01;36m[K^~~~~~~~~~~~~~~~~~~[m[K
+[4.059s] [01m[K/usr/include/c++/11/bits/vector.tcc:199:42:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K<brace-enclosed initializer list>[m[K’ to ‘[01m[Kconst std::vector<short unsigned int, std::allocator<short unsigned int> >&[m[K’
+[4.059s]   199 |     operator=([01;36m[Kconst vector<_Tp, _Alloc>& __x[m[K)
+[4.059s]       |               [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[4.059s] In file included from [01m[K/usr/include/c++/11/vector:67[m[K,
+[4.059s]                  from [01m[K/usr/include/c++/11/functional:62[m[K,
+[4.059s]                  from [01m[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13[m[K,
+[4.059s]                  from [01m[K/usr/include/c++/11/algorithm:74[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtCore/qglobal.h:137[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h:43[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h:43[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h:43[m[K,
+[4.059s]                  from [01m[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow:1[m[K,
+[4.059s]                  from [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/main_window.hpp:3[m[K,
+[4.059s]                  from [01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:1[m[K:
+[4.059s] [01m[K/usr/include/c++/11/bits/stl_vector.h:709:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(std::vector<_Tp, _Alloc>&&) [with _Tp = short unsigned int; _Alloc = std::allocator<short unsigned int>][m[K’
+[4.059s]   709 |       [01;36m[Koperator[m[K=(vector&& __x) noexcept(_Alloc_traits::_S_nothrow_move())
+[4.060s]       |       [01;36m[K^~~~~~~~[m[K
+[4.060s] [01m[K/usr/include/c++/11/bits/stl_vector.h:709:26:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K<brace-enclosed initializer list>[m[K’ to ‘[01m[Kstd::vector<short unsigned int, std::allocator<short unsigned int> >&&[m[K’
+[4.060s]   709 |       operator=([01;36m[Kvector&& __x[m[K) noexcept(_Alloc_traits::_S_nothrow_move())
+[4.060s]       |                 [01;36m[K~~~~~~~~~^~~[m[K
+[4.060s] [01m[K/usr/include/c++/11/bits/stl_vector.h:730:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(std::initializer_list<_Tp>) [with _Tp = short unsigned int; _Alloc = std::allocator<short unsigned int>][m[K’
+[4.060s]   730 |       [01;36m[Koperator[m[K=(initializer_list<value_type> __l)
+[4.060s]       |       [01;36m[K^~~~~~~~[m[K
+[4.060s] [01m[K/usr/include/c++/11/bits/stl_vector.h:730:46:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K<brace-enclosed initializer list>[m[K’ to ‘[01m[Kstd::initializer_list<short unsigned int>[m[K’
+[4.060s]   730 |       operator=([01;36m[Kinitializer_list<value_type> __l[m[K)
+[4.060s]       |                 [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[5.676s] gmake[2]: *** [CMakeFiles/gui.dir/build.make:114: CMakeFiles/gui.dir/src/main_window.cpp.o] Error 1
+[5.677s] gmake[1]: *** [CMakeFiles/Makefile2:156: CMakeFiles/gui.dir/all] Error 2
+[5.677s] gmake: *** [Makefile:146: all] Error 2
+[5.679s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16

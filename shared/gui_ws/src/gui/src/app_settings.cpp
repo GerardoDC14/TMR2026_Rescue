@@ -33,6 +33,19 @@ void AppSettings::load()
 
     robot_type.store(get_i("robot_type", 0));
 
+    if (o.contains("ppm_calib")) {
+        auto arr = o["ppm_calib"].toArray();
+        std::lock_guard<std::mutex> lk(ppm_calib_mutex);
+        for (int c = 0; c < 6 && c < arr.size(); ++c) {
+            auto row = arr[c].toArray();
+            if (row.size() >= 3) {
+                ppm_calib[c].min_us     = row[0].toInt(1000);
+                ppm_calib[c].neutral_us = row[1].toInt(1500);
+                ppm_calib[c].max_us     = row[2].toInt(2000);
+            }
+        }
+    }
+
     if (o.contains("keybind")) {
         auto arr = o["keybind"].toArray();
         std::lock_guard<std::mutex> lk(keybind_mutex);
@@ -59,6 +72,18 @@ void AppSettings::save()
     o["label_font_scale_x100"] = label_font_scale_x100.load();
     o["audio_start_enabled"]   = audio_start_enabled.load();
     o["robot_type"]            = robot_type.load();
+    {
+        std::lock_guard<std::mutex> lk(ppm_calib_mutex);
+        QJsonArray calib_arr;
+        for (int c = 0; c < 6; ++c) {
+            QJsonArray row;
+            row.append(ppm_calib[c].min_us);
+            row.append(ppm_calib[c].neutral_us);
+            row.append(ppm_calib[c].max_us);
+            calib_arr.append(row);
+        }
+        o["ppm_calib"] = calib_arr;
+    }
     {
         std::lock_guard<std::mutex> lk(keybind_mutex);
         QJsonArray kb_arr;

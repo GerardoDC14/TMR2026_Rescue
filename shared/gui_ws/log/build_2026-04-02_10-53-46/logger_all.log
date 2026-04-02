@@ -1,0 +1,198 @@
+[0.160s] colcon DEBUG Command line arguments: ['/usr/bin/colcon', 'build']
+[0.161s] colcon DEBUG Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7c0f8b43f610>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7c0f8b43e8f0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7c0f8b43e8f0>>, mixin_verb=('build',))
+[0.203s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) check parameters
+[0.203s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) check parameters
+[0.203s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) check parameters
+[0.203s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) check parameters
+[0.203s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) discover
+[0.203s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) discover
+[0.204s] colcon.colcon_core.package_discovery INFO Crawling recursively for packages in '/home/arepo/TMR2026_Rescue/shared/gui_ws'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'ignore'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'ignore_ament_install'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['colcon_pkg']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'colcon_pkg'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['colcon_meta']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'colcon_meta'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['ros']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'ros'
+[0.221s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['cmake', 'python']
+[0.221s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'cmake'
+[0.221s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'python'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(.) by extensions ['python_setup_py']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(.) by extension 'python_setup_py'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(build) by extension 'ignore'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(build) ignored
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(install) by extension 'ignore'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(install) ignored
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(log) by extension 'ignore'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(log) ignored
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'ignore'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'ignore_ament_install'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['colcon_pkg']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'colcon_pkg'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['colcon_meta']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'colcon_meta'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['ros']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'ros'
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['cmake', 'python']
+[0.222s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'cmake'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'python'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src) by extensions ['python_setup_py']
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src) by extension 'python_setup_py'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extension 'ignore'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extension 'ignore_ament_install'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extensions ['colcon_pkg']
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extension 'colcon_pkg'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extensions ['colcon_meta']
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extension 'colcon_meta'
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extensions ['ros']
+[0.223s] colcon.colcon_core.package_identification Level 1 _identify(src/esp32_bridge) by extension 'ros'
+[0.225s] colcon.colcon_core.package_identification DEBUG Package 'src/esp32_bridge' with type 'ros.ament_python' and name 'esp32_bridge'
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extensions ['ignore', 'ignore_ament_install']
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extension 'ignore'
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extension 'ignore_ament_install'
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extensions ['colcon_pkg']
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extension 'colcon_pkg'
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extensions ['colcon_meta']
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extension 'colcon_meta'
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extensions ['ros']
+[0.225s] colcon.colcon_core.package_identification Level 1 _identify(src/gui) by extension 'ros'
+[0.226s] colcon.colcon_core.package_identification DEBUG Package 'src/gui' with type 'ros.ament_cmake' and name 'gui'
+[0.226s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) using defaults
+[0.226s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) discover
+[0.226s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) using defaults
+[0.226s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) discover
+[0.226s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) using defaults
+[0.247s] colcon.colcon_core.package_discovery Level 1 discover_packages(prefix_path) check parameters
+[0.247s] colcon.colcon_core.package_discovery Level 1 discover_packages(prefix_path) discover
+[0.250s] colcon.colcon_installed_package_information.package_discovery DEBUG Found 459 installed packages in /opt/ros/humble
+[0.251s] colcon.colcon_core.package_discovery Level 1 discover_packages(prefix_path) using defaults
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'cmake_args' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'cmake_target' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'esp32_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.312s] colcon.colcon_core.verb DEBUG Building package 'esp32_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge', 'merge_install': False, 'path': '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge', 'symlink_install': False, 'test_result_base': None}
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'cmake_args' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'cmake_target' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'cmake_clean_cache' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'cmake_clean_first' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'cmake_force_configure' from command line to 'False'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'ament_cmake_args' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'catkin_cmake_args' from command line to 'None'
+[0.312s] colcon.colcon_core.verb Level 5 set package 'gui' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.312s] colcon.colcon_core.verb DEBUG Building package 'gui' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui', 'merge_install': False, 'path': '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui', 'symlink_install': False, 'test_result_base': None}
+[0.312s] colcon.colcon_core.executor INFO Executing jobs using 'parallel' executor
+[0.313s] colcon.colcon_parallel_executor.executor.parallel DEBUG run_until_complete
+[0.313s] colcon.colcon_ros.task.ament_python.build INFO Building ROS package in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge' with build type 'ament_python'
+[0.314s] colcon.colcon_core.shell Level 1 create_environment_hook('esp32_bridge', 'ament_prefix_path')
+[0.316s] colcon.colcon_core.plugin_system INFO Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.316s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/ament_prefix_path.ps1'
+[0.317s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/ament_prefix_path.dsv'
+[0.317s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/ament_prefix_path.sh'
+[0.318s] colcon.colcon_core.shell INFO Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.318s] colcon.colcon_core.shell DEBUG Skip shell extension 'dsv' for command environment
+[0.320s] colcon.colcon_ros.task.ament_cmake.build INFO Building ROS package in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui' with build type 'ament_cmake'
+[0.321s] colcon.colcon_cmake.task.cmake.build INFO Building CMake package in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui'
+[0.321s] colcon.colcon_core.shell INFO Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.321s] colcon.colcon_core.shell DEBUG Skip shell extension 'dsv' for command environment
+[0.551s] colcon.colcon_core.task.python.build INFO Building Python package in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge'
+[0.552s] colcon.colcon_core.shell INFO Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.552s] colcon.colcon_core.shell DEBUG Skip shell extension 'dsv' for command environment
+[0.560s] colcon.colcon_core.event_handler.log_command DEBUG Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[1.283s] colcon.colcon_core.event_handler.log_command DEBUG Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge': PYTHONPATH=/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/esp32_bridge build --build-base /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build install --record /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log --single-version-externally-managed install_data
+[1.987s] colcon.colcon_core.event_handler.log_command DEBUG Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge' returned '0': PYTHONPATH=/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/esp32_bridge build --build-base /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build install --record /home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log --single-version-externally-managed install_data
+[1.991s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge' for CMake module files
+[1.992s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge' for CMake config files
+[1.993s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib'
+[1.993s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/bin'
+[1.993s] colcon.colcon_core.shell Level 1 create_environment_hook('esp32_bridge', 'path')
+[1.994s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/path.ps1'
+[1.994s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/path.dsv'
+[1.994s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/path.sh'
+[1.995s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/pkgconfig/esp32_bridge.pc'
+[1.995s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages'
+[1.995s] colcon.colcon_core.shell Level 1 create_environment_hook('esp32_bridge', 'pythonpath')
+[1.995s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/pythonpath.ps1'
+[1.995s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/pythonpath.dsv'
+[1.996s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/pythonpath.sh'
+[1.996s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/bin'
+[1.997s] colcon.colcon_core.shell Level 1 create_environment_hook('esp32_bridge', 'pythonscriptspath')
+[1.997s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/pythonscriptspath.ps1'
+[1.997s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/pythonscriptspath.dsv'
+[1.997s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/hook/pythonscriptspath.sh'
+[1.998s] colcon.colcon_core.environment Level 1 create_environment_scripts_only(esp32_bridge)
+[1.998s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/package.ps1'
+[1.999s] colcon.colcon_core.shell INFO Creating package descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/package.dsv'
+[1.999s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/package.sh'
+[2.000s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/package.bash'
+[2.001s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/esp32_bridge/package.zsh'
+[2.002s] colcon.colcon_core.environment Level 1 create_file_with_runtime_dependencies(/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/share/colcon-core/packages/esp32_bridge)
+[25.464s] colcon.colcon_core.event_handler.log_command DEBUG Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[25.476s] colcon.colcon_core.event_handler.log_command DEBUG Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui
+[25.514s] colcon.colcon_core.environment Level 1 create_environment_scripts_only(gui)
+[25.515s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui' for CMake module files
+[25.515s] colcon.colcon_core.event_handler.log_command DEBUG Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui
+[25.516s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui' for CMake config files
+[25.516s] colcon.colcon_core.shell Level 1 create_environment_hook('gui', 'cmake_prefix_path')
+[25.516s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/hook/cmake_prefix_path.ps1'
+[25.516s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/hook/cmake_prefix_path.dsv'
+[25.516s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/hook/cmake_prefix_path.sh'
+[25.517s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib'
+[25.517s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/bin'
+[25.517s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/pkgconfig/gui.pc'
+[25.517s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/python3.10/site-packages'
+[25.517s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/bin'
+[25.517s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.ps1'
+[25.518s] colcon.colcon_core.shell INFO Creating package descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.dsv'
+[25.518s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.sh'
+[25.518s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.bash'
+[25.519s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.zsh'
+[25.519s] colcon.colcon_core.environment Level 1 create_file_with_runtime_dependencies(/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/colcon-core/packages/gui)
+[25.519s] colcon.colcon_core.environment Level 1 create_environment_scripts_only(gui)
+[25.519s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui' for CMake module files
+[25.520s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui' for CMake config files
+[25.520s] colcon.colcon_core.shell Level 1 create_environment_hook('gui', 'cmake_prefix_path')
+[25.520s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/hook/cmake_prefix_path.ps1'
+[25.520s] colcon.colcon_core.shell INFO Creating environment descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/hook/cmake_prefix_path.dsv'
+[25.520s] colcon.colcon_core.shell INFO Creating environment hook '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/hook/cmake_prefix_path.sh'
+[25.521s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib'
+[25.521s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/bin'
+[25.521s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/pkgconfig/gui.pc'
+[25.521s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/python3.10/site-packages'
+[25.521s] colcon.colcon_core.environment Level 1 checking '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/bin'
+[25.521s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.ps1'
+[25.522s] colcon.colcon_core.shell INFO Creating package descriptor '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.dsv'
+[25.523s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.sh'
+[25.523s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.bash'
+[25.524s] colcon.colcon_core.shell INFO Creating package script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.zsh'
+[25.525s] colcon.colcon_core.environment Level 1 create_file_with_runtime_dependencies(/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/colcon-core/packages/gui)
+[25.525s] colcon.colcon_parallel_executor.executor.parallel DEBUG closing loop
+[25.526s] colcon.colcon_parallel_executor.executor.parallel DEBUG loop closed
+[25.526s] colcon.colcon_parallel_executor.executor.parallel DEBUG run_until_complete finished with '0'
+[25.526s] colcon.colcon_core.event_reactor DEBUG joining thread
+[25.530s] colcon.colcon_core.plugin_system INFO Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[25.530s] colcon.colcon_core.plugin_system INFO Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[25.530s] colcon.colcon_notification.desktop_notification INFO Sending desktop notification using 'notify2'
+[25.551s] colcon.colcon_core.event_reactor DEBUG joined thread
+[25.552s] colcon.colcon_core.shell INFO Creating prefix script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/local_setup.ps1'
+[25.553s] colcon.colcon_core.shell INFO Creating prefix util module '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/_local_setup_util_ps1.py'
+[25.555s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/setup.ps1'
+[25.557s] colcon.colcon_core.shell INFO Creating prefix script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/local_setup.sh'
+[25.558s] colcon.colcon_core.shell INFO Creating prefix util module '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/_local_setup_util_sh.py'
+[25.560s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/setup.sh'
+[25.562s] colcon.colcon_core.shell INFO Creating prefix script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/local_setup.bash'
+[25.563s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/setup.bash'
+[25.564s] colcon.colcon_core.shell INFO Creating prefix script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/local_setup.zsh'
+[25.564s] colcon.colcon_core.shell INFO Creating prefix chain script '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/setup.zsh'

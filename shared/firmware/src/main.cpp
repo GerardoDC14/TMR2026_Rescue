@@ -67,7 +67,7 @@ static void commsTask(void* /*arg*/) {
                         | (status.estop             ? 0x08 : 0);
 
             PPMFrame ppm;
-            RC::getFrame(ppm);   // returns last valid frame
+            RC::peekFrame(ppm);  // read without consuming the fresh flag (control task owns it)
             for (int i = 0; i < PPM_CHANNELS; i++) telem.ppm[i] = ppm.ch[i];
 
             telem.speed_left    = static_cast<int16_t>(enc.speed_left_rpm  * 10.0f);

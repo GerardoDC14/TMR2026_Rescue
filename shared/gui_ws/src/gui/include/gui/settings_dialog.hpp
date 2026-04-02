@@ -1,7 +1,10 @@
 #pragma once
 
 #include <QDialog>
+#include <memory>
 #include <string>
+
+#include <rclcpp/rclcpp.hpp>
 
 class QCheckBox;
 class QComboBox;
@@ -10,11 +13,12 @@ class QLineEdit;
 class QPushButton;
 class QSlider;
 class KeybindDialog;
+class PpmCalibDialog;
 
 class SettingsDialog : public QDialog {
     Q_OBJECT
 public:
-    explicit SettingsDialog(QWidget* parent = nullptr);
+    explicit SettingsDialog(rclcpp::Node::SharedPtr node, QWidget* parent = nullptr);
 
     // Sync UI widgets with current AppSettings (call before show()).
     void reloadFromSettings();
@@ -28,6 +32,7 @@ private slots:
     void onSave();
     void onCancel();
     void onKeybindClicked();
+    void onPpmCalibClicked();
 
 private:
     void applyToSettings();
@@ -51,8 +56,12 @@ private:
     QLabel*    font_scale_val_;
     QComboBox* robot_type_combo_;
     QPushButton* keybind_btn_;
+    QPushButton* ppm_calib_btn_;
 
-    KeybindDialog* keybind_dialog_{nullptr};
+    rclcpp::Node::SharedPtr node_;
+
+    KeybindDialog*  keybind_dialog_{nullptr};
+    PpmCalibDialog* ppm_calib_dialog_{nullptr};
 
     // Combo index ↔ cv enum value tables
     static const int COLORMAPS[5];

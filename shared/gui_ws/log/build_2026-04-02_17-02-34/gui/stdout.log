@@ -1,0 +1,4 @@
+[  0%] [0mBuilt target gui_autogen_timestamp_deps[0m
+[  5%] [1m[34mAutomatic MOC and UIC for target gui[0m
+[  5%] [0mBuilt target gui_autogen[0m
+[ 10%] [32mBuilding CXX object CMakeFiles/gui.dir/src/odometry_panel.cpp.o[0m

@@ -5,6 +5,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/u_int8_multi_array.hpp>
+#include <std_msgs/msg/u_int16_multi_array.hpp>
 
 #include <atomic>
 #include <memory>
@@ -29,6 +30,7 @@ private slots:
     void onSettingsApplied();
     void onRobotTypeChanged(int type);
     void publishKeybind();
+    void publishPpmCalib();
 
 private:
     void startRosSpinThread();
@@ -43,8 +45,9 @@ private:
 
     SettingsDialog* settings_dialog_{nullptr};
 
-    // Keybind publisher
-    rclcpp::Publisher<std_msgs::msg::UInt8MultiArray>::SharedPtr keybind_pub_;
+    // Publishers
+    rclcpp::Publisher<std_msgs::msg::UInt8MultiArray>::SharedPtr  keybind_pub_;
+    rclcpp::Publisher<std_msgs::msg::UInt16MultiArray>::SharedPtr ppm_calib_pub_;
 
     std::thread ros_thread_;
     std::atomic<bool> ros_running_{true};

@@ -1,0 +1,36 @@
+[0.174s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[0.258s] [  0%] [0mBuilt target gui_autogen_timestamp_deps[0m
+[0.298s] [  5%] [1m[34mAutomatic MOC and UIC for target gui[0m
+[0.346s] [  5%] [0mBuilt target gui_autogen[0m
+[0.438s] [ 15%] [32mBuilding CXX object CMakeFiles/gui.dir/src/dashboard_panel.cpp.o[0m
+[0.438s] [ 15%] [32mBuilding CXX object CMakeFiles/gui.dir/src/odometry_panel.cpp.o[0m
+[0.439s] [ 21%] [32mBuilding CXX object CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o[0m
+[14.780s] [ 26%] [1m[32mLinking CXX executable gui[0m
+[19.717s] [100%] [0mBuilt target gui[0m
+[19.724s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[19.782s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /home/arepo/.local/bin/cmake --install /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui
+[19.843s] -- Install configuration: ""
+[19.843s] -- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui
+[19.875s] -- Set non-toolchain portion of runtime path of "/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gui" to ""
+[19.875s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/lib/gui/gst_bridge
+[19.875s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets
+[19.875s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/vision
+[19.875s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/assets/audio
+[19.875s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/launch/gui.launch.py
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/package_run_dependencies/gui
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/parent_prefix_path/gui
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.sh
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/ament_prefix_path.dsv
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.sh
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/environment/path.dsv
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.bash
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.sh
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.zsh
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/local_setup.dsv
+[19.876s] -- Installing: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.dsv
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/ament_index/resource_index/packages/gui
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig.cmake
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/cmake/guiConfig-version.cmake
+[19.876s] -- Up-to-date: /home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui/share/gui/package.xml
+[19.877s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /home/arepo/.local/bin/cmake --install /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui

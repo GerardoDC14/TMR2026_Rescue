@@ -42,6 +42,7 @@ add_executable(gui
   src/app_settings.cpp
   src/settings_dialog.cpp
   src/keybind_dialog.cpp
+  src/ppm_calib_dialog.cpp
   # Headers listed for AUTOMOC to process Q_OBJECT classes
   include/gui/main_window.hpp
   include/gui/video_widget.hpp
@@ -54,6 +55,7 @@ add_executable(gui
   include/gui/settings_dialog.hpp
   include/gui/odometry_panel.hpp
   include/gui/keybind_dialog.hpp
+  include/gui/ppm_calib_dialog.hpp
 )
 
 target_include_directories(gui PUBLIC

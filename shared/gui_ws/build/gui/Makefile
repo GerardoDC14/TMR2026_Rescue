@@ -452,6 +452,30 @@ src/odometry_panel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/odometry_panel.cpp.s
 .PHONY : src/odometry_panel.cpp.s
 
+src/ppm_calib_dialog.o: src/ppm_calib_dialog.cpp.o
+.PHONY : src/ppm_calib_dialog.o
+
+# target to build an object file
+src/ppm_calib_dialog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o
+.PHONY : src/ppm_calib_dialog.cpp.o
+
+src/ppm_calib_dialog.i: src/ppm_calib_dialog.cpp.i
+.PHONY : src/ppm_calib_dialog.i
+
+# target to preprocess a source file
+src/ppm_calib_dialog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.i
+.PHONY : src/ppm_calib_dialog.cpp.i
+
+src/ppm_calib_dialog.s: src/ppm_calib_dialog.cpp.s
+.PHONY : src/ppm_calib_dialog.s
+
+# target to generate assembly for a file
+src/ppm_calib_dialog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.s
+.PHONY : src/ppm_calib_dialog.cpp.s
+
 src/settings_dialog.o: src/settings_dialog.cpp.o
 .PHONY : src/settings_dialog.o
 
@@ -641,6 +665,9 @@ help:
 	@echo "... src/odometry_panel.o"
 	@echo "... src/odometry_panel.i"
 	@echo "... src/odometry_panel.s"
+	@echo "... src/ppm_calib_dialog.o"
+	@echo "... src/ppm_calib_dialog.i"
+	@echo "... src/ppm_calib_dialog.s"
 	@echo "... src/settings_dialog.o"
 	@echo "... src/settings_dialog.i"
 	@echo "... src/settings_dialog.s"

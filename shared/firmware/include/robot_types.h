@@ -208,6 +208,17 @@ struct VescStatusPayload {
     int16_t v_in_10;            // input voltage × 10 (V)
 };
 
+// PpmCalibPayload (MSG_PPM_CALIB = 0x15) — PPM_CHANNELS × 6 bytes = 36 bytes
+// Per-channel runtime calibration for the RC receiver.
+struct PpmChannelCalibEntry {
+    uint16_t min_us;      // minimum pulse width  (default 1000 µs)
+    uint16_t neutral_us;  // centre/neutral pulse  (default 1500 µs)
+    uint16_t max_us;      // maximum pulse width   (default 2000 µs)
+};
+struct PpmCalibPayload {
+    PpmChannelCalibEntry ch[PPM_CHANNELS];  // one entry per channel (0 = Ch1 … 5 = Ch6)
+};
+
 // MainMotorPayload (MSG_MOTOR_MAIN = 0x09) — ROBOT_MAIN only — 6 bytes
 // Commanded normalised effort for each actuator, scaled × 1000.
 struct MainMotorPayload {

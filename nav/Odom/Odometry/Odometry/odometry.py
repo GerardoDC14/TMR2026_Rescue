@@ -53,13 +53,21 @@ class EkfOdomNode(Node):
         # --- Noise matrices ---
         self.Q     = np.diag([0.05, 0.05, 0.05])
         self.R_yaw = np.array([[0.02]]) #TUNE THISSS
-        self.R_omega = np.array([0.01]) #TUNE THISSS
+        self.R_omega = np.array([[0.01]]) #TUNE THISSS
 
         # --- Inputs / measurements ---
         self.vx       = 0.0
         self.vy       = 0.0
         self.omega    = 0.0
         self.yaw_meas = None
+
+        #Physical properties (In meters)
+        self.Trackwidth = 0.47 #Jaguar
+        self.Radius     = 0.087 
+        #self.Trackwidth = ## Dicerox MEDIR
+        #self.Radius  = ###
+
+
 
         # --- Timing ---
         self.last_time = self.get_clock().now()
@@ -72,11 +80,11 @@ class EkfOdomNode(Node):
         self.w_x = (rpm_x * 2 * np.pi) / 60 #rpms to rad/s left
         self.w_y = (rpm_y * 2 * np.pi) / 60 #rpms to rad/s right
 
-        self.v_x = (self.w_x* 0.087) #Band radius
-        self.v_y = (self.w_y* 0.087)
+        self.v_x = (self.w_x* self.Radius) #Band radius
+        self.v_y = (self.w_y* self.Radius)
 
         self.v = (self.v_x + self.v_y) / 2
-        self.omega_enc = (self.v_y - self.v_x) / 0.47 #trackwidth
+        self.omega_enc = (self.v_y - self.v_x) / self.Trackwidth
 
         return self.v, self.omega
 
@@ -134,17 +142,24 @@ class EkfOdomNode(Node):
         self.last_time = now_time
 
         #Fuse imu and encoder angular acceleration
+        var_enc = 0.05  #TUNE THIS AAAA
+
         if self.ema_var_omega is not None:
             var_imu = self.ema_var_omega
         else:
-            var_imu = 0.01  #In case there are no readings
-            var_enc = 0.05  #TUNE THIS AAAA
+            var_imu = 0.01  # fallback
+
+        # Avoid dividing with 0
+        var_imu = max(var_imu, 1e-6)
+        var_enc = max(var_enc, 1e-6)
+            
         w_imu = 1.0 / var_imu
         w_enc = 1.0 / var_enc
-        self.w = (w_imu * self.omega_imu + w_enc * self.omega_enc) / (w_imu + w_enc)
+        self.omega = (w_imu * self.omega_imu + w_enc * self.omega_enc) / (w_imu + w_enc)
 
+        #EKF 
         x, y, yaw = self.x_est.flatten()
-        v, w = self.v, self.w
+        v, w = self.v, self.omega
 
         if abs(w) > 1e-6:
             dx = v / w * (math.sin(yaw + w*dt) - math.sin(yaw))
@@ -173,7 +188,11 @@ class EkfOdomNode(Node):
         B = np.array([[dt * math.cos(yaw), 0],
                       [dt * math.sin(yaw), 0],
                       [0, dt]])
-        self.P = F @ self.P @ F.T + B @ np.diag([0.1, 0]) @ B.T + self.Q
+        #self.P = F @ self.P @ F.T + B @ np.diag([0.1, 0]) @ B.T + self.Q
+        sigma_v = 0.1             # tune this
+        sigma_w = var_imu         # from IMU (dynamic)
+        Q_control = np.diag([sigma_v**2, sigma_w])
+        self.P = F @ self.P @ F.T + B @ Q_control @ B.T + self.Q
 
         if self.yaw_meas is not None:
             H = np.array([[0, 0, 1]])

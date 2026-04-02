@@ -77,6 +77,11 @@ void Encoders::initUnit(int unit, int pin_a, int pin_b) {
     pcnt_counter_pause(u);
     pcnt_counter_clear(u);
     pcnt_counter_resume(u);
+
+    /*
+    gpio_set_pull_mode(static_cast<gpio_num_t>(pin_a), GPIO_PULLDOWN_ONLY);
+    gpio_set_pull_mode(static_cast<gpio_num_t>(pin_b), GPIO_PULLDOWN_ONLY);
+    */
 }
 
 int32_t Encoders::getCount(int unit) {

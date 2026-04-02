@@ -34,6 +34,7 @@ Subscribed topics (PC → ESP32)
 /arm/joint_command        std_msgs/Float32MultiArray   6 joint angles in degrees
 /sensors/enable_mask      std_msgs/UInt8               bitmask: bit0=mag, 1=thermal, 2=gas, 3=imu
                                                         Starts at 0x00 (all off); GUI controls it.
+/robot/ppm_calib          std_msgs/UInt16MultiArray    [min_us, neutral_us, max_us] RC calibration
 
 Parameters
 ──────────
@@ -52,7 +53,7 @@ import serial
 
 from std_msgs.msg import (
     Bool, String, UInt8, Float32, Float32MultiArray, Int16MultiArray,
-    UInt8MultiArray, MultiArrayDimension, MultiArrayLayout
+    UInt8MultiArray, UInt16MultiArray, MultiArrayDimension, MultiArrayLayout
 )
 from sensor_msgs.msg import Imu, MagneticField, Image
 from geometry_msgs.msg import Vector3
@@ -78,6 +79,7 @@ MSG_SENSOR_ENABLE = 0x11
 MSG_ESTOP         = 0x12
 MSG_ESTOP_CLEAR   = 0x13
 MSG_KEYBIND       = 0x14
+MSG_PPM_CALIB     = 0x15
 
 MODE_NAMES = {0: 'INIT', 1: 'STANDBY', 2: 'NORMAL', 3: 'ARM', 4: 'ESTOP', 5: 'FLIPPER'}
 
@@ -142,7 +144,8 @@ class ESP32BridgeNode(Node):
             durability=DurabilityPolicy.TRANSIENT_LOCAL,
             depth=1
         )
-        self.create_subscription(UInt8MultiArray,   '/robot/keybind',       self._on_keybind, keybind_qos)
+        self.create_subscription(UInt8MultiArray,   '/robot/keybind',    self._on_keybind,    keybind_qos)
+        self.create_subscription(UInt16MultiArray,  '/robot/ppm_calib',  self._on_ppm_calib,  keybind_qos)
 
         # Serial read thread
         self._rx_buf = bytearray()
@@ -486,6 +489,18 @@ class ESP32BridgeNode(Node):
         payload = bytes(msg.data[:15])
         self._send(_build_frame(MSG_KEYBIND, payload))
         self.get_logger().info('Keybind configuration sent to ESP32')
+
+    def _on_ppm_calib(self, msg: UInt16MultiArray):
+        # PpmCalibPayload: 6 channels × (min_us, neutral_us, max_us) uint16 = 36 bytes LE
+        # GUI sends 18 values: [ch0_min, ch0_neu, ch0_max, ch1_min, ...]
+        if len(msg.data) < 18:
+            self.get_logger().warn(
+                f'ppm_calib must have 18 values (6 channels × 3), got {len(msg.data)}')
+            return
+        payload = struct.pack('<' + 'HHH' * 6,
+                              *[int(v) for v in msg.data[:18]])
+        self._send(_build_frame(MSG_PPM_CALIB, payload))
+        self.get_logger().info('Per-channel PPM calibration sent to ESP32')
 
 
 def main(args=None):

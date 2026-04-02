@@ -1435,6 +1435,12 @@
 			null
 		],
 		[
+			"/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/ppm_calib_dialog.hpp",
+			"MU",
+			"BMPI5EA7AM/moc_ppm_calib_dialog.cpp",
+			null
+		],
+		[
 			"/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/settings_dialog.hpp",
 			"MU",
 			"BMPI5EA7AM/moc_settings_dialog.cpp",
@@ -1607,6 +1613,11 @@
 		],
 		[
 			"/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/odometry_panel.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/ppm_calib_dialog.cpp",
 			"MU",
 			null
 		],

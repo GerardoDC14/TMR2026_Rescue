@@ -29,13 +29,13 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     conn_label_->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     conn_label_->setStyleSheet(lbl_style);
     uptime_label_ = new QLabel("--", this);
-    uptime_label_->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    uptime_label_->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     uptime_label_->setStyleSheet("color: #4fc3f7; font-size: 12px;");
     conn_row->addStretch();
     conn_row->addWidget(conn_indicator_);
     conn_row->addWidget(conn_label_);
-    conn_row->addStretch();
     conn_row->addWidget(uptime_label_);
+    conn_row->addStretch();
     layout->addLayout(conn_row);
 
     // Smooth opacity pulse on telemetry received
@@ -148,12 +148,11 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     {
         auto* imu_hdr_row = new QHBoxLayout();
         imu_hdr_row->setSpacing(4);
-        auto* imu_hdr = new QLabel("IMU Orientation (deg)", this);
-        imu_hdr->setAlignment(Qt::AlignHCenter);
+        auto* imu_hdr = new QLabel("Orientation", this);
+        //imu_hdr->setAlignment(Qt::AlignHCenter);
         imu_hdr->setStyleSheet(hdr_style);
         imu_toggle_ = make_sensor_toggle();
         connect(imu_toggle_, &QPushButton::toggled, this, &DashboardPanel::onSensorToggled);
-        imu_hdr_row->addStretch();
         imu_hdr_row->addWidget(imu_hdr);
         imu_hdr_row->addStretch();
         imu_hdr_row->addWidget(imu_toggle_);
@@ -178,10 +177,18 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     layout->addWidget(sep3);
 
     // ── Transcription ────────────────────────────────────────────────────────
-    auto* trans_label = new QLabel("Transcription", this);
-    trans_label->setAlignment(Qt::AlignHCenter);
-    trans_label->setStyleSheet("color: #aaa; font-weight: bold;");
-    layout->addWidget(trans_label);
+    {
+        auto* trans_hdr_row = new QHBoxLayout();
+        trans_hdr_row->setSpacing(4);
+        auto* trans_label = new QLabel("Transcription", this);
+        trans_label->setStyleSheet(hdr_style);
+        audio_btn_ = make_sensor_toggle();
+        connect(audio_btn_, &QPushButton::toggled, this, &DashboardPanel::onAudioToggled);
+        trans_hdr_row->addWidget(trans_label);
+        trans_hdr_row->addStretch();
+        trans_hdr_row->addWidget(audio_btn_);
+        layout->addLayout(trans_hdr_row);
+    }
 
     transcription_ = new QTextEdit(this);
     transcription_->setReadOnly(true);
@@ -292,19 +299,7 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
             .arg(bg, hover, pressed);
     };
 
-    audio_btn_ = new QPushButton("Audio: OFF", this);
-    audio_btn_->setCheckable(true);
-    audio_btn_->setStyleSheet(
-        "QPushButton { background-color: #2a4a2a; color: white; padding: 6px; "
-        "border: 1px solid #3a6a3a; border-radius: 3px; }"
-        "QPushButton:hover { background-color: #3a6a3a; }"
-        "QPushButton:checked { background-color: #2a8a2a; border-color: #4aba4a; }");
-    connect(audio_btn_, &QPushButton::toggled, this, &DashboardPanel::onAudioToggled);
-    layout->addWidget(audio_btn_);
-
     audio_pub_ = node_->create_publisher<std_msgs::msg::Bool>("/audio_enable", 10);
-
-    layout->addSpacing(4);
 
     estop_btn_ = new QPushButton("E-STOP", this);
     estop_btn_->setCheckable(true);
@@ -427,8 +422,8 @@ void DashboardPanel::onHeartbeatCheck()
     if (hb_miss_count_ < 100) hb_miss_count_++;
 
     if (hb_miss_count_ == 1) {
-        setConnState("#ccaa00", "Pending");
-    } else if (hb_miss_count_ == 5) {
+        setConnState("#ccaa00", "Intermitent");
+    } else if (hb_miss_count_ >= 2) {
         setConnState("#cc3333", "Offline");
         uptime_label_->setText("--");
     }
@@ -478,7 +473,7 @@ void DashboardPanel::onEstopToggled(bool checked)
 void DashboardPanel::onAudioToggled(bool checked)
 {
     audio_active_ = checked;
-    audio_btn_->setText(checked ? "Audio: ON" : "Audio: OFF");
+    audio_btn_->setText(checked ? "ON" : "OFF");
     auto msg = std_msgs::msg::Bool();
     msg.data = checked;
     audio_pub_->publish(msg);

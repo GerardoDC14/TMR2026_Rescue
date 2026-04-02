@@ -20,6 +20,7 @@ using ArmJointsCallback    = void(*)(const ArmJointsPayload&);
 using SensorEnableCallback = void(*)(uint8_t mask);
 using EstopCallback        = void(*)(bool active);
 using KeybindCallback      = void(*)(const KeybindPayload&);
+using PpmCalibCallback     = void(*)(const PpmCalibPayload&);
 
 class Comms {
 public:
@@ -41,10 +42,11 @@ public:
     static void sendStatus(const SystemStatus& status);
 
     // ── Callback registration ─────────────────────────────────────────────────
-    static void onArmJoints(ArmJointsCallback cb)       { s_cb_arm     = cb; }
-    static void onSensorEnable(SensorEnableCallback cb)  { s_cb_sensor  = cb; }
-    static void onEstop(EstopCallback cb)                { s_cb_estop   = cb; }
-    static void onKeybind(KeybindCallback cb)            { s_cb_keybind = cb; }
+    static void onArmJoints(ArmJointsCallback cb)       { s_cb_arm      = cb; }
+    static void onSensorEnable(SensorEnableCallback cb)  { s_cb_sensor   = cb; }
+    static void onEstop(EstopCallback cb)                { s_cb_estop    = cb; }
+    static void onKeybind(KeybindCallback cb)            { s_cb_keybind  = cb; }
+    static void onPpmCalib(PpmCalibCallback cb)          { s_cb_ppm_calib = cb; }
 
     // True if a full valid frame has been received within the last second.
     static bool isConnected();
@@ -74,4 +76,5 @@ private:
     static SensorEnableCallback s_cb_sensor;
     static EstopCallback        s_cb_estop;
     static KeybindCallback      s_cb_keybind;
+    static PpmCalibCallback     s_cb_ppm_calib;
 };

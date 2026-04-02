@@ -29,9 +29,6 @@
 #define PPM_TIMEOUT_MS     500   // failsafe: no valid frame within this window
 
 // Channel assignments (1-indexed to match physical Flysky labels)
-#define PPM_CH_FLIPPER       1   // Ch1 → flipper target position
-#define PPM_CH_FORWARD       2   // Ch2 → longitudinal / forward-back
-#define PPM_CH_TURN          4   // Ch4 → lateral / left-right (differential)
 #define PPM_CH_MODE          5   // Ch5 → main mode vs arm mode switch
 
 // ─── Motor PWM outputs (servo-style: 50 Hz, 1000–2000 µs) ───────────────────
@@ -55,13 +52,13 @@
 // Pins shared by both robots (track encoders)
 #define PIN_ENC_LEFT_A      36
 #define PIN_ENC_LEFT_B      39
-#define PIN_ENC_RIGHT_A     35   // input-only
-#define PIN_ENC_RIGHT_B     32   // input-only
+#define PIN_ENC_RIGHT_A     35
+#define PIN_ENC_RIGHT_B     32
 
 // PCNT units 0–1 are always LEFT and RIGHT tracks
 #define PCNT_UNIT_LEFT       0
 #define PCNT_UNIT_RIGHT      1
-#define PCNT_HIGH_LIM    30000   // overflow threshold (must fit int16_t)
+#define PCNT_HIGH_LIM    30000
 #define PCNT_LOW_LIM    -30000
 
 // ROBOT_MAIN: one joined flipper on unit 2
@@ -72,7 +69,7 @@
   #define NUM_ENCODER_UNITS    3
 
   // Encoder constants — fill from datasheet / measurement
-  #define ENC_CPR_TRACK        1000.0f   // counts per motor revolution (after 4× decode)
+  #define ENC_CPR_TRACK        1000.0f
   #define ENC_CPR_FLIPPER      1000.0f
   #define TRACK_GEAR_RATIO       20.0f   // motor→wheel reduction
   #define FLIPPER_GEAR_RATIO     30.0f
@@ -175,10 +172,9 @@
 #define ENC_SPEED_INTERVAL_MS   50       // speed recalculation period
 
 // ─── Sensors ─────────────────────────────────────────────────────────────────
-#define PIN_MQ2              27   // input-only GPIO; connect to MQ2 AOUT
+#define PIN_MQ2              27
 
 #define MLX90640_I2C_ADDR    0x33
-#define MLX90640_REFRESH_HZ     4        // valid: 1 2 4 8 16 32 64
 
 #define BNO055_I2C_ADDR      0x28        // SA0=GND; use 0x29 if SA0=VCC
 
@@ -216,6 +212,7 @@
 #define MSG_ESTOP            0x12        // 0-byte payload — immediate stop
 #define MSG_ESTOP_CLEAR      0x13        // 0-byte payload — resume
 #define MSG_KEYBIND          0x14        // 15 bytes: 3 modes × 5 channel slots
+#define MSG_PPM_CALIB        0x15        // 6 bytes: min_us, neutral_us, max_us (uint16 each)
 
 // ─── Sensor rate caps (Hz) ────────────────────────────────────────────────────
 // Throttle individual sensors so we don't flood the UART or waste CPU.

@@ -90,15 +90,17 @@ void OdometryPanel::buildLayout()
     main_layout_->setSpacing(4);
 
     // ── Title ────────────────────────────────────────────────────────────────
-    auto* title = new QLabel("Odometry Dashboard", this);
+    /*
+    auto* title = new QLabel("Telemetry Dashboard", this);
     title->setAlignment(Qt::AlignHCenter);
-    title->setStyleSheet("color: #4fc3f7; font-weight: bold; font-size: 12px;");
+    title->setStyleSheet("color: #aaa; font-weight: bold; font-size: 11px;");
     main_layout_->addWidget(title);
 
     main_layout_->addWidget(makeHSep());
+    */
 
     // ── Mode / Flags row (uptime moved to dashboard panel) ───────────────────
-    auto* status_hdr = makeHeaderLabel("Status");
+    auto* status_hdr = makeHeaderLabel("Telemetry Status");
     main_layout_->addWidget(status_hdr);
 
     auto* status_grid = new QGridLayout();
@@ -126,13 +128,13 @@ void OdometryPanel::buildLayout()
     auto* left_col = new QVBoxLayout();
     left_col->setSpacing(1);
     left_col->addWidget(makeAxisLabel("Left"));
-    trac_left_rpm_ = makeValueLabel("0.0");
+    trac_left_rpm_ = makeValueLabel("--");
     left_col->addWidget(trac_left_rpm_);
 
     auto* right_col = new QVBoxLayout();
     right_col->setSpacing(1);
     right_col->addWidget(makeAxisLabel("Right"));
-    trac_right_rpm_ = makeValueLabel("0.0");
+    trac_right_rpm_ = makeValueLabel("--");
     right_col->addWidget(trac_right_rpm_);
 
     trac_row->addLayout(left_col);
@@ -244,37 +246,38 @@ void OdometryPanel::rebuildFlipperSection()
     fl->setSpacing(3);
 
     if (robot_type_ == 0) {
-        auto* hdr = makeHeaderLabel("Flippers (deg)");
+        auto* hdr = makeHeaderLabel("Flippers");
         fl->addWidget(hdr);
 
+        
         auto* row = new QHBoxLayout();
-        row->addWidget(makeAxisLabel("Angle"));
-        flip_angle_ = makeValueLabel("0.0");
+        //row->addWidget(makeAxisLabel("Angle"));
+        flip_angle_ = makeValueLabel("--");
         row->addWidget(flip_angle_, 1);
         fl->addLayout(row);
 
         flip_fl_ = flip_fr_ = flip_rl_ = flip_rr_ = nullptr;
     } else {
-        auto* hdr = makeHeaderLabel("Flippers (deg)");
+        auto* hdr = makeHeaderLabel("Flippers");
         fl->addWidget(hdr);
 
         auto* grid = new QGridLayout();
         grid->setSpacing(3);
 
         grid->addWidget(makeAxisLabel("FL"), 0, 0);
-        flip_fl_ = makeValueLabel("0.0");
+        flip_fl_ = makeValueLabel("--");
         grid->addWidget(flip_fl_, 0, 1);
 
         grid->addWidget(makeAxisLabel("FR"), 0, 2);
-        flip_fr_ = makeValueLabel("0.0");
+        flip_fr_ = makeValueLabel("--");
         grid->addWidget(flip_fr_, 0, 3);
 
         grid->addWidget(makeAxisLabel("RL"), 1, 0);
-        flip_rl_ = makeValueLabel("0.0");
+        flip_rl_ = makeValueLabel("--");
         grid->addWidget(flip_rl_, 1, 1);
 
         grid->addWidget(makeAxisLabel("RR"), 1, 2);
-        flip_rr_ = makeValueLabel("0.0");
+        flip_rr_ = makeValueLabel("--");
         grid->addWidget(flip_rr_, 1, 3);
 
         fl->addLayout(grid);
@@ -306,7 +309,7 @@ QLabel* OdometryPanel::makeValueLabel(const QString& initial)
 {
     auto* l = new QLabel(initial, this);
     l->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    l->setStyleSheet("color: #4fc3f7; font-size: 12px;");
+    l->setStyleSheet("color: #4fc3f7; font-size: 13px;");
     return l;
 }
 
@@ -314,7 +317,7 @@ QLabel* OdometryPanel::makeHeaderLabel(const QString& text)
 {
     auto* l = new QLabel(text, this);
     l->setAlignment(Qt::AlignHCenter);
-    l->setStyleSheet("color: #aaa; font-weight: bold; font-size: 11px;");
+    l->setStyleSheet("color: #aaa; font-weight: bold;");
     return l;
 }
 
@@ -322,7 +325,7 @@ QLabel* OdometryPanel::makeAxisLabel(const QString& text)
 {
     auto* l = new QLabel(text, this);
     l->setAlignment(Qt::AlignHCenter);
-    l->setStyleSheet("color: #888; font-size: 10px;");
+    l->setStyleSheet("color: #888;");
     return l;
 }
 
@@ -341,16 +344,16 @@ void OdometryPanel::onTelemetryUpdated(float spd_l, float spd_r, float flip_angl
     trac_left_rpm_->setText(QString::number(spd_l, 'f', 1));
     trac_right_rpm_->setText(QString::number(spd_r, 'f', 1));
     if (robot_type_ == 0 && flip_angle_)
-        flip_angle_->setText(QString::number(flip_angle, 'f', 1));
+        flip_angle_->setText(QString::number(flip_angle, 'f', 1) + "°");
 }
 
 void OdometryPanel::onFlipperExtUpdated(float fl, float fr, float rl, float rr)
 {
     if (robot_type_ == 1) {
-        if (flip_fl_) flip_fl_->setText(QString::number(fl, 'f', 1));
-        if (flip_fr_) flip_fr_->setText(QString::number(fr, 'f', 1));
-        if (flip_rl_) flip_rl_->setText(QString::number(rl, 'f', 1));
-        if (flip_rr_) flip_rr_->setText(QString::number(rr, 'f', 1));
+        if (flip_fl_) flip_fl_->setText(QString::number(fl, 'f', 1) + "°");
+        if (flip_fr_) flip_fr_->setText(QString::number(fr, 'f', 1) + "°");
+        if (flip_rl_) flip_rl_->setText(QString::number(rl, 'f', 1) + "°");
+        if (flip_rr_) flip_rr_->setText(QString::number(rr, 'f', 1) + "°");
     } else if (robot_type_ == 0 && flip_angle_) {
         flip_angle_->setText(QString::number(fl, 'f', 1));
     }

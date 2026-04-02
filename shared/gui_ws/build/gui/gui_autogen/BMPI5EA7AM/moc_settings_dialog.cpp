@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SettingsDialog_t {
-    const uint offsetsAndSize[18];
-    char stringdata0[95];
+    const uint offsetsAndSize[20];
+    char stringdata0[113];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_SettingsDialog_t, stringdata0) + ofs), len 
@@ -37,12 +37,13 @@ QT_MOC_LITERAL(49, 4), // "type"
 QT_MOC_LITERAL(54, 7), // "onApply"
 QT_MOC_LITERAL(62, 6), // "onSave"
 QT_MOC_LITERAL(69, 8), // "onCancel"
-QT_MOC_LITERAL(78, 16) // "onKeybindClicked"
+QT_MOC_LITERAL(78, 16), // "onKeybindClicked"
+QT_MOC_LITERAL(95, 17) // "onPpmCalibClicked"
 
     },
     "SettingsDialog\0settingsApplied\0\0"
     "robotTypeChanged\0type\0onApply\0onSave\0"
-    "onCancel\0onKeybindClicked"
+    "onCancel\0onKeybindClicked\0onPpmCalibClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -52,7 +53,7 @@ static const uint qt_meta_data_SettingsDialog[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -60,20 +61,22 @@ static const uint qt_meta_data_SettingsDialog[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x06,    1 /* Public */,
-       3,    1,   51,    2, 0x06,    2 /* Public */,
+       1,    0,   56,    2, 0x06,    1 /* Public */,
+       3,    1,   57,    2, 0x06,    2 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   54,    2, 0x08,    4 /* Private */,
-       6,    0,   55,    2, 0x08,    5 /* Private */,
-       7,    0,   56,    2, 0x08,    6 /* Private */,
-       8,    0,   57,    2, 0x08,    7 /* Private */,
+       5,    0,   60,    2, 0x08,    4 /* Private */,
+       6,    0,   61,    2, 0x08,    5 /* Private */,
+       7,    0,   62,    2, 0x08,    6 /* Private */,
+       8,    0,   63,    2, 0x08,    7 /* Private */,
+       9,    0,   64,    2, 0x08,    8 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    4,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -94,6 +97,7 @@ void SettingsDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 3: _t->onSave(); break;
         case 4: _t->onCancel(); break;
         case 5: _t->onKeybindClicked(); break;
+        case 6: _t->onPpmCalibClicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -123,7 +127,7 @@ const QMetaObject SettingsDialog::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_SettingsDialog_t
 , QtPrivate::TypeAndForceComplete<SettingsDialog, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -150,13 +154,13 @@ int SettingsDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

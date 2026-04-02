@@ -14,7 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'pyaudio'],
     zip_safe=True,
     maintainer='arepo',
     maintainer_email='arepo90@proton.me',
@@ -24,6 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
             'esp32_bridge_node = esp32_bridge.esp32_bridge_node:main',
+            'audio_node = esp32_bridge.audio_node:main',
         ],
     },
 )

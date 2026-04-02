@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DashboardPanel_t {
-    const uint offsetsAndSize[62];
-    char stringdata0[378];
+    const uint offsetsAndSize[66];
+    char stringdata0[404];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_DashboardPanel_t, stringdata0) + ofs), len 
@@ -60,7 +60,9 @@ QT_MOC_LITERAL(300, 16), // "onHeartbeatCheck"
 QT_MOC_LITERAL(317, 15), // "onUptimeUpdated"
 QT_MOC_LITERAL(333, 10), // "onClearAll"
 QT_MOC_LITERAL(344, 17), // "publishEstopState"
-QT_MOC_LITERAL(362, 15) // "onSensorToggled"
+QT_MOC_LITERAL(362, 15), // "onSensorToggled"
+QT_MOC_LITERAL(378, 17), // "setThermalEnabled"
+QT_MOC_LITERAL(396, 7) // "enabled"
 
     },
     "DashboardPanel\0resetSourcesRequested\0"
@@ -73,7 +75,8 @@ QT_MOC_LITERAL(362, 15) // "onSensorToggled"
     "onTranscriptionUpdated\0text\0"
     "onTelemetryReceived\0onHeartbeatCheck\0"
     "onUptimeUpdated\0onClearAll\0publishEstopState\0"
-    "onSensorToggled"
+    "onSensorToggled\0setThermalEnabled\0"
+    "enabled"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,7 +86,7 @@ static const uint qt_meta_data_DashboardPanel[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -91,27 +94,28 @@ static const uint qt_meta_data_DashboardPanel[] = {
        7,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  128,    2, 0x06,    1 /* Public */,
-       3,    0,  129,    2, 0x06,    2 /* Public */,
-       4,    3,  130,    2, 0x06,    3 /* Public */,
-       8,    1,  137,    2, 0x06,    7 /* Public */,
-      10,    3,  140,    2, 0x06,    9 /* Public */,
-      14,    0,  147,    2, 0x06,   13 /* Public */,
-      15,    1,  148,    2, 0x06,   14 /* Public */,
+       1,    0,  134,    2, 0x06,    1 /* Public */,
+       3,    0,  135,    2, 0x06,    2 /* Public */,
+       4,    3,  136,    2, 0x06,    3 /* Public */,
+       8,    1,  143,    2, 0x06,    7 /* Public */,
+      10,    3,  146,    2, 0x06,    9 /* Public */,
+      14,    0,  153,    2, 0x06,   13 /* Public */,
+      15,    1,  154,    2, 0x06,   14 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      17,    1,  151,    2, 0x08,   16 /* Private */,
-      19,    1,  154,    2, 0x08,   18 /* Private */,
-      20,    3,  157,    2, 0x08,   20 /* Private */,
-      21,    1,  164,    2, 0x08,   24 /* Private */,
-      22,    3,  167,    2, 0x08,   26 /* Private */,
-      23,    1,  174,    2, 0x08,   30 /* Private */,
-      25,    0,  177,    2, 0x08,   32 /* Private */,
-      26,    0,  178,    2, 0x08,   33 /* Private */,
-      27,    1,  179,    2, 0x08,   34 /* Private */,
-      28,    0,  182,    2, 0x08,   36 /* Private */,
-      29,    0,  183,    2, 0x08,   37 /* Private */,
-      30,    0,  184,    2, 0x08,   38 /* Private */,
+      17,    1,  157,    2, 0x08,   16 /* Private */,
+      19,    1,  160,    2, 0x08,   18 /* Private */,
+      20,    3,  163,    2, 0x08,   20 /* Private */,
+      21,    1,  170,    2, 0x08,   24 /* Private */,
+      22,    3,  173,    2, 0x08,   26 /* Private */,
+      23,    1,  180,    2, 0x08,   30 /* Private */,
+      25,    0,  183,    2, 0x08,   32 /* Private */,
+      26,    0,  184,    2, 0x08,   33 /* Private */,
+      27,    1,  185,    2, 0x08,   34 /* Private */,
+      28,    0,  188,    2, 0x08,   36 /* Private */,
+      29,    0,  189,    2, 0x08,   37 /* Private */,
+      30,    0,  190,    2, 0x08,   38 /* Private */,
+      31,    1,  191,    2, 0x0a,   39 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -135,6 +139,7 @@ static const uint qt_meta_data_DashboardPanel[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   32,
 
        0        // eod
 };
@@ -164,6 +169,7 @@ void DashboardPanel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 16: _t->onClearAll(); break;
         case 17: _t->publishEstopState(); break;
         case 18: _t->onSensorToggled(); break;
+        case 19: _t->setThermalEnabled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -228,7 +234,7 @@ const QMetaObject DashboardPanel::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_DashboardPanel_t
 , QtPrivate::TypeAndForceComplete<DashboardPanel, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<float, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<float, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<double, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<float, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
 
 
 >,
@@ -255,13 +261,13 @@ int DashboardPanel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 20)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 19;
+        _id -= 20;
     }
     return _id;
 }

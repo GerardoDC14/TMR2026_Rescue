@@ -1,5 +1,6 @@
 #include "gui/settings_dialog.hpp"
 #include "gui/keybind_dialog.hpp"
+#include "gui/ppm_calib_dialog.hpp"
 #include "gui/app_settings.hpp"
 
 #include <QCheckBox>
@@ -36,8 +37,8 @@ int SettingsDialog::indexOfUpscale(int w) {
 
 // ── Constructor ───────────────────────────────────────────────────────────────
 
-SettingsDialog::SettingsDialog(QWidget* parent)
-    : QDialog(parent)
+SettingsDialog::SettingsDialog(rclcpp::Node::SharedPtr node, QWidget* parent)
+    : QDialog(parent), node_(node)
 {
     setWindowTitle("Settings");
     setMinimumWidth(380);
@@ -88,6 +89,13 @@ SettingsDialog::SettingsDialog(QWidget* parent)
         "QPushButton:hover { background-color: #3a5a9f; }");
     connect(keybind_btn_, &QPushButton::clicked, this, &SettingsDialog::onKeybindClicked);
     rf->addRow("Controls:", keybind_btn_);
+
+    ppm_calib_btn_ = new QPushButton("RC Calibration...", robot_group);
+    ppm_calib_btn_->setStyleSheet(
+        "QPushButton { background-color: #2a4a7f; border-color: #3a5a9f; }"
+        "QPushButton:hover { background-color: #3a5a9f; }");
+    connect(ppm_calib_btn_, &QPushButton::clicked, this, &SettingsDialog::onPpmCalibClicked);
+    rf->addRow("RC Channels:", ppm_calib_btn_);
 
     root->addWidget(robot_group);
 
@@ -260,6 +268,7 @@ void SettingsDialog::applyToSettings()
     if (new_robot_type != old_robot_type)
         emit robotTypeChanged(new_robot_type);
 
+
     {
         std::lock_guard<std::mutex> lk(S.strings_mutex);
         S.vosk_grammar = grammar_edit_->text().trimmed().toStdString();
@@ -293,7 +302,6 @@ void SettingsDialog::onKeybindClicked()
 {
     if (!keybind_dialog_) {
         keybind_dialog_ = new KeybindDialog(this);
-        // Forward keybind changes as settingsApplied so MainWindow republishes
         connect(keybind_dialog_, &KeybindDialog::keybindChanged,
                 this, &SettingsDialog::settingsApplied);
     }
@@ -301,4 +309,17 @@ void SettingsDialog::onKeybindClicked()
     keybind_dialog_->show();
     keybind_dialog_->activateWindow();
     keybind_dialog_->raise();
+}
+
+void SettingsDialog::onPpmCalibClicked()
+{
+    if (!ppm_calib_dialog_) {
+        ppm_calib_dialog_ = new PpmCalibDialog(node_, this);
+        connect(ppm_calib_dialog_, &PpmCalibDialog::calibChanged,
+                this, &SettingsDialog::settingsApplied);
+    }
+    ppm_calib_dialog_->reloadFromSettings();
+    ppm_calib_dialog_->show();
+    ppm_calib_dialog_->activateWindow();
+    ppm_calib_dialog_->raise();
 }

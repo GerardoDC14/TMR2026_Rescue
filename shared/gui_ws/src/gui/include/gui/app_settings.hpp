@@ -35,6 +35,11 @@ struct AppSettings {
     // Robot type: 0 = Jaguar (ROBOT_MAIN), 1 = Dicerox (ROBOT_SECONDARY)
     std::atomic<int> robot_type{0};
 
+    // RC PPM calibration — per-channel (6 channels × {min, neutral, max} µs)
+    struct PpmChannelCalib { int min_us{1000}, neutral_us{1500}, max_us{2000}; };
+    std::mutex       ppm_calib_mutex;
+    PpmChannelCalib  ppm_calib[6] = {};
+
     // Keybind configuration — 3 modes × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
     // Values are ChannelFunction enum (see keybind_dialog.hpp)
     std::mutex  keybind_mutex;

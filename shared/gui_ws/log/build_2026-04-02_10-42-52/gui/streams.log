@@ -1,0 +1,24 @@
+[0.213s] Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+[0.408s] [  0%] [0mBuilt target gui_autogen_timestamp_deps[0m
+[0.480s] [  5%] [1m[34mAutomatic MOC and UIC for target gui[0m
+[1.384s] 
+[1.384s] AutoMoc subprocess error
+[1.384s] ------------------------
+[1.384s] The moc process failed to compile
+[1.385s]   "SRC:/include/gui/dashboard_panel.hpp"
+[1.385s] into
+[1.385s]   "BIN:/gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp"
+[1.385s] Process failed with return value 1
+[1.385s] 
+[1.385s] Command
+[1.385s] -------
+[1.385s] /usr/lib/qt6/libexec/moc -DDEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DRCUTILS_ENABLE_FAULT_INJECTION -I/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include -I/usr/local/include/onnxruntime -I/opt/ros/humble/include/rclcpp -I/opt/ros/humble/include/std_msgs -I/opt/ros/humble/include/sensor_msgs -I/opt/ros/humble/include/geometry_msgs -I/opt/ros/humble/include/urdf -I/opt/ros/humble/include/ament_index_cpp -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt6/QtOpenGLWidgets -I/usr/include/opencv4 -I/opt/ros/humble/include/libstatistics_collector -I/opt/ros/humble/include/builtin_interfaces -I/opt/ros/humble/include/rosidl_runtime_c -I/opt/ros/humble/include/rcutils -I/opt/ros/humble/include/rosidl_typesupport_interface -I/opt/ros/humble/include/fastcdr -I/opt/ros/humble/include/rosidl_runtime_cpp -I/opt/ros/humble/include/rosidl_typesupport_fastrtps_cpp -I/opt/ros/humble/include/rmw -I/opt/ros/humble/include/rosidl_typesupport_fastrtps_c -I/opt/ros/humble/include/rosidl_typesupport_introspection_c -I/opt/ros/humble/include/rosidl_typesupport_introspection_cpp -I/opt/ros/humble/include/rcl -I/opt/ros/humble/include/rcl_interfaces -I/opt/ros/humble/include/rcl_logging_interface -I/opt/ros/humble/include/rcl_yaml_param_parser -I/opt/ros/humble/include/libyaml_vendor -I/opt/ros/humble/include/tracetools -I/opt/ros/humble/include/rcpputils -I/opt/ros/humble/include/statistics_msgs -I/opt/ros/humble/include/rosgraph_msgs -I/opt/ros/humble/include/rosidl_typesupport_cpp -I/opt/ros/humble/include/rosidl_typesupport_c -I/opt/ros/humble/include/urdf_parser_plugin -I/opt/ros/humble/include/urdfdom_headers -I/opt/ros/humble/include/urdfdom -I/opt/ros/humble/include/pluginlib -I/opt/ros/humble/include/class_loader -I/usr/include -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu --include /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/moc_predefs.h --output-dep-file -o /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_dashboard_panel.cpp /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/dashboard_panel.hpp
+[1.385s] 
+[1.385s] Output
+[1.385s] ------
+[1.385s] /home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/dashboard_panel.hpp:121:1: error: Not a signal or slot declaration
+[1.385s] 
+[1.624s] gmake[2]: *** [CMakeFiles/gui_autogen.dir/build.make:75: gui_autogen/timestamp] Error 1
+[1.627s] gmake[1]: *** [CMakeFiles/Makefile2:220: CMakeFiles/gui_autogen.dir/all] Error 2
+[1.627s] gmake: *** [Makefile:146: all] Error 2
+[1.628s] Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16

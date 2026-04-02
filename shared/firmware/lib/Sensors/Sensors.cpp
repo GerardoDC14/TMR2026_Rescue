@@ -41,7 +41,7 @@ bool Sensors::begin() {
     Wire.beginTransmission(0x0D);
     if (Wire.endTransmission() == 0) {
         s_qmc.init();
-        s_qmc.setMode(0x01, 0x0C, 0x00, 0x00);  // continuous, 200 Hz ODR, 8G range, 512 OSR
+        //s_qmc.setMode(0x01, 0x04, 0x10, 0x00);  // continuous, 50 Hz ODR, 8G range, 512 OSR
         s_mag_ok = true;
     }
 
@@ -146,30 +146,34 @@ void Sensors::readMag() {
     if (!s_mag_ok) return;
     if (xSemaphoreTake(s_i2c_mutex, pdMS_TO_TICKS(50)) != pdTRUE) return;
 
-    s_qmc.read();
+    s_qmc.read(); 
+    
     int x_raw = s_qmc.getX();
     int y_raw = s_qmc.getY();
     int z_raw = s_qmc.getZ();
 
     xSemaphoreGive(s_i2c_mutex);
 
-    bool saturated = ();
-    constexpr float SCALE_UT = 100.0f / 3000.0f;
-    //constexpr float SCALE_UT = 800.0f / 32768.0f;
+    //constexpr float SCALE_UT = 100.0f / 3000.0f;
+    constexpr float SCALE_UT = 1;
+
+    constexpr float offset_x_uT = 0.0f; 
+    constexpr float offset_y_uT = 0.0f;
+    constexpr float offset_z_uT = 0.0f;
 
     MagData d;
+    
     if (x_raw == 0 && y_raw == 0 && z_raw == 0) {
-        d.x_uT = 800.0f; 
-        d.y_uT = 800.0f;
-        d.z_uT = 800.0f;
+        d.valid = true; 
+        d.x_uT = 0.0f; d.y_uT = 0.0f; d.z_uT = 0.0f; 
     }   
     else {
-        d.x_uT  = x_raw * SCALE_UT;
-        d.y_uT  = y_raw * SCALE_UT;
-        d.z_uT  = z_raw * SCALE_UT;
+        d.x_uT  = (x_raw * SCALE_UT) - offset_x_uT;
+        d.y_uT  = (y_raw * SCALE_UT) - offset_y_uT;
+        d.z_uT  = (z_raw * SCALE_UT) - offset_z_uT;
+        d.valid = true;
     }
-    d.valid = true;
-
+    
     portENTER_CRITICAL(&s_mux);
     s_mag = d;
     portEXIT_CRITICAL(&s_mux);

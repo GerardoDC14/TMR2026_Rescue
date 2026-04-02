@@ -21,11 +21,26 @@ public:
     static void begin(uint8_t pin);
 
     // Returns true if a new, complete frame is available since last call.
-    // 'out' is populated with the latest frame's values.
+    // Clears the "fresh" flag — only ONE caller receives true per frame.
+    // Use this in the control task which must process each frame exactly once.
     static bool getFrame(PPMFrame& out);
+
+    // Copies the last captured frame WITHOUT consuming the freshness flag.
+    // Safe to call from any task that just needs the latest values for
+    // reporting (e.g. telemetry), without racing against the control task.
+    static void peekFrame(PPMFrame& out);
 
     // True if a valid frame has arrived within PPM_TIMEOUT_MS.
     static bool isConnected();
+
+    // Update runtime PPM calibration for all channels at once.
+    // Safe to call from any task.
+    static void setCalib(const PpmCalibPayload& p);
+
+    // Normalise raw PPM µs for a specific channel to [-1.0, +1.0].
+    // Maps [min_us, neutral_us] → [-1, 0] and [neutral_us, max_us] → [0, +1].
+    // channel is 0-indexed (0 = Ch1 … PPM_CHANNELS-1 = Ch6).
+    static float normalise(uint8_t channel, uint16_t raw_us);
 
 private:
     static void isr();   // IRAM_ATTR applied on definition in .cpp

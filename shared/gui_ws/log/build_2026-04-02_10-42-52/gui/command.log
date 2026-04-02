@@ -1,0 +1,2 @@
+Invoking command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16
+Invoked command in '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui -- -j16 -l16

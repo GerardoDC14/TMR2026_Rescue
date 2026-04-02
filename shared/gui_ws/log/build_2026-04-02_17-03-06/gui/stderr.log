@@ -1,0 +1,8 @@
+[01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/odometry_panel.cpp:[m[K In member function ‘[01m[Kvoid OdometryPanel::rebuildFlipperSection()[m[K’:
+[01m[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/odometry_panel.cpp:289:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kflipper_containerf_[m[K’ was not declared in this scope; did you mean ‘[01m[Kflipper_container_[m[K’?
+  289 |     main_layout_->insertWidget(idx, [01;31m[Kflipper_containerf_[m[K);
+      |                                     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+      |                                     [32m[Kflipper_container_[m[K
+gmake[2]: *** [CMakeFiles/gui.dir/build.make:198: CMakeFiles/gui.dir/src/odometry_panel.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:156: CMakeFiles/gui.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

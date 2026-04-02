@@ -1,0 +1,148 @@
+[0.000000] (-) TimerEvent: {}
+[0.000155] (esp32_bridge) JobQueued: {'identifier': 'esp32_bridge', 'dependencies': OrderedDict()}
+[0.000187] (gui) JobQueued: {'identifier': 'gui', 'dependencies': OrderedDict()}
+[0.000202] (esp32_bridge) JobStarted: {'identifier': 'esp32_bridge'}
+[0.006698] (gui) JobStarted: {'identifier': 'gui'}
+[0.099387] (-) TimerEvent: {}
+[0.200097] (-) TimerEvent: {}
+[0.200938] (gui) JobProgress: {'identifier': 'gui', 'progress': 'cmake'}
+[0.201494] (gui) JobProgress: {'identifier': 'gui', 'progress': 'build'}
+[0.202197] (gui) Command: {'cmd': ['/home/arepo/.local/bin/cmake', '--build', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui', '--', '-j16', '-l16'], 'cwd': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'arepo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12.6/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/arepo'), ('OLDPWD', '/home/arepo'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1830'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/arepo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'arepo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'arepo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify'), ('SESSION_MANAGER', 'local/arepo-Legion:@/tmp/.ICE-unix/1802,unix/arepo-Legion:/tmp/.ICE-unix/1802'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/56b5b75d_74ee_45fd_bd33_a8b9d41393ab'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.121'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.286532] (gui) StdoutLine: {'line': b'[  0%] \x1b[0mBuilt target gui_autogen_timestamp_deps\x1b[0m\n'}
+[0.300190] (-) TimerEvent: {}
+[0.324805] (gui) StdoutLine: {'line': b'[  5%] \x1b[0mBuilt target gui_autogen\x1b[0m\n'}
+[0.400318] (-) TimerEvent: {}
+[0.413116] (gui) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/main_window.cpp.o\x1b[0m\n'}
+[0.500453] (-) TimerEvent: {}
+[0.600870] (-) TimerEvent: {}
+[0.701222] (-) TimerEvent: {}
+[0.741666] (esp32_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/esp32_bridge', 'build', '--build-base', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/build', 'install', '--record', '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/arepo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'arepo', 'LC_TIME': 'es_MX.UTF-8', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12.6/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/arepo', 'OLDPWD': '/home/arepo', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'SYSTEMD_EXEC_PID': '1830', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/arepo/TMR2026_Rescue/shared/gui_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'arepo', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'arepo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/bin:/usr/local/cuda-12.6/bin:/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify', 'SESSION_MANAGER': 'local/arepo-Legion:@/tmp/.ICE-unix/1802,unix/arepo-Legion:/tmp/.ICE-unix/1802', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/56b5b75d_74ee_45fd_bd33_a8b9d41393ab', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.121', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/gui'}, 'shell': False}
+[0.801343] (-) TimerEvent: {}
+[0.901696] (-) TimerEvent: {}
+[0.965669] (esp32_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[0.982158] (esp32_bridge) StdoutLine: {'line': b'writing ../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO\n'}
+[0.982664] (esp32_bridge) StdoutLine: {'line': b'writing dependency_links to ../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt\n'}
+[0.982962] (esp32_bridge) StdoutLine: {'line': b'writing entry points to ../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt\n'}
+[0.983178] (esp32_bridge) StdoutLine: {'line': b'writing requirements to ../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt\n'}
+[0.983350] (esp32_bridge) StdoutLine: {'line': b'writing top-level names to ../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt\n'}
+[1.001806] (-) TimerEvent: {}
+[1.016868] (esp32_bridge) StdoutLine: {'line': b"reading manifest file '../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.017604] (esp32_bridge) StdoutLine: {'line': b"writing manifest file '../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.017924] (esp32_bridge) StdoutLine: {'line': b'running build\n'}
+[1.018087] (esp32_bridge) StdoutLine: {'line': b'running build_py\n'}
+[1.018225] (esp32_bridge) StdoutLine: {'line': b'running install\n'}
+[1.022398] (esp32_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[1.041073] (esp32_bridge) StdoutLine: {'line': b'running install_data\n'}
+[1.041312] (esp32_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.058447] (esp32_bridge) StdoutLine: {'line': b"removing '/home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.058790] (esp32_bridge) StdoutLine: {'line': b'Copying ../../build/esp32_bridge/esp32_bridge.egg-info to /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info\n'}
+[1.059579] (esp32_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[1.101900] (-) TimerEvent: {}
+[1.202186] (-) TimerEvent: {}
+[1.222979] (esp32_bridge) StdoutLine: {'line': b'Installing esp32_bridge_node script to /home/arepo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.223395] (esp32_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/arepo/TMR2026_Rescue/shared/gui_ws/build/esp32_bridge/install.log'\n"}
+[1.255812] (esp32_bridge) CommandEnded: {'returncode': 0}
+[1.266419] (esp32_bridge) JobEnded: {'identifier': 'esp32_bridge', 'rc': 0}
+[1.302324] (-) TimerEvent: {}
+[1.402654] (-) TimerEvent: {}
+[1.503009] (-) TimerEvent: {}
+[1.603373] (-) TimerEvent: {}
+[1.703742] (-) TimerEvent: {}
+[1.804102] (-) TimerEvent: {}
+[1.904456] (-) TimerEvent: {}
+[2.004900] (-) TimerEvent: {}
+[2.105262] (-) TimerEvent: {}
+[2.205627] (-) TimerEvent: {}
+[2.305975] (-) TimerEvent: {}
+[2.406498] (-) TimerEvent: {}
+[2.506925] (-) TimerEvent: {}
+[2.607279] (-) TimerEvent: {}
+[2.707644] (-) TimerEvent: {}
+[2.807966] (-) TimerEvent: {}
+[2.908251] (-) TimerEvent: {}
+[3.008583] (-) TimerEvent: {}
+[3.109114] (-) TimerEvent: {}
+[3.209487] (-) TimerEvent: {}
+[3.309838] (-) TimerEvent: {}
+[3.410283] (-) TimerEvent: {}
+[3.510644] (-) TimerEvent: {}
+[3.611070] (-) TimerEvent: {}
+[3.711426] (-) TimerEvent: {}
+[3.811797] (-) TimerEvent: {}
+[3.912165] (-) TimerEvent: {}
+[4.012563] (-) TimerEvent: {}
+[4.063802] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid MainWindow::publishPpmCalib()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.064073] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:159:33:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstruct AppSettings\x1b[m\x1b[K\xe2\x80\x99 has no member named \xe2\x80\x98\x1b[01m\x1b[Kppm_min_us\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.064187] (gui) StderrLine: {'line': b'  159 |         static_cast<uint16_t>(S.\x1b[01;31m\x1b[Kppm_min_us\x1b[m\x1b[K.load()),\n'}
+[4.064279] (gui) StderrLine: {'line': b'      |                                 \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.064364] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:160:33:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstruct AppSettings\x1b[m\x1b[K\xe2\x80\x99 has no member named \xe2\x80\x98\x1b[01m\x1b[Kppm_neutral_us\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.064448] (gui) StderrLine: {'line': b'  160 |         static_cast<uint16_t>(S.\x1b[01;31m\x1b[Kppm_neutral_us\x1b[m\x1b[K.load()),\n'}
+[4.064558] (gui) StderrLine: {'line': b'      |                                 \x1b[01;31m\x1b[K^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.064641] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:161:33:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstruct AppSettings\x1b[m\x1b[K\xe2\x80\x99 has no member named \xe2\x80\x98\x1b[01m\x1b[Kppm_max_us\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.064734] (gui) StderrLine: {'line': b'  161 |         static_cast<uint16_t>(S.\x1b[01;31m\x1b[Kppm_max_us\x1b[m\x1b[K.load())\n'}
+[4.064811] (gui) StderrLine: {'line': b'      |                                 \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.064890] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:162:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno match for \xe2\x80\x98\x1b[01m\x1b[Koperator=\x1b[m\x1b[K\xe2\x80\x99 (operand types are \xe2\x80\x98\x1b[01m\x1b[Kstd_msgs::msg::UInt16MultiArray_<std::allocator<void> >::_data_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<short unsigned int, std::allocator<short unsigned int> >\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[K<brace-enclosed initializer list>\x1b[m\x1b[K\xe2\x80\x99)\n'}
+[4.064975] (gui) StderrLine: {'line': b'  162 |     \x1b[01;31m\x1b[K}\x1b[m\x1b[K;\n'}
+[4.065075] (gui) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[4.065136] (gui) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/vector:72\x1b[m\x1b[K,\n'}
+[4.065179] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/functional:62\x1b[m\x1b[K,\n'}
+[4.065213] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13\x1b[m\x1b[K,\n'}
+[4.065249] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/algorithm:74\x1b[m\x1b[K,\n'}
+[4.065283] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtCore/qglobal.h:137\x1b[m\x1b[K,\n'}
+[4.065317] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h:43\x1b[m\x1b[K,\n'}
+[4.065351] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h:43\x1b[m\x1b[K,\n'}
+[4.065384] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h:43\x1b[m\x1b[K,\n'}
+[4.065418] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow:1\x1b[m\x1b[K,\n'}
+[4.065451] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/main_window.hpp:3\x1b[m\x1b[K,\n'}
+[4.065496] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:1\x1b[m\x1b[K:\n'}
+[4.065536] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/vector.tcc:198:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = short unsigned int; _Alloc = std::allocator<short unsigned int>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.065573] (gui) StderrLine: {'line': b'  198 |     \x1b[01;36m\x1b[Kvector<_Tp, _Alloc>\x1b[m\x1b[K::\n'}
+[4.065606] (gui) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.065640] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/vector.tcc:199:42:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[K<brace-enclosed initializer list>\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst std::vector<short unsigned int, std::allocator<short unsigned int> >&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.065684] (gui) StderrLine: {'line': b'  199 |     operator=(\x1b[01;36m\x1b[Kconst vector<_Tp, _Alloc>& __x\x1b[m\x1b[K)\n'}
+[4.065719] (gui) StderrLine: {'line': b'      |               \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[4.065756] (gui) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/vector:67\x1b[m\x1b[K,\n'}
+[4.065795] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/functional:62\x1b[m\x1b[K,\n'}
+[4.065828] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13\x1b[m\x1b[K,\n'}
+[4.065863] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/algorithm:74\x1b[m\x1b[K,\n'}
+[4.065898] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtCore/qglobal.h:137\x1b[m\x1b[K,\n'}
+[4.065931] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h:43\x1b[m\x1b[K,\n'}
+[4.065971] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h:43\x1b[m\x1b[K,\n'}
+[4.066006] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h:43\x1b[m\x1b[K,\n'}
+[4.066046] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow:1\x1b[m\x1b[K,\n'}
+[4.066080] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/include/gui/main_window.hpp:3\x1b[m\x1b[K,\n'}
+[4.066114] (gui) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/arepo/TMR2026_Rescue/shared/gui_ws/src/gui/src/main_window.cpp:1\x1b[m\x1b[K:\n'}
+[4.066149] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/stl_vector.h:709:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(std::vector<_Tp, _Alloc>&&) [with _Tp = short unsigned int; _Alloc = std::allocator<short unsigned int>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.066186] (gui) StderrLine: {'line': b'  709 |       \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K=(vector&& __x) noexcept(_Alloc_traits::_S_nothrow_move())\n'}
+[4.066233] (gui) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[4.066267] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/stl_vector.h:709:26:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[K<brace-enclosed initializer list>\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<short unsigned int, std::allocator<short unsigned int> >&&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.066303] (gui) StderrLine: {'line': b'  709 |       operator=(\x1b[01;36m\x1b[Kvector&& __x\x1b[m\x1b[K) noexcept(_Alloc_traits::_S_nothrow_move())\n'}
+[4.066338] (gui) StderrLine: {'line': b'      |                 \x1b[01;36m\x1b[K~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[4.066373] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/stl_vector.h:730:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(std::initializer_list<_Tp>) [with _Tp = short unsigned int; _Alloc = std::allocator<short unsigned int>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.066410] (gui) StderrLine: {'line': b'  730 |       \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K=(initializer_list<value_type> __l)\n'}
+[4.066446] (gui) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[4.066512] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/stl_vector.h:730:46:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[K<brace-enclosed initializer list>\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kstd::initializer_list<short unsigned int>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.066563] (gui) StderrLine: {'line': b'  730 |       operator=(\x1b[01;36m\x1b[Kinitializer_list<value_type> __l\x1b[m\x1b[K)\n'}
+[4.066598] (gui) StderrLine: {'line': b'      |                 \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[4.112690] (-) TimerEvent: {}
+[4.213034] (-) TimerEvent: {}
+[4.313405] (-) TimerEvent: {}
+[4.413752] (-) TimerEvent: {}
+[4.514048] (-) TimerEvent: {}
+[4.614400] (-) TimerEvent: {}
+[4.714773] (-) TimerEvent: {}
+[4.815125] (-) TimerEvent: {}
+[4.915422] (-) TimerEvent: {}
+[5.016060] (-) TimerEvent: {}
+[5.116395] (-) TimerEvent: {}
+[5.216973] (-) TimerEvent: {}
+[5.317299] (-) TimerEvent: {}
+[5.417716] (-) TimerEvent: {}
+[5.518075] (-) TimerEvent: {}
+[5.618428] (-) TimerEvent: {}
+[5.683032] (gui) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/gui.dir/build.make:114: CMakeFiles/gui.dir/src/main_window.cpp.o] Error 1\n'}
+[5.683415] (gui) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:156: CMakeFiles/gui.dir/all] Error 2\n'}
+[5.683883] (gui) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[5.685684] (gui) CommandEnded: {'returncode': 2}
+[5.690477] (gui) JobEnded: {'identifier': 'gui', 'rc': 2}
+[5.700921] (-) EventReactorShutdown: {}

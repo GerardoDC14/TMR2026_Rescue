@@ -117,6 +117,7 @@ public slots:
     // Sets or clears SENSOR_BIT_THERMAL (bit 1) and republishes the mask.
     void setThermalEnabled(bool enabled);
 
+public:
     // E-STOP
     rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr estop_pub_;
     QTimer* estop_timer_;

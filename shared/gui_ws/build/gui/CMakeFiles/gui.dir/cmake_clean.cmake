@@ -20,6 +20,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/gui.dir/src/main_window.cpp.o.d"
   "CMakeFiles/gui.dir/src/odometry_panel.cpp.o"
   "CMakeFiles/gui.dir/src/odometry_panel.cpp.o.d"
+  "CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o"
+  "CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o.d"
   "CMakeFiles/gui.dir/src/settings_dialog.cpp.o"
   "CMakeFiles/gui.dir/src/settings_dialog.cpp.o.d"
   "CMakeFiles/gui.dir/src/source_manager.cpp.o"

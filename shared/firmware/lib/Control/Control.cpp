@@ -35,8 +35,12 @@ float Control::s_pid_integral = 0.0f;
 float Control::s_pid_prev_err = 0.0f;
 
 float Control::flipperPID(float setpoint_deg, float measured_deg) {
-    constexpr float dt = 1.0f / CONTROL_LOOP_HZ;
-    float err         = setpoint_deg - measured_deg;
+    constexpr float dt     = 1.0f / CONTROL_LOOP_HZ;
+    // Normalise error by the full angle range so KP=1.0 gives full effort
+    // only when error spans the entire mechanical range (~130°).
+    // A 5° error with range=130° gives ~3.8% effort — gradual, not saturated.
+    constexpr float kRange = FLIPPER_ANGLE_MAX - FLIPPER_ANGLE_MIN;
+    float err         = (setpoint_deg - measured_deg) / kRange;
     s_pid_integral   += err * dt;
     if (s_pid_integral >  FLIPPER_PID_I_MAX) s_pid_integral =  FLIPPER_PID_I_MAX;
     if (s_pid_integral < -FLIPPER_PID_I_MAX) s_pid_integral = -FLIPPER_PID_I_MAX;
@@ -60,6 +64,9 @@ void Control::begin() {
         else        Control::clearEstop();
     });
     Comms::onKeybind([](const KeybindPayload& p) { Control::setKeybind(p); });
+    Comms::onPpmCalib([](const PpmCalibPayload& p) {
+        RC::setCalib(p);
+    });
 
     s_mode = RobotMode::STANDBY;
 }
@@ -174,7 +181,7 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
         ChannelFunction fn = kb.map[mode_idx][c];
         if (fn == ChannelFunction::NONE) continue;
 
-        float val = ppmNormalise(ppm.ch[slot_to_ppm[c]]);
+        float val = RC::normalise(static_cast<uint8_t>(slot_to_ppm[c]), ppm.ch[slot_to_ppm[c]]);
         if (fabsf(val) < kDeadband) val = 0.0f;
 
         switch (fn) {
@@ -229,6 +236,9 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
         float target_norm = flipper_all;
         if (target_norm == 0.0f) target_norm = flipper_fl;  // fallback to individual
         float target_deg = target_norm * FLIPPER_ANGLE_MAX;
+        // Clamp to mechanical limits so the PID doesn't chase unreachable setpoints
+        if (target_deg < FLIPPER_ANGLE_MIN) target_deg = FLIPPER_ANGLE_MIN;
+        if (target_deg > FLIPPER_ANGLE_MAX) target_deg = FLIPPER_ANGLE_MAX;
         Locomotion::setFlipperEffort(flipperPID(target_deg, enc.flipper_angle_deg));
 #elif defined(ROBOT_SECONDARY)
         // Dicerox: 4 independent flippers
@@ -246,12 +256,8 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
         // Halt tracks
         Locomotion::setDriveCommand(0.0f, 0.0f);
 
-        // Forward all PPM to mini PC for IK
-        TelemetryPayload telem;
-        telem.mode  = static_cast<uint8_t>(RobotMode::ARM);
-        telem.flags = 0;
-        for (int i = 0; i < PPM_CHANNELS; i++) telem.ppm[i] = ppm.ch[i];
-        Comms::sendTelemetry(telem);
+        // commsTask already sends full telemetry (including PPM) at 50 Hz —
+        // no extra sendTelemetry() here avoids sending partially-initialised data.
 
 #ifdef ROBOT_SECONDARY
         // Relay joint angles from mini PC to arm over CAN

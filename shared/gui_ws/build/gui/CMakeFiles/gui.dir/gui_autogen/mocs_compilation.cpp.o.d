@@ -913,12 +913,26 @@ CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o: \
  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__builder.hpp \
  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__traits.hpp \
  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int8_multi_array__type_support.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/u_int16_multi_array.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__struct.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__builder.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__traits.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/u_int16_multi_array__type_support.hpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_odometry_panel.cpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/../../../../src/gui/include/gui/odometry_panel.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/vector3.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__builder.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__type_support.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+ /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_ppm_calib_dialog.cpp \
+ /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/../../../../src/gui/include/gui/ppm_calib_dialog.hpp \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QVector \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qvector.h \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/int16_multi_array.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__struct.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__builder.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__traits.hpp \
+ /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__type_support.hpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_settings_dialog.cpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/../../../../src/gui/include/gui/settings_dialog.hpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_source_manager.cpp \
@@ -930,11 +944,6 @@ CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringlist.h \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_speech_processor.cpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/../../../../src/gui/include/gui/speech_processor.hpp \
- /opt/ros/humble/include/std_msgs/std_msgs/msg/int16_multi_array.hpp \
- /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__struct.hpp \
- /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__builder.hpp \
- /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__traits.hpp \
- /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/int16_multi_array__type_support.hpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_urdf_viewer.cpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/moc_video_panel.cpp \
  /home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/gui_autogen/BMPI5EA7AM/../../../../src/gui/include/gui/video_panel.hpp \

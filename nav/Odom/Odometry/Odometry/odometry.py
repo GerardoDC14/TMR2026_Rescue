@@ -25,9 +25,9 @@ class EkfOdomNode(Node):
         super().__init__('ekf_odom_node')
 
         # --- Subscriptions ---
-        self.create_subscription(Imu, '/sensors/imu', 10)
-        self.create_subscription(Vector3, '/encoders/tracks', 10)
-        self.create_subscription(Float32MultiArray, '/enconders/flipper')
+        self.create_subscription(Imu, '/sensors/imu', self.imu_callback, 10)
+        self.create_subscription(Vector3, '/encoders/tracks', self.velocity_callback, 10)
+        #self.create_subscription(Float32MultiArray, '/enconders/flipper')
 
         # --- Publishers & TF ---
         self.odom_pub     = self.create_publisher(Odometry, '/odom',      10)
@@ -41,6 +41,8 @@ class EkfOdomNode(Node):
         
         # --- EMA Parameters ---
         self.yaw_buffer = deque(maxlen=5)
+        self.omega_buffer = deque(maxlen=5)
+        self.ema_var_omega = None
         self.ema_var_yaw = None
         self.alpha = 0.1
 
@@ -50,7 +52,8 @@ class EkfOdomNode(Node):
 
         # --- Noise matrices ---
         self.Q     = np.diag([0.05, 0.05, 0.05])
-        self.R_yaw = np.array([[0.02]])
+        self.R_yaw = np.array([[0.02]]) #TUNE THISSS
+        self.R_omega = np.array([0.01]) #TUNE THISSS
 
         # --- Inputs / measurements ---
         self.vx       = 0.0
@@ -69,13 +72,13 @@ class EkfOdomNode(Node):
         self.w_x = (rpm_x * 2 * np.pi) / 60 #rpms to rad/s left
         self.w_y = (rpm_y * 2 * np.pi) / 60 #rpms to rad/s right
 
-        self.v_x = (self.w_x* 0.087) 
+        self.v_x = (self.w_x* 0.087) #Band radius
         self.v_y = (self.w_y* 0.087)
 
         self.v = (self.v_x + self.v_y) / 2
-        self.w= (self.v_x + self.v_y) / #trackWidth
+        self.omega_enc = (self.v_y - self.v_x) / 0.47 #trackwidth
 
-        return self.v, self.w
+        return self.v, self.omega
 
 
     def imu_callback(self, msg: Imu):
@@ -84,22 +87,44 @@ class EkfOdomNode(Node):
              msg.orientation.z,
              msg.orientation.w]
         _, _, yaw = tf_transformations.euler_from_quaternion(q)
-        self.yaw_meas = yaw
-        self.omega    = msg.angular_velocity.z
+        self.yaw_meas = yaw #Obtain orientation
+        self.omega_imu    = msg.angular_velocity.z #OBtain rotation speed
         
-        self.yaw_buffer.append(yaw)
-        if len(self.yaw_buffer) == self.yaw_buffer.maxlen:
-            var_yaw = np.var(self.yaw_buffer)
-            
-            if self.ema_var_yaw is None: 
-                self.ema_var_yaw = var_yaw
-            else: 
-                self.ema_var_yaw = self.alpha * var_yaw + (1 - self.alpha) * self.ema_var_yaw
-            
-            self.R_yaw = np.array([[self.ema_var_yaw]])
+        #Obtain the yaw variance (direction)
+        imu_orientation_var = msg.orientation_covariance[0]
+        if imu_orientation_var > 0:
+            self.R_yaw = np.array([[imu_orientation_var]])
         else: 
-            self.R_yaw = np.array([[0.02]])
+            self.yaw_buffer.append(yaw)
+            if len(self.yaw_buffer) == self.yaw_buffer.maxlen:
+                var_yaw = np.var(self.yaw_buffer)
+            
+                if self.ema_var_yaw is None: 
+                    self.ema_var_yaw = var_yaw
+                else: 
+                    self.ema_var_yaw = self.alpha * var_yaw + (1 - self.alpha) * self.ema_var_yaw
+                    self.R_yaw = np.array([[self.ema_var_yaw]])
+            else: 
+                self.R_yaw = np.array([[0.02]])
         
+        #obtain the angular velocity variance
+        imu_omega_var = msg.angular_velocity_covariance[0]
+        if imu_omega_var > 0:
+            self.R_omega = np.array([imu_omega_var])
+        else: 
+            self.omega_buffer.append(self.omega_imu)
+            if len(self.omega_buffer) == self.omega_buffer.maxlen:
+                var_omega = np.var(self.omega_buffer)
+            
+                if self.ema_var_omega is None: 
+                    self.ema_var_omega = var_omega
+                else: 
+                    self.ema_var_omega = self.alpha * var_omega + (1 - self.alpha) * self.ema_var_omega
+                    self.R_omega = np.array([[self.ema_var_omega]])
+            else: 
+                self.R_omega = np.array([[0.01]])
+        
+             
     
     def timer_callback(self):
         now_time = self.get_clock().now()
@@ -108,8 +133,18 @@ class EkfOdomNode(Node):
             return
         self.last_time = now_time
 
+        #Fuse imu and encoder angular acceleration
+        if self.ema_var_omega is not None:
+            var_imu = self.ema_var_omega
+        else:
+            var_imu = 0.01  #In case there are no readings
+            var_enc = 0.05  #TUNE THIS AAAA
+        w_imu = 1.0 / var_imu
+        w_enc = 1.0 / var_enc
+        self.w = (w_imu * self.omega_imu + w_enc * self.omega_enc) / (w_imu + w_enc)
+
         x, y, yaw = self.x_est.flatten()
-        v, w = self.v, self.omega
+        v, w = self.v, self.w
 
         if abs(w) > 1e-6:
             dx = v / w * (math.sin(yaw + w*dt) - math.sin(yaw))
@@ -132,9 +167,9 @@ class EkfOdomNode(Node):
                                [y + dy],
                                [yaw_pred]])
 
-        F = np.eye(3)
-        F[0, 2] = -v * dt * math.sin(yaw)
-        F[1, 2] =  v * dt * math.cos(yaw)
+        #F = np.eye(3)
+        #F[0, 2] = -v * dt * math.sin(yaw)
+        #F[1, 2] =  v * dt * math.cos(yaw)
         B = np.array([[dt * math.cos(yaw), 0],
                       [dt * math.sin(yaw), 0],
                       [0, dt]])

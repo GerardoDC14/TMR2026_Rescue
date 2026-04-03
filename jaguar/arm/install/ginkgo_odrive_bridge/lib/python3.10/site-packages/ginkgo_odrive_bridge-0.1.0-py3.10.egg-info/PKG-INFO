@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: ginkgo-odrive-bridge
-Version: 0.1.0
-Summary: ROS 2 joint-state bridge for ODrive over a Ginkgo USB-CAN adapter.
-Maintainer: Gerardo
-Maintainer-email: gerardo@example.com
-License: Proprietary

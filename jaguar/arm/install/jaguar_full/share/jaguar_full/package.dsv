@@ -1,8 +1,0 @@
-source;share/jaguar_full/hook/cmake_prefix_path.ps1
-source;share/jaguar_full/hook/cmake_prefix_path.dsv
-source;share/jaguar_full/hook/cmake_prefix_path.sh
-source;share/jaguar_full/local_setup.bash
-source;share/jaguar_full/local_setup.dsv
-source;share/jaguar_full/local_setup.ps1
-source;share/jaguar_full/local_setup.sh
-source;share/jaguar_full/local_setup.zsh

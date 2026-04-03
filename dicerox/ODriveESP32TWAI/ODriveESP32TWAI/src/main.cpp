@@ -4,121 +4,75 @@
 #define TWAI_TX GPIO_NUM_22
 #define TWAI_RX GPIO_NUM_21
 
+// -------------------- PPM CONFIG --------------------
+#define PPM_PIN            4
+#define CHANNELS           6
+#define SYNC_PULSE_US      2100
+#define BAUD_RATE          115200
+
+#define PPM_DEADBAND_LOW   1480
+#define PPM_DEADBAND_HIGH  1520
+#define PPM_MIN_US         1000
+#define PPM_MAX_US         2000
+
+volatile uint32_t ppmValues[CHANNELS] = {0};
+volatile uint8_t currentChannel = 0;
+volatile uint32_t lastPulse = 0;
+volatile bool frameReady = false;
+volatile uint32_t lastFrameMs = 0;
+
+// -------------------- CONTROL TUNING --------------------
+static const int32_t RPM_MAX = 2500;      // RPM máximo a pedir
+static const uint32_t PRINT_PERIOD = 50;  // Mostrar datos cada 50ms
+static const uint32_t FAILSAFE_MS = 200;  // Tiempo sin señal para failsafe
+
+static inline int clampInt(int x, int lo, int hi) {
+  if (x < lo) return lo;
+  if (x > hi) return hi;
+  return x;
+}
+
+// Odrive declaration
 ODrive can(1);
 
-void convert_data(const twai_message_t &msg){
-    uint32_t id = msg.identifier;
+void IRAM_ATTR ppmISR() {
+  uint32_t nowUs = micros(); // Necesario para medir el ancho del pulso
+  uint32_t pulseWidth = nowUs - lastPulse;
+  lastPulse = nowUs;
 
-    uint8_t vesc_id = id & 0xFF;
-    uint8_t cmd = (id >> 8) & 0xFF;
+  if (pulseWidth > SYNC_PULSE_US) {
+    currentChannel = 0;
+    lastFrameMs = millis(); // Registramos la última vez que llegó señal (en milisegundos)
+  } else {
+    if (currentChannel < CHANNELS) {
+      ppmValues[currentChannel] = pulseWidth;
+      currentChannel++;
+    }
+  }
+}
 
-    switch(cmd){
+float ppmToNormalized(int ppm) {
+  ppm = clampInt(ppm, PPM_MIN_US, PPM_MAX_US);
 
-    case 9:{ //Status 1
-        int32_t erpm = ((int32_t)msg.data[0] << 24) |
-                       ((int32_t)msg.data[1] << 16) |
-                       ((int32_t)msg.data[2] << 8)  |
-                       ((int32_t)msg.data[3]);
+  // Zona muerta (centro del stick)
+  if (ppm >= PPM_DEADBAND_LOW && ppm <= PPM_DEADBAND_HIGH) return 0.0f;
 
-        int16_t current_CAN = ((int16_t)msg.data[4] << 8) | msg.data[5];
-        float current = current_CAN *0.1;
-
-        int16_t duty_cycle_CAN = ((int16_t)msg.data[6] << 8) | msg.data[7];
-        float duty_cycle = duty_cycle_CAN *0.001;
-
-        Serial.print("VESC ID: "); Serial.print(vesc_id);
-        Serial.print(", ERPM/RPM: "); Serial.print(erpm);
-        Serial.print(", Current: "); Serial.print(current);
-        Serial.print(", Duty: "); Serial.println(duty_cycle);
-        Serial.println("------");
-        break;}
-
-    case 14:{ // Status 2
-        int32_t amp_hours_CAN = ((int32_t)msg.data[0] << 24) |
-                       ((int32_t)msg.data[1] << 16) |
-                       ((int32_t)msg.data[2] << 8)  |
-                       ((int32_t)msg.data[3]);
-
-        float amp_hours = amp_hours_CAN *0.0001;
-
-        int32_t amp_hours_charged_CAN = ((int32_t)msg.data[4] << 24) |
-                       ((int32_t)msg.data[5] << 16) |
-                       ((int32_t)msg.data[6] << 8)  |
-                       ((int32_t)msg.data[7]);
-
-        float amp_hours_charged = amp_hours_charged_CAN  *0.0001 ;
-
-        Serial.print("VESC ID: "); Serial.print(vesc_id);
-        Serial.print(", Amp hours: "); Serial.print(amp_hours);
-        Serial.print(", Amp hours charged: "); Serial.println(amp_hours_charged);
-        Serial.println("------");
-        break;}
-
-    case 15:{ //Status 3
-        int32_t watt_hours_CAN = ((int32_t)msg.data[0] << 24) |
-                       ((int32_t)msg.data[1] << 16) |
-                       ((int32_t)msg.data[2] << 8)  |
-                       ((int32_t)msg.data[3]);
-
-        float watt_hours = watt_hours_CAN  *0.0001;
-
-        int32_t watt_hours_charged_CAN = ((int32_t)msg.data[4] << 24) |
-                       ((int32_t)msg.data[5] << 16) |
-                       ((int32_t)msg.data[6] << 8)  |
-                       ((int32_t)msg.data[7]);
-
-        float watt_hours_charged = watt_hours_charged_CAN  *0.0001;
-
-        Serial.print("VESC ID: "); Serial.print(vesc_id);
-        Serial.print(", Watt hours: "); Serial.print(watt_hours);
-        Serial.print(", Watt hours charged: "); Serial.println(watt_hours_charged);
-        Serial.println("------");
-        break;}
-
-    case 16: {//Status 4
-
-        int16_t temp_fet_CAN = ((int16_t)msg.data[0] << 8) | msg.data[1];
-        float temp_fet = temp_fet_CAN * 0.1;
-
-        int16_t temp_motor_CAN = ((int16_t)msg.data[2] << 8) | msg.data[3];
-        float temp_motor = temp_motor_CAN * 0.1;
-
-        int16_t current_in_CAN = ((int16_t)msg.data[4] << 8) | msg.data[5];
-        float current_in = current_in_CAN * 0.1;
-
-        int16_t pid_pos_now_CAN = ((int16_t)msg.data[6] << 8) | msg.data[7];
-        float pid_pos_now = pid_pos_now_CAN * 0.02;
-
-        Serial.print("VESC ID: "); Serial
-.print(vesc_id);
-        Serial.print(", Temp fet: "); Serial.print(temp_fet);
-        Serial.print(", Temp motor: "); Serial.print(temp_motor);
-        Serial.print(", Current in: "); Serial.print(current_in);
-        Serial.print(", Pid Pos now: "); Serial.println(pid_pos_now);
-        Serial.println("------");
-        break;}
-
-    case 27:{ //Status 5
-        int32_t tacho_value = ((int32_t)msg.data[0] << 24) |
-                       ((int32_t)msg.data[1] << 16) |
-                       ((int32_t)msg.data[2] << 8)  |
-                       ((int32_t)msg.data[3]);
-
-        int16_t v_in_CAN = ((int16_t)msg.data[4] << 8) | msg.data[5];
-        float v_in = v_in_CAN * 0.1 ;
-
-        Serial.print("VESC ID: "); Serial.print(vesc_id);
-        Serial.print(", Tacho value: "); Serial.print(tacho_value);
-        Serial.print(", Voltage in: "); Serial.println(v_in);
-        Serial.println("------");
-        break;}
-    default: {break;}
-}}
-
-
+  if (ppm > PPM_DEADBAND_HIGH) {
+    // Escala positiva [1520..2000] -> [0..1]
+    return (float)(ppm - PPM_DEADBAND_HIGH) / (float)(PPM_MAX_US - PPM_DEADBAND_HIGH);
+  } else {
+    // Escala negativa [1480..1000] -> [0..-1]
+    return -(float)(PPM_DEADBAND_LOW - ppm) / (float)(PPM_DEADBAND_LOW - PPM_MIN_US);
+  }
+}
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(BAUD_RATE);
+
+  pinMode(PPM_PIN, INPUT);
+  attachInterrupt(digitalPinToInterrupt(PPM_PIN), ppmISR, FALLING);
+  Serial.println("Lectura PPM iniciada...");
+
   delay(5000);
   Serial.println("Starting CAN sniffer...");
 
@@ -143,13 +97,49 @@ void setup() {
 void loop() {
   twai_message_t msg;
 
-  esp_err_t err = twai_receive(&msg, pdMS_TO_TICKS(200));
-
-  if (err == ESP_OK) {
-    // convert_data(msg);
-    can.requestVoltage();
-    Serial.print(can.inpVoltage);
-    Serial.print(can.avgInputCurrent);
+  while (twai_receive(&msg, 0) == ESP_OK) {
+      can.feedMsg(msg); 
   }
-}
 
+  static uint32_t lastPrintMs = 0;
+  uint32_t nowMs = millis();
+
+  // Ejecutar lógica cada 50ms
+  if (nowMs - lastPrintMs >= PRINT_PERIOD) {
+    lastPrintMs = nowMs;
+    can.requestVoltage();
+    Serial.print("Current State: ");
+    Serial.println(can.currentState);
+    Serial.print("bus Current: ");
+    Serial.println(can.busCurrent);
+    Serial.print("Bus Voltage: ");
+    Serial.println(can.busVoltage);
+    Serial.print("Sensorless pos estimate: ");
+    Serial.println(can.senlessEstPos);
+    Serial.print("Sensorless vel estimate: ");
+    Serial.println(can.senlessEstVel);
+    Serial.println();
+
+    // Failsafe: Si han pasado más de 200ms sin señal
+    if (nowMs - lastFrameMs > FAILSAFE_MS) {
+      Serial.println("FAILSAFE ACTIVO - Sin señal del control");
+      return; // Evita que el motor se mueva
+    }
+
+    // Leer el canal de aceleración (CH2 = índice 1) de forma segura
+    uint32_t ch2_us;
+    noInterrupts();
+    ch2_us = ppmValues[1];
+    interrupts();
+
+    // 1. Normalizar el valor
+    float normalizado = ppmToNormalized((int)ch2_us);     
+    
+    // 2. Convertir a objetivo de RPM
+    int32_t rpmTarget = (int32_t)(normalizado * RPM_MAX); 
+
+    Serial.printf("Señal (us): %u | Mapeo: %.2f | RPM Objetivo: %d\n", ch2_us, normalizado, rpmTarget);
+  }
+
+  // Falta declarar la funcion de envio de RPMs dentro de la libreria de ODrive
+}

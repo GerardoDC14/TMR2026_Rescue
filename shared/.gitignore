@@ -1,0 +1,6 @@
+.claude
+firmware/.pio
+firmware/.vscode
+gui_ws/build
+gui_ws/log
+gui_ws/install

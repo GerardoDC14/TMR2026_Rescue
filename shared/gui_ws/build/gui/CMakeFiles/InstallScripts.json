@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/arepo/TMR2026_Rescue/shared/gui_ws/build/gui/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

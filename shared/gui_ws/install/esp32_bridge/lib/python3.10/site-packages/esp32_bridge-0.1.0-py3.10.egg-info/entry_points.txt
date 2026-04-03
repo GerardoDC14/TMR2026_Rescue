@@ -1,2 +1,0 @@
-[console_scripts]
-esp32_bridge_node = esp32_bridge.esp32_bridge_node:main

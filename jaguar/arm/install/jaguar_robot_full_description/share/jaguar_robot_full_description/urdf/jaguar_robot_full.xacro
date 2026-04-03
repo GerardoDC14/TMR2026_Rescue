@@ -1,0 +1,205 @@
+<robot name="jaguar_robot_full">
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0565124533846902 0.00256952989767814 -0.042085946476402" rpy="0 0 0" />
+      <mass value="15.1715774483089" />
+      <inertia ixx="0.104264005097167" ixy="-2.2619251045652E-07" ixz="0.000276050035752789" iyy="0.268293538273597" iyz="-5.01557578463442E-06" izz="0.253007230491594" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="Link1">
+    <inertial>
+      <origin xyz="0.000181055649049236 0.0218437254038133 0.0458397015647763" rpy="0 0 0" />
+      <mass value="0.32363997115718" />
+      <inertia ixx="0.000189473405126976" ixy="-1.72092446037958E-07" ixz="-1.33225968159779E-08" iyy="0.000305151535370521" iyz="-1.21954812646363E-05" izz="0.000191617288244321" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/Link1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint1" type="revolute">
+    <origin xyz="-6.9569E-05 0 0.01835" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="Link1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5708" upper="1.5708" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="Link2">
+    <inertial>
+      <origin xyz="-0.245871503434137 0.000549863726670874 -0.0078663424640299" rpy="0 0 0" />
+      <mass value="0.599664951036704" />
+      <inertia ixx="0.000316703094752835" ixy="-6.8707006196963E-05" ixz="-3.70994196361649E-05" iyy="0.000721611230934588" iyz="-4.69763372974255E-06" izz="0.00091185603477302" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/Link2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint2" type="revolute">
+    <origin xyz="0 0 0.05225" rpy="1.5708 0 0" />
+    <parent link="Link1" />
+    <child link="Link2" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="0.0000" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="Link3">
+    <inertial>
+      <origin xyz="-0.119220083915741 -0.0174630698745006 0.00381021477189829" rpy="0 0 0" />
+      <mass value="0.400952084125815" />
+      <inertia ixx="0.000189889981480359" ixy="-2.44544871239586E-05" ixz="-3.60936215506794E-05" iyy="0.000344362954609595" iyz="-5.55858908041743E-06" izz="0.000386062737356427" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/Link3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint3" type="revolute">
+    <origin xyz="-0.36057 0.02547 0" rpy="0 0 3.0711" />
+    <parent link="Link2" />
+    <child link="Link3" />
+    <axis xyz="0 0 1" />
+    <limit lower="0.0000" upper="3.05433" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="Link4">
+    <inertial>
+      <origin xyz="2.80036521749238E-10 -0.000861531782814825 0.281750152784539" rpy="0 0 0" />
+      <mass value="0.123546529319451" />
+      <inertia ixx="5.60863903848765E-05" ixy="4.43856028421494E-13" ixz="1.02709534139176E-11" iyy="4.37694512974911E-05" iyz="-2.89537517638626E-08" izz="3.44436689039393E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/Link4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/Link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint4" type="revolute">
+    <origin xyz="0 0 0" rpy="1.5708 0 -1.4182" />
+    <parent link="Link3" />
+    <child link="Link4" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5708" upper="1.5708" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="Link5">
+    <inertial>
+      <origin xyz="8.85339162308707E-05 -0.0531277087757831 0.000252549301900706" rpy="0 0 0" />
+      <mass value="0.143599100963312" />
+      <inertia ixx="8.33548526617665E-05" ixy="1.39501607016856E-07" ixz="-1.59136526352971E-06" iyy="6.66719429049142E-05" iyz="-1.67287146913069E-07" izz="4.19240998238639E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/Link5.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/Link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint5" type="revolute">
+    <origin xyz="0 -0.00088604 0.30869" rpy="-1.5708 0 0" />
+    <parent link="Link4" />
+    <child link="Link5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5708" upper="1.5708" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+  <link name="Link6">
+    <inertial>
+      <origin xyz="-0.00286299906977816 -0.000861371233471275 0.146452376173585" rpy="0 0 0" />
+      <mass value="0.266286780286246" />
+      <inertia ixx="9.18547929110204E-05" ixy="5.85345695687141E-09" ixz="-3.76348528216485E-07" iyy="8.47594779166661E-05" iyz="2.64173192341285E-07" izz="6.06923122244612E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/visual/Link6.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://jaguar_robot_full_description/meshes/collision/Link6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint6" type="revolute">
+    <origin xyz="0 0 0" rpy="1.5708 0 0" />
+    <parent link="Link5" />
+    <child link="Link6" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.5708" upper="1.5708" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+</robot>

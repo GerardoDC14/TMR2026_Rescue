@@ -1,0 +1,61 @@
+###############################################
+# MoveIt Servo parameters for jaguar_robot_full
+# ROS2 params-file format: node_name -> ros__parameters
+###############################################
+servo_node:
+  ros__parameters:
+    moveit_servo:
+      use_gazebo: false
+
+      ## Incoming command properties
+      command_in_type: "unitless"  # "unitless" -> [-1:1] like joystick; "speed_units" -> m/s and rad/s
+      scale:
+        linear: 0.2       # Max linear velocity [m/s] for Cartesian commands
+        rotational: 0.35  # Max angular velocity [rad/s] for Cartesian commands
+        joint: 0.35       # Max joint velocity [rad/s] for joint commands
+
+      ## Outgoing command properties
+      publish_period: 0.034          # ~30 Hz
+      low_latency_mode: false
+
+      command_out_type: trajectory_msgs/JointTrajectory
+      publish_joint_positions: true
+      publish_joint_velocities: true
+      publish_joint_accelerations: false
+
+      ## Smoothing
+      smoothing_filter_plugin_name: "online_signal_smoothing::ButterworthFilterPlugin"
+
+      ## Planning scene — set false when move_group is running alongside servo
+      is_primary_planning_scene_monitor: false
+
+      ## MoveIt properties
+      move_group_name: jaguar_arm
+      planning_frame: base_link
+
+      ## Frames
+      ee_frame_name: Link6
+      robot_link_command_frame: base_link
+
+      ## Stopping behaviour
+      incoming_command_timeout: 0.1   # Stop if no new command within 0.1s
+      num_outgoing_halt_msgs_to_publish: 4
+
+      ## Singularity / joint limit handling
+      lower_singularity_threshold: 120.0    # start decelerating at this condition number
+      hard_stop_singularity_threshold: 300.0 # emergency stop at this condition number
+      joint_limit_margin: 0.1
+      leaving_singularity_threshold_multiplier: 2.0
+
+      ## Topic names
+      cartesian_command_in_topic: ~/delta_twist_cmds
+      joint_command_in_topic: ~/delta_joint_cmds
+      joint_topic: /joint_states
+      status_topic: ~/status
+      command_out_topic: /jaguar_arm_controller/joint_trajectory
+
+      ## Collision checking
+      check_collisions: true
+      collision_check_rate: 10.0
+      self_collision_proximity_threshold: 0.01
+      scene_collision_proximity_threshold: 0.02

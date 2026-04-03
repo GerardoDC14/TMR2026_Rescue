@@ -1,0 +1,2 @@
+[console_scripts]
+joint_state_bridge = ginkgo_odrive_bridge.joint_state_bridge:main

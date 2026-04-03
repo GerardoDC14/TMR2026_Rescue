@@ -1,0 +1,21 @@
+ginkgo_joint_state_bridge:
+  ros__parameters:
+    can_channel: 0
+    can_bitrate_kbps: 500
+    joint_states_topic: /joint_states
+    joint_states_qos: sensor_data
+    send_hz: 20.0
+    encoder_timeout_s: 0.25
+    closed_loop_startup_delay_s: 0.05
+    verbose: false
+    verbose_period_s: 1.0
+    require_linux_root: false
+    require_startup_offsets: true
+    set_axis_idle_on_shutdown: true
+    
+    joint_names: ["Joint1", "Joint2", "Joint3"]
+    node_ids: [16, 17, 18]
+    gear_ratios: [48.0, 48.0, 48.0]
+    directions: [-1.0, -1.0, -1.0]
+    use_startup_offsets: [true, true, true]
+    command_modes: ["direct", "direct", "direct"]

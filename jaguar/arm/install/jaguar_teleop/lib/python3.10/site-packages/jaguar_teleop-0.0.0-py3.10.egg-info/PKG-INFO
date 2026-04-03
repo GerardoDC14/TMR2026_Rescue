@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: jaguar-teleop
+Version: 0.0.0
+Summary: Joystick teleoperation, serial bridge, and launch files for the Dicerox 6-DOF arm.
+Maintainer: gerardo
+Maintainer-email: gerardodelcid16@gmail.com
+License: MIT

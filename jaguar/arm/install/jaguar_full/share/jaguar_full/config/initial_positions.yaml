@@ -1,9 +1,0 @@
-# Default initial positions for jaguar_robot_full's ros2_control fake system
-
-initial_positions:
-  Joint1: 0
-  Joint2: 0   # mid-range [-3.14, 0.0]  — away from joint limit
-  Joint3: 0    # mid-range [0.0,  3.05]  — away from joint limit
-  Joint4: 0
-  Joint5: 0     # non-zero avoids wrist singularity (Joint4/Joint6 axes collinear at 0)
-  Joint6: 0

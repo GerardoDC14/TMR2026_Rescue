@@ -4,7 +4,10 @@
 #include <Arduino.h>
 #include <cmath>
 
-float Locomotion::s_flipper_target_deg = 0.0f;
+float Locomotion::s_flipper_target_deg  = 0.0f;
+float Locomotion::s_track_left_norm     = 0.0f;
+float Locomotion::s_track_right_norm    = 0.0f;
+float Locomotion::s_flipper_effort_norm = 0.0f;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -73,6 +76,7 @@ void Locomotion::setFlipperTarget(float angle_deg) {
 
 void Locomotion::neutralise() {
 #ifdef ROBOT_MAIN
+    s_track_left_norm = s_track_right_norm = s_flipper_effort_norm = 0.0f;
     uint32_t neutral = normToDuty(0.0f);
     ledcWrite(LEDC_CH_LEFT,    neutral);
     ledcWrite(LEDC_CH_RIGHT,   neutral);
@@ -87,6 +91,8 @@ void Locomotion::neutralise() {
 
 void Locomotion::applyTrackSpeeds(float left_norm, float right_norm) {
 #ifdef ROBOT_MAIN
+    s_track_left_norm  = left_norm;
+    s_track_right_norm = right_norm;
     // Servo-PWM motor drivers on ROBOT_MAIN
     ledcWrite(LEDC_CH_LEFT,  normToDuty(left_norm));
     ledcWrite(LEDC_CH_RIGHT, normToDuty(right_norm));
@@ -98,6 +104,7 @@ void Locomotion::applyTrackSpeeds(float left_norm, float right_norm) {
 
 void Locomotion::applyFlipperPWM(float norm) {
 #ifdef ROBOT_MAIN
+    s_flipper_effort_norm = norm;
     // NOTE: the ROBOT_MAIN flipper driver may change from the current
     // "regular PWM + two direction pins" wiring to a servo-PWM signal
     // identical to the traction ESCs.  If that change is made, this function
@@ -115,6 +122,10 @@ void Locomotion::applyFlipperSpeeds(float fl, float fr, float rl, float rr) {
 #else
     (void)fl; (void)fr; (void)rl; (void)rr;
 #endif
+}
+
+void Locomotion::setFlipperEffort(float norm) {
+    applyFlipperPWM(clampf(norm, -1.0f, 1.0f));
 }
 
 void Locomotion::setFlipperTargets(float fl, float fr, float rl, float rr) {

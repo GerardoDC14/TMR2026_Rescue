@@ -6,15 +6,13 @@
 // ─── TWAI state ───────────────────────────────────────────────────────────────
 static bool s_ok = false;
 
-// Transmit a pre-built TWAI message.  Returns true if the driver accepted it.
 static bool twaiSend(twai_message_t& msg) {
     return twai_transmit(&msg, pdMS_TO_TICKS(5)) == ESP_OK;
 }
 
 // ─── VESC CAN helpers ─────────────────────────────────────────────────────────
 // Standard VESC extended-frame protocol.
-// Extended ID = (command << 8) | controller_id, CAN_EFF_FLAG equivalent →
-// set extd = 1 in the TWAI message flags.
+// Extended ID = (command << 8) | controller_id.
 
 static constexpr uint8_t VESC_CMD_SET_CURRENT = 1;
 
@@ -29,44 +27,48 @@ static inline void putInt32BE(uint8_t* d, int32_t v) {
     d[3] = (v >>  0) & 0xFF;
 }
 
+static inline int32_t getInt32BE(const uint8_t* d) {
+    return ((int32_t)d[0] << 24) | ((int32_t)d[1] << 16) |
+           ((int32_t)d[2] << 8)  | (int32_t)d[3];
+}
+
+static inline int16_t getInt16BE(const uint8_t* d) {
+    return ((int16_t)d[0] << 8) | d[1];
+}
+
 static bool vescSendCurrent(uint8_t ctrl_id, float current_a) {
     twai_message_t msg = {};
-    msg.extd       = 1;                              // extended 29-bit ID
+    msg.extd       = 1;
     msg.identifier = vescEID(ctrl_id, VESC_CMD_SET_CURRENT);
     msg.data_length_code = 4;
-    putInt32BE(msg.data, static_cast<int32_t>(current_a * 1000.0f));  // A → mA
+    putInt32BE(msg.data, static_cast<int32_t>(current_a * 1000.0f));
     return twaiSend(msg);
 }
 
-// ─── ODrive CAN helpers (ROBOT_SECONDARY arm) ─────────────────────────────────
+// ─── VESC feedback storage ───────────────────────────────────────────────────
+// Indexed by (vesc_id - 1).  Only used on ROBOT_SECONDARY but compiled always
+// to keep the interface uniform (the poll() function is a no-op on ROBOT_MAIN).
+
+struct VescFeedback {
+    int32_t erpm;
+    int16_t current_10;       // A × 10
+    int16_t duty_1000;        // × 1000
+    int16_t temp_fet_10;      // °C × 10
+    int16_t temp_motor_10;    // °C × 10
+    int16_t v_in_10;          // V × 10
+    bool    fresh;            // set on new data, cleared by getVescStatus
+};
+
+static VescFeedback s_vesc[VESC_MAX_CONTROLLERS] = {};
+static portMUX_TYPE s_vesc_mux = portMUX_INITIALIZER_UNLOCKED;
+
+// ─── ODrive CAN helpers ──────────────────────────────────────────────────────
 // Standard 11-bit frames, little-endian payloads.
 // COB-ID = (node_id << 5) | cmd_id.
-//
-//   0x07  SET_AXIS_STATE   uint32 LE  (8 = CLOSED_LOOP_CONTROL)
-//   0x09  GET_ENCODER_EST  RTR        reply: float32 LE pos_est, float32 LE vel_est
-//   0x0C  SET_INPUT_POS    float32 LE (turns) + int16 LE vel_ff=0 + int16 LE torque_ff=0
-
-#ifdef ROBOT_SECONDARY
 
 static constexpr uint8_t ODRIVE_CMD_SET_AXIS_STATE  = 0x07;
 static constexpr uint8_t ODRIVE_CMD_GET_ENCODER_EST = 0x09;
 static constexpr uint8_t ODRIVE_CMD_SET_INPUT_POS   = 0x0C;
-static constexpr uint8_t ODRIVE_NUM_JOINTS          = 6;
-
-static const uint8_t s_node[ODRIVE_NUM_JOINTS] = {
-    ODRIVE_NODE_J1, ODRIVE_NODE_J2, ODRIVE_NODE_J3,
-    ODRIVE_NODE_J4, ODRIVE_NODE_J5, ODRIVE_NODE_J6
-};
-static const float s_gear[ODRIVE_NUM_JOINTS] = {
-    ODRIVE_GEAR_J1, ODRIVE_GEAR_J2, ODRIVE_GEAR_J3,
-    ODRIVE_GEAR_J4, ODRIVE_GEAR_J5, ODRIVE_GEAR_J6
-};
-static const float s_dir[ODRIVE_NUM_JOINTS] = {
-    ODRIVE_DIR_J1, ODRIVE_DIR_J2, ODRIVE_DIR_J3,
-    ODRIVE_DIR_J4, ODRIVE_DIR_J5, ODRIVE_DIR_J6
-};
-
-static float s_odrive_zero[ODRIVE_NUM_JOINTS] = {};
 
 static inline uint32_t odriveCOBID(uint8_t node_id, uint8_t cmd_id) {
     return ((uint32_t)node_id << 5) | cmd_id;
@@ -113,18 +115,17 @@ static bool odriveSendInputPos(uint8_t node_id, float turns) {
     msg.identifier = odriveCOBID(node_id, ODRIVE_CMD_SET_INPUT_POS);
     msg.data_length_code = 8;
     putFloat32LE(msg.data, turns);
-    msg.data[4] = 0; msg.data[5] = 0;   // vel_ff   = 0 (int16 LE)
-    msg.data[6] = 0; msg.data[7] = 0;   // torque_ff = 0 (int16 LE)
+    msg.data[4] = 0; msg.data[5] = 0;   // vel_ff   = 0
+    msg.data[6] = 0; msg.data[7] = 0;   // torque_ff = 0
     return twaiSend(msg);
 }
 
 static bool odriveReadEncoderZero(uint8_t node_id, float& out_turns) {
-    // Send RTR (remote frame request)
     twai_message_t rtr = {};
     rtr.extd       = 0;
     rtr.rtr        = 1;
     rtr.identifier = odriveCOBID(node_id, ODRIVE_CMD_GET_ENCODER_EST);
-    rtr.data_length_code = 0;
+    rtr.data_length_code = 8;
     twaiSend(rtr);
 
     uint32_t deadline = millis() + ODRIVE_ZERO_TIMEOUT_MS;
@@ -142,7 +143,34 @@ static bool odriveReadEncoderZero(uint8_t node_id, float& out_turns) {
     return false;
 }
 
-#endif  // ROBOT_SECONDARY
+// ─── ODrive joint tables (shared by both robots) ─────────────────────────────
+
+#ifdef ROBOT_MAIN
+static constexpr uint8_t ODRIVE_NUM_JOINTS = ODRIVE_MAIN_NUM_JOINTS;  // 3
+#else
+static constexpr uint8_t ODRIVE_NUM_JOINTS = 6;
+#endif
+
+static const uint8_t s_node[ODRIVE_NUM_JOINTS] = {
+    ODRIVE_NODE_J1, ODRIVE_NODE_J2, ODRIVE_NODE_J3,
+#ifdef ROBOT_SECONDARY
+    ODRIVE_NODE_J4, ODRIVE_NODE_J5, ODRIVE_NODE_J6
+#endif
+};
+static const float s_gear[ODRIVE_NUM_JOINTS] = {
+    ODRIVE_GEAR_J1, ODRIVE_GEAR_J2, ODRIVE_GEAR_J3,
+#ifdef ROBOT_SECONDARY
+    ODRIVE_GEAR_J4, ODRIVE_GEAR_J5, ODRIVE_GEAR_J6
+#endif
+};
+static const float s_dir[ODRIVE_NUM_JOINTS] = {
+    ODRIVE_DIR_J1, ODRIVE_DIR_J2, ODRIVE_DIR_J3,
+#ifdef ROBOT_SECONDARY
+    ODRIVE_DIR_J4, ODRIVE_DIR_J5, ODRIVE_DIR_J6
+#endif
+};
+
+static float s_odrive_zero[ODRIVE_NUM_JOINTS] = {};
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
@@ -166,21 +194,16 @@ bool CANInterface::begin() {
     }
     s_ok = true;
 
-#ifdef ROBOT_SECONDARY
-    // ── ODrive arm startup ─────────────────────────────────────────────────────
-    // 1. Put all joints into closed-loop control.
+    // ── ODrive arm startup (both robots) ──────────────────────────────────────
     for (uint8_t j = 0; j < ODRIVE_NUM_JOINTS; j++) {
         odriveSendAxisState(s_node[j], 8 /*CLOSED_LOOP_CONTROL*/);
     }
-    // 2. Allow ODrives to enter closed-loop (≥50 ms per ginkgo_odrive_bridge).
     delay(50);
-    // 3. Capture encoder zeros so the arm holds its current pose on startup.
     for (uint8_t j = 0; j < ODRIVE_NUM_JOINTS; j++) {
         float zero = 0.0f;
-        odriveReadEncoderZero(s_node[j], zero);  // stays 0.0 on timeout
+        odriveReadEncoderZero(s_node[j], zero);
         s_odrive_zero[j] = zero;
     }
-#endif
 
     return true;
 }
@@ -188,20 +211,14 @@ bool CANInterface::begin() {
 bool CANInterface::sendArmJoints(const float angles_deg[6]) {
     if (!s_ok) return false;
 
-#ifdef ROBOT_SECONDARY
-    static constexpr float TWO_PI = 6.28318530718f;
+    static constexpr float TWO_PI_F = 6.28318530718f;
     bool ok = true;
     for (uint8_t j = 0; j < ODRIVE_NUM_JOINTS; j++) {
         float rad   = angles_deg[j] * (3.14159265359f / 180.0f);
-        float turns = s_odrive_zero[j] + (rad / TWO_PI) * s_gear[j] * s_dir[j];
+        float turns = s_odrive_zero[j] + (rad / TWO_PI_F) * s_gear[j] * s_dir[j];
         ok &= odriveSendInputPos(s_node[j], turns);
     }
     return ok;
-#else
-    // ROBOT_MAIN: arm is handled by its dedicated ESP32 — nothing to relay here.
-    (void)angles_deg;
-    return true;
-#endif
 }
 
 bool CANInterface::sendTrackSpeeds(float left_norm, float right_norm) {
@@ -235,9 +252,57 @@ void CANInterface::poll() {
 
     twai_message_t frame;
     while (twai_receive(&frame, 0) == ESP_OK) {
-        // TODO: handle incoming ODrive status / fault frames
-        (void)frame;
+        // VESC status frames use extended IDs: cmd = (id >> 8), vesc_id = (id & 0xFF)
+        if (frame.extd && frame.data_length_code == 8) {
+            uint8_t vesc_id = frame.identifier & 0xFF;
+            uint8_t cmd     = (frame.identifier >> 8) & 0xFF;
+
+            if (vesc_id < 1 || vesc_id > VESC_MAX_CONTROLLERS) continue;
+            uint8_t idx = vesc_id - 1;
+
+            portENTER_CRITICAL(&s_vesc_mux);
+            switch (cmd) {
+                case 9:   // Status 1: eRPM, current, duty
+                    s_vesc[idx].erpm        = getInt32BE(frame.data);
+                    s_vesc[idx].current_10  = getInt16BE(frame.data + 4);  // already × 10
+                    s_vesc[idx].duty_1000   = getInt16BE(frame.data + 6);
+                    s_vesc[idx].fresh       = true;
+                    break;
+                case 16:  // Status 4: temps, current_in
+                    s_vesc[idx].temp_fet_10   = getInt16BE(frame.data);
+                    s_vesc[idx].temp_motor_10 = getInt16BE(frame.data + 2);
+                    s_vesc[idx].fresh         = true;
+                    break;
+                case 27:  // Status 5: tachometer, voltage
+                    s_vesc[idx].v_in_10 = getInt16BE(frame.data + 4);
+                    s_vesc[idx].fresh   = true;
+                    break;
+                default:
+                    break;
+            }
+            portEXIT_CRITICAL(&s_vesc_mux);
+        }
     }
+}
+
+bool CANInterface::getVescStatus(uint8_t vesc_id, VescStatusPayload& out) {
+    if (vesc_id < 1 || vesc_id > VESC_MAX_CONTROLLERS) return false;
+    uint8_t idx = vesc_id - 1;
+
+    portENTER_CRITICAL(&s_vesc_mux);
+    bool have = s_vesc[idx].fresh;
+    if (have) {
+        out.vesc_id       = vesc_id;
+        out.erpm          = s_vesc[idx].erpm;
+        out.current_10    = s_vesc[idx].current_10;
+        out.duty_1000     = s_vesc[idx].duty_1000;
+        out.temp_fet_10   = s_vesc[idx].temp_fet_10;
+        out.temp_motor_10 = s_vesc[idx].temp_motor_10;
+        out.v_in_10       = s_vesc[idx].v_in_10;
+        s_vesc[idx].fresh = false;
+    }
+    portEXIT_CRITICAL(&s_vesc_mux);
+    return have;
 }
 
 bool CANInterface::isOk() {

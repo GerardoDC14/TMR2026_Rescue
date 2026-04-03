@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
@@ -30,6 +31,31 @@ void AppSettings::load()
     label_font_scale_x100.store(get_i("label_font_scale_x100", 80));
     audio_start_enabled .store(o.value("audio_start_enabled").toBool(true));
 
+    robot_type.store(get_i("robot_type", 0));
+
+    if (o.contains("ppm_calib")) {
+        auto arr = o["ppm_calib"].toArray();
+        std::lock_guard<std::mutex> lk(ppm_calib_mutex);
+        for (int c = 0; c < 6 && c < arr.size(); ++c) {
+            auto row = arr[c].toArray();
+            if (row.size() >= 3) {
+                ppm_calib[c].min_us     = row[0].toInt(1000);
+                ppm_calib[c].neutral_us = row[1].toInt(1500);
+                ppm_calib[c].max_us     = row[2].toInt(2000);
+            }
+        }
+    }
+
+    if (o.contains("keybind")) {
+        auto arr = o["keybind"].toArray();
+        std::lock_guard<std::mutex> lk(keybind_mutex);
+        for (int m = 0; m < 3 && m < arr.size(); ++m) {
+            auto row = arr[m].toArray();
+            for (int c = 0; c < 5 && c < row.size(); ++c)
+                keybind[m][c] = static_cast<uint8_t>(row[c].toInt(0));
+        }
+    }
+
     if (o.contains("vosk_grammar")) {
         std::lock_guard<std::mutex> lk(strings_mutex);
         vosk_grammar = o["vosk_grammar"].toString().toStdString();
@@ -45,6 +71,30 @@ void AppSettings::save()
     o["thermal_upscale_h"]     = thermal_upscale_h.load();
     o["label_font_scale_x100"] = label_font_scale_x100.load();
     o["audio_start_enabled"]   = audio_start_enabled.load();
+    o["robot_type"]            = robot_type.load();
+    {
+        std::lock_guard<std::mutex> lk(ppm_calib_mutex);
+        QJsonArray calib_arr;
+        for (int c = 0; c < 6; ++c) {
+            QJsonArray row;
+            row.append(ppm_calib[c].min_us);
+            row.append(ppm_calib[c].neutral_us);
+            row.append(ppm_calib[c].max_us);
+            calib_arr.append(row);
+        }
+        o["ppm_calib"] = calib_arr;
+    }
+    {
+        std::lock_guard<std::mutex> lk(keybind_mutex);
+        QJsonArray kb_arr;
+        for (int m = 0; m < 3; ++m) {
+            QJsonArray row;
+            for (int c = 0; c < 5; ++c)
+                row.append(static_cast<int>(keybind[m][c]));
+            kb_arr.append(row);
+        }
+        o["keybind"] = kb_arr;
+    }
     {
         std::lock_guard<std::mutex> lk(strings_mutex);
         o["vosk_grammar"] = QString::fromStdString(vosk_grammar);

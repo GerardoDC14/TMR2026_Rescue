@@ -148,6 +148,10 @@ void VideoWidget::onSourceChanged(int index)
         latest_ros_frame_ = cv::Mat();
     }
 
+    // If we were on thermal and are switching away, notify
+    if (source_type_.load() == SourceType::THERMAL && !source.startsWith("thermal:"))
+        emit thermalActiveChanged(false);
+
     if (source.startsWith("topic:")) {
         std::string topic = source.mid(6).toStdString();
         auto sub = node_->create_subscription<sensor_msgs::msg::Image>(
@@ -168,9 +172,9 @@ void VideoWidget::onSourceChanged(int index)
         source_type_ = SourceType::LOCAL;
     } else if (source.startsWith("thermal:")) {
         std::string topic = source.mid(8).toStdString();
-        auto sub = node_->create_subscription<std_msgs::msg::Float64MultiArray>(
+        auto sub = node_->create_subscription<sensor_msgs::msg::Image>(
             topic, rclcpp::SensorDataQoS(),
-            [this](std_msgs::msg::Float64MultiArray::SharedPtr msg) {
+            [this](sensor_msgs::msg::Image::SharedPtr msg) {
                 onThermalReceived(msg);
             });
         {
@@ -178,8 +182,10 @@ void VideoWidget::onSourceChanged(int index)
             thermal_sub_ = sub;
         }
         source_type_ = SourceType::THERMAL;
+        emit thermalActiveChanged(true);
     } else {
         source_type_ = SourceType::NONE;
+        emit thermalActiveChanged(false);
         display_->setPixmap(QPixmap());
         display_->setText("No Source");
     }
@@ -400,17 +406,25 @@ void VideoWidget::onImageReceived(
 }
 
 void VideoWidget::onThermalReceived(
-    const std_msgs::msg::Float64MultiArray::SharedPtr& msg)
+    const sensor_msgs::msg::Image::SharedPtr& msg)
 {
-    int rows = 24, cols = 32;
-    if (msg->layout.dim.size() >= 2) {
-        rows = static_cast<int>(msg->layout.dim[0].size);
-        cols = static_cast<int>(msg->layout.dim[1].size);
-    }
-    if (static_cast<int>(msg->data.size()) < rows * cols) return;
+    int rows = static_cast<int>(msg->height);
+    int cols = static_cast<int>(msg->width);
+    if (rows <= 0 || cols <= 0) return;
 
-    cv::Mat temp(rows, cols, CV_64F,
-                 const_cast<double*>(msg->data.data()));
+    // Decode 32FC1: each pixel is a float32 temperature in °C
+    cv::Mat temp;
+    if (msg->encoding == "32FC1") {
+        if (msg->data.size() < static_cast<size_t>(rows * cols * 4)) return;
+        cv::Mat raw(rows, cols, CV_32FC1,
+                    const_cast<uint8_t*>(msg->data.data()), msg->step);
+        temp = raw.clone();
+    } else {
+        // Fallback: try to interpret as 8-bit grayscale
+        cv::Mat raw(rows, cols, CV_8UC1,
+                    const_cast<uint8_t*>(msg->data.data()), msg->step);
+        raw.convertTo(temp, CV_32F);
+    }
 
     double min_val, max_val;
     cv::minMaxLoc(temp, &min_val, &max_val);

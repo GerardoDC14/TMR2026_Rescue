@@ -11,7 +11,6 @@
 #include <opencv2/opencv.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
-#include <std_msgs/msg/float64_multi_array.hpp>
 
 #include <atomic>
 #include <functional>
@@ -48,6 +47,7 @@ public:
 signals:
     void displayClicked();
     void frameReady(const QImage& image);
+    void thermalActiveChanged(bool active);
 
 private slots:
     void onSourceChanged(int index);
@@ -59,7 +59,7 @@ private:
 
     void workerLoop();
     void onImageReceived(const sensor_msgs::msg::Image::SharedPtr& msg);
-    void onThermalReceived(const std_msgs::msg::Float64MultiArray::SharedPtr& msg);
+    void onThermalReceived(const sensor_msgs::msg::Image::SharedPtr& msg);
     static QImage matToQImage(const cv::Mat& mat);
 
     void setupFilterOptions(const std::string& filter_name);
@@ -85,7 +85,7 @@ private:
     // ROS subscriptions
     std::mutex sub_mutex_;
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
-    rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr thermal_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr thermal_sub_;
 
     // Latest frame from ROS callback
     std::mutex frame_mutex_;

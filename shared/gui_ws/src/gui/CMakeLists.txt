@@ -35,11 +35,14 @@ add_executable(gui
   src/source_manager.cpp
   src/camera_hub.cpp
   src/dashboard_panel.cpp
+  src/odometry_panel.cpp
   src/speech_processor.cpp
   src/urdf_viewer.cpp
   src/filters.cpp
   src/app_settings.cpp
   src/settings_dialog.cpp
+  src/keybind_dialog.cpp
+  src/ppm_calib_dialog.cpp
   # Headers listed for AUTOMOC to process Q_OBJECT classes
   include/gui/main_window.hpp
   include/gui/video_widget.hpp
@@ -50,6 +53,9 @@ add_executable(gui
   include/gui/speech_processor.hpp
   include/gui/urdf_viewer.hpp
   include/gui/settings_dialog.hpp
+  include/gui/odometry_panel.hpp
+  include/gui/keybind_dialog.hpp
+  include/gui/ppm_calib_dialog.hpp
 )
 
 target_include_directories(gui PUBLIC

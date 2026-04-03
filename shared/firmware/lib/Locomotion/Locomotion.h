@@ -29,6 +29,9 @@ public:
     // Clamps to [FLIPPER_ANGLE_MIN, FLIPPER_ANGLE_MAX].
     static void setFlipperTarget(float angle_deg);
 
+    // ROBOT_MAIN: apply a normalised effort [-1,1] directly (used by PID).
+    static void setFlipperEffort(float norm);
+
     // ROBOT_SECONDARY: command all four independent flippers individually.
     // Each value is normalised [-1,1].  Order: front-left, front-right,
     // rear-left, rear-right.
@@ -55,4 +58,14 @@ private:
     static uint32_t normToDuty(float norm);
 
     static float  s_flipper_target_deg;
+
+    // Last commanded normalised efforts (ROBOT_MAIN only); read by commsTask.
+    static float  s_track_left_norm;
+    static float  s_track_right_norm;
+    static float  s_flipper_effort_norm;
+
+public:
+    static float getTrackLeft()      { return s_track_left_norm; }
+    static float getTrackRight()     { return s_track_right_norm; }
+    static float getFlipperEffort()  { return s_flipper_effort_norm; }
 };

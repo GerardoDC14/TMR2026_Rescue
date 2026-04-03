@@ -1,29 +1,38 @@
 #pragma once
 
 #include <QDialog>
+#include <memory>
 #include <string>
+
+#include <rclcpp/rclcpp.hpp>
 
 class QCheckBox;
 class QComboBox;
 class QLabel;
 class QLineEdit;
+class QPushButton;
 class QSlider;
+class KeybindDialog;
+class PpmCalibDialog;
 
 class SettingsDialog : public QDialog {
     Q_OBJECT
 public:
-    explicit SettingsDialog(QWidget* parent = nullptr);
+    explicit SettingsDialog(rclcpp::Node::SharedPtr node, QWidget* parent = nullptr);
 
     // Sync UI widgets with current AppSettings (call before show()).
     void reloadFromSettings();
 
 signals:
     void settingsApplied();
+    void robotTypeChanged(int type);  // 0=Jaguar, 1=Dicerox
 
 private slots:
     void onApply();
     void onSave();
     void onCancel();
+    void onKeybindClicked();
+    void onPpmCalibClicked();
 
 private:
     void applyToSettings();
@@ -34,6 +43,7 @@ private:
     bool        orig_audio_enabled_;
     int         orig_colormap_, orig_interp_, orig_upscale_w_, orig_upscale_h_;
     int         orig_font_scale_x100_;
+    int         orig_robot_type_;
     std::string orig_grammar_;
 
     // Widgets
@@ -44,6 +54,14 @@ private:
     QComboBox* upscale_combo_;
     QSlider*   font_scale_slider_;
     QLabel*    font_scale_val_;
+    QComboBox* robot_type_combo_;
+    QPushButton* keybind_btn_;
+    QPushButton* ppm_calib_btn_;
+
+    rclcpp::Node::SharedPtr node_;
+
+    KeybindDialog*  keybind_dialog_{nullptr};
+    PpmCalibDialog* ppm_calib_dialog_{nullptr};
 
     // Combo index ↔ cv enum value tables
     static const int COLORMAPS[5];

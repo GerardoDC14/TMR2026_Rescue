@@ -15,10 +15,12 @@
 #include <QPropertyAnimation>
 
 #include <rclcpp/rclcpp.hpp>
-#include <geometry_msgs/msg/vector3.hpp>
-#include <std_msgs/msg/int32.hpp>
+#include <sensor_msgs/msg/magnetic_field.hpp>
+#include <sensor_msgs/msg/imu.hpp>
+#include <std_msgs/msg/float32.hpp>
+#include <std_msgs/msg/float32_multi_array.hpp>
 #include <std_msgs/msg/bool.hpp>
-#include <std_msgs/msg/empty.hpp>
+#include <std_msgs/msg/u_int8.hpp>
 
 #include <atomic>
 
@@ -33,34 +35,41 @@ signals:
     void resetSourcesRequested();
     void settingsRequested();
     void magnetometerUpdated(double x, double y, double z);
-    void gasUpdated(int value);
-    void heartbeatReceived();
+    void gasUpdated(double value);
+    void imuUpdated(double yaw, double pitch, double roll);
+    void telemetryReceived();   // used as heartbeat
+    void uptimeUpdated(float uptime_s);
 
 private slots:
     void onEstopToggled(bool checked);
     void onAudioToggled(bool checked);
     void onMagnetometerUpdated(double x, double y, double z);
-    void onGasUpdated(int value);
+    void onGasUpdated(double value);
+    void onImuUpdated(double yaw, double pitch, double roll);
     void onTranscriptionUpdated(const QString& text);
-    void onHeartbeatReceived();
-    void onHeartbeatCheck();          // fires every 1s to count missed beats
+    void onTelemetryReceived();
+    void onHeartbeatCheck();
+    void onUptimeUpdated(float uptime_s);
     void onClearAll();
     void publishEstopState();
+    void onSensorToggled();
 
 private:
     void setConnState(const QString& color, const QString& label);
+    void publishSensorMask();
 
     rclcpp::Node::SharedPtr node_;
 
     // Connection status
     QLabel*              conn_indicator_;
     QLabel*              conn_label_;
-    QTimer*              heartbeat_timer_;     // 1s repeating check
+    QLabel*              uptime_label_;
+    QTimer*              heartbeat_timer_;
     QPropertyAnimation*  pulse_anim_{nullptr};
-    bool                 hb_received_{false};  // did we get a beat this interval?
-    int                  hb_miss_count_{3};    // start in offline state
+    bool                 hb_received_{false};
+    int                  hb_miss_count_{3};
 
-    rclcpp::Subscription<std_msgs::msg::Empty>::SharedPtr heartbeat_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr telemetry_sub_;
 
     // Magnetometer
     QLabel* mag_x_;
@@ -70,13 +79,27 @@ private:
     // Gas sensor
     QLabel* gas_value_;
 
+    // IMU orientation
+    QLabel* imu_yaw_;
+    QLabel* imu_pitch_;
+    QLabel* imu_roll_;
+
     // Transcription
     QTextEdit* transcription_;
     SpeechProcessor* speech_processor_;
 
     // Sensor subscriptions
-    rclcpp::Subscription<geometry_msgs::msg::Vector3>::SharedPtr mag_sub_;
-    rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr gas_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::MagneticField>::SharedPtr mag_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr gas_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub_;
+
+    // Sensor enable mask toggles (bit0=mag, bit1=thermal, bit2=gas, bit3=imu)
+    // Thermal (bit1) is controlled by VideoPanel source selection, not a button.
+    QPushButton* mag_toggle_;
+    QPushButton* gas_toggle_;
+    QPushButton* imu_toggle_;
+    uint8_t      sensor_mask_{0};
+    rclcpp::Publisher<std_msgs::msg::UInt8>::SharedPtr sensor_mask_pub_;
 
     // Buttons
     QPushButton* audio_btn_;
@@ -89,6 +112,12 @@ public:
     void setSpeechGrammar(const std::string& words_csv);
     void setPlaybackEnabled(bool enabled);
 
+public slots:
+    // Called by VideoPanel when any widget selects / deselects the thermal source.
+    // Sets or clears SENSOR_BIT_THERMAL (bit 1) and republishes the mask.
+    void setThermalEnabled(bool enabled);
+
+public:
     // E-STOP
     rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr estop_pub_;
     QTimer* estop_timer_;

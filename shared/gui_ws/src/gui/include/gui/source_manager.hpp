@@ -34,6 +34,7 @@ signals:
 
 private:
     void probeLocalCameras();
+    void probeThermalTopics();   // ROS introspection fallback for thermal sources
     void onConfigReceived(const std_msgs::msg::String::SharedPtr msg);
     void rebuildSourceList();
 

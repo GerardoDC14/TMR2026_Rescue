@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: jaguar_robot_full_description
+    relative_path: urdf/jaguar_robot_full.xacro
+  srdf:
+    relative_path: config/jaguar_robot_full.srdf
+  package_settings:
+    author_name: Gerardo Escobar
+    author_email: gerardodelcid16@gmail.com
+    generated_timestamp: 1752025007
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

@@ -359,9 +359,9 @@ class ESP32BridgeNode(Node):
         mag_msg.header.stamp    = self.get_clock().now().to_msg()
         mag_msg.header.frame_id = 'mag_link'
         # ROS convention: Tesla (sensor gives µT)
-        mag_msg.magnetic_field.x = x100 / 100.0 * 1e-6
-        mag_msg.magnetic_field.y = y100 / 100.0 * 1e-6
-        mag_msg.magnetic_field.z = z100 / 100.0 * 1e-6
+        mag_msg.magnetic_field.x = float(x100)
+        mag_msg.magnetic_field.y = float(y100)
+        mag_msg.magnetic_field.z = float(z100)
         self._pub_mag.publish(mag_msg)
 
     def _handle_thermal(self, payload: bytes):
@@ -468,7 +468,7 @@ class ESP32BridgeNode(Node):
             self.get_logger().warn('Sent ESTOP')
         else:
             self._send(_build_frame(MSG_ESTOP_CLEAR, b''))
-            self.get_logger().info('Sent ESTOP_CLEAR')
+            #self.get_logger().info('Sent ESTOP_CLEAR')
 
     def _on_arm_joints(self, msg: Float32MultiArray):
         if len(msg.data) < 6:

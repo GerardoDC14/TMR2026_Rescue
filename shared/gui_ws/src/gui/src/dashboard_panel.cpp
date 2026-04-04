@@ -218,9 +218,9 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
         "/sensors/mag", sensor_qos,
         [this](sensor_msgs::msg::MagneticField::SharedPtr msg) {
             emit magnetometerUpdated(
-                msg->magnetic_field.x * 1e6,
-                msg->magnetic_field.y * 1e6,
-                msg->magnetic_field.z * 1e6);
+                msg->magnetic_field.x,
+                msg->magnetic_field.y,
+                msg->magnetic_field.z);
         });
 
     // Gas sensor: /sensors/gas (std_msgs/Float32)

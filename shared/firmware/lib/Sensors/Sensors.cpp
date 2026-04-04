@@ -41,7 +41,7 @@ bool Sensors::begin() {
     Wire.beginTransmission(0x0D);
     if (Wire.endTransmission() == 0) {
         s_qmc.init();
-        //s_qmc.setMode(0x01, 0x04, 0x10, 0x00);  // continuous, 50 Hz ODR, 8G range, 512 OSR
+        s_qmc.setMode(0x01, 0x04, 0x10, 0x00);  // continuous, 50 Hz ODR, 8G range, 512 OSR
         s_mag_ok = true;
     }
 
@@ -154,25 +154,12 @@ void Sensors::readMag() {
 
     xSemaphoreGive(s_i2c_mutex);
 
-    //constexpr float SCALE_UT = 100.0f / 3000.0f;
-    constexpr float SCALE_UT = 1;
-
-    constexpr float offset_x_uT = 0.0f; 
-    constexpr float offset_y_uT = 0.0f;
-    constexpr float offset_z_uT = 0.0f;
-
     MagData d;
     
-    if (x_raw == 0 && y_raw == 0 && z_raw == 0) {
-        d.valid = true; 
-        d.x_uT = 0.0f; d.y_uT = 0.0f; d.z_uT = 0.0f; 
-    }   
-    else {
-        d.x_uT  = (x_raw * SCALE_UT) - offset_x_uT;
-        d.y_uT  = (y_raw * SCALE_UT) - offset_y_uT;
-        d.z_uT  = (z_raw * SCALE_UT) - offset_z_uT;
-        d.valid = true;
-    }
+    d.x_uT  = x_raw;
+    d.y_uT  = y_raw;
+    d.z_uT  = z_raw;
+    d.valid = true;
     
     portENTER_CRITICAL(&s_mux);
     s_mag = d;

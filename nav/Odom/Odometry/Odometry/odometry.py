@@ -60,6 +60,11 @@ class EkfOdomNode(Node):
         self.vy       = 0.0
         self.omega    = 0.0
         self.yaw_meas = None
+        self.v = 0.0
+        self.omega_enc = 0.0  #computed value
+        self.w_x = 0.0
+        self.w_y = 0.0
+        self.omega_imu = 0.0  
 
         #Physical properties (In meters)
         self.Trackwidth = 0.47 #Jaguar
@@ -86,7 +91,6 @@ class EkfOdomNode(Node):
         self.v = (self.v_x + self.v_y) / 2
         self.omega_enc = (self.v_y - self.v_x) / self.Trackwidth
 
-        return self.v, self.omega
 
 
     def imu_callback(self, msg: Imu):
@@ -99,7 +103,7 @@ class EkfOdomNode(Node):
         self.omega_imu    = msg.angular_velocity.z #OBtain rotation speed
         
         #Obtain the yaw variance (direction)
-        imu_orientation_var = msg.orientation_covariance[0]
+        imu_orientation_var = msg.orientation_covariance[8]
         if imu_orientation_var > 0:
             self.R_yaw = np.array([[imu_orientation_var]])
         else: 
@@ -111,14 +115,14 @@ class EkfOdomNode(Node):
                     self.ema_var_yaw = var_yaw
                 else: 
                     self.ema_var_yaw = self.alpha * var_yaw + (1 - self.alpha) * self.ema_var_yaw
-                    self.R_yaw = np.array([[self.ema_var_yaw]])
+                self.R_yaw = np.array([[max(self.ema_var_yaw, 1e-4)]])
             else: 
                 self.R_yaw = np.array([[0.02]])
         
         #obtain the angular velocity variance
-        imu_omega_var = msg.angular_velocity_covariance[0]
+        imu_omega_var = msg.angular_velocity_covariance[8]
         if imu_omega_var > 0:
-            self.R_omega = np.array([imu_omega_var])
+            self.R_omega = np.array([[imu_omega_var]])
         else: 
             self.omega_buffer.append(self.omega_imu)
             if len(self.omega_buffer) == self.omega_buffer.maxlen:
@@ -128,7 +132,7 @@ class EkfOdomNode(Node):
                     self.ema_var_omega = var_omega
                 else: 
                     self.ema_var_omega = self.alpha * var_omega + (1 - self.alpha) * self.ema_var_omega
-                    self.R_omega = np.array([[self.ema_var_omega]])
+                self.R_omega = np.array([[max(self.ema_var_omega, 1e-4)]])
             else: 
                 self.R_omega = np.array([[0.01]])
         
@@ -141,7 +145,7 @@ class EkfOdomNode(Node):
             return
         self.last_time = now_time
 
-        #Fuse imu and encoder angular acceleration
+        #Fuse imu and encoder angular velocity
         var_enc = 0.05  #TUNE THIS AAAA
 
         if self.ema_var_omega is not None:
@@ -155,7 +159,7 @@ class EkfOdomNode(Node):
             
         w_imu = 1.0 / var_imu
         w_enc = 1.0 / var_enc
-        self.omega = (w_imu * self.omega_imu + w_enc * self.omega_enc) / (w_imu + w_enc)
+        self.omega = (w_imu * self.omega_imu + w_enc * self.omega_enc) / (w_imu + w_enc) #Fused angular velocity
 
         #EKF 
         x, y, yaw = self.x_est.flatten()
@@ -189,9 +193,9 @@ class EkfOdomNode(Node):
                       [dt * math.sin(yaw), 0],
                       [0, dt]])
         #self.P = F @ self.P @ F.T + B @ np.diag([0.1, 0]) @ B.T + self.Q
-        sigma_v = 0.1             # tune this
-        sigma_w = var_imu         # from IMU (dynamic)
-        Q_control = np.diag([sigma_v**2, sigma_w])
+        var_v = 0.1**2             # tune this Linear velocity variance (tune for enocder accuracy)
+        var_w = var_imu         # from IMU (dynamic)
+        Q_control = np.diag([var_v, var_w])
         self.P = F @ self.P @ F.T + B @ Q_control @ B.T + self.Q
 
         if self.yaw_meas is not None:
@@ -202,6 +206,7 @@ class EkfOdomNode(Node):
             S = H @ self.P @ H.T + self.R_yaw
             K = self.P @ H.T @ np.linalg.inv(S)
             self.x_est += K @ y_res
+            self.x_est[2] = math.atan2(math.sin(self.x_est[2]), math.cos(self.x_est[2])) #NOrmalize yaw 
             self.P = (np.eye(3) - K @ H) @ self.P
 
         now_msg = now_time.to_msg()
@@ -236,6 +241,9 @@ class EkfOdomNode(Node):
         odom.pose.pose.orientation.w = q[3]
         odom.twist.twist.linear.x  = self.v
         odom.twist.twist.angular.z = self.omega
+        odom.pose.covariance[0]  = float(self.P[0, 0])   # x
+        odom.pose.covariance[7]  = float(self.P[1, 1])   # y
+        odom.pose.covariance[35] = float(self.P[2, 2])   # yaw
         self.odom_pub.publish(odom)
 
         # ----- 3. Path -----

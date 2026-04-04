@@ -25,14 +25,28 @@ enum class ChannelFunction : uint8_t {
     FLIPPER_FR   = 5,   // individual front-right
     FLIPPER_RL   = 6,   // individual rear-left
     FLIPPER_RR   = 7,   // individual rear-right
-    ARM_FWD      = 8,   // forward to mini-PC for arm IK
+    ARM_FWD      = 8,   // forward to mini-PC for arm IK (legacy / generic)
     ESTOP        = 9,   // virtual e-stop
+    ARM_X        = 10,  // arm Cartesian +X (forward / back)
+    ARM_Y        = 11,  // arm Cartesian +Y (lateral)
+    ARM_Z        = 12,  // arm Cartesian +Z (up / down)
+    ARM_PITCH    = 13,  // arm pitch rotation
+    ARM_YAW      = 14,  // arm yaw rotation
 };
+
+// Returns true for any arm-related channel function.
+inline bool isArmFunction(ChannelFunction fn) {
+    return fn == ChannelFunction::ARM_FWD  ||
+           fn == ChannelFunction::ARM_X    ||
+           fn == ChannelFunction::ARM_Y    ||
+           fn == ChannelFunction::ARM_Z    ||
+           fn == ChannelFunction::ARM_PITCH ||
+           fn == ChannelFunction::ARM_YAW;
+}
 
 // Keybind table: 3 Ch5 lever positions × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
 struct KeybindTable {
     ChannelFunction map[3][5];
-    bool valid;
 };
 
 // ─── PPM / RC ────────────────────────────────────────────────────────────────
@@ -76,12 +90,6 @@ struct EncoderState {
 struct ArmJoints {
     float angle_deg[6];   // one entry per DOF, degrees
     bool  valid;
-};
-
-struct ArmEndEffector {
-    // cartesian position (mm, robot frame) + orientation (degrees)
-    float x, y, z;
-    float roll, pitch, yaw;
 };
 
 // ─── IMU ─────────────────────────────────────────────────────────────────────

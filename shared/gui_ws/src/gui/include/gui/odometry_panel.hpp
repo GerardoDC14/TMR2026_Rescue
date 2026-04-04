@@ -46,9 +46,6 @@ private slots:
                              float temp_fet, float temp_motor, float voltage);
     void onMainMotorUpdated(float left_duty, float right_duty, float flipper_duty);
 
-protected:
-    void mousePressEvent(QMouseEvent* event) override;
-
 private:
     void buildLayout();
     void rebuildFlipperSection();

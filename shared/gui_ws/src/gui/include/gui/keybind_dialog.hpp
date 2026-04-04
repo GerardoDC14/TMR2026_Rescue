@@ -15,8 +15,13 @@ enum class ChannelFunction : uint8_t {
     FLIPPER_FR   = 5,   // individual front-right
     FLIPPER_RL   = 6,   // individual rear-left
     FLIPPER_RR   = 7,   // individual rear-right
-    ARM_FWD      = 8,   // forward to mini-PC for arm IK
+    ARM_FWD      = 8,   // forward to mini-PC for arm IK (legacy)
     ESTOP        = 9,   // virtual e-stop
+    ARM_X        = 10,  // arm Cartesian +X (forward / back)
+    ARM_Y        = 11,  // arm Cartesian +Y (lateral)
+    ARM_Z        = 12,  // arm Cartesian +Z (up / down)
+    ARM_PITCH    = 13,  // arm pitch rotation
+    ARM_YAW      = 14,  // arm yaw rotation
 };
 
 class KeybindDialog : public QDialog {

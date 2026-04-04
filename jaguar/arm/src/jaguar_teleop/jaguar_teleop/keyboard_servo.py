@@ -12,8 +12,10 @@ from geometry_msgs.msg import TwistStamped
 from std_msgs.msg import Header
 
 JOINT_NAMES = ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6']
-FRAME_ID = 'base_link'
+FRAME_BASE = 'base_link'
+FRAME_EE   = 'Link6'
 PUBLISH_HZ = 30.0
+MODES = ['joint', 'cart', 'local']
 
 # Cartesian: key -> (vx, vy, vz, wx, wy, wz)
 CART_BINDINGS = {
@@ -55,12 +57,17 @@ def print_status(mode, joint_idx, speed, active_key):
     if mode == 'joint':
         sys.stdout.write(
             f'[JOINT] Joint{joint_idx + 1}  Speed:{speed:.1f}{moving}  '
-            f'(w/s=jog 1-6=select m=cart q=quit +/-=speed)'
+            f'(w/s=jog 1-6=select m=next q=quit +/-=speed)'
+        )
+    elif mode == 'cart':
+        sys.stdout.write(
+            f'[CART-GLOBAL]  Speed:{speed:.1f}{moving}  '
+            f'(w/s=X a/d=Y r/f=Z u/j=R i/k=P o/l=Y  m=next q=quit)'
         )
     else:
         sys.stdout.write(
-            f'[CART]  Speed:{speed:.1f}{moving}  '
-            f'(w/s=X a/d=Y r/f=Z u/j=R i/k=P o/l=Y  m=joint q=quit)'
+            f'[CART-LOCAL]   Speed:{speed:.1f}{moving}  '
+            f'(w/s=X a/d=Y r/f=Z u/j=R i/k=P o/l=Y  m=next q=quit)'
         )
     sys.stdout.flush()
 
@@ -92,11 +99,12 @@ class KeyboardServo(Node):
             joint = self._joint_cmd
 
         now = self.get_clock().now().to_msg()
+        frame = FRAME_EE if self.mode == 'local' else FRAME_BASE
 
         if cart is not None:
             msg = TwistStamped()
             msg.header.stamp = now
-            msg.header.frame_id = FRAME_ID
+            msg.header.frame_id = frame
             msg.twist.linear.x  = float(cart[0]) * self.speed
             msg.twist.linear.y  = float(cart[1]) * self.speed
             msg.twist.linear.z  = float(cart[2]) * self.speed
@@ -109,7 +117,7 @@ class KeyboardServo(Node):
             idx, direction = joint
             msg = JointJog()
             msg.header.stamp = now
-            msg.header.frame_id = FRAME_ID
+            msg.header.frame_id = FRAME_BASE
             msg.joint_names = [JOINT_NAMES[idx]]
             msg.velocities   = [direction * self.speed]
             msg.duration     = 0.0
@@ -121,7 +129,8 @@ class KeyboardServo(Node):
             return False
 
         if key == 'm':
-            self.mode = 'cart' if self.mode == 'joint' else 'joint'
+            idx = MODES.index(self.mode) if self.mode in MODES else 0
+            self.mode = MODES[(idx + 1) % len(MODES)]
             self._stop()
             return True
 
@@ -146,7 +155,7 @@ class KeyboardServo(Node):
                 self._toggle_joint(key)
                 return True
 
-        else:  # cart
+        else:  # cart or local — same keys, different frame_id
             if key in CART_BINDINGS:
                 self._toggle_cart(key)
                 return True
@@ -200,9 +209,11 @@ def main():
     print('  press the SAME key again to STOP.')
     print('  Space / x  : stop immediately')
     print()
-    print('  JOINT mode  -> 1-6 select joint   w/s jog +/-')
-    print('  CART  mode  -> w/s=X  a/d=Y  r/f=Z  u/j=Roll  i/k=Pitch  o/l=Yaw')
-    print('  m=toggle mode   +/-=speed   q=quit')
+    print('  JOINT       -> 1-6 select joint   w/s jog +/-')
+    print('  CART-GLOBAL -> w/s=X  a/d=Y  r/f=Z  (base frame)')
+    print('  CART-LOCAL  -> w/s=X  a/d=Y  r/f=Z  (end-effector frame)')
+    print('                 u/j=Roll  i/k=Pitch  o/l=Yaw')
+    print('  m=cycle mode   +/-=speed   q=quit')
     print('=' * 62 + '\n')
 
     spin_thread = threading.Thread(target=rclpy.spin, args=(node,), daemon=True)

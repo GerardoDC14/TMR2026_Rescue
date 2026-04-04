@@ -64,16 +64,6 @@ void Locomotion::setTrackSpeeds(float left_norm, float right_norm) {
     applyTrackSpeeds(left_norm, right_norm);
 }
 
-void Locomotion::setFlipperTarget(float angle_deg) {
-    s_flipper_target_deg = clampf(angle_deg, FLIPPER_ANGLE_MIN, FLIPPER_ANGLE_MAX);
-    // Map angle to normalised PWM:
-    // 0° → neutral pulse, FLIPPER_ANGLE_MAX → full forward, FLIPPER_ANGLE_MIN → full reverse
-    float range = FLIPPER_ANGLE_MAX - FLIPPER_ANGLE_MIN;
-    float mid   = (FLIPPER_ANGLE_MAX + FLIPPER_ANGLE_MIN) * 0.5f;
-    float norm  = (s_flipper_target_deg - mid) / (range * 0.5f);
-    applyFlipperPWM(clampf(norm, -1.0f, 1.0f));
-}
-
 void Locomotion::neutralise() {
 #ifdef ROBOT_MAIN
     s_track_left_norm = s_track_right_norm = s_flipper_effort_norm = 0.0f;

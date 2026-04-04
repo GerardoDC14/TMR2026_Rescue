@@ -18,8 +18,8 @@ setup(
     zip_safe=True,
     maintainer='arepo',
     maintainer_email='arepo90@proton.me',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='ROS2 bridge between the ESP32 binary UART protocol and ROS2 topics.',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

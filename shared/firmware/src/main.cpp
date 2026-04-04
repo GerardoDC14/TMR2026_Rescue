@@ -10,13 +10,6 @@
 #include "Comms.h"
 #include "Control.h"
 
-// ─── Task handles ─────────────────────────────────────────────────────────────
-static TaskHandle_t h_control = nullptr;
-static TaskHandle_t h_comms   = nullptr;
-static TaskHandle_t h_can     = nullptr;
-static TaskHandle_t h_sensors = nullptr;
-static TaskHandle_t h_thermal = nullptr;
-
 // ─────────────────────────────────────────────────────────────────────────────
 //  Core 1 — Control task
 //  Runs at PRIO_CONTROL.  Reads PPM + encoders and drives the state machine.
@@ -186,24 +179,22 @@ void setup() {
     // Must be last: registers callbacks into Comms
     Control::begin();
 
-    //Serial.println("whatup bitches");
-
     // ── Core 0: protocol tasks ────────────────────────────────────────────────
     xTaskCreatePinnedToCore(commsTask, "Comms",   STACK_COMMS,   nullptr,
-                            PRIO_COMMS,   &h_comms, TASK_CORE_COMMS);
+                            PRIO_COMMS,   nullptr, TASK_CORE_COMMS);
 
     xTaskCreatePinnedToCore(canTask,   "CAN",     STACK_CAN,     nullptr,
-                            PRIO_CAN,     &h_can,   TASK_CORE_CAN);
+                            PRIO_CAN,     nullptr, TASK_CORE_CAN);
 
     // ── Core 1: control + sensor tasks ───────────────────────────────────────
     xTaskCreatePinnedToCore(controlTask,  "Control",  STACK_CONTROL, nullptr,
-                            PRIO_CONTROL, &h_control, TASK_CORE_CONTROL);
+                            PRIO_CONTROL, nullptr, TASK_CORE_CONTROL);
 
     xTaskCreatePinnedToCore(sensorTask,   "Sensors",  STACK_SENSORS, nullptr,
-                            PRIO_SENSORS, &h_sensors, TASK_CORE_SENSORS);
+                            PRIO_SENSORS, nullptr, TASK_CORE_SENSORS);
 
     xTaskCreatePinnedToCore(thermalTask,  "Thermal",  STACK_THERMAL, nullptr,
-                            PRIO_THERMAL, &h_thermal, TASK_CORE_THERMAL);
+                            PRIO_THERMAL, nullptr, TASK_CORE_THERMAL);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

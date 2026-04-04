@@ -10,7 +10,10 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/joystick.launch.py']),
+        ('share/' + package_name + '/launch', [
+            'launch/joystick.launch.py',
+            'launch/rc_arm.launch.py',
+        ]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -25,6 +28,9 @@ setup(
             'keyboard_servo = jaguar_teleop.keyboard_servo:main',
             'joystick_servo = jaguar_teleop.joystick_servo:main',
             'serial_bridge = jaguar_teleop.serial_bridge:main',
+            'damped_servo = jaguar_teleop.damped_servo:main',
+            'rc_servo = jaguar_teleop.rc_servo:main',
+            'joint_relay = jaguar_teleop.joint_relay:main',
         ],
     },
 )

@@ -18,8 +18,13 @@ const QStringList KeybindDialog::FUNCTION_NAMES = {
     "Flipper FR",     // 5
     "Flipper RL",     // 6
     "Flipper RR",     // 7
-    "Arm (IK)",       // 8
+    "Arm (IK)",       // 8  legacy / generic
     "E-Stop",         // 9
+    "Arm X",          // 10 forward / back
+    "Arm Y",          // 11 lateral
+    "Arm Z",          // 12 up / down
+    "Arm Pitch",      // 13
+    "Arm Yaw",        // 14
 };
 
 const char* KeybindDialog::MODE_NAMES[3] = {
@@ -179,7 +184,7 @@ void KeybindDialog::onPresetDefault()
     int preset[3][5] = {
         {3, 1, 0, 2, 0},   // mode0 (low): FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
         {3, 1, 0, 2, 0},   // mode1 (mid): same
-        {8, 8, 8, 8, 0},   // mode2 (high): ARM x4, NONE
+        {11, 10, 12, 14, 13},   // mode2 (high): ARM_Y, ARM_X, ARM_Z, ARM_YAW, ARM_PITCH
     };
     for (int m = 0; m < 3; ++m)
         for (int c = 0; c < 5; ++c)

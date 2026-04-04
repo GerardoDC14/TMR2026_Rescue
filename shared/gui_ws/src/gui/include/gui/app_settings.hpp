@@ -47,7 +47,7 @@ struct AppSettings {
         // Default Jaguar: mode0=FLIPPER, mode1=NORMAL, mode2=ARM
         {3, 1, 0, 2, 0},   // mode0: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
         {3, 1, 0, 2, 0},   // mode1: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
-        {8, 8, 8, 8, 0},   // mode2: ARM x4, NONE
+        {11, 10, 12, 14, 13},   // mode2: ARM_Y, ARM_X, ARM_Z, ARM_YAW, ARM_PITCH
     };
 
     // Speech — comma-separated vocabulary, empty = unrestricted

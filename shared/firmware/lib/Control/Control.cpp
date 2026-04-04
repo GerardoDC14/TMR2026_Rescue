@@ -21,10 +21,11 @@ KeybindTable Control::s_keybind = {{
     // mode1 (Ch5 mid):  same as mode0
     {ChannelFunction::FLIPPER_ALL, ChannelFunction::TRACTION_FWD, ChannelFunction::NONE,
      ChannelFunction::TRACTION_TURN, ChannelFunction::NONE},
-    // mode2 (Ch5 high): ARM on all channels
-    {ChannelFunction::ARM_FWD, ChannelFunction::ARM_FWD, ChannelFunction::ARM_FWD,
-     ChannelFunction::ARM_FWD, ChannelFunction::NONE},
-}, true};
+    // mode2 (Ch5 high): per-axis arm control
+    // Ch1=Y(lateral), Ch2=X(fwd/back), Ch3=Z(up/down), Ch4=Yaw, Ch6=Pitch
+    {ChannelFunction::ARM_Y, ChannelFunction::ARM_X, ChannelFunction::ARM_Z,
+     ChannelFunction::ARM_YAW, ChannelFunction::ARM_PITCH},
+}};
 
 // File-level mutex
 static portMUX_TYPE s_mux = portMUX_INITIALIZER_UNLOCKED;
@@ -114,7 +115,7 @@ void Control::tick() {
     bool has_estop = false;
     for (int c = 0; c < 5; ++c) {
         auto fn = kb.map[mode_idx][c];
-        if (fn == ChannelFunction::ARM_FWD) has_arm = true;
+        if (isArmFunction(fn)) has_arm = true;
         if (fn == ChannelFunction::TRACTION_FWD || fn == ChannelFunction::TRACTION_TURN) has_traction = true;
         if (fn >= ChannelFunction::FLIPPER_ALL && fn <= ChannelFunction::FLIPPER_RR) has_flipper = true;
         if (fn == ChannelFunction::ESTOP) has_estop = true;
@@ -214,6 +215,11 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
                 has_flipper = true;
                 break;
             case ChannelFunction::ARM_FWD:
+            case ChannelFunction::ARM_X:
+            case ChannelFunction::ARM_Y:
+            case ChannelFunction::ARM_Z:
+            case ChannelFunction::ARM_PITCH:
+            case ChannelFunction::ARM_YAW:
                 has_arm = true;
                 break;
             default:
@@ -304,7 +310,6 @@ void Control::setKeybind(const KeybindPayload& payload) {
     for (int m = 0; m < 3; ++m)
         for (int c = 0; c < 5; ++c)
             s_keybind.map[m][c] = static_cast<ChannelFunction>(payload.map[m][c]);
-    s_keybind.valid = true;
     portEXIT_CRITICAL(&s_mux);
 }
 

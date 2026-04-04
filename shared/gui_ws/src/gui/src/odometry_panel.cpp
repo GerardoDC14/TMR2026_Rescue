@@ -1,5 +1,4 @@
 #include "gui/odometry_panel.hpp"
-#include <QMouseEvent>
 
 static const char* VESC_NAMES[7] = {"?", "TL", "TR", "FL", "FR", "RL", "RR"};
 
@@ -88,16 +87,6 @@ void OdometryPanel::buildLayout()
     main_layout_ = new QVBoxLayout(this);
     main_layout_->setContentsMargins(8, 6, 8, 6);
     main_layout_->setSpacing(4);
-
-    // ── Title ────────────────────────────────────────────────────────────────
-    /*
-    auto* title = new QLabel("Telemetry Dashboard", this);
-    title->setAlignment(Qt::AlignHCenter);
-    title->setStyleSheet("color: #aaa; font-weight: bold; font-size: 11px;");
-    main_layout_->addWidget(title);
-
-    main_layout_->addWidget(makeHSep());
-    */
 
     // ── Mode / Flags row (uptime moved to dashboard panel) ───────────────────
     auto* status_hdr = makeHeaderLabel("Telemetry Status");
@@ -251,7 +240,6 @@ void OdometryPanel::rebuildFlipperSection()
 
         
         auto* row = new QHBoxLayout();
-        //row->addWidget(makeAxisLabel("Angle"));
         flip_angle_ = makeValueLabel("--");
         row->addWidget(flip_angle_, 1);
         fl->addLayout(row);
@@ -411,8 +399,3 @@ void OdometryPanel::onMainMotorUpdated(float left_duty, float right_duty, float 
     if (main_flip_duty_)  main_flip_duty_->setText(fmt(flipper_duty));
 }
 
-// ── Mouse click → signal ─────────────────────────────────────────────────────
-void OdometryPanel::mousePressEvent(QMouseEvent* event)
-{
-    Q_UNUSED(event);
-}

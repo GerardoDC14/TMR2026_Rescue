@@ -25,10 +25,6 @@ public:
     // Set both tracks directly (e.g. from a speed controller).
     static void setTrackSpeeds(float left_norm, float right_norm);
 
-    // ROBOT_MAIN: command the single flipper to a target angle (degrees).
-    // Clamps to [FLIPPER_ANGLE_MIN, FLIPPER_ANGLE_MAX].
-    static void setFlipperTarget(float angle_deg);
-
     // ROBOT_MAIN: apply a normalised effort [-1,1] directly (used by PID).
     static void setFlipperEffort(float norm);
 

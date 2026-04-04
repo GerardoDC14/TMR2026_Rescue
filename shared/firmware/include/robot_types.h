@@ -104,7 +104,7 @@ struct ImuData {
 
 // ─── Sensor Data ─────────────────────────────────────────────────────────────
 struct MagData {
-    float x_uT, y_uT, z_uT;
+    int x_uT, y_uT, z_uT;
     bool  valid;
 };
 

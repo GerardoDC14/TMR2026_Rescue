@@ -132,7 +132,7 @@ class EkfOdomNode(Node):
                     self.ema_var_omega = var_omega
                 else: 
                     self.ema_var_omega = self.alpha * var_omega + (1 - self.alpha) * self.ema_var_omega
-                self.R_omega = np.array([[max(self.ema_var_omega, 1e-4)]])
+                self.R_omega = np.array([[max(self.ema_var_omega,)]])
             else: 
                 self.R_omega = np.array([[0.01]])
         
@@ -207,7 +207,9 @@ class EkfOdomNode(Node):
             K = self.P @ H.T @ np.linalg.inv(S)
             self.x_est += K @ y_res
             self.x_est[2] = math.atan2(math.sin(self.x_est[2]), math.cos(self.x_est[2])) #NOrmalize yaw 
-            self.P = (np.eye(3) - K @ H) @ self.P
+            I_KH = np.eye(3) - K @ H
+            self.P = I_KH @ self.P @ I_KH.T + K @ self.R_yaw @ K.T
+            #self.P = (np.eye(3) - K @ H) @ self.P
 
         now_msg = now_time.to_msg()
         self.publish_all(now_msg)

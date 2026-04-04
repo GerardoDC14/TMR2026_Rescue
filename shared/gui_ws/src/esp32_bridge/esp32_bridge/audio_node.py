@@ -41,8 +41,8 @@ class AudioNode(Node):
         # Publisher
         self.audio_pub = self.create_publisher(Int16MultiArray, '/audio', qos)
 
-        # Subscriber to control recording
-        self.create_subscription(Bool, '/audio_enable', self._on_audio_enable, 10)
+        # Subscriber to control recording (keep reference so it doesn't get garbage collected)
+        self.audio_enable_sub = self.create_subscription(Bool, '/audio_enable', self._on_audio_enable, 10)
 
         # Try to open audio stream
         try:
@@ -52,8 +52,7 @@ class AudioNode(Node):
                 rate=self.sample_rate,
                 input=True,
                 input_device_index=self.device_index if self.device_index >= 0 else None,
-                frames_per_buffer=self.chunk_size,
-                exception_on_overflow=False
+                frames_per_buffer=self.chunk_size
             )
             self.get_logger().info(
                 f'Audio stream opened: {self.sample_rate}Hz, '
@@ -78,36 +77,35 @@ class AudioNode(Node):
     def _capture_loop(self):
         """Continuously capture audio and publish to /audio topic."""
         import struct
+        import time
 
         while rclpy.ok():
+            # Check recording state (quick lock release)
             with self.recording_lock:
                 is_recording = self.recording
 
             if not is_recording or not self.stream:
-                # Sleep briefly when not recording to avoid busy-loop
-                rclpy.spin_once(self, timeout_sec=0.01)
+                # Sleep when not recording — do NOT call spin_once here,
+                # the main thread's spin() owns the executor
+                time.sleep(0.01)
                 continue
 
             try:
-                # Read audio chunk from microphone
-                data = self.stream.read(self.chunk_size, exception_on_overflow=False)
+                # Read audio chunk from microphone (outside lock to allow updates)
+                data = self.stream.read(self.chunk_size)
 
                 # Unpack int16 samples
                 samples = struct.unpack(f'<{self.chunk_size}h', data)
 
                 # Create and publish message
                 msg = Int16MultiArray()
-                msg.layout = MultiArrayLayout(
-                    dims=[MultiArrayDimension(label='samples', size=len(samples), stride=0)],
-                    data_offset=0
-                )
                 msg.data = list(samples)
 
                 self.audio_pub.publish(msg)
 
             except Exception as e:
                 self.get_logger().warn(f'Audio capture error: {e}')
-                rclpy.spin_once(self, timeout_sec=0.01)
+                time.sleep(0.01)
 
     def __del__(self):
         """Cleanup audio resources."""

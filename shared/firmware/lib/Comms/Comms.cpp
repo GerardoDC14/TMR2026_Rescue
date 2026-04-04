@@ -162,9 +162,9 @@ void Comms::sendTelemetry(const TelemetryPayload& p) {
 
 void Comms::sendMagData(const MagData& mag) {
     MagPayload p;
-    p.x_uT100 = static_cast<int16_t>(mag.x_uT * 100.0f);
-    p.y_uT100 = static_cast<int16_t>(mag.y_uT * 100.0f);
-    p.z_uT100 = static_cast<int16_t>(mag.z_uT * 100.0f);
+    p.x_uT100 = static_cast<int16_t>(mag.x_uT);
+    p.y_uT100 = static_cast<int16_t>(mag.y_uT);
+    p.z_uT100 = static_cast<int16_t>(mag.z_uT);
     sendFrame(MSG_SENSOR_MAG,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));

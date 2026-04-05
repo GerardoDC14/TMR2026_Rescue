@@ -27,7 +27,7 @@ class EkfOdomNode(Node):
         # --- Subscriptions ---
         self.create_subscription(Imu, '/sensors/imu', self.imu_callback, 10)
         self.create_subscription(Vector3, '/encoders/tracks', self.velocity_callback, 10)
-        #self.create_subscription(Float32MultiArray, '/enconders/flipper')
+        self.create_subscription(Float32MultiArray, '/encoders/flipper', self.flipper_callback, 10)
 
         # --- Publishers & TF ---
         self.odom_pub     = self.create_publisher(Odometry, '/odom',      10)
@@ -61,7 +61,7 @@ class EkfOdomNode(Node):
         self.omega    = 0.0
         self.yaw_meas = None
         self.v = 0.0
-        self.omega_enc = 0.0  #computed value
+        self.omega_enc = 0.0  
         self.w_x = 0.0
         self.w_y = 0.0
         self.omega_imu = 0.0  
@@ -71,6 +71,9 @@ class EkfOdomNode(Node):
         self.Radius     = 0.087 
         #self.Trackwidth = ## Dicerox MEDIR
         #self.Radius  = ###
+
+        # --- Flipper(s) ---
+        self.flipper_angles = [0.0, 0.0, 0.0, 0.0]
 
 
 
@@ -135,6 +138,16 @@ class EkfOdomNode(Node):
                 self.R_omega = np.array([[max(self.ema_var_omega,)]])
             else: 
                 self.R_omega = np.array([[0.01]])
+    
+    def flipper_callback(self, msg: Float32MultiArray):
+        #JAguar configuration - Two coordinated flippers - 1 angle received
+        if len(msg.data) >= 1:
+            self.flipper_angles[0] = math.radians(msg.data[0])  # degrees → radians
+            # indices 1-3 are 0.0 placeholders, skip them until hardware is connected
+        
+        """#Dicerox configuration - Four independent flippers - 4 angles received
+        if len(msg.data) >= 4:
+            self.flipper_angles = list(msg.data[:4])"""
         
              
     
@@ -217,13 +230,14 @@ class EkfOdomNode(Node):
     def publish_all(self, now):
         q = tf_transformations.quaternion_from_euler(0, 0, float(self.x_est[2]))
 
-        # ----- 1. TF -----
+        # ----- 1. TF ----- From Global odom coordinates to how the robot is moving
         tf_msg = TransformStamped()
         tf_msg.header.stamp = now
         tf_msg.header.frame_id = 'odom'
         tf_msg.child_frame_id = 'base_footprint'
         tf_msg.transform.translation.x = float(self.x_est[0])
         tf_msg.transform.translation.y = float(self.x_est[1])
+        tf_msg.transform.translation.z = 0.0  # 0 as it doesn't move up and down - always at ground level
         tf_msg.transform.rotation.x = q[0]
         tf_msg.transform.rotation.y = q[1]
         tf_msg.transform.rotation.z = q[2]
@@ -248,7 +262,32 @@ class EkfOdomNode(Node):
         odom.pose.covariance[35] = float(self.P[2, 2])   # yaw
         self.odom_pub.publish(odom)
 
-        # ----- 3. Path -----
+        # --- 3. Flipper transformations ---
+        flipper_configs = [ #Measure the real distance and 
+        ('flipper_front_left',  ( 0.25,  0.26, 0.0), self.flipper_angles[0]),  # JAguar only uses this one
+        #('flipper_front_left,  ( 0.25, 0.26, 0.0), self.flipper_angles[0]), #UNcomment this line with dicerox measurements for practicity
+        ('flipper_front_right', ( 0.25, -0.26, 0.0), self.flipper_angles[1]),  
+        ('flipper_rear_left',   (-0.25,  0.26, 0.0), self.flipper_angles[2]),  
+        ('flipper_rear_right',  (-0.25, -0.26, 0.0), self.flipper_angles[3]),]
+
+        for frame_id, (tx, ty, tz), angle in flipper_configs:
+            q_flippers = tf_transformations.quaternion_from_euler(0, angle, 0)  # pitch rotation
+
+            tf_msg = TransformStamped()
+            tf_msg.header.stamp = now
+            tf_msg.header.frame_id = 'base_footprint'
+            tf_msg.child_frame_id = frame_id
+            tf_msg.transform.translation.x = tx
+            tf_msg.transform.translation.y = ty
+            tf_msg.transform.translation.z = tz
+            tf_msg.transform.rotation.x = q_flippers[0]
+            tf_msg.transform.rotation.y = q_flippers[1]
+            tf_msg.transform.rotation.z = q_flippers[2]
+            tf_msg.transform.rotation.w = q_flippers[3]
+            self.tf_broadcaster.sendTransform(tf_msg)
+
+
+        # ----- 4. Path -----
         pose_stamped = PoseStamped()
         pose_stamped.header.stamp = now
         pose_stamped.header.frame_id = 'odom'
@@ -257,7 +296,7 @@ class EkfOdomNode(Node):
         self.path.poses.append(pose_stamped)
         self.path_pub.publish(self.path)
 
-        # ----- 4. Marker -----
+        # ----- 5. Marker -----
         marker = Marker()
         marker.header.stamp = now
         marker.header.frame_id = 'odom'

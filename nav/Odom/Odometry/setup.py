@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'Odometry'
+package_name = 'odometry'
 
 setup(
     name=package_name,
@@ -19,7 +19,7 @@ setup(
     license='MIT',
     entry_points={
         'console_scripts': [
-            'odometry = Odometry.odometry:main',
+            'odometry = odometry.odometry:main',
         ],
     },
 )

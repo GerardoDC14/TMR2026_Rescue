@@ -4,3 +4,6 @@ firmware/.vscode
 gui_ws/build
 gui_ws/log
 gui_ws/install
+# Python
+__pycache__/
+*.py[cod]

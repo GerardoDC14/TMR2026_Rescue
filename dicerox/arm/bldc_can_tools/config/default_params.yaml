@@ -1,0 +1,24 @@
+lktech_monitor:
+  ros__parameters:
+    motor_id: 15
+    reduction_ratio: 1.0
+    poll_rate_hz: 10.0
+    use_boot_offset_as_zero: true
+    joint_name: lktech_joint
+    publish_joint_state: true
+    channel: 0
+    bitrate: 1000
+    extended_id: false
+    device_index: 0
+
+lktech_position_test:
+  ros__parameters:
+    motor_id: 15
+    reduction_ratio: 1.0
+    use_boot_offset_as_zero: true
+    default_speed_dps_joint: 30.0
+    default_speed_dps_motor: 30.0
+    channel: 0
+    bitrate: 1000
+    extended_id: false
+    device_index: 0

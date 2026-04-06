@@ -76,6 +76,8 @@ ROS 2 package dependencies:
 
 - Scripts require USB access. Run with `sudo` or configure udev permissions.
 - `ControlCAN.py` now preloads local `libusb` libraries from `lib/linux/<32bit|64bit>/`.
+- This repo includes the Linux native driver files under `Python_USB_CAN_Test_64bits/lib/linux/32bit/`
+  and `Python_USB_CAN_Test_64bits/lib/linux/64bit/`.
 
 #### Recommended Linux setup for ROS 2
 
@@ -193,8 +195,8 @@ python sencan_odrive_pca.py <channel> <kbps> <odrive_node> <servo0_ch> <servo0_a
 
 - CAN bitrates currently supported in scripts: `100, 125, 250, 500, 800, 1000` kbps.
 - Legacy files were not deleted; they were moved to `legacy/` so nothing is lost.
-- On Linux, ROS 2 runs still need USB permissions for the Ginkgo adapter. Use
-  `sudo` or configure udev rules.
+- On Linux, the vendor shared libraries are included locally, but ROS 2 runs still
+  need USB permissions for the Ginkgo adapter. Use `sudo` or configure udev rules.
 
                                  ,,,,,,,,,,,,,,,,,,,,,
            M                  , '                     ',

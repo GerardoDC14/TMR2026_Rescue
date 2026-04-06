@@ -1,0 +1,163 @@
+ODrive Configuration - GIM8108-48 (24V)
+=======================================
+
+ODrive hardware:
+- ODrive v3.11-4V BL72.CyberBeast.cn
+- Firmware: v0.6.0
+- odrivetool: v0.6.10.post0
+
+Notes and Assumptions
+---------------------
+1. Supply / battery
+   - This setup targets a nominal 24 V bus, such as a 6S LiPo or Li-ion pack.
+   - The DC bus protection values below assume that operating range.
+
+2. Encoder
+   - The motor uses the vendor-integrated encoder.
+   - No external SPI encoder wiring is assumed here.
+   - Do not force SPI ABS mode or chip-select settings unless you intentionally change the encoder setup.
+
+3. Save / reboot behavior
+   - `save_configuration()` and `reboot()` will temporarily disconnect the drive.
+   - The odrivetool message `Oh no odrv0 disappeared` is expected during reboot.
+
+4. Regen / brake resistor
+   - If you have a physical brake resistor, configure its real resistance value.
+   - If you do not have a brake resistor, be careful with aggressive deceleration because regen can push the DC bus voltage too high.
+
+5. Quick encoder debug
+   - `odrv0.axis0.encoder.pos_abs` is a good raw check that the encoder is alive and changing.
+
+A) Optional Factory Reset
+-------------------------
+# WARNING: This erases prior parameters.
+# odrv0.erase_configuration()
+
+B) Bus Protection and Brake Resistor (24 V)
+-------------------------------------------
+# Undervoltage: about 19 V (roughly 3.2 V/cell on 6S)
+odrv0.config.dc_bus_undervoltage_trip_level = 19.5
+
+# Overvoltage: conservative limit for a 24 V system
+odrv0.config.dc_bus_overvoltage_trip_level = 26.0
+
+odrv0.config.enable_brake_resistor = False
+
+# Set this to the real resistor value if a brake resistor is installed
+odrv0.config.brake_resistance = 2.0
+
+# Your device reported:
+# odrv0.config.dc_max_negative_current == -10.0
+#
+# Conservative guidance:
+# - keep the vendor default unless you have validated your regen path
+# - or set a modest value after testing, if your hardware supports it
+# Example:
+# odrv0.config.dc_max_negative_current = 8
+
+C) Motor (Axis0)
+----------------
+odrv0.axis0.motor.config.motor_type              = 0
+odrv0.axis0.motor.config.pole_pairs              = 21
+odrv0.axis0.motor.config.calibration_current     = 5.0
+odrv0.axis0.motor.config.requested_current_range = 60.0
+odrv0.axis0.motor.config.current_lim             = 40.0
+
+D) Encoder (Axis0)
+------------------
+# Keep the vendor-provided embedded encoder configuration.
+# Optional bandwidth tweak:
+# odrv0.axis0.encoder.config.bandwidth = 500.0
+
+# Quick debug read:
+# odrv0.axis0.encoder.pos_abs
+
+E) Save and Reboot
+------------------
+odrv0.save_configuration()
+odrv0.reboot()
+
+F) One-Time Calibration
+-----------------------
+# Motor calibration
+odrv0.axis0.requested_state = AXIS_STATE_MOTOR_CALIBRATION
+# wait until finished, then:
+# dump_errors(odrv0)
+
+# Encoder offset calibration, if applicable to the encoder mode
+odrv0.axis0.requested_state = AXIS_STATE_ENCODER_OFFSET_CALIBRATION
+# dump_errors(odrv0)
+
+# Mark the axis as pre-calibrated
+odrv0.axis0.motor.config.pre_calibrated   = True
+odrv0.axis0.encoder.config.pre_calibrated = True
+
+# Recommended startup behavior
+odrv0.axis0.config.startup_encoder_offset_calibration = False
+odrv0.axis0.config.startup_closed_loop_control        = False
+
+odrv0.save_configuration()
+odrv0.reboot()
+
+G) Controller Setup: Position Control + Trap Trajectory
+-------------------------------------------------------
+odrv0.axis0.controller.config.control_mode = CONTROL_MODE_POSITION_CONTROL
+odrv0.axis0.controller.config.input_mode   = INPUT_MODE_TRAP_TRAJ
+
+# Starting-point gains. Tune on the real mechanism.
+odrv0.axis0.controller.config.pos_gain            = 20.0
+odrv0.axis0.controller.config.vel_gain            = 0.10
+odrv0.axis0.controller.config.vel_integrator_gain = 0.05
+
+# Trajectory limits in turns/s and turns/s^2
+odrv0.axis0.trap_traj.config.vel_limit   = 20.0
+odrv0.axis0.trap_traj.config.accel_limit = 40.0
+odrv0.axis0.trap_traj.config.decel_limit = 40.0
+
+# Safety velocity limit must stay above the trap trajectory limit
+odrv0.axis0.controller.config.vel_limit = 25.0
+
+odrv0.save_configuration()
+odrv0.reboot()
+
+H) Typical Manual Command Sequence
+----------------------------------
+# 0) Confirm the axis is idle
+# odrv0.axis0.current_state   # expected: 1
+
+# 1) Set an initial target before entering closed loop
+odrv0.axis0.controller.input_pos = 0.0
+
+# 2) Enter closed loop explicitly
+odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+
+# 3) Command motion in turns
+# odrv0.axis0.controller.input_pos = 0.5
+# odrv0.axis0.controller.input_pos = 0.0
+
+I) CAN Configuration (Confirmed)
+--------------------------------
+# Confirmed from your odrivetool session:
+odrv0.axis0.config.can.node_id = 0x10
+odrv0.can.config.baud_rate     = 500000
+
+# Save after CAN changes
+odrv0.save_configuration()
+odrv0.reboot()
+
+Resolved CAN values
+-------------------
+- Axis CAN node ID: `0x10` (decimal `16`)
+- ODrive CAN baud rate: `500000` bps (`500 kbps`)
+- Frame type: standard 11-bit ODrive CANSimple
+
+Recommended host-side settings for the shared Ginkgo test tools
+---------------------------------------------------------------
+- Ginkgo CAN channel: `0`
+- Bitrate: `500 kbps`
+- Default node ID for this motor: `0x10`
+
+If you add more ODrives on the same bus, give each axis a unique node ID such as:
+- `0x11`
+- `0x12`
+- `0x13`

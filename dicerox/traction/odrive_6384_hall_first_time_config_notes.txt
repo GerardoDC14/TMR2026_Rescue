@@ -72,6 +72,11 @@ dev0.config.max_regen_current = 1.0
 dev0.config.dc_max_positive_current = 20
 
 
+# ---------- CAN ----------
+dev0.axis0.config.can.node_id = 0x2
+dev0.can.config.baud_rate = 1000000
+
+
 # ---------- HALL GPIO ----------
 dev0.config.gpio9_mode  = GPIO_MODE_DIGITAL
 dev0.config.gpio10_mode = GPIO_MODE_DIGITAL
@@ -102,7 +107,10 @@ dev0.axis0.encoder.config.bandwidth = 100
 dev0.axis0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
 dev0.axis0.controller.config.input_mode   = INPUT_MODE_VEL_RAMP
 
+# velocity units here are turns/s
 dev0.axis0.controller.config.vel_limit = 30
+
+# acceleration units here are turns/s^2 because input_mode is VEL_RAMP
 dev0.axis0.controller.config.vel_ramp_rate = 1.0
 
 dev0.axis0.controller.config.pos_gain = 1
@@ -207,6 +215,7 @@ Every normal startup after calibration:
 
 Command velocity gradually:
 
+    # input_vel is in turns/s
     dev0.axis0.controller.input_vel = 0
     dev0.axis0.controller.input_vel = 2
     dev0.axis0.controller.input_vel = 4
@@ -255,6 +264,7 @@ B) If you want less ramp / softer acceleration
 ----------------------------------------------
 Main parameter:
 - vel_ramp_rate
+- In INPUT_MODE_VEL_RAMP this is acceleration in turns/s^2
 
 Softer:
 

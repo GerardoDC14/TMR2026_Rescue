@@ -132,6 +132,10 @@ void ODrive::setVelocity(float velocity, float torqueFF) {
     _canBus->sendMessage(&frame);
 }
 
+void ODrive::setRPMs(int rpm, float torqueFF) {
+    float ts = rpm / 60;
+    setVelocity(ts, torqueFF);
+}
 void ODrive::setControllerMode(uint32_t controlMode, uint32_t inputMode) {
     can_frame frame;
     frame.can_id = _makeCanId(0x0B);
@@ -166,5 +170,6 @@ void ODrive::_sendEmptyFrame(uint8_t cmdId, bool rtr) {
 
 float ODrive::getEpos()    { return encEstPos; }
 float ODrive::getEvel()    { return encEstVel; }
+float ODrive::getErpms()   { return encEstVel * 60; }
 float ODrive::getVoltage() { return busVoltage; }
 float ODrive::getCurrent() { return busCurrent; }

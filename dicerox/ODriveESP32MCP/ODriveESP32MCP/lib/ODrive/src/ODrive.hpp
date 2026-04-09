@@ -85,6 +85,7 @@ public:
     void setAxisState(uint32_t state);
     void setControllerMode(uint32_t controlMode, uint32_t inputMode);
     void setVelocity(float velocity, float torqueFF = 0.0f);
+    void setRPMs(int rpm, float torqueFF = 0.0f);
     void clearErrors();
     void Estop(); 
 
@@ -92,6 +93,7 @@ public:
 
     float getEpos();
     float getEvel();
+    float getErpms();
     float getVoltage();
     float getCurrent();
 };

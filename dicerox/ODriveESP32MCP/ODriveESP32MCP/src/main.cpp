@@ -45,8 +45,8 @@ void setup() {
     delay(10);
 
     Serial.println("¡Arrancando motores a 1 rev/segundo!");
-    motorA.setVelocity(1.0);
-    motorB.setVelocity(1.0);
+    motorA.setRPMs(120);
+    motorB.setVelocity(2);
 
     tiempoAnteriorMovimiento = millis();
     tiempoAnteriorTelemetria = millis();
@@ -64,7 +64,7 @@ void loop() {
     if (estadoActual == 0) {
         if (tiempoActual - tiempoAnteriorMovimiento >= 5000) {
             Serial.println("Tiempo cumplido. Deteniendo motores...");
-            motorA.setVelocity(0.0);
+            motorA.setRPMs(0);
             motorB.setVelocity(0.0);
             
             estadoActual = 1;
@@ -73,9 +73,9 @@ void loop() {
     } 
     else if (estadoActual == 1) {
         if (tiempoActual - tiempoAnteriorMovimiento >= 3000) {
-            Serial.println("🚀 Reiniciando ciclo: ¡Arrancando a 1 rev/segundo!");
-            motorA.setVelocity(1.0);
-            motorB.setVelocity(1.0);
+            Serial.println("Reiniciando ciclo: ¡Arrancando a 1 rev/segundo!");
+            motorA.setRPMs(120);
+            motorB.setVelocity(2);
             
             estadoActual = 0;
             tiempoAnteriorMovimiento = tiempoActual;
@@ -88,8 +88,8 @@ void loop() {
         Serial.print(" rev/s | V: ");
         Serial.print(motorA.getVoltage());
         Serial.print("V  ||  Motor B -> Vel: ");
-        Serial.print(motorB.getEvel());
-        Serial.print(" rev/s | V: ");
+        Serial.print(motorB.getErpms());
+        Serial.print(" rpm: ");
         Serial.print(motorB.getVoltage());
         Serial.println("V");
         

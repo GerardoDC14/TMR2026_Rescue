@@ -1,145 +1,101 @@
-#include "driver/twai.h"
+#include <Arduino.h>
+#include <SPI.h>
+#include <mcp2515.h>
 #include "ODrive.hpp"
 
-#define TWAI_TX GPIO_NUM_22
-#define TWAI_RX GPIO_NUM_21
+const uint8_t PIN_CAN_CS   = 5;
+const uint8_t PIN_CAN_SCK  = 18;
+const uint8_t PIN_CAN_MISO = 19;
+const uint8_t PIN_CAN_MOSI = 23;
 
-// -------------------- PPM CONFIG --------------------
-#define PPM_PIN            4
-#define CHANNELS           6
-#define SYNC_PULSE_US      2100
-#define BAUD_RATE          115200
+MCP2515 mcp2515(PIN_CAN_CS);
+ODrive motorA(0x02, &mcp2515);
+ODrive motorB(0x03, &mcp2515);
 
-#define PPM_DEADBAND_LOW   1480
-#define PPM_DEADBAND_HIGH  1520
-#define PPM_MIN_US         1000
-#define PPM_MAX_US         2000
-
-volatile uint32_t ppmValues[CHANNELS] = {0};
-volatile uint8_t currentChannel = 0;
-volatile uint32_t lastPulse = 0;
-volatile bool frameReady = false;
-volatile uint32_t lastFrameMs = 0;
-
-// -------------------- CONTROL TUNING --------------------
-static const int32_t RPM_MAX = 2500;      // RPM máximo a pedir
-static const uint32_t PRINT_PERIOD = 50;  // Mostrar datos cada 50ms
-static const uint32_t FAILSAFE_MS = 200;  // Tiempo sin señal para failsafe
-
-static inline int clampInt(int x, int lo, int hi) {
-  if (x < lo) return lo;
-  if (x > hi) return hi;
-  return x;
-}
-
-// Odrive declaration
-ODrive can(1);
-
-void IRAM_ATTR ppmISR() {
-  uint32_t nowUs = micros(); // Necesario para medir el ancho del pulso
-  uint32_t pulseWidth = nowUs - lastPulse;
-  lastPulse = nowUs;
-
-  if (pulseWidth > SYNC_PULSE_US) {
-    currentChannel = 0;
-    lastFrameMs = millis(); // Registramos la última vez que llegó señal (en milisegundos)
-  } else {
-    if (currentChannel < CHANNELS) {
-      ppmValues[currentChannel] = pulseWidth;
-      currentChannel++;
-    }
-  }
-}
-
-float ppmToNormalized(int ppm) {
-  ppm = clampInt(ppm, PPM_MIN_US, PPM_MAX_US);
-
-  // Zona muerta (centro del stick)
-  if (ppm >= PPM_DEADBAND_LOW && ppm <= PPM_DEADBAND_HIGH) return 0.0f;
-
-  if (ppm > PPM_DEADBAND_HIGH) {
-    // Escala positiva [1520..2000] -> [0..1]
-    return (float)(ppm - PPM_DEADBAND_HIGH) / (float)(PPM_MAX_US - PPM_DEADBAND_HIGH);
-  } else {
-    // Escala negativa [1480..1000] -> [0..-1]
-    return -(float)(PPM_DEADBAND_LOW - ppm) / (float)(PPM_DEADBAND_LOW - PPM_MIN_US);
-  }
-}
+unsigned long tiempoAnteriorMovimiento = 0;
+unsigned long tiempoAnteriorTelemetria = 0;
+int estadoActual = 0;
 
 void setup() {
-  Serial.begin(BAUD_RATE);
+    Serial.begin(9600);
+    delay(1000);
 
-  pinMode(PPM_PIN, INPUT);
-  attachInterrupt(digitalPinToInterrupt(PPM_PIN), ppmISR, FALLING);
-  Serial.println("Lectura PPM iniciada...");
+    Serial.println("Iniciando sistema ODrive ESP32...");
 
-  delay(5000);
-  Serial.println("Starting CAN sniffer...");
+    SPI.begin(PIN_CAN_SCK, PIN_CAN_MISO, PIN_CAN_MOSI, PIN_CAN_CS);
 
-  twai_general_config_t g_config =
-    TWAI_GENERAL_CONFIG_DEFAULT(TWAI_TX, TWAI_RX, TWAI_MODE_NORMAL);
+    if (!motorA.begin(CAN_1000KBPS, MCP_8MHZ)) {
+        Serial.println("Error iniciando MCP2515. Revisa conexiones.");
+        while (1);
+    }
+    motorB.begin(CAN_1000KBPS, MCP_8MHZ); 
 
-  twai_timing_config_t t_config = TWAI_TIMING_CONFIG_500KBITS();
-  twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
-  esp_err_t err = twai_driver_install(&g_config, &t_config, &f_config);
-  Serial.print("driver_install: ");
-  Serial.println(err);
+    Serial.println("MCP2515 configurado correctamente.");
 
-  err = twai_start();
-  Serial.print("twai_start: ");
-  Serial.println(err);
+    motorA.clearErrors();
+    motorB.clearErrors();
+    delay(10); 
 
-  if (err == ESP_OK) {
-    Serial.println("Listening at 500 kbps...");
-  }
+    motorA.setControllerMode(ODrive::VELOCITY_CONTROL, ODrive::VEL_RAMP);
+    motorB.setControllerMode(ODrive::VELOCITY_CONTROL, ODrive::VEL_RAMP);
+    delay(10);
+
+    motorA.setAxisState(ODrive::CLOSED_LOOP_CONTROL);
+    motorB.setAxisState(ODrive::CLOSED_LOOP_CONTROL);
+    delay(10);
+
+    Serial.println("¡Arrancando motores a 1 rev/segundo!");
+    motorA.setVelocity(1.0);
+    motorB.setVelocity(1.0);
+
+    tiempoAnteriorMovimiento = millis();
+    tiempoAnteriorTelemetria = millis();
 }
 
 void loop() {
-  twai_message_t msg;
-
-  while (twai_receive(&msg, 0) == ESP_OK) {
-      can.feedMsg(msg); 
-  }
-
-  static uint32_t lastPrintMs = 0;
-  uint32_t nowMs = millis();
-
-  // Ejecutar lógica cada 50ms
-  if (nowMs - lastPrintMs >= PRINT_PERIOD) {
-    lastPrintMs = nowMs;
-    can.requestVoltage();
-    Serial.print("Current State: ");
-    Serial.println(can.currentState);
-    Serial.print("bus Current: ");
-    Serial.println(can.busCurrent);
-    Serial.print("Bus Voltage: ");
-    Serial.println(can.busVoltage);
-    Serial.print("Sensorless pos estimate: ");
-    Serial.println(can.senlessEstPos);
-    Serial.print("Sensorless vel estimate: ");
-    Serial.println(can.senlessEstVel);
-    Serial.println();
-
-    // Failsafe: Si han pasado más de 200ms sin señal
-    if (nowMs - lastFrameMs > FAILSAFE_MS) {
-      Serial.println("FAILSAFE ACTIVO - Sin señal del control");
-      return; // Evita que el motor se mueva
+    can_frame frame;
+    while (mcp2515.readMessage(&frame) == MCP2515::ERROR_OK) {
+        motorA.feedMsg(frame);
+        motorB.feedMsg(frame);
     }
 
-    // Leer el canal de aceleración (CH2 = índice 1) de forma segura
-    uint32_t ch2_us;
-    noInterrupts();
-    ch2_us = ppmValues[1];
-    interrupts();
+    unsigned long tiempoActual = millis();
 
-    // 1. Normalizar el valor
-    float normalizado = ppmToNormalized((int)ch2_us);     
-    
-    // 2. Convertir a objetivo de RPM
-    int32_t rpmTarget = (int32_t)(normalizado * RPM_MAX); 
+    if (estadoActual == 0) {
+        if (tiempoActual - tiempoAnteriorMovimiento >= 5000) {
+            Serial.println("Tiempo cumplido. Deteniendo motores...");
+            motorA.setVelocity(0.0);
+            motorB.setVelocity(0.0);
+            
+            estadoActual = 1;
+            tiempoAnteriorMovimiento = tiempoActual;
+        }
+    } 
+    else if (estadoActual == 1) {
+        if (tiempoActual - tiempoAnteriorMovimiento >= 3000) {
+            Serial.println("🚀 Reiniciando ciclo: ¡Arrancando a 1 rev/segundo!");
+            motorA.setVelocity(1.0);
+            motorB.setVelocity(1.0);
+            
+            estadoActual = 0;
+            tiempoAnteriorMovimiento = tiempoActual;
+        }
+    }
 
-    Serial.printf("Señal (us): %u | Mapeo: %.2f | RPM Objetivo: %d\n", ch2_us, normalizado, rpmTarget);
-  }
+    if (tiempoActual - tiempoAnteriorTelemetria >= 500) {
+        Serial.print("Motor A -> Vel: ");
+        Serial.print(motorA.getEvel());
+        Serial.print(" rev/s | V: ");
+        Serial.print(motorA.getVoltage());
+        Serial.print("V  ||  Motor B -> Vel: ");
+        Serial.print(motorB.getEvel());
+        Serial.print(" rev/s | V: ");
+        Serial.print(motorB.getVoltage());
+        Serial.println("V");
+        
+        motorA.requestVoltage();
+        motorB.requestVoltage();
 
-  // Falta declarar la funcion de envio de RPMs dentro de la libreria de ODrive
+        tiempoAnteriorTelemetria = tiempoActual;
+    }
 }

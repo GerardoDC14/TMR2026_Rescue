@@ -67,7 +67,7 @@ class EkfOdomNode(Node):
         self.omega_imu = 0.0  
 
         #Physical properties (In meters)
-        self.Trackwidth = 0.47 #Jaguar
+        self.Trackwidth = 0.31 #Jaguar
         self.Radius     = 0.087 
         #self.Trackwidth = ## Dicerox MEDIR
         #self.Radius  = ###

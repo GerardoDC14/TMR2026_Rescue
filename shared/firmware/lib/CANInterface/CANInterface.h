@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "robot_types.h"
+#include <mcp2515.h>
+#include "ODrive.hpp"
 
 // ─── CANInterface ─────────────────────────────────────────────────────────────
 // Wraps ESP32 TWAI (built-in CAN controller) with SN65HVD230 transceiver.

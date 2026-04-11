@@ -49,10 +49,9 @@ const uint8_t PIN_CAN_MOSI = 23;
 
 MCP2515 mcp2515(PIN_CAN_CS);
 ODrive motorA(0x02, &mcp2515);
-ODrive motorB(0x03, &mcp2515);
 
 // -------------------- CONTROL TUNING --------------------
-static const float VEL_MAX_RPM  = 2500.0f;  
+static const float VEL_MAX_RPM  = 1500.0f;  
 static const float ACELERACION  = 1000.0f;  
 
 static const uint32_t CAN_PERIOD_MS = 20;   
@@ -84,7 +83,7 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(PPM_PIN), ppmISR, FALLING);
     Serial.println("Receptor PPM Iniciado");
 
-    SPI.begin(PIN_CAN_SCK, PIN_CAN_MISO, PIN_CAN_MOSI, PIN_CAN_CS);
+    SPI.begin(iPIN_CAN_SCK, PIN_CAN_MISO, PIN_CAN_MOSI, PIN_CAN_CS);
 
     if (!motorA.begin(CAN_1000KBPS, MCP_8MHZ)) {
         Serial.println("Error inicializando MCP2515");
@@ -93,21 +92,17 @@ void setup() {
     
     // --- SECUENCIA DE INICIO SEGURO ODRIVE ---
     motorA.clearErrors();
-    motorB.clearErrors();
     delay(10);
     
     motorA.setControllerMode(ODrive::VELOCITY_CONTROL, ODrive::PASSTHROUGH);
-    motorB.setControllerMode(ODrive::VELOCITY_CONTROL, ODrive::PASSTHROUGH);
     delay(10);
     
     // 1. MANDAMOS 0 RPM ANTES DE CERRAR EL LAZO (Evita el jalón)
     motorA.setRPMs(0);
-    motorB.setRPMs(0);
     delay(10);
     
     // 2. AHORA SÍ CERRAMOS EL LAZO
     motorA.setAxisState(ODrive::CLOSED_LOOP_CONTROL);
-    motorB.setAxisState(ODrive::CLOSED_LOOP_CONTROL);
     delay(10);
     
     Serial.println("ODrive armado en 0 RPM. Esperando palanca en neutral...");
@@ -126,44 +121,9 @@ void loop() {
     uint32_t nowMs = millis();
 
     can_frame frame;
-    // 1. LEER MENSAJES DEL BUS CAN
     while (mcp2515.readMessage(&frame) == MCP2515::ERROR_OK) {
         motorA.feedMsg(frame);
-        motorB.feedMsg(frame);
     }
-
-    // ---------------------------------------------------------
-    // ¡NUEVO! CORTACORRIENTES DE EMERGENCIA POR ERROR DE ODRIVE
-    // ---------------------------------------------------------
-    if (motorA.axisError != 0 || motorB.axisError != 0) {
-        Serial.println("\n==================================================");
-        Serial.println("      !!! ERROR CRITICO DETECTADO EN ODRIVE !!!     ");
-        Serial.println("==================================================");
-        
-        if (motorA.axisError != 0) {
-            Serial.print(">> Falla en Motor A (Nodo 0x02). Codigo: 0x");
-            Serial.println(motorA.axisError, HEX);
-        }
-        if (motorB.axisError != 0) {
-            Serial.print(">> Falla en Motor B (Nodo 0x03). Codigo: 0x");
-            Serial.println(motorB.axisError, HEX);
-        }
-
-        Serial.println("Enviando comando E-STOP (Parada de emergencia) a ambos motores...");
-        motorA.Estop();
-        motorB.Estop();
-
-        Serial.println("Sistema bloqueado por seguridad. Desconecta la bateria o reinicia el ESP32.");
-        
-        // Atrapamos al microcontrolador en un bucle infinito para evitar que 
-        // vuelva a mandar comandos de velocidad.
-        while (true) {
-            delay(1000); 
-        }
-    }
-    // ---------------------------------------------------------
-
-    // Bucle de Control a 50Hz (20ms)
     if (nowMs - lastCanMs >= CAN_PERIOD_MS) {
         float dt = (nowMs - lastCanMs) / 1000.0f;
         lastCanMs = nowMs;
@@ -213,54 +173,30 @@ void loop() {
             velocidadActualCmd = velocidadObjetivo; 
         }
 
-        // motorA.setRPMs(velocidadActualCmd);
-        motorB.setRPMs(velocidadActualCmd);
+        motorA.setRPMs(velocidadActualCmd);
     }
 
-    // Telemetría a 2Hz (500ms)
     if (nowMs - lastTelemetryMs >= 500) {
-        // Leemos el valor crudo del receptor una sola vez para este bloque
+        Serial.print("Armado: ");
+        Serial.print(sistemaArmado ? "SI" : "NO");
+        
+        Serial.print(" | Failsafe: ");
+        Serial.print(inFailsafe ? "SI" : "NO");
+
+        // Leemos el valor crudo del receptor
         uint32_t rawPPM;
         noInterrupts();
         rawPPM = ppmValues[1];
         interrupts();
 
-        // TELEMETRIA MOTOR A
-        Serial.print("A: Armado: ");
-        Serial.print(sistemaArmado ? "SI" : "NO");
-        Serial.print(" | Err: 0x"); 
-        Serial.print(motorA.axisError, HEX); // Agregado código de error
-        Serial.print(" | RPMS: ");
-        Serial.print(motorA.getErpms());
-        Serial.print(" | Volt: ");
-        Serial.print(motorA.getVoltage());
-        Serial.print(" | Amp: ");
-        Serial.print(motorA.getCurrent());
-        
-        Serial.println(); // Salto de línea para que se lea mejor
-
-        // TELEMETRIA MOTOR B
-        Serial.print("B: Armado: ");
-        Serial.print(sistemaArmado ? "SI" : "NO");
-        Serial.print(" | Err: 0x"); 
-        Serial.print(motorB.axisError, HEX); // Agregado código de error
-        Serial.print(" | RPMS: ");
-        Serial.print(motorB.getErpms());
-        Serial.print(" | Volt: ");
-        Serial.print(motorB.getVoltage());
-        Serial.print(" | Amp: ");
-        Serial.print(motorB.getCurrent());
-
-        Serial.print(" || CH2: ");
+        Serial.print(" | Señal CH2: ");
         Serial.print(rawPPM);
-        Serial.print(" us (");
-        Serial.print(ppmToNormalized((int)rawPPM));
-        Serial.println(")");
+        Serial.print(" us");
+
+        Serial.print(" | Joystick Norm: ");
+        Serial.println(ppmToNormalized((int)rawPPM));
         
-        // Peticiones de voltaje para que se actualicen en la siguiente lectura
         motorA.requestVoltage();
-        motorB.requestVoltage();
-        
         lastTelemetryMs = nowMs;
     }
 }

@@ -145,6 +145,19 @@ void ODrive::setControllerMode(uint32_t controlMode, uint32_t inputMode) {
     _canBus->sendMessage(&frame);
 }
 
+void ODrive::setPos(float posG, float velFF, float torqueFF){
+    can_frame frame;
+    frame.can_id = _makeCanId(0x0C);
+    frame.can_dlc = 8;
+    float posT = posG / 360.0f;
+    int16_t vel = (int16_t)(velFF * 1000.0f);
+    int16_t torque = (int16_t)(torqueFF * 1000.0f); 
+    memcpy(&frame.data[0], &posT, 4);
+    memcpy(&frame.data[4], &vel, 2);
+    memcpy(&frame.data[6], &torque, 2);
+    _canBus->sendMessage(&frame);
+}
+
 void ODrive::clearErrors() {
     can_frame frame;
     frame.can_id = _makeCanId(0x18);

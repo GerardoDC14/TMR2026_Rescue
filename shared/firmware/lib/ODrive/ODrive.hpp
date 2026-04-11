@@ -86,6 +86,7 @@ public:
     void setControllerMode(uint32_t controlMode, uint32_t inputMode);
     void setVelocity(float velocity, float torqueFF = 0.0f);
     void setRPMs(int rpm, float torqueFF = 0.0f);
+    void setPos(float posG, float velFF = 0.0f, float torqueFF = 0.0f);
     void clearErrors();
     void Estop(); 
 

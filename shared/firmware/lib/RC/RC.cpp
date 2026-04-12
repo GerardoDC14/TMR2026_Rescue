@@ -45,7 +45,12 @@ void IRAM_ATTR RC::isr() {
         }
         s_channel_idx = 0;
     } else if (s_channel_idx < PPM_CHANNELS) {
-        // Clamp to sane range before storing
+        // Ignore physically impossible pulses (hardware noise/bounce)
+        if (interval < 400u) {
+            return; // Exit ISR entirely, wait for the real edge
+        }
+        
+        // Clamp out-of-bounds but valid-looking signals
         uint16_t clamped = (interval < 800u) ? 800u :
                            (interval > 2500u) ? 2500u : (uint16_t)interval;
         s_raw[s_channel_idx++] = clamped;

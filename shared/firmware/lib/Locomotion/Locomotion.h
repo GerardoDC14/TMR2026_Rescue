@@ -1,13 +1,12 @@
 #pragma once
 #include <stdint.h>
+#include "config.h"
 
 // ─── Locomotion ───────────────────────────────────────────────────────────────
-// Provides high-level movement commands for the traction and flipper systems.
-// The public API is robot-agnostic; hardware-specific output is encapsulated
-// inside the private apply* methods and gated with #ifdef ROBOT_MAIN /
-// ROBOT_SECONDARY.
+// Pure output layer — takes normalised efforts and writes them to hardware.
+// No control logic or PID here; all closed-loop control lives in Control.
 //
-// ROBOT_MAIN      — LEDC servo-PWM for two tracks + one flipper.
+// ROBOT_MAIN      — LEDC servo PWM (writeMicroseconds) for two tracks + PWM+DIR flipper.
 // ROBOT_SECONDARY — CAN motor controllers for two tracks + four flippers.
 //
 // All normalised values are in the range [-1.0, +1.0] unless otherwise noted.
@@ -16,52 +15,37 @@ class Locomotion {
 public:
     static void begin();
 
-    // High-level commands (platform-independent) ──────────────────────────────
-
-    // Tank-drive mixing: forward ∈ [-1,1], turn ∈ [-1,1]
-    // Computes left/right track speeds and routes to applyTrackSpeeds().
-    static void setDriveCommand(float forward, float turn);
-
-    // Set both tracks directly (e.g. from a speed controller).
+    // Set track motor efforts directly [-1, 1].
+    // Direction correction and TRACTION_MAX_NORM safety clamp applied internally.
     static void setTrackSpeeds(float left_norm, float right_norm);
 
-    // ROBOT_MAIN: apply a normalised effort [-1,1] directly (used by PID).
+    // Tank-drive mixing: forward ∈ [-1,1], turn ∈ [-1,1] → left/right speeds.
+    // ROBOT_SECONDARY uses standard tank-drive; ROBOT_MAIN passes through.
+    static void setDriveCommand(float forward, float turn);
+
+    // ROBOT_MAIN: apply normalised flipper effort [-1, 1].
     static void setFlipperEffort(float norm);
 
-    // ROBOT_SECONDARY: command all four independent flippers individually.
-    // Each value is normalised [-1,1].  Order: front-left, front-right,
-    // rear-left, rear-right.
+    // ROBOT_SECONDARY: command four independent flippers [-1, 1].
     static void setFlipperTargets(float fl, float fr, float rl, float rr);
 
-    // Immediately neutralise all outputs (tracks + flipper(s) → stopped).
+    // Stop all outputs immediately.
     static void neutralise();
 
+    // Last commanded efforts (for telemetry).
+    static float getTrackLeft()     { return s_track_left_norm; }
+    static float getTrackRight()    { return s_track_right_norm; }
+    static float getFlipperEffort() { return s_flipper_effort_norm; }
+
 private:
-    // Low-level output (platform-specific) ───────────────────────────────────
-
-    // Write normalised [-1,1] speed to left and right track actuators.
     static void applyTrackSpeeds(float left_norm, float right_norm);
-
-    // ROBOT_MAIN: write normalised [-1,1] command to the single flipper.
     static void applyFlipperPWM(float norm);
-
-    // ROBOT_SECONDARY: write normalised [-1,1] commands to four flipper CAN
-    // controllers.  Order: fl, fr, rl, rr.
     static void applyFlipperSpeeds(float fl, float fr, float rl, float rr);
 
-    // Convert normalised [-1,1] → PWM duty count for LEDC peripheral.
-    // Used by ROBOT_MAIN only.
-    static uint32_t normToDuty(float norm);
+    // Write a microsecond pulse width to a pin via LEDC (v3 API)
+    static void writeMicroseconds(uint8_t pin, uint16_t us);
 
-    static float  s_flipper_target_deg;
-
-    // Last commanded normalised efforts (ROBOT_MAIN only); read by commsTask.
-    static float  s_track_left_norm;
-    static float  s_track_right_norm;
-    static float  s_flipper_effort_norm;
-
-public:
-    static float getTrackLeft()      { return s_track_left_norm; }
-    static float getTrackRight()     { return s_track_right_norm; }
-    static float getFlipperEffort()  { return s_flipper_effort_norm; }
+    static float s_track_left_norm;
+    static float s_track_right_norm;
+    static float s_flipper_effort_norm;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "robot_types.h"
+#include "PID.h"
 
 // ─── Control ──────────────────────────────────────────────────────────────────
 // Top-level state machine.  Runs on Core 1 at PRIO_CONTROL.
@@ -15,9 +16,9 @@
 //  Until a keybind is received, the default mapping is used:
 //    mode0: Ch1=FLIPPER_ALL Ch2=TRACTION_FWD Ch4=TRACTION_TURN
 //    mode1: Ch1=FLIPPER_ALL Ch2=TRACTION_FWD Ch4=TRACTION_TURN
-//    mode2: Ch1-4=ARM_FWD
+//    mode2: Ch1-4=ARM axes
 //
-//  Any state ──(ESTOP from mini PC)──► ESTOP ──(ESTOP_CLEAR)──► STANDBY
+//  Any state ──(Ch6 HIGH or ESTOP msg)──► ESTOP ──(Ch6 LOW or ESTOP_CLEAR)──► STANDBY
 
 class Control {
 public:
@@ -35,22 +36,25 @@ public:
     static void      getSystemStatus(SystemStatus& out);
 
 private:
-    // Apply the active keybind row to PPM channels
     static void applyKeybindRow(int mode_index, const PPMFrame& ppm,
                                 const EncoderState& enc);
-
-    // Decode the 3-position Ch5 lever into a mode index (0, 1, or 2)
-    static int decodeModeIndex(const PPMFrame& ppm);
+    static int  decodeModeIndex(const PPMFrame& ppm);
 
     static RobotMode     s_mode;
     static ArmJoints     s_arm_joints;
     static uint8_t       s_sensor_mask;
     static KeybindTable  s_keybind;
 
-    // Flipper PID state (ROBOT_MAIN)
-#ifdef ROBOT_MAIN
-    static float s_pid_integral;
-    static float s_pid_prev_err;
-    static float flipperPID(float setpoint_deg, float measured_deg);
+    // ── PID controllers (only compiled when enabled in config.h) ─────────────
+#if defined(ROBOT_MAIN) && defined(ENABLE_TRACTION_PID)
+    static PID   s_pid_traction_left;
+    static PID   s_pid_traction_right;
+#endif
+#if defined(ROBOT_MAIN) && defined(ENABLE_FLIPPER_PID)
+    static PID   s_pid_flipper;
+    static float s_flipper_target_angle;   // integrated from stick input
+#endif
+#ifdef ROBOT_SECONDARY
+    static PID   s_pid_flipper[4];         // FL, FR, RL, RR
 #endif
 };

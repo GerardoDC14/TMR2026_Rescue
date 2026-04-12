@@ -1,4 +1,1 @@
-jaguar_arm:
-  kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
-  kinematics_solver_search_resolution: 0.0050000000000000001
-  kinematics_solver_timeout: 0.0050000000000000001
+/home/arepo/TMR2026_Rescue/jaguar/arm/src/jaguar_full/config/kinematics.yaml

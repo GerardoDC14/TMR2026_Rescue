@@ -227,12 +227,54 @@ struct PpmCalibPayload {
     PpmChannelCalibEntry ch[PPM_CHANNELS];  // one entry per channel (0 = Ch1 … 5 = Ch6)
 };
 
+// OdriveStatusPayload (MSG_ODRIVE_STATUS = 0x0A) — per-joint ODrive telemetry — 11 bytes
+// Note: no temperature available via CAN on ODrive v3.6 (0x15 = sensorless, not temp).
+struct OdriveStatusPayload {
+    uint8_t joint_idx;            // 0-based joint index (0=J1, 1=J2, 2=J3)
+    int16_t pos_turns_100;        // encoder position × 100 (motor turns)
+    int16_t vel_turns_s_100;      // velocity × 100 (turns/s)
+    int16_t iq_measured_100;      // measured Iq × 100 (A)
+    int16_t bus_voltage_10;       // bus voltage × 10 (V)
+    int16_t bus_current_100;      // bus current × 100 (A)
+};
+
 // MainMotorPayload (MSG_MOTOR_MAIN = 0x09) — ROBOT_MAIN only — 6 bytes
 // Commanded normalised effort for each actuator, scaled × 1000.
 struct MainMotorPayload {
     int16_t duty_left_1000;     // left track effort × 1000 (−1000 to +1000)
     int16_t duty_right_1000;    // right track effort × 1000
     int16_t duty_flipper_1000;  // flipper effort × 1000
+};
+
+// OdriveErrorPayload (MSG_ODRIVE_ERROR = 0x0D) — optional, gated by ODRIVE_ENABLE_ERROR_POLL.
+// v3.6: Get_Motor_Error (0x03) returns a single u64 motor_error. Sent whenever non-zero.
+struct OdriveErrorPayload {
+    uint8_t  node_id;       // CAN node id of the ODrive
+    uint64_t motor_error;   // v3.6 motor_error bitfield (see ODrive v0.5.x docs)
+};
+
+// LktechStatusPayload (MSG_LKTECH_STATUS = 0x0B) — ROBOT_SECONDARY J5/J6 — 10 bytes
+// Parsed from A4 command acknowledges (same arb ID, same layout as READ_STATE_2).
+struct LktechStatusPayload {
+    uint8_t joint_idx;          // 0 = J5, 1 = J6
+    uint8_t motor_id;           // LKTech CAN motor ID (e.g. 14, 15)
+    int8_t  temp_c;             // motor temperature (°C, signed)
+    int16_t iq_100;             // Iq current × 100 (A) — i16 /100 per spec
+    int16_t speed_dps;          // motor speed (°/s)
+    int16_t angle_deg;          // motor angle (degrees, wraps every i16 range)
+    int16_t output_deg_10;      // output angle × 10 (gear-compensated, software-zeroed)
+};
+
+// Ze300StatusPayload (MSG_ZE300_STATUS = 0x0C) — ROBOT_SECONDARY J4 — 12 bytes
+// Parsed from passive C2 command replies (position) + active 0xA4 realtime state polls.
+struct Ze300StatusPayload {
+    uint8_t device_id;          // ZE300 device_id (e.g. 1)
+    int8_t  temp_c;             // motor temperature (°C)
+    int16_t iq_1000;            // Iq × 1000 (A) — i16 /1000 per spec
+    int16_t speed_rpm_100;      // motor speed × 100 (rpm) — i16 /100 per spec
+    int16_t single_turn_counts; // single-turn position (u16 LE, stored as signed for packing)
+    int32_t position_counts;    // multi-turn position (counts, from C2 replies)
+    int16_t output_deg_10;      // software-zeroed output angle × 10 (degrees)
 };
 
 #pragma pack(pop)

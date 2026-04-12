@@ -36,3 +36,8 @@ Thumbs.db
 # Secrets / env
 .env
 *.pem
+
+src/moveit_msgs
+src/moveit_resources
+src/moveit2
+src/pick_ik

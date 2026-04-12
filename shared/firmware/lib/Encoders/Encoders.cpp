@@ -1,9 +1,17 @@
 #include "Encoders.h"
 #include "config.h"
 #include <Arduino.h>
+#include <cmath>
 #include "driver/pcnt.h"
 #include "soc/pcnt_struct.h"    // PCNT hardware register struct (for ISR)
 #include "esp_intr_alloc.h"
+
+// Wrap a degree value into [0, 360)
+static inline float wrapAngle360(float deg) {
+    deg = fmodf(deg, 360.0f);
+    if (deg < 0.0f) deg += 360.0f;
+    return deg;
+}
 
 // ─── Per-unit overflow accumulators (written in ISR) ─────────────────────────
 // Sized for the maximum possible unit count (ROBOT_SECONDARY = 6).
@@ -143,8 +151,8 @@ void Encoders::updateDerivedValues() {
 
 #ifdef ROBOT_MAIN
     const int32_t cnt_flip = getCount(PCNT_UNIT_FLIPPER);
-    const float angle_deg  = (static_cast<float>(cnt_flip) / ENC_CPR_FLIPPER)
-                              * 360.0f / FLIPPER_GEAR_RATIO;
+    const float angle_deg  = wrapAngle360(
+        (static_cast<float>(cnt_flip) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO);
     portENTER_CRITICAL(&s_mux);
     s_state.count_flipper    = cnt_flip;
     s_state.flipper_angle_deg = angle_deg;
@@ -157,10 +165,10 @@ void Encoders::updateDerivedValues() {
     const int32_t c_rl = getCount(PCNT_UNIT_FLIP_RL);
     const int32_t c_rr = getCount(PCNT_UNIT_FLIP_RR);
 
-    const float a_fl = (static_cast<float>(c_fl) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
-    const float a_fr = (static_cast<float>(c_fr) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
-    const float a_rl = (static_cast<float>(c_rl) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
-    const float a_rr = (static_cast<float>(c_rr) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO;
+    const float a_fl = wrapAngle360((static_cast<float>(c_fl) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO);
+    const float a_fr = wrapAngle360((static_cast<float>(c_fr) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO);
+    const float a_rl = wrapAngle360((static_cast<float>(c_rl) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO);
+    const float a_rr = wrapAngle360((static_cast<float>(c_rr) / ENC_CPR_FLIPPER) * 360.0f / FLIPPER_GEAR_RATIO);
 
     portENTER_CRITICAL(&s_mux);
     s_state.count_flip_fl       = c_fl;

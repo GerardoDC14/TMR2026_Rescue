@@ -15,7 +15,18 @@
 // GPIO assignments — route TX→CTX and RX←CRX on the SN65HVD230.
 #define PIN_CAN_TX          22   // ESP32 CTX → SN65HVD230 D
 #define PIN_CAN_RX          21   // ESP32 CRX ← SN65HVD230 R
-#define CAN_BITRATE_BPS  500000  // 500 kbps
+#define CAN_BITRATE_BPS 1000000  // 1 Mbps — shared by ODrive, VESC, LKTech, ZE300
+
+// Set to 0 to remove ODrive Get_Error (0x03) from the telemetry round-robin.
+// This disables MSG_ODRIVE_ERROR forwarding but frees one slot in the poll cycle.
+#define ODRIVE_ENABLE_ERROR_POLL  1
+
+// ODrive E-stop mode (applies to arm + traction ODrives on v3.6):
+//   1 = native hard stop (cmd 0x02).  Forces axis to IDLE immediately.
+//       Recovery requires Clear_Errors + Set_Axis_State(CLOSED_LOOP).
+//   0 = soft stop.  Commands zero velocity (traction) / holds position (arm).
+//       Axes stay in closed-loop, no recovery handshake needed.
+#define ODRIVE_ESTOP_USE_NATIVE   1
 
 // ─── UART2 — Mini PC ─────────────────────────────────────────────────────────
 #define MINIPC_BAUD     921600
@@ -32,21 +43,55 @@
 #define PPM_CH_MODE          5   // Ch5 → main mode vs arm mode switch
 
 // ─── Motor PWM outputs (servo-style: 50 Hz, 1000–2000 µs) ───────────────────
-#define PIN_MOTOR_LEFT      16
-#define PIN_MOTOR_RIGHT     23
-#define PIN_MOTOR_FLIPPER   17
+#define PIN_MOTOR_LEFT      23
+#define PIN_MOTOR_RIGHT     17
+
+// ─── Flipper direction pins (regular PWM mode) ─────────────────────────────────
+#define PIN_FLIPPER_PWM     16   // regular PWM (0-100% duty), frequency > 1 kHz
+#define PIN_FLIPPER_DIR_A   18   // direction control (HIGH/LOW = forward/reverse)
+#define PIN_FLIPPER_DIR_B   19   // direction control (opposite of DIR_A)
 
 #define MOTOR_NEUTRAL_US  1500   // no movement
 #define MOTOR_MIN_US      1000   // full reverse
 #define MOTOR_MAX_US      2000   // full forward
 
-// LEDC channels (ESP32 PWM peripheral)
-#define LEDC_CH_LEFT         0
-#define LEDC_CH_RIGHT        1
-#define LEDC_CH_FLIPPER      2
-#define PWM_FREQ_HZ         50
-#define PWM_RESOLUTION      14   // bits  → 16384 ticks/period
-#define PWM_PERIOD_US    20000   // = 1/50 Hz in µs
+// ROBOT_MAIN only: cap traction output magnitude (1.0 = full PWM range,
+// 0.5 = ±50% of the configured min/max pulse around neutral). Flipper PWM
+// is unaffected.
+#define TRACTION_MAX_NORM   0.1f
+
+// Motor direction correction (1.0 = normal, -1.0 = reversed wiring)
+#define TRACTION_DIR_LEFT    (1.0f)
+#define TRACTION_DIR_RIGHT   (1.0f)
+
+// Uncomment to enable closed-loop PID on traction and flipper.
+// When commented out, stick input is passed directly to the drivers (open-loop).
+// #define ENABLE_TRACTION_PID
+// #define ENABLE_FLIPPER_PID
+
+// Traction velocity PID (RPM feedback control) — only used when ENABLE_TRACTION_PID
+#define TRACTION_MAX_RPM              200.0f
+
+// Left track velocity PID
+#define TRACTION_VEL_PID_LEFT_KP      0.5f   // effort per RPM error
+#define TRACTION_VEL_PID_LEFT_KI      0.0f    // integral gain
+#define TRACTION_VEL_PID_LEFT_KD      0.0f     // derivative gain
+#define TRACTION_VEL_PID_LEFT_I_MAX   2.0f     // integral clamp (matched to output range)
+#define TRACTION_VEL_PID_LEFT_D_ALPHA 0.8f     // D-term low-pass (0=off, 1=frozen)
+
+// Right track velocity PID
+#define TRACTION_VEL_PID_RIGHT_KP      0.1f
+#define TRACTION_VEL_PID_RIGHT_KI      0.0f
+#define TRACTION_VEL_PID_RIGHT_KD      0.0f
+#define TRACTION_VEL_PID_RIGHT_I_MAX   2.0f
+#define TRACTION_VEL_PID_RIGHT_D_ALPHA 0.8f
+
+// #define ENABLE_COMMS  // uncomment for mini-PC binary protocol (disables Serial debug)
+
+// LEDC channel for flipper PWM+DIR motor (traction uses ESP32Servo).
+// Must not overlap with channels auto-allocated by ESP32Servo (0-3 on timer 0).
+// Channel 6 → timer 3, safely separated.
+#define LEDC_CH_FLIPPER      6
 
 // ─── Quadrature Encoders (PCNT hardware) ─────────────────────────────────────
 // Pins shared by both robots (track encoders)
@@ -69,18 +114,18 @@
   #define NUM_ENCODER_UNITS    3
 
   // Encoder constants — fill from datasheet / measurement
-  #define ENC_CPR_TRACK        1000.0f
-  #define ENC_CPR_FLIPPER      1000.0f
+  #define ENC_CPR_TRACK        500.0f
+  #define ENC_CPR_FLIPPER      1500.0f
   #define TRACK_GEAR_RATIO       20.0f   // motor→wheel reduction
-  #define FLIPPER_GEAR_RATIO     30.0f
-  #define FLIPPER_ANGLE_MIN     -10.0f   // mechanical limits (degrees)
-  #define FLIPPER_ANGLE_MAX     120.0f
-
-  // Flipper position PID coefficients — tune on bench
-  #define FLIPPER_PID_KP        1.0f   // proportional gain
-  #define FLIPPER_PID_KI        0.0f   // integral gain
-  #define FLIPPER_PID_KD        0.0f   // derivative gain
-  #define FLIPPER_PID_I_MAX     0.5f   // integral windup clamp (normalised effort units)
+  #define FLIPPER_GEAR_RATIO     1.0f
+  
+  // Flipper position PID — error in degrees, output in effort [-1, +1]
+  #define FLIPPER_PID_KP        0.05f   // effort per degree of error
+  #define FLIPPER_PID_KI        0.0f    // integral gain
+  #define FLIPPER_PID_KD        0.0f    // derivative gain
+  #define FLIPPER_PID_I_MAX     10.0f   // integral clamp (degree-seconds)
+  #define FLIPPER_PID_D_ALPHA   0.8f    // D-term low-pass (0=off, 1=frozen)
+  #define FLIPPER_RATE_DPS      180.0f  // flipper speed at full stick (°/s)
 
   // ── ODrive arm J1–J3 (joints 4–6 are servos on a separate ESP32) ────────────
   #define ODRIVE_MAIN_NUM_JOINTS    3
@@ -121,49 +166,84 @@
   #define FLIPPER_GEAR_RATIO     30.0f
   #define FLIPPER_ANGLE_MIN     -10.0f
   #define FLIPPER_ANGLE_MAX     120.0f
+
+  // Flipper position PID — error in degrees, output in effort [-1, +1]
+  #define FLIPPER_PID_KP        0.05f   // effort per degree of error
+  #define FLIPPER_PID_KI        0.0f    // integral gain
+  #define FLIPPER_PID_KD        0.0f    // derivative gain
+  #define FLIPPER_PID_I_MAX     10.0f   // integral clamp (degree-seconds)
+  #define FLIPPER_PID_D_ALPHA   0.8f    // D-term low-pass (0=off, 1=frozen)
+  #define FLIPPER_RATE_DPS      180.0f  // flipper speed at full stick (°/s)
 #endif
 
-// ROBOT_SECONDARY: VESC motor controllers over CAN (500 kbps, TWAI)
-// IDs are set in VESC Tool under "Controller ID".
-// Currents are the peak value commanded at full stick deflection; tune on bench.
+// ROBOT_SECONDARY: mixed-controller setup over a single 1 Mbps TWAI bus.
+//   - Left/right traction: ODrive (native velocity control, Set_Input_Vel)
+//   - Four flippers:       VESC   (native velocity control, SET_RPM)
 #ifdef ROBOT_SECONDARY
-  #define VESC_ID_TRACK_LEFT      1   // TODO: confirm via VESC Tool
-  #define VESC_ID_TRACK_RIGHT     2   // TODO: confirm
+
+  // ── Traction ODrive left/right — VELOCITY_CONTROL + VEL_RAMP ───────────────
+  // Physically and logically separate from the arm ODrives even though they
+  // share the CANSimple protocol.  Bring-up handshake: Clear_Errors →
+  // Set_Controller_Mode(VELOCITY, VEL_RAMP) → Set_Axis_State(CLOSED_LOOP)
+  // with heartbeat confirmation.
+  // Node IDs are still being finalised — update once wiring is settled.
+  #define TRACTION_NODE_LEFT              0x02   // TODO: confirm via odrivetool
+  #define TRACTION_NODE_RIGHT             0x03   // TODO: confirm
+  #define TRACTION_DIR_LEFT               1.0f   // TODO: verify direction on bench
+  #define TRACTION_DIR_RIGHT              1.0f   // TODO: verify
+  #define TRACTION_MAX_VEL_TURNS_S        8.0f   // normalised stick → turns/s (reference: 0–8 nominal)
+  #define TRACTION_CLOSED_LOOP_TIMEOUT_MS 800    // handshake confirmation window
+  #define TRACTION_CLOSED_LOOP_RETRY_MS   100    // retry interval inside the window
+
+  // ── Flipper VESCs — native velocity mode (SET_RPM, cmd 3) ──────────────────
+  // eRPM at full stick = mechanical_rpm × pole_pairs.  Tune for the actual
+  // flipper motors.  If SET_RPM doesn't work on the bench, set
+  // VESC_FLIPPER_USE_RPM to 0 to fall back to SET_CURRENT (cmd 1).
   #define VESC_ID_FLIPPER_FL      3   // front-left  — TODO: confirm
   #define VESC_ID_FLIPPER_FR      4   // front-right — TODO: confirm
   #define VESC_ID_FLIPPER_RL      5   // rear-left   — TODO: confirm
   #define VESC_ID_FLIPPER_RR      6   // rear-right  — TODO: confirm
+  #define VESC_FLIPPER_USE_RPM        1        // 1 = SET_RPM (velocity), 0 = SET_CURRENT (torque)
+  #define VESC_FLIPPER_ERPM_MAX    10000       // eRPM at full stick — TODO: tune
+  #define VESC_FLIPPER_I_MAX_A     3.0f        // used only when VESC_FLIPPER_USE_RPM=0
 
-  #define VESC_TRACK_I_MAX_A      5.0f   // TODO: tune for traction motors
-  #define VESC_FLIPPER_I_MAX_A    3.0f   // TODO: tune for flipper motors
-
-  // ── ODrive arm — CAN node IDs (set in odrivetool / DIP switches) ────────────
-  // J1–J3: confirmed from ginkgo_odrive_bridge yaml (node_ids: [16, 17, 18])
-  // J4–J6: all-brushless variant — node IDs TODO (assumed sequential)
+  // ── ODrive arm J1–J3 — CAN node IDs (set in odrivetool / DIP switches) ──────
+  // Confirmed from ginkgo_odrive_bridge yaml (node_ids: [16, 17, 18])
   #define ODRIVE_NODE_J1          0x10   // 16
   #define ODRIVE_NODE_J2          0x11   // 17
   #define ODRIVE_NODE_J3          0x12   // 18
-  #define ODRIVE_NODE_J4          0x13   // TODO: confirm
-  #define ODRIVE_NODE_J5          0x14   // TODO: confirm
-  #define ODRIVE_NODE_J6          0x15   // TODO: confirm
-
-  // Gear ratios (motor turns → output turns).
-  // J1–J3: confirmed (48.0). J4–J6: assumed same; verify on bench.
   #define ODRIVE_GEAR_J1          48.0f
   #define ODRIVE_GEAR_J2          48.0f
   #define ODRIVE_GEAR_J3          48.0f
-  #define ODRIVE_GEAR_J4          48.0f  // TODO: confirm
-  #define ODRIVE_GEAR_J5          48.0f  // TODO: confirm
-  #define ODRIVE_GEAR_J6          48.0f  // TODO: confirm
-
-  // Direction multiplier (+1 or -1): flips sign so positive angle = positive motion.
-  // J1–J3: confirmed (-1). J4–J6: assumed same; verify on bench.
   #define ODRIVE_DIR_J1          (-1.0f)
   #define ODRIVE_DIR_J2          (-1.0f)
   #define ODRIVE_DIR_J3          (-1.0f)
-  #define ODRIVE_DIR_J4          (-1.0f) // TODO: confirm
-  #define ODRIVE_DIR_J5          (-1.0f) // TODO: confirm
-  #define ODRIVE_DIR_J6          (-1.0f) // TODO: confirm
+
+  // ── ZE300 arm J4 — CAN device ID (set via ZE300 tool) ──────────────────────
+  // Standard 11-bit frames, tagged request ID = 0x100 | device_id, reply ID = device_id.
+  // Position command ratio is 1:1 (driver internally handles the 1:8 gearbox),
+  // so we command directly in output degrees.  16384 counts per output rev.
+  // Confirmed from dicerox_mixed_motor_config.h.
+  #define ZE300_ID_J4                  1     // device_id
+  #define ZE300_REQ_ID_BASE        0x100     // tagged request ID = base | device_id
+  #define ZE300_COUNTS_PER_REV     16384     // output counts per revolution
+  #define ZE300_DIR_J4              1.0f     // TODO: verify direction on bench
+  #define ZE300_MAX_SPEED_CRPM      3000     // position max speed in centi-RPM (30 RPM)
+  #define ZE300_ZERO_TIMEOUT_MS       50     // blocking timeout for startup RTR
+  #define ZE300_TELEM_INTERVAL_MS    200     // active realtime-state poll period
+
+  // ── LKTech arm J5–J6 — CAN motor IDs (set via LKTech Tool) ─────────────────
+  // Standard 11-bit frames, ID = 0x140 + motor_id.  Reply shares the same ID.
+  // Confirmed IDs / gear ratios from dicerox_mixed_motor_config.h.
+  #define LKTECH_ID_BASE          0x140
+  #define LKTECH_ID_J5              14   // confirmed from dicerox_mixed_motor_config.h
+  #define LKTECH_ID_J6              15   // confirmed from dicerox_mixed_motor_config.h
+  #define LKTECH_GEAR_J5          10.0f  // confirmed from dicerox_mixed_motor_config.h
+  #define LKTECH_GEAR_J6          10.0f  // confirmed
+  #define LKTECH_DIR_J5            1.0f  // TODO: verify direction on bench
+  #define LKTECH_DIR_J6            1.0f  // TODO: verify direction on bench
+  #define LKTECH_DEFAULT_SPEED_DPS  360  // max speed for position commands (°/s)
+  #define LKTECH_ZERO_TIMEOUT_MS    50   // blocking timeout for READ_MULTI_LOOP_ANGLE
 
   // Encoder zero capture: max time to wait for one RTR response (ms).
   #define ODRIVE_ZERO_TIMEOUT_MS  50
@@ -205,6 +285,10 @@
 #define MSG_ENCODER_EXT      0x07        // ROBOT_SECONDARY: 4 independent flipper angles
 #define MSG_VESC_STATUS      0x08        // ROBOT_SECONDARY: per-VESC feedback (erpm, current, temp, voltage)
 #define MSG_MOTOR_MAIN       0x09        // ROBOT_MAIN: track + flipper duty cycles
+#define MSG_ODRIVE_STATUS    0x0A        // Per-ODrive joint telemetry (both robots)
+#define MSG_LKTECH_STATUS    0x0B        // ROBOT_SECONDARY: per-LKTech joint telemetry (J5-J6)
+#define MSG_ZE300_STATUS     0x0C        // ROBOT_SECONDARY: ZE300 J4 telemetry
+#define MSG_ODRIVE_ERROR     0x0D        // Per-ODrive error snapshot (both robots, optional)
 
 // PC → ESP32 message types
 #define MSG_ARM_JOINTS       0x10        // 6 × int16 joint angles (×100 deg)

@@ -22,7 +22,12 @@ static HardwareSerial& s_uart = Serial;   // UART0 — shared with USB cable
 
 // ─── Initialisation ───────────────────────────────────────────────────────────
 void Comms::begin() {
-    s_uart.begin(MINIPC_BAUD);   // UART0 pins (GPIO1/3) are fixed; no pin args needed
+#ifdef ENABLE_COMMS
+    s_uart.begin(MINIPC_BAUD);
+#else
+    Serial.begin(115200);
+    Serial.println("Debug mode");
+#endif
 }
 
 // ─── Main loop ────────────────────────────────────────────────────────────────
@@ -165,9 +170,13 @@ void Comms::sendMagData(const MagData& mag) {
     p.x_uT100 = static_cast<int16_t>(mag.x_uT);
     p.y_uT100 = static_cast<int16_t>(mag.y_uT);
     p.z_uT100 = static_cast<int16_t>(mag.z_uT);
+#ifdef ENABLE_COMMS
     sendFrame(MSG_SENSOR_MAG,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
+#else
+    Serial.printf("%d %d %d\n", p.x_uT100, p.y_uT100, p.z_uT100);
+#endif
 }
 
 void Comms::sendThermalData(const ThermalData& thermal) {
@@ -175,17 +184,25 @@ void Comms::sendThermalData(const ThermalData& thermal) {
     for (int i = 0; i < 32 * 24; i++) {
         p.pixels[i] = static_cast<int16_t>(thermal.pixels[i] * 10.0f);
     }
+#ifdef ENABLE_COMMS
     sendFrame(MSG_SENSOR_THERMAL,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
+#else
+    Serial.println(p.pixels[0]);
+#endif
 }
 
 void Comms::sendGasData(const GasData& gas) {
     GasPayload p;
     p.rs_ro_100 = static_cast<int16_t>(gas.rs_ro_ratio * 100.0f);
+#ifdef ENABLE_COMMS
     sendFrame(MSG_SENSOR_GAS,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
+#else   
+    Serial.println(p.rs_ro_100);
+#endif
 }
 
 void Comms::sendImuData(const ImuData& imu) {
@@ -200,9 +217,13 @@ void Comms::sendImuData(const ImuData& imu) {
     p.gyro_y_rads1000 = static_cast<int16_t>(imu.gyro_y * 1000.0f);
     p.gyro_z_rads1000 = static_cast<int16_t>(imu.gyro_z * 1000.0f);
     p.calib           = imu.calib;
+#ifdef ENABLE_COMMS
     sendFrame(MSG_SENSOR_IMU,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
+#else
+    Serial.printf("%d %d %d\n", p.yaw_deg10, p.pitch_deg10, p.roll_deg10);
+#endif
 }
 
 void Comms::sendEncoderExt(const EncoderState& enc) {
@@ -226,6 +247,30 @@ void Comms::sendMainMotorStatus(const MainMotorPayload& p) {
     sendFrame(MSG_MOTOR_MAIN,
               reinterpret_cast<const uint8_t*>(&p),
               sizeof(p));
+}
+
+void Comms::sendOdriveStatus(const OdriveStatusPayload& o) {
+    sendFrame(MSG_ODRIVE_STATUS,
+              reinterpret_cast<const uint8_t*>(&o),
+              sizeof(o));
+}
+
+void Comms::sendLktechStatus(const LktechStatusPayload& l) {
+    sendFrame(MSG_LKTECH_STATUS,
+              reinterpret_cast<const uint8_t*>(&l),
+              sizeof(l));
+}
+
+void Comms::sendZe300Status(const Ze300StatusPayload& z) {
+    sendFrame(MSG_ZE300_STATUS,
+              reinterpret_cast<const uint8_t*>(&z),
+              sizeof(z));
+}
+
+void Comms::sendOdriveError(const OdriveErrorPayload& e) {
+    sendFrame(MSG_ODRIVE_ERROR,
+              reinterpret_cast<const uint8_t*>(&e),
+              sizeof(e));
 }
 
 void Comms::sendStatus(const SystemStatus& s) {

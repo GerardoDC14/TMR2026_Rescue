@@ -1,7 +1,1 @@
-from moveit_configs_utils import MoveItConfigsBuilder
-from moveit_configs_utils.launches import generate_rsp_launch
-
-
-def generate_launch_description():
-    moveit_config = MoveItConfigsBuilder("jaguar_robot_full", package_name="jaguar_full").to_moveit_configs()
-    return generate_rsp_launch(moveit_config)
+/home/arepo/TMR2026_Rescue/jaguar/arm/src/jaguar_full/launch/rsp.launch.py

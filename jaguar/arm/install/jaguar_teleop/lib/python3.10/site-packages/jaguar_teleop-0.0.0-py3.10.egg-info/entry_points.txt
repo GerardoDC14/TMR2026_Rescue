@@ -1,5 +1,8 @@
 [console_scripts]
+damped_servo = jaguar_teleop.damped_servo:main
+joint_relay = jaguar_teleop.joint_relay:main
 joystick_servo = jaguar_teleop.joystick_servo:main
 keyboard_servo = jaguar_teleop.keyboard_servo:main
+rc_servo = jaguar_teleop.rc_servo:main
 serial_bridge = jaguar_teleop.serial_bridge:main
 teleop_tk = jaguar_teleop.teleop_tk:main

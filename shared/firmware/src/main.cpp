@@ -9,6 +9,7 @@
 #include "CANInterface.h"
 #include "Comms.h"
 #include "Control.h"
+#include "Debug.h"
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Core 1 — Control task
@@ -39,8 +40,10 @@ static void commsTask(void* /*arg*/) {
     TickType_t       last         = xTaskGetTickCount();
 
     for (;;) {
+#ifdef ENABLE_COMMS
         // Drive the UART RX parser and flush TX
         Comms::tick();
+#endif
 
         // Build and send telemetry at 50 Hz
         if (xTaskGetTickCount() - last >= telem_period) {
@@ -68,20 +71,22 @@ static void commsTask(void* /*arg*/) {
             telem.flipper_angle = static_cast<int16_t>(enc.flipper_angle_deg * 10.0f);
             telem.uptime_ms     = status.uptime_ms;
 
+#ifdef ENABLE_COMMS
             Comms::sendTelemetry(telem);
 
-#ifdef ROBOT_SECONDARY
+  #ifdef ROBOT_SECONDARY
             // Send independent flipper angles at the same 50 Hz rate
             Comms::sendEncoderExt(enc);
-#endif
+  #endif
 
-#ifdef ROBOT_MAIN
+  #ifdef ROBOT_MAIN
             // Send commanded duty cycles for both track motors and the flipper
             MainMotorPayload motors;
             motors.duty_left_1000    = static_cast<int16_t>(Locomotion::getTrackLeft()     * 1000.0f);
             motors.duty_right_1000   = static_cast<int16_t>(Locomotion::getTrackRight()    * 1000.0f);
             motors.duty_flipper_1000 = static_cast<int16_t>(Locomotion::getFlipperEffort() * 1000.0f);
             Comms::sendMainMotorStatus(motors);
+  #endif
 #endif
         }
 
@@ -94,6 +99,7 @@ static void commsTask(void* /*arg*/) {
 //  Core 0 — CAN task
 //  Polls the TWAI driver for incoming frames and forwards VESC feedback.
 // ─────────────────────────────────────────────────────────────────────────────
+#ifdef ENABLE_COMMS
 static void canTask(void* /*arg*/) {
     const TickType_t period = pdMS_TO_TICKS(5);   // 200 Hz poll
     TickType_t       last   = xTaskGetTickCount();
@@ -101,12 +107,54 @@ static void canTask(void* /*arg*/) {
     for (;;) {
         CANInterface::poll();
 
+        // Forward any fresh ODrive arm feedback to mini PC (both robots)
+        for (uint8_t j = 0; j < ODRIVE_MAX_JOINTS; j++) {
+            OdriveStatusPayload o;
+            if (CANInterface::getOdriveStatus(j, o)) {
+                Comms::sendOdriveStatus(o);
+            }
+        }
+
+#if ODRIVE_ENABLE_ERROR_POLL
+        // Forward ODrive error snapshots (arm + traction, all variants)
+        for (uint8_t n = 0; n < CANInterface::odriveNodeCount(); n++) {
+            OdriveErrorPayload e;
+            if (CANInterface::getOdriveError(n, e)) {
+                Comms::sendOdriveError(e);
+            }
+        }
+#endif
+
 #ifdef ROBOT_SECONDARY
-        // Forward any fresh VESC feedback to mini PC
+        // Forward any fresh traction ODrive feedback
+        for (uint8_t m = 0; m < TRACTION_ODRIVE_NUM; m++) {
+            OdriveStatusPayload o;
+            if (CANInterface::getTractionStatus(m, o)) {
+                Comms::sendOdriveStatus(o);
+            }
+        }
+
+        // Forward any fresh VESC flipper feedback to mini PC
         for (uint8_t id = 1; id <= VESC_MAX_CONTROLLERS; id++) {
             VescStatusPayload v;
             if (CANInterface::getVescStatus(id, v)) {
                 Comms::sendVescStatus(v);
+            }
+        }
+
+        // Forward any fresh LKTech feedback (J5, J6)
+        for (uint8_t j = 0; j < LKTECH_MAX_JOINTS; j++) {
+            LktechStatusPayload l;
+            if (CANInterface::getLktechStatus(j, l)) {
+                Comms::sendLktechStatus(l);
+            }
+        }
+
+        // Forward any fresh ZE300 (J4) feedback
+        {
+            Ze300StatusPayload z;
+            if (CANInterface::getZe300Status(z)) {
+                Comms::sendZe300Status(z);
             }
         }
 #endif
@@ -114,6 +162,7 @@ static void canTask(void* /*arg*/) {
         vTaskDelayUntil(&last, period);
     }
 }
+#endif
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Core 1 — Fast sensor task  (mag / gas / imu)
@@ -140,6 +189,7 @@ static void sensorTask(void* /*arg*/) {
             Sensors::getImu(imu);
             if (imu.valid) Comms::sendImuData(imu);
         }
+
 
         vTaskDelay(1);
     }
@@ -169,32 +219,37 @@ static void thermalTask(void* /*arg*/) {
 void setup() {
     // Initialise all subsystems
     Comms::begin();
+    Debug::begin(Dbg::ALL);   // enable all debug topics (no-op when ENABLE_COMMS defined)
 
     RC::begin(PIN_PPM);
     Encoders::begin();
     Locomotion::begin();
     Sensors::begin();
+#ifdef ENABLE_COMMS
     CANInterface::begin();   // non-fatal if CAN module is absent at startup
+#endif
 
     // Must be last: registers callbacks into Comms
     Control::begin();
-
+/*
     // ── Core 0: protocol tasks ────────────────────────────────────────────────
     xTaskCreatePinnedToCore(commsTask, "Comms",   STACK_COMMS,   nullptr,
                             PRIO_COMMS,   nullptr, TASK_CORE_COMMS);
-
+                            */
+#ifdef ENABLE_COMMS
     xTaskCreatePinnedToCore(canTask,   "CAN",     STACK_CAN,     nullptr,
                             PRIO_CAN,     nullptr, TASK_CORE_CAN);
+#endif
 
     // ── Core 1: control + sensor tasks ───────────────────────────────────────
     xTaskCreatePinnedToCore(controlTask,  "Control",  STACK_CONTROL, nullptr,
                             PRIO_CONTROL, nullptr, TASK_CORE_CONTROL);
-
+                            /*
     xTaskCreatePinnedToCore(sensorTask,   "Sensors",  STACK_SENSORS, nullptr,
                             PRIO_SENSORS, nullptr, TASK_CORE_SENSORS);
-
     xTaskCreatePinnedToCore(thermalTask,  "Thermal",  STACK_THERMAL, nullptr,
                             PRIO_THERMAL, nullptr, TASK_CORE_THERMAL);
+                            */
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

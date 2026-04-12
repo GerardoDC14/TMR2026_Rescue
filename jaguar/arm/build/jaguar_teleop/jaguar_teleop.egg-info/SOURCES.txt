@@ -9,11 +9,15 @@ setup.py
 ../../build/jaguar_teleop/jaguar_teleop.egg-info/top_level.txt
 ../../build/jaguar_teleop/jaguar_teleop.egg-info/zip-safe
 jaguar_teleop/__init__.py
+jaguar_teleop/damped_servo.py
+jaguar_teleop/joint_relay.py
 jaguar_teleop/joystick_servo.py
 jaguar_teleop/keyboard_servo.py
+jaguar_teleop/rc_servo.py
 jaguar_teleop/serial_bridge.py
 jaguar_teleop/teleop_tk.py
 launch/joystick.launch.py
+launch/rc_arm.launch.py
 resource/jaguar_teleop
 test/test_copyright.py
 test/test_flake8.py

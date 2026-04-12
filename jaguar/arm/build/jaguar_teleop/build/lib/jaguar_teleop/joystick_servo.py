@@ -44,9 +44,11 @@ _STATUS = {
 }
 
 JOINT_NAMES = ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6']
-FRAME_ID    = 'base_link'
+FRAME_BASE  = 'base_link'
+FRAME_EE    = 'Link6'
 DEADZONE    = 0.10
 NUM_JOINTS  = 6
+MODES       = ['cart', 'local', 'joint']
 
 
 def apply_deadzone(value: float, deadzone: float = DEADZONE) -> float:
@@ -91,7 +93,8 @@ class JoystickServo(Node):
         print('\n' + '=' * 60)
         print('  Jaguar Arm — Joystick Servo  (Xbox Series X)')
         print('=' * 60)
-        print('  CART mode (default)')
+        print('  CART-GLOBAL mode (default)  — base frame')
+        print('  CART-LOCAL  mode            — end-effector frame')
         print('    Left  Y      Forward / Back   (+X)')
         print('    Left  X      Strafe            (+Y)')
         print('    Right Y      Up / Down         (+Z)')
@@ -99,12 +102,12 @@ class JoystickServo(Node):
         print('    Hold LB      Left X  → Roll')
         print('    Hold RB      Right Y → Pitch')
         print('    Back         Stop (zero velocity)')
-        print('    Start        Switch to JOINT mode')
+        print('    Start        Cycle mode (CART → LOCAL → JOINT)')
         print()
         print('  JOINT mode')
         print('    D-pad Up/Dn  Select joint')
         print('    Left Y       Jog selected joint')
-        print('    Start        Switch to CART mode')
+        print('    Start        Cycle mode')
         print()
         print('  Y              Pause servo / Resume  (hand off to RViz)')
         print('  Guide          Emergency stop (hold)')
@@ -176,15 +179,17 @@ class JoystickServo(Node):
             return
 
         if just_pressed(BTN_START):
-            self.mode = 'joint' if self.mode == 'cart' else 'cart'
-            self.get_logger().info(f'Mode → {self.mode.upper()}')
+            idx = MODES.index(self.mode) if self.mode in MODES else 0
+            self.mode = MODES[(idx + 1) % len(MODES)]
+            label = 'CART-LOCAL' if self.mode == 'local' else self.mode.upper()
+            self.get_logger().info(f'Mode → {label}')
 
         if just_pressed(BTN_BACK):
             self._publish_zero()
             self._prev_buttons = buttons
             return
 
-        if self.mode == 'cart':
+        if self.mode in ('cart', 'local'):
             self._handle_cart(axes, buttons)
         else:
             self._handle_joint(axes, buttons)
@@ -202,7 +207,7 @@ class JoystickServo(Node):
 
         msg = TwistStamped()
         msg.header.stamp    = self.get_clock().now().to_msg()
-        msg.header.frame_id = FRAME_ID
+        msg.header.frame_id = FRAME_EE if self.mode == 'local' else FRAME_BASE
 
         if lb:
             msg.twist.linear.x  =  ly  * self.speed
@@ -242,7 +247,7 @@ class JoystickServo(Node):
 
         msg = JointJog()
         msg.header.stamp    = self.get_clock().now().to_msg()
-        msg.header.frame_id = FRAME_ID
+        msg.header.frame_id = FRAME_BASE
         msg.joint_names     = [JOINT_NAMES[self.active_joint]]
         msg.velocities      = [velocity]
         msg.duration        = 0.0
@@ -251,7 +256,7 @@ class JoystickServo(Node):
     def _publish_zero(self):
         msg = TwistStamped()
         msg.header.stamp    = self.get_clock().now().to_msg()
-        msg.header.frame_id = FRAME_ID
+        msg.header.frame_id = FRAME_BASE
         self.twist_pub.publish(msg)
 
 

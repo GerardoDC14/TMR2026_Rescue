@@ -39,6 +39,10 @@ public:
     static void sendEncoderExt(const EncoderState& enc);   // ROBOT_SECONDARY flipper angles
     static void sendVescStatus(const VescStatusPayload& v); // ROBOT_SECONDARY VESC feedback
     static void sendMainMotorStatus(const MainMotorPayload& p); // ROBOT_MAIN duty cycles
+    static void sendOdriveStatus(const OdriveStatusPayload& o); // per-joint ODrive telemetry
+    static void sendLktechStatus(const LktechStatusPayload& l); // ROBOT_SECONDARY LKTech J5/J6
+    static void sendZe300Status(const Ze300StatusPayload& z);   // ROBOT_SECONDARY ZE300 J4
+    static void sendOdriveError(const OdriveErrorPayload& e);   // optional error snapshot
     static void sendStatus(const SystemStatus& status);
 
     // ── Callback registration ─────────────────────────────────────────────────

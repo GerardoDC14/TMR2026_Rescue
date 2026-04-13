@@ -39,6 +39,7 @@ signals:
     void imuUpdated(double yaw, double pitch, double roll);
     void telemetryReceived();   // used as heartbeat
     void uptimeUpdated(float uptime_s);
+    void hwEstopChanged(bool active);  // firmware reports hardware ESTOP state
 
 private slots:
     void onEstopToggled(bool checked);
@@ -53,6 +54,7 @@ private slots:
     void onClearAll();
     void publishEstopState();
     void onSensorToggled();
+    void onHwEstopChanged(bool active);
 
 private:
     void setConnState(const QString& color, const QString& label);
@@ -70,6 +72,8 @@ private:
     int                  hb_miss_count_{3};
 
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr telemetry_sub_;
+    rclcpp::Subscription<std_msgs::msg::UInt8>::SharedPtr flags_sub_;
+    std::atomic<bool> hw_estop_active_{false};
 
     // Magnetometer
     QLabel* mag_x_;

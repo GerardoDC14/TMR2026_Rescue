@@ -210,6 +210,8 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
             this, &DashboardPanel::onTelemetryReceived, Qt::QueuedConnection);
     connect(this, &DashboardPanel::uptimeUpdated,
             this, &DashboardPanel::onUptimeUpdated, Qt::QueuedConnection);
+    connect(this, &DashboardPanel::hwEstopChanged,
+            this, &DashboardPanel::onHwEstopChanged, Qt::QueuedConnection);
 
     auto sensor_qos = rclcpp::QoS(10).best_effort();
 
@@ -264,6 +266,16 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
             emit telemetryReceived();
             if (msg->data.size() >= 4)
                 emit uptimeUpdated(msg->data[3]);
+        });
+
+    // Hardware ESTOP override: subscribe to /robot/flags (bit3 = estop)
+    flags_sub_ = node_->create_subscription<std_msgs::msg::UInt8>(
+        "/robot/flags", sensor_qos,
+        [this](std_msgs::msg::UInt8::SharedPtr msg) {
+            bool fw_estop = (msg->data & 0x08) != 0;
+            bool prev = hw_estop_active_.exchange(fw_estop);
+            if (fw_estop != prev)
+                emit hwEstopChanged(fw_estop);
         });
 
     // 1s repeating timer — counts missed heartbeat intervals
@@ -528,6 +540,28 @@ void DashboardPanel::setPlaybackEnabled(bool enabled)
 {
     if (speech_processor_)
         speech_processor_->setPlaybackEnabled(enabled);
+}
+
+void DashboardPanel::onHwEstopChanged(bool active)
+{
+    if (active) {
+        // Hardware ESTOP overrides: force button checked and disable it
+        estop_btn_->blockSignals(true);
+        estop_btn_->setChecked(true);
+        estop_btn_->blockSignals(false);
+        estop_btn_->setEnabled(false);
+        estop_btn_->setText("E-STOP (HW)");
+        estop_active_ = true;
+    } else {
+        // Hardware ESTOP cleared: re-enable button and clear
+        estop_btn_->setEnabled(true);
+        estop_btn_->blockSignals(true);
+        estop_btn_->setChecked(false);
+        estop_btn_->blockSignals(false);
+        estop_btn_->setText("E-STOP");
+        estop_active_ = false;
+        publishEstopState();   // send clear to firmware
+    }
 }
 
 void DashboardPanel::publishEstopState()

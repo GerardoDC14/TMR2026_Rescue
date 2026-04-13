@@ -12,14 +12,17 @@ static portMUX_TYPE    s_mux = portMUX_INITIALIZER_UNLOCKED;
 
 // ─── Runtime calibration (defaults match compile-time constants) ─────────────
 // Initialise all 6 channels to identical defaults; updated via setCalib().
-static PpmCalibPayload s_calib = {{
-    {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
-    {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
-    {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
-    {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
-    {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
-    {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
-}};
+static PpmCalibPayload s_calib = {
+    {
+        {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
+        {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
+        {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
+        {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
+        {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
+        {PPM_MIN_US, (PPM_MIN_US + PPM_MAX_US) / 2, PPM_MAX_US},
+    },
+    50,  // deadband_1000: default 0.05 (5%)
+};
 static uint16_t        s_frame[PPM_CHANNELS];
 static uint32_t        s_frame_ms = 0;
 static bool            s_frame_fresh = false;

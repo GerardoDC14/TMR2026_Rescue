@@ -7,11 +7,6 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
-            'serial_port',
-            default_value='/dev/ttyUSB0',
-            description='Serial port connected to the ESP32'
-        ),
-        DeclareLaunchArgument(
             'baud_rate',
             default_value='921600',
             description='UART baud rate (must match MINIPC_BAUD in config.h)'
@@ -23,13 +18,27 @@ def generate_launch_description():
         ),
         Node(
             package='esp32_bridge',
-            executable='esp32_bridge_node',
-            name='esp32_bridge',
+            executable='main_bridge',
+            name='main_bridge',
             output='screen',
             parameters=[{
-                'serial_port': LaunchConfiguration('serial_port'),
                 'baud_rate':   LaunchConfiguration('baud_rate'),
             }]
+        ),
+        Node(
+            package='esp32_bridge',
+            executable='servo_bridge',
+            name='servo_bridge',
+            output='screen',
+            parameters=[{
+                'baud_rate':   LaunchConfiguration('baud_rate'),
+            }]
+        ),
+        Node(
+            package='esp32_bridge',
+            executable='rc_control',
+            name='rc_control',
+            output='screen'
         ),
         Node(
             package='esp32_bridge',

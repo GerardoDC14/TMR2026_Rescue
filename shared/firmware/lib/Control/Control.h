@@ -44,6 +44,9 @@ private:
     static ArmJoints     s_arm_joints;
     static uint8_t       s_sensor_mask;
     static KeybindTable  s_keybind;
+    static bool          s_hw_estop;       // Ch6 hardware ESTOP
+    static bool          s_virtual_estop;  // GUI/Comms virtual ESTOP
+    static float         s_deadband;       // normalised stick deadband [0, 0.5]
 
     // ── PID controllers (only compiled when enabled in config.h) ─────────────
 #if defined(ROBOT_MAIN) && defined(ENABLE_TRACTION_PID)

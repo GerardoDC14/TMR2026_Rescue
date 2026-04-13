@@ -27,11 +27,20 @@ Published topics
                                                          temp_fet_C, temp_motor_C, voltage_V]
 /motors/main_status       std_msgs/Float32MultiArray   ROBOT_MAIN: [left_duty, right_duty,
                                                          flipper_duty] (normalised −1..+1)
+/motors/odrive_status     std_msgs/Float32MultiArray   [joint_idx, pos_turns, vel_turns_s,
+                                                         iq_A, bus_voltage_V, bus_current_A]
+/motors/lktech_status     std_msgs/Float32MultiArray   [joint_idx, motor_id, temp_C,
+                                                         iq_A, speed_dps, angle_deg,
+                                                         output_deg]
+/motors/ze300_status      std_msgs/Float32MultiArray   [device_id, temp_C, iq_A,
+                                                         speed_rpm, single_turn_counts,
+                                                         position_counts, output_deg]
+/motors/odrive_error      std_msgs/Float32MultiArray   [node_id, motor_error_bitfield]
 
 Subscribed topics (PC → ESP32)
 ───────────────────────────────
 /robot/estop              std_msgs/Bool                True=ESTOP, False=ESTOP_CLEAR
-/arm/joint_command        std_msgs/Float32MultiArray   6 joint angles in degrees
+/joint_states             sensor_msgs/JointState       6 joint angles (Positions in radians)
 /sensors/enable_mask      std_msgs/UInt8               bitmask: bit0=mag, 1=thermal, 2=gas, 3=imu
                                                         Starts at 0x00 (all off); GUI controls it.
 /robot/ppm_calib          std_msgs/UInt16MultiArray    [min_us, neutral_us, max_us] RC calibration
@@ -55,7 +64,7 @@ from std_msgs.msg import (
     Bool, String, UInt8, Float32, Float32MultiArray, Int16MultiArray,
     UInt8MultiArray, UInt16MultiArray, MultiArrayDimension, MultiArrayLayout
 )
-from sensor_msgs.msg import Imu, MagneticField, Image
+from sensor_msgs.msg import Imu, MagneticField, Image, JointState
 from geometry_msgs.msg import Vector3
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 from builtin_interfaces.msg import Time
@@ -73,6 +82,10 @@ MSG_ENCODER_EXT = 0x07
 MSG_VESC_STATUS = 0x08
 
 MSG_MOTOR_MAIN    = 0x09
+MSG_ODRIVE_STATUS = 0x0A
+MSG_LKTECH_STATUS = 0x0B
+MSG_ZE300_STATUS  = 0x0C
+MSG_ODRIVE_ERROR  = 0x0D
 
 MSG_ARM_JOINTS    = 0x10
 MSG_SENSOR_ENABLE = 0x11
@@ -80,6 +93,7 @@ MSG_ESTOP         = 0x12
 MSG_ESTOP_CLEAR   = 0x13
 MSG_KEYBIND       = 0x14
 MSG_PPM_CALIB     = 0x15
+MSG_GRIPPER       = 0x16
 
 MODE_NAMES = {0: 'INIT', 1: 'STANDBY', 2: 'NORMAL', 3: 'ARM', 4: 'ESTOP', 5: 'FLIPPER'}
 
@@ -133,11 +147,17 @@ class ESP32BridgeNode(Node):
         self._pub_gas       = self.create_publisher(Float32,           '/sensors/gas',         qos)
         self._pub_vesc      = self.create_publisher(Float32MultiArray, '/motors/vesc_status',  qos)
         self._pub_motor_main = self.create_publisher(Float32MultiArray, '/motors/main_status', qos)
+        self._pub_odrive     = self.create_publisher(Float32MultiArray, '/motors/odrive_status', qos)
+        self._pub_lktech     = self.create_publisher(Float32MultiArray, '/motors/lktech_status', qos)
+        self._pub_ze300      = self.create_publisher(Float32MultiArray, '/motors/ze300_status',  qos)
+        self._pub_odrive_err = self.create_publisher(Float32MultiArray, '/motors/odrive_error',  qos)
+        self._pub_gripper    = self.create_publisher(Float32,           '/gripper',              qos)
+        self._pub_deadband   = self.create_publisher(Float32,           '/robot/deadband',       qos)
 
         # Subscribers
-        self.create_subscription(Bool,              '/robot/estop',         self._on_estop,         10)
-        self.create_subscription(Float32MultiArray, '/arm/joint_command',   self._on_arm_joints,    10)
-        self.create_subscription(UInt8,             '/sensors/enable_mask', self._on_sensor_enable, 10)
+        self.create_subscription(Bool,       '/robot/estop',         self._on_estop,         10)
+        self.create_subscription(JointState, '/joint_states',        self._on_joint_states,  10)
+        self.create_subscription(UInt8,      '/sensors/enable_mask', self._on_sensor_enable, 10)
 
         keybind_qos = QoSProfile(
             reliability=ReliabilityPolicy.RELIABLE,
@@ -231,6 +251,16 @@ class ESP32BridgeNode(Node):
                 self._handle_vesc_status(payload)
             elif msg_type == MSG_MOTOR_MAIN:
                 self._handle_motor_main(payload)
+            elif msg_type == MSG_ODRIVE_STATUS:
+                self._handle_odrive_status(payload)
+            elif msg_type == MSG_LKTECH_STATUS:
+                self._handle_lktech_status(payload)
+            elif msg_type == MSG_ZE300_STATUS:
+                self._handle_ze300_status(payload)
+            elif msg_type == MSG_ODRIVE_ERROR:
+                self._handle_odrive_error(payload)
+            elif msg_type == MSG_GRIPPER:
+                self._handle_gripper(payload)
         except struct.error as e:
             self.get_logger().warn(f'Parse error type=0x{msg_type:02X}: {e}')
 
@@ -240,7 +270,7 @@ class ESP32BridgeNode(Node):
         # TelemetryPayload: u8 mode, u8 flags, u16[6] ppm, i16 spd_l, i16 spd_r,
         #                   i16 flipper_angle, u32 uptime_ms
         # Total: 2 + 12 + 6 + 4 = 24 bytes
-        fmt = '<BB' + 'H' * PPM_CHANNELS + 'hhhl'
+        fmt = '<BB' + 'H' * PPM_CHANNELS + 'hhhL'
         size = struct.calcsize(fmt)
         if len(payload) < size:
             return
@@ -429,6 +459,91 @@ class ESP32BridgeNode(Node):
         msg.data = [duty_l / 1000.0, duty_r / 1000.0, duty_flip / 1000.0]
         self._pub_motor_main.publish(msg)
 
+    def _handle_odrive_status(self, payload: bytes):
+        # OdriveStatusPayload: u8 joint_idx, i16 pos×100, i16 vel×100,
+        #                      i16 iq×100, i16 bus_v×10, i16 bus_i×100
+        # Total: 1 + 5×2 = 11 bytes
+        fmt = '<Bhhhhh'
+        if len(payload) < struct.calcsize(fmt):
+            return
+        joint_idx, pos100, vel100, iq100, bv10, bi100 = struct.unpack_from(fmt, payload)
+        msg = Float32MultiArray()
+        msg.data = [
+            float(joint_idx),
+            pos100 / 100.0,
+            vel100 / 100.0,
+            iq100 / 100.0,
+            bv10 / 10.0,
+            bi100 / 100.0,
+        ]
+        self._pub_odrive.publish(msg)
+
+    def _handle_lktech_status(self, payload: bytes):
+        # LktechStatusPayload: u8 joint_idx, u8 motor_id, i8 temp_c,
+        #                      i16 iq×100, i16 speed_dps, i16 angle_deg, i16 output_deg×10
+        # Total: 3 + 4×2 = 11 bytes
+        fmt = '<BBbhhhh'
+        if len(payload) < struct.calcsize(fmt):
+            return
+        joint_idx, motor_id, temp_c, iq100, speed_dps, angle_deg, out_deg10 = \
+            struct.unpack_from(fmt, payload)
+        msg = Float32MultiArray()
+        msg.data = [
+            float(joint_idx),
+            float(motor_id),
+            float(temp_c),
+            iq100 / 100.0,
+            float(speed_dps),
+            float(angle_deg),
+            out_deg10 / 10.0,
+        ]
+        self._pub_lktech.publish(msg)
+
+    def _handle_ze300_status(self, payload: bytes):
+        # Ze300StatusPayload: u8 device_id, i8 temp_c, i16 iq×1000,
+        #                     i16 speed_rpm×100, i16 single_turn_counts,
+        #                     i32 position_counts, i16 output_deg×10
+        # Total: 2 + 3×2 + 4 + 2 = 14 bytes
+        fmt = '<Bbhhhih'
+        if len(payload) < struct.calcsize(fmt):
+            return
+        dev_id, temp_c, iq1000, spd100, st_counts, pos_counts, out_deg10 = \
+            struct.unpack_from(fmt, payload)
+        msg = Float32MultiArray()
+        msg.data = [
+            float(dev_id),
+            float(temp_c),
+            iq1000 / 1000.0,
+            spd100 / 100.0,
+            float(st_counts),
+            float(pos_counts),
+            out_deg10 / 10.0,
+        ]
+        self._pub_ze300.publish(msg)
+
+    def _handle_odrive_error(self, payload: bytes):
+        # OdriveErrorPayload: u8 node_id, u64 motor_error
+        # Total: 1 + 8 = 9 bytes
+        fmt = '<BQ'
+        if len(payload) < struct.calcsize(fmt):
+            return
+        node_id, motor_error = struct.unpack_from(fmt, payload)
+        msg = Float32MultiArray()
+        msg.data = [float(node_id), float(motor_error)]
+        self._pub_odrive_err.publish(msg)
+        if motor_error != 0:
+            self.get_logger().warn(
+                f'ODrive node {node_id} error: 0x{motor_error:016X}')
+
+    def _handle_gripper(self, payload: bytes):
+        # GripperPayload: i16 normalised × 1000
+        if len(payload) < 2:
+            return
+        val_1000, = struct.unpack_from('<h', payload)
+        msg = Float32()
+        msg.data = val_1000 / 1000.0
+        self._pub_gripper.publish(msg)
+
     def _handle_status(self, payload: bytes):
         if len(payload) < 4:
             return
@@ -470,12 +585,34 @@ class ESP32BridgeNode(Node):
             self._send(_build_frame(MSG_ESTOP_CLEAR, b''))
             #self.get_logger().info('Sent ESTOP_CLEAR')
 
-    def _on_arm_joints(self, msg: Float32MultiArray):
-        if len(msg.data) < 6:
-            self.get_logger().warn('arm_joint_command must have 6 values')
+    def _on_joint_states(self, msg: JointState):
+        """
+        MoveIt publishes JointState arrays, but the order isn't guaranteed. 
+        It's highly recommended to map positions by msg.name to guarantee the ESP32 
+        gets them in the strict [J1, J2, J3, J4, J5, J6] order.
+        """
+        # TODO: Update these strings to match your actual URDF joint names!
+        EXPECTED_JOINT_NAMES = [
+            'Joint1', 'Joint2', 'Joint3', 
+            'Joint4', 'Joint5', 'Joint6'
+        ]
+
+        if not msg.name or not msg.position:
             return
+
+        # Create a dictionary to map joint names to their current position (in radians)
+        joint_map = dict(zip(msg.name, msg.position))
+        
+        deg_positions = []
+        for j_name in EXPECTED_JOINT_NAMES:
+            # Fallback to 0.0 if the joint is missing from the message
+            rad_pos = joint_map.get(j_name, 0.0) 
+            # Convert radians to degrees for the ESP32 payload
+            deg_positions.append(math.degrees(rad_pos))
+
+        # Pack the 6 degrees values into 6 int16s (multiplying by 100)
         payload = struct.pack('<' + 'h' * 6,
-                              *[int(d * 100.0) for d in msg.data[:6]])
+                              *[int(d * 100.0) for d in deg_positions])
         self._send(_build_frame(MSG_ARM_JOINTS, payload))
 
     def _on_sensor_enable(self, msg: UInt8):
@@ -491,16 +628,24 @@ class ESP32BridgeNode(Node):
         self.get_logger().info('Keybind configuration sent to ESP32')
 
     def _on_ppm_calib(self, msg: UInt16MultiArray):
-        # PpmCalibPayload: 6 channels × (min_us, neutral_us, max_us) uint16 = 36 bytes LE
-        # GUI sends 18 values: [ch0_min, ch0_neu, ch0_max, ch1_min, ...]
-        if len(msg.data) < 18:
+        # PpmCalibPayload: 6 channels × (min_us, neutral_us, max_us) uint16 = 36 bytes
+        #                + uint16 deadband_1000 = 38 bytes total (19 uint16 values)
+        # GUI sends 19 values: [ch0_min, ch0_neu, ch0_max, ..., ch5_max, deadband_1000]
+        if len(msg.data) < 19:
             self.get_logger().warn(
-                f'ppm_calib must have 18 values (6 channels × 3), got {len(msg.data)}')
+                f'ppm_calib must have 19 values (6ch × 3 + deadband), got {len(msg.data)}')
             return
-        payload = struct.pack('<' + 'HHH' * 6,
-                              *[int(v) for v in msg.data[:18]])
+        payload = struct.pack('<' + 'HHH' * 6 + 'H',
+                              *[int(v) for v in msg.data[:19]])
         self._send(_build_frame(MSG_PPM_CALIB, payload))
-        self.get_logger().info('Per-channel PPM calibration sent to ESP32')
+
+        # Publish deadband so rc_servo.py can use it
+        deadband_val = msg.data[18] / 1000.0
+        db_msg = Float32()
+        db_msg.data = deadband_val
+        self._pub_deadband.publish(db_msg)
+        self.get_logger().info(
+            f'PPM calibration sent to ESP32 (deadband={deadband_val:.3f})')
 
 
 def main(args=None):

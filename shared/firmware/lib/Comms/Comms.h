@@ -44,6 +44,7 @@ public:
     static void sendZe300Status(const Ze300StatusPayload& z);   // ROBOT_SECONDARY ZE300 J4
     static void sendOdriveError(const OdriveErrorPayload& e);   // optional error snapshot
     static void sendStatus(const SystemStatus& status);
+    static void sendGripper(float norm);   // normalised gripper value [-1, +1]
 
     // ── Callback registration ─────────────────────────────────────────────────
     static void onArmJoints(ArmJointsCallback cb)       { s_cb_arm      = cb; }

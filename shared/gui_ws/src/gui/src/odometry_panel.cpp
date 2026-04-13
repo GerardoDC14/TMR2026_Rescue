@@ -24,6 +24,8 @@ OdometryPanel::OdometryPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
             this, &OdometryPanel::onVescStatusUpdated, Qt::QueuedConnection);
     connect(this, &OdometryPanel::mainMotorUpdated,
             this, &OdometryPanel::onMainMotorUpdated, Qt::QueuedConnection);
+    connect(this, &OdometryPanel::odriveArmUpdated,
+            this, &OdometryPanel::onOdriveArmUpdated, Qt::QueuedConnection);
 
     // ── ROS subscriptions ────────────────────────────────────────────────────
     auto qos = rclcpp::QoS(10).best_effort();
@@ -77,6 +79,16 @@ OdometryPanel::OdometryPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
         [this](std_msgs::msg::Float32MultiArray::SharedPtr msg) {
             if (msg->data.size() >= 3)
                 emit mainMotorUpdated(msg->data[0], msg->data[1], msg->data[2]);
+        });
+
+    // Arm ODrive telemetry: [joint_idx, pos_turns, vel_turns_s, iq_A, bus_voltage_V, bus_current_A]
+    odrive_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>(
+        "/motors/odrive_status", qos,
+        [this](std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+            if (msg->data.size() < 5) return;
+            int jidx = static_cast<int>(msg->data[0]);
+            if (jidx < 0 || jidx >= 3) return;
+            emit odriveArmUpdated(jidx, msg->data[3], msg->data[4]);
         });
 }
 
@@ -215,6 +227,37 @@ void OdometryPanel::buildLayout()
     }
     main_layout_->addWidget(main_motor_section_);
 
+    // ── Arm ODrive telemetry section (primary robot, J1–J3) ──────────────────
+    main_layout_->addWidget(makeHSep());
+
+    odrive_arm_section_ = new QWidget(this);
+    {
+        auto* vl = new QVBoxLayout(odrive_arm_section_);
+        vl->setContentsMargins(0, 0, 0, 0);
+        vl->setSpacing(3);
+
+        vl->addWidget(makeHeaderLabel("Arm ODrives"));
+
+        // Bus voltage row
+        auto* vbus_row = new QHBoxLayout();
+        vbus_row->addWidget(makeAxisLabel("Vbus"));
+        arm_vbus_ = makeValueLabel("--");
+        vbus_row->addWidget(arm_vbus_, 1);
+        vl->addLayout(vbus_row);
+
+        // Per-joint current grid
+        auto* iq_grid = new QGridLayout();
+        iq_grid->setSpacing(3);
+        const char* jnames[] = {"J1", "J2", "J3"};
+        for (int j = 0; j < 3; ++j) {
+            iq_grid->addWidget(makeAxisLabel(jnames[j]), 0, j);
+            arm_iq_[j] = makeValueLabel("--");
+            iq_grid->addWidget(arm_iq_[j], 1, j);
+        }
+        vl->addLayout(iq_grid);
+    }
+    main_layout_->addWidget(odrive_arm_section_);
+
     main_layout_->addStretch();
 
     // Show/hide motor sections based on initial robot type
@@ -279,8 +322,9 @@ void OdometryPanel::rebuildFlipperSection()
 
 void OdometryPanel::updateMotorSectionVisibility()
 {
-    if (vesc_section_)       vesc_section_->setVisible(robot_type_ == 1);
-    if (main_motor_section_) main_motor_section_->setVisible(robot_type_ == 0);
+    if (vesc_section_)        vesc_section_->setVisible(robot_type_ == 1);
+    if (main_motor_section_)  main_motor_section_->setVisible(robot_type_ == 0);
+    if (odrive_arm_section_)  odrive_arm_section_->setVisible(robot_type_ == 0);
 }
 
 void OdometryPanel::setRobotType(int type)
@@ -397,5 +441,13 @@ void OdometryPanel::onMainMotorUpdated(float left_duty, float right_duty, float 
     if (main_left_duty_)  main_left_duty_->setText(fmt(left_duty));
     if (main_right_duty_) main_right_duty_->setText(fmt(right_duty));
     if (main_flip_duty_)  main_flip_duty_->setText(fmt(flipper_duty));
+}
+
+void OdometryPanel::onOdriveArmUpdated(int joint_idx, float iq_a, float vbus_v)
+{
+    if (arm_vbus_)
+        arm_vbus_->setText(QString::number(vbus_v, 'f', 1) + " V");
+    if (joint_idx >= 0 && joint_idx < 3 && arm_iq_[joint_idx])
+        arm_iq_[joint_idx]->setText(QString::number(iq_a, 'f', 2) + " A");
 }
 

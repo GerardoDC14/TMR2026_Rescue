@@ -11,9 +11,12 @@
 #include <cmath>
 
 // ─── Static members ───────────────────────────────────────────────────────────
-RobotMode    Control::s_mode        = RobotMode::INIT;
-ArmJoints    Control::s_arm_joints  = {};
-uint8_t      Control::s_sensor_mask = 0;
+RobotMode    Control::s_mode           = RobotMode::INIT;
+ArmJoints    Control::s_arm_joints     = {};
+uint8_t      Control::s_sensor_mask    = 0;
+bool         Control::s_hw_estop       = false;
+bool         Control::s_virtual_estop  = false;
+float        Control::s_deadband       = 0.05f;
 
 #ifdef ROBOT_MAIN
   #ifdef ENABLE_TRACTION_PID
@@ -29,18 +32,18 @@ float Control::s_flipper_target_angle = 0.0f;
 PID   Control::s_pid_flipper[4];
 #endif
 
-// Default keybind table (matches original hardcoded behaviour)
-// NOTE: Ch6 (slot 4) is NOT bound here — it's monitored as a direct ESTOP trigger in tick()
+// Default keybind table
+// Ch6 (slot 4) is a dedicated hardware ESTOP — always forced to NONE here.
 KeybindTable Control::s_keybind = {{
-    // mode0 (Ch5 low):  FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
+    // mode0 (Ch5 low):  traction + flipper
     {ChannelFunction::FLIPPER_ALL, ChannelFunction::TRACTION_FWD, ChannelFunction::NONE,
      ChannelFunction::TRACTION_TURN, ChannelFunction::NONE},
-    // mode1 (Ch5 mid):  same as mode0
-    {ChannelFunction::FLIPPER_ALL, ChannelFunction::TRACTION_FWD, ChannelFunction::NONE,
-     ChannelFunction::TRACTION_TURN, ChannelFunction::NONE},
-    // mode2 (Ch5 high): per-axis arm control
+    // mode1 (Ch5 mid):  arm movement (Cartesian)
     {ChannelFunction::ARM_Y, ChannelFunction::ARM_X, ChannelFunction::ARM_Z,
-     ChannelFunction::ARM_YAW, ChannelFunction::NONE},
+     ChannelFunction::NONE, ChannelFunction::NONE},
+    // mode2 (Ch5 high): arm orientation
+    {ChannelFunction::ARM_PITCH, ChannelFunction::ARM_YAW, ChannelFunction::ARM_ROLL,
+     ChannelFunction::NONE, ChannelFunction::NONE},
 }};
 
 static portMUX_TYPE s_mux = portMUX_INITIALIZER_UNLOCKED;
@@ -54,7 +57,12 @@ void Control::begin() {
         else        Control::clearEstop();
     });
     Comms::onKeybind([](const KeybindPayload& p) { Control::setKeybind(p); });
-    Comms::onPpmCalib([](const PpmCalibPayload& p) { RC::setCalib(p); });
+    Comms::onPpmCalib([](const PpmCalibPayload& p) {
+        RC::setCalib(p);
+        portENTER_CRITICAL(&s_mux);
+        s_deadband = p.deadband_1000 / 1000.0f;
+        portEXIT_CRITICAL(&s_mux);
+    });
 
     // ── Configure PID controllers (only when enabled) ─────────────────────
 #ifdef ROBOT_MAIN
@@ -97,14 +105,28 @@ void Control::tick() {
     bool         have_ppm = RC::getFrame(ppm);
     Encoders::getState(enc);
 
-    // ── Ch6 ESTOP: highest priority ─────────────────────────────────────────
+    // ── Ch6 hardware ESTOP: highest priority, overrides virtual ESTOP ─────
     if (have_ppm) {
-        if (ppm.ch[5] > 1800) {
-            triggerEstop();
-        } else {
-            portENTER_CRITICAL(&s_mux);
-            if (s_mode == RobotMode::ESTOP)
+        portENTER_CRITICAL(&s_mux);
+        bool was_hw = s_hw_estop;
+        s_hw_estop = (ppm.ch[5] > 1800);
+        if (s_hw_estop && !was_hw) {
+            // Rising edge: enter ESTOP
+            s_mode = RobotMode::ESTOP;
+            portEXIT_CRITICAL(&s_mux);
+            Locomotion::neutralise();
+#ifdef ENABLE_COMMS
+            CANInterface::estopAllOdrives();
+#endif
+        } else if (!s_hw_estop && was_hw) {
+            // Falling edge: clear hardware ESTOP; stay in ESTOP only if virtual is active
+            if (!s_virtual_estop)
                 s_mode = RobotMode::STANDBY;
+            portEXIT_CRITICAL(&s_mux);
+#ifdef ENABLE_COMMS
+            if (!s_virtual_estop) CANInterface::clearEstopAllOdrives();
+#endif
+        } else {
             portEXIT_CRITICAL(&s_mux);
         }
     }
@@ -187,13 +209,16 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
 
     // Channel slot → raw PPM channel index: slot 0=Ch1, 1=Ch2, 2=Ch3, 3=Ch4, 4=Ch6
     static const int slot_to_ppm[5] = {0, 1, 2, 3, 5};
-    constexpr float kDeadband = 0.05f;
+    portENTER_CRITICAL(&s_mux);
+    float kDeadband = s_deadband;
+    portEXIT_CRITICAL(&s_mux);
 
     // Accumulate commands from all bound channels
     float forward = 0.0f, turn = 0.0f;
     float flipper_all = 0.0f;
     float flipper_fl = 0.0f, flipper_fr = 0.0f, flipper_rl = 0.0f, flipper_rr = 0.0f;
-    bool has_traction = false, has_flipper = false, has_arm = false;
+    float gripper_val = 0.0f;
+    bool has_traction = false, has_flipper = false, has_arm = false, has_gripper = false;
 
     for (int c = 0; c < 5; ++c) {
         ChannelFunction fn = kb.map[mode_idx][c];
@@ -217,7 +242,9 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
             case ChannelFunction::ARM_Y:
             case ChannelFunction::ARM_Z:
             case ChannelFunction::ARM_PITCH:
-            case ChannelFunction::ARM_YAW:       has_arm = true; break;
+            case ChannelFunction::ARM_YAW:
+            case ChannelFunction::ARM_ROLL:      has_arm = true; break;
+            case ChannelFunction::GRIPPER:        gripper_val = val; has_gripper = true; has_arm = true; break;
             default: break;
         }
     }
@@ -325,19 +352,36 @@ void Control::applyKeybindRow(int mode_idx, const PPMFrame& ppm,
 #endif
         Locomotion::setTrackSpeeds(0.0f, 0.0f);
 
-#ifdef ROBOT_SECONDARY
+#ifdef ENABLE_COMMS
         portENTER_CRITICAL(&s_mux);
         ArmJoints joints = s_arm_joints;
         portEXIT_CRITICAL(&s_mux);
-        if (joints.valid)
+        if (joints.valid) {
             CANInterface::sendArmJoints(joints.angle_deg);
+        }
+  #ifdef DEBUG_ARM
+        else {
+            static uint32_t _arm_wait_last = 0;
+            uint32_t _arm_wait_now = millis();
+            if (_arm_wait_now - _arm_wait_last >= 1000) {
+                _arm_wait_last = _arm_wait_now;
+                Serial.println("[ARM] arm mode active, waiting for joint commands from PC");
+            }
+        }
+  #endif
 #endif
+
+        // Send gripper value to PC independently
+        if (has_gripper) {
+            Comms::sendGripper(gripper_val);
+        }
     }
 }
 
 // ─── Callbacks ────────────────────────────────────────────────────────────────
 void Control::triggerEstop() {
     portENTER_CRITICAL(&s_mux);
+    s_virtual_estop = true;
     s_mode = RobotMode::ESTOP;
 #ifdef ROBOT_MAIN
   #ifdef ENABLE_TRACTION_PID
@@ -360,11 +404,13 @@ void Control::triggerEstop() {
 
 void Control::clearEstop() {
     portENTER_CRITICAL(&s_mux);
-    bool was_estop = (s_mode == RobotMode::ESTOP);
-    if (was_estop) s_mode = RobotMode::STANDBY;
+    s_virtual_estop = false;
+    // Only leave ESTOP if hardware ESTOP is also inactive
+    bool can_clear = (s_mode == RobotMode::ESTOP) && !s_hw_estop;
+    if (can_clear) s_mode = RobotMode::STANDBY;
     portEXIT_CRITICAL(&s_mux);
 #ifdef ENABLE_COMMS
-    if (was_estop) CANInterface::clearEstopAllOdrives();
+    if (can_clear) CANInterface::clearEstopAllOdrives();
 #endif
 }
 
@@ -374,6 +420,18 @@ void Control::setArmJoints(const ArmJointsPayload& payload) {
         s_arm_joints.angle_deg[i] = payload.joint[i] * 0.01f;
     s_arm_joints.valid = true;
     portEXIT_CRITICAL(&s_mux);
+
+#ifdef DEBUG_ARM
+    static uint32_t _rx_dbg_last = 0;
+    uint32_t _rx_dbg_now = millis();
+    if (_rx_dbg_now - _rx_dbg_last >= 200) {
+        _rx_dbg_last = _rx_dbg_now;
+        Serial.printf("[ARM] rx joints: [%.1f %.1f %.1f %.1f %.1f %.1f]\n",
+                      payload.joint[0]*0.01f, payload.joint[1]*0.01f,
+                      payload.joint[2]*0.01f, payload.joint[3]*0.01f,
+                      payload.joint[4]*0.01f, payload.joint[5]*0.01f);
+    }
+#endif
 }
 
 void Control::setSensorMask(uint8_t mask) {

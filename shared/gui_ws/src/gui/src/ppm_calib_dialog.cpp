@@ -1,6 +1,7 @@
 #include "gui/ppm_calib_dialog.hpp"
 #include "gui/app_settings.hpp"
 
+#include <QDoubleSpinBox>
 #include <QFrame>
 #include <QGridLayout>
 #include <QGroupBox>
@@ -128,6 +129,30 @@ PpmCalibDialog::PpmCalibDialog(rclcpp::Node::SharedPtr node, QWidget* parent)
         grid->addWidget(cap_btn, c + 1, 6);
     }
 
+    // ── Deadband row (below all channels) ────────────────────────────────────
+    {
+        auto* sep = new QFrame(grid_group);
+        sep->setFrameShape(QFrame::HLine);
+        sep->setStyleSheet("color: #3a3a55;");
+        grid->addWidget(sep, 7, 0, 1, 7);
+
+        auto* db_lbl = new QLabel("Stick Deadband", grid_group);
+        db_lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        db_lbl->setStyleSheet("color: #4fc3f7; font-weight: bold;");
+        grid->addWidget(db_lbl, 8, 0, 1, 3);
+
+        deadband_spin_ = new QDoubleSpinBox(grid_group);
+        deadband_spin_->setRange(0.0, 30.0);
+        deadband_spin_->setSingleStep(0.5);
+        deadband_spin_->setDecimals(1);
+        deadband_spin_->setSuffix(" %");
+        deadband_spin_->setValue(5.0);
+        deadband_spin_->setToolTip(
+            "Normalised dead zone around stick centre (percent of full range).\n"
+            "Values below this threshold are treated as zero.");
+        grid->addWidget(deadband_spin_, 8, 3, 1, 2);
+    }
+
     grid->setColumnStretch(1, 1);   // bar column stretches
     root->addWidget(grid_group);
 
@@ -178,23 +203,30 @@ PpmCalibDialog::~PpmCalibDialog()
 void PpmCalibDialog::reloadFromSettings()
 {
     auto& S = AppSettings::instance();
-    std::lock_guard<std::mutex> lk(S.ppm_calib_mutex);
-    for (int c = 0; c < 6; ++c) {
-        min_spins_[c]    ->setValue(S.ppm_calib[c].min_us);
-        neutral_spins_[c]->setValue(S.ppm_calib[c].neutral_us);
-        max_spins_[c]    ->setValue(S.ppm_calib[c].max_us);
+    {
+        std::lock_guard<std::mutex> lk(S.ppm_calib_mutex);
+        for (int c = 0; c < 6; ++c) {
+            min_spins_[c]    ->setValue(S.ppm_calib[c].min_us);
+            neutral_spins_[c]->setValue(S.ppm_calib[c].neutral_us);
+            max_spins_[c]    ->setValue(S.ppm_calib[c].max_us);
+        }
     }
+    deadband_spin_->setValue(S.ppm_deadband_x1000.load() / 10.0);
 }
 
 void PpmCalibDialog::applyToSettings()
 {
     auto& S = AppSettings::instance();
-    std::lock_guard<std::mutex> lk(S.ppm_calib_mutex);
-    for (int c = 0; c < 6; ++c) {
-        S.ppm_calib[c].min_us     = min_spins_[c]    ->value();
-        S.ppm_calib[c].neutral_us = neutral_spins_[c]->value();
-        S.ppm_calib[c].max_us     = max_spins_[c]    ->value();
+    {
+        std::lock_guard<std::mutex> lk(S.ppm_calib_mutex);
+        for (int c = 0; c < 6; ++c) {
+            S.ppm_calib[c].min_us     = min_spins_[c]    ->value();
+            S.ppm_calib[c].neutral_us = neutral_spins_[c]->value();
+            S.ppm_calib[c].max_us     = max_spins_[c]    ->value();
+        }
     }
+    // Store as ×1000 (spin shows %, e.g. 5.0% → 50)
+    S.ppm_deadband_x1000.store(static_cast<int>(deadband_spin_->value() * 10.0 + 0.5));
 }
 
 // ── Slots ─────────────────────────────────────────────────────────────────────

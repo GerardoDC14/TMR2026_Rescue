@@ -99,7 +99,6 @@ static void commsTask(void* /*arg*/) {
 //  Core 0 — CAN task
 //  Polls the TWAI driver for incoming frames and forwards VESC feedback.
 // ─────────────────────────────────────────────────────────────────────────────
-#ifdef ENABLE_COMMS
 static void canTask(void* /*arg*/) {
     const TickType_t period = pdMS_TO_TICKS(5);   // 200 Hz poll
     TickType_t       last   = xTaskGetTickCount();
@@ -162,7 +161,6 @@ static void canTask(void* /*arg*/) {
         vTaskDelayUntil(&last, period);
     }
 }
-#endif
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Core 1 — Fast sensor task  (mag / gas / imu)
@@ -225,21 +223,17 @@ void setup() {
     Encoders::begin();
     Locomotion::begin();
     Sensors::begin();
-#ifdef ENABLE_COMMS
     CANInterface::begin();   // non-fatal if CAN module is absent at startup
-#endif
 
     // Must be last: registers callbacks into Comms
     Control::begin();
-/*
+
     // ── Core 0: protocol tasks ────────────────────────────────────────────────
     xTaskCreatePinnedToCore(commsTask, "Comms",   STACK_COMMS,   nullptr,
                             PRIO_COMMS,   nullptr, TASK_CORE_COMMS);
-                            */
-#ifdef ENABLE_COMMS
+                            
     xTaskCreatePinnedToCore(canTask,   "CAN",     STACK_CAN,     nullptr,
                             PRIO_CAN,     nullptr, TASK_CORE_CAN);
-#endif
 
     // ── Core 1: control + sensor tasks ───────────────────────────────────────
     xTaskCreatePinnedToCore(controlTask,  "Control",  STACK_CONTROL, nullptr,

@@ -33,6 +33,8 @@ void AppSettings::load()
 
     robot_type.store(get_i("robot_type", 0));
 
+    ppm_deadband_x1000.store(get_i("ppm_deadband_x1000", 50));
+
     if (o.contains("ppm_calib")) {
         auto arr = o["ppm_calib"].toArray();
         std::lock_guard<std::mutex> lk(ppm_calib_mutex);
@@ -72,6 +74,7 @@ void AppSettings::save()
     o["label_font_scale_x100"] = label_font_scale_x100.load();
     o["audio_start_enabled"]   = audio_start_enabled.load();
     o["robot_type"]            = robot_type.load();
+    o["ppm_deadband_x1000"]    = ppm_deadband_x1000.load();
     {
         std::lock_guard<std::mutex> lk(ppm_calib_mutex);
         QJsonArray calib_arr;

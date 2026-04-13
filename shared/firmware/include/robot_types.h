@@ -32,6 +32,8 @@ enum class ChannelFunction : uint8_t {
     ARM_Z        = 12,  // arm Cartesian +Z (up / down)
     ARM_PITCH    = 13,  // arm pitch rotation
     ARM_YAW      = 14,  // arm yaw rotation
+    ARM_ROLL     = 15,  // arm roll rotation
+    GRIPPER      = 16,  // gripper open/close (sent to PC as separate message)
 };
 
 // Returns true for any arm-related channel function.
@@ -41,7 +43,9 @@ inline bool isArmFunction(ChannelFunction fn) {
            fn == ChannelFunction::ARM_Y    ||
            fn == ChannelFunction::ARM_Z    ||
            fn == ChannelFunction::ARM_PITCH ||
-           fn == ChannelFunction::ARM_YAW;
+           fn == ChannelFunction::ARM_YAW  ||
+           fn == ChannelFunction::ARM_ROLL ||
+           fn == ChannelFunction::GRIPPER;
 }
 
 // Keybind table: 3 Ch5 lever positions × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
@@ -225,6 +229,7 @@ struct PpmChannelCalibEntry {
 };
 struct PpmCalibPayload {
     PpmChannelCalibEntry ch[PPM_CHANNELS];  // one entry per channel (0 = Ch1 … 5 = Ch6)
+    uint16_t deadband_1000;                 // normalised deadband × 1000 (e.g. 50 = 0.05)
 };
 
 // OdriveStatusPayload (MSG_ODRIVE_STATUS = 0x0A) — per-joint ODrive telemetry — 11 bytes

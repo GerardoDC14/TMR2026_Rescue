@@ -156,7 +156,8 @@ void MainWindow::publishPpmCalib()
     auto& S = AppSettings::instance();
     std_msgs::msg::UInt16MultiArray msg;
     // 6 channels × 3 values (min, neutral, max) = 18 uint16 values
-    msg.data.resize(18);
+    // + 1 uint16 for global deadband × 1000 = 19 values total
+    msg.data.resize(19);
     {
         std::lock_guard<std::mutex> lk(S.ppm_calib_mutex);
         for (int c = 0; c < 6; ++c) {
@@ -165,6 +166,7 @@ void MainWindow::publishPpmCalib()
             msg.data[c * 3 + 2] = static_cast<uint16_t>(S.ppm_calib[c].max_us);
         }
     }
+    msg.data[18] = static_cast<uint16_t>(S.ppm_deadband_x1000.load());
     ppm_calib_pub_->publish(msg);
 }
 

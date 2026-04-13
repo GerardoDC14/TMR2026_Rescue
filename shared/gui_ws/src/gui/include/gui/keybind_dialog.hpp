@@ -22,6 +22,8 @@ enum class ChannelFunction : uint8_t {
     ARM_Z        = 12,  // arm Cartesian +Z (up / down)
     ARM_PITCH    = 13,  // arm pitch rotation
     ARM_YAW      = 14,  // arm yaw rotation
+    ARM_ROLL     = 15,  // arm roll rotation
+    GRIPPER      = 16,  // gripper open/close
 };
 
 class KeybindDialog : public QDialog {
@@ -44,8 +46,8 @@ private:
 
     static const QStringList FUNCTION_NAMES;
     static const char* MODE_NAMES[3];
-    static const char* CHANNEL_NAMES[5];
+    static const char* CHANNEL_NAMES[4];
 
-    // 3 modes x 5 channel slots
-    QComboBox* combos_[3][5];
+    // 3 modes x 4 channel slots (Ch1-Ch4; Ch6 is dedicated ESTOP)
+    QComboBox* combos_[3][4];
 };

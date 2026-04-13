@@ -3,10 +3,17 @@
 #include "config.h"
 #include <Arduino.h>
 #include <cmath>
+#ifdef ROBOT_MAIN
+#include <ESP32Servo.h>
+#endif
 
 float Locomotion::s_track_left_norm     = 0.0f;
 float Locomotion::s_track_right_norm    = 0.0f;
 float Locomotion::s_flipper_effort_norm = 0.0f;
+
+#ifdef ROBOT_MAIN
+Servo Locomotion::s_servo_left;
+#endif
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -14,25 +21,28 @@ static inline float clampf(float v, float lo, float hi) {
     return (v < lo) ? lo : (v > hi) ? hi : v;
 }
 
-// Write a servo-style pulse width using the native LEDC v3 API (pin-based).
-// Converts microseconds → duty count for 50 Hz / 16-bit resolution.
-// Matches the approach in the known-good bare-minimum test.
-void Locomotion::writeMicroseconds(uint8_t pin, uint16_t us) {
-    uint32_t duty = (static_cast<uint32_t>(us) * SERVO_LEDC_MAX_DUTY) / SERVO_LEDC_PERIOD_US;
-    ledcWrite(pin, duty);
+uint16_t Locomotion::normToUs(float norm) {
+    float us = MOTOR_NEUTRAL_US + norm * (MOTOR_MAX_US - MOTOR_NEUTRAL_US);
+    return static_cast<uint16_t>(clampf(us, static_cast<float>(MOTOR_MIN_US),
+                                            static_cast<float>(MOTOR_MAX_US)));
 }
 
 // ─── Initialisation ──────────────────────────────────────────────────────────
 
 void Locomotion::begin() {
 #ifdef ROBOT_MAIN
-    // Traction: servo-style 50 Hz / 16-bit via native LEDC (pin-based API)
-    ledcAttach(PIN_MOTOR_LEFT,  SERVO_LEDC_FREQ_HZ, SERVO_LEDC_RESOLUTION);
-    ledcAttach(PIN_MOTOR_RIGHT, SERVO_LEDC_FREQ_HZ, SERVO_LEDC_RESOLUTION);
+    // Left track: ESP32Servo library (timer 0)
+    ESP32PWM::allocateTimer(0);
+    s_servo_left.setPeriodHertz(50);
+    s_servo_left.attach(PIN_MOTOR_LEFT, MOTOR_MIN_US, MOTOR_MAX_US);
 
-    // Flipper: regular PWM + direction pins (5 kHz, 10-bit)
-    ledcAttach(PIN_FLIPPER_PWM, 5000, 10);
+    // Right track: native LEDC channel 2 (timer 1) — must be different backend than left
+    ledcSetup(LEDC_CH_RIGHT, SERVO_LEDC_FREQ_HZ, SERVO_LEDC_RESOLUTION);
+    ledcAttachPin(PIN_MOTOR_RIGHT, LEDC_CH_RIGHT);
 
+    // Flipper: native LEDC channel 4 (timer 2) — PWM + direction pins
+    ledcSetup(LEDC_CH_FLIPPER, FLIPPER_PWM_FREQ_HZ, FLIPPER_PWM_RESOLUTION);
+    ledcAttachPin(PIN_FLIPPER_PWM, LEDC_CH_FLIPPER);
     pinMode(PIN_FLIPPER_DIR_A, OUTPUT);
     pinMode(PIN_FLIPPER_DIR_B, OUTPUT);
     digitalWrite(PIN_FLIPPER_DIR_A, LOW);
@@ -51,10 +61,8 @@ void Locomotion::setTrackSpeeds(float left_norm, float right_norm) {
 
 void Locomotion::setDriveCommand(float forward, float turn) {
 #ifdef ROBOT_MAIN
-    // Passthrough — caller is responsible for mixing
     setTrackSpeeds(forward, turn);
 #else
-    // Standard tank-drive mixing (ROBOT_SECONDARY)
     float left  = forward + turn;
     float right = forward - turn;
     float mag = fmaxf(fabsf(left), fabsf(right));
@@ -75,11 +83,18 @@ void Locomotion::setFlipperTargets(float fl, float fr, float rl, float rr) {
 void Locomotion::neutralise() {
 #ifdef ROBOT_MAIN
     s_track_left_norm = s_track_right_norm = s_flipper_effort_norm = 0.0f;
-    writeMicroseconds(PIN_MOTOR_LEFT,  MOTOR_NEUTRAL_US);
-    writeMicroseconds(PIN_MOTOR_RIGHT, MOTOR_NEUTRAL_US);
+
+    // Left: ESP32Servo
+    s_servo_left.writeMicroseconds(MOTOR_NEUTRAL_US);
+
+    // Right: native LEDC
+    uint32_t neutral_duty = (static_cast<uint32_t>(MOTOR_NEUTRAL_US) * SERVO_LEDC_MAX_DUTY) / SERVO_LEDC_PERIOD_US;
+    ledcWrite(LEDC_CH_RIGHT, neutral_duty);
+
+    // Flipper: brake
     digitalWrite(PIN_FLIPPER_DIR_A, LOW);
     digitalWrite(PIN_FLIPPER_DIR_B, LOW);
-    ledcWrite(PIN_FLIPPER_PWM, 0);
+    ledcWrite(LEDC_CH_FLIPPER, 0);
 #elif defined(ROBOT_SECONDARY)
     CANInterface::sendTrackSpeeds(0.0f, 0.0f);
     CANInterface::sendFlipperSpeeds(0.0f, 0.0f, 0.0f, 0.0f);
@@ -90,22 +105,24 @@ void Locomotion::neutralise() {
 
 void Locomotion::applyTrackSpeeds(float left_norm, float right_norm) {
 #ifdef ROBOT_MAIN
-    // Apply motor direction correction (config.h)
     left_norm  *= TRACTION_DIR_LEFT;
     right_norm *= TRACTION_DIR_RIGHT;
 
-    // Safety clamp to maximum output
     left_norm  = clampf(left_norm,  -TRACTION_MAX_NORM, TRACTION_MAX_NORM);
     right_norm = clampf(right_norm, -TRACTION_MAX_NORM, TRACTION_MAX_NORM);
 
     s_track_left_norm  = left_norm;
     s_track_right_norm = right_norm;
 
-    // Normalised → microseconds → LEDC duty
-    uint16_t left_us  = MOTOR_NEUTRAL_US + static_cast<int16_t>(left_norm  * (MOTOR_MAX_US - MOTOR_NEUTRAL_US));
-    uint16_t right_us = MOTOR_NEUTRAL_US + static_cast<int16_t>(right_norm * (MOTOR_MAX_US - MOTOR_NEUTRAL_US));
-    writeMicroseconds(PIN_MOTOR_LEFT,  left_us);
-    writeMicroseconds(PIN_MOTOR_RIGHT, right_us);
+    uint16_t left_us  = normToUs(left_norm);
+    uint16_t right_us = normToUs(right_norm);
+
+    // Left: ESP32Servo writeMicroseconds
+    s_servo_left.writeMicroseconds(left_us);
+
+    // Right: native LEDC duty (same math as the proven test code)
+    uint32_t duty_r = (static_cast<uint32_t>(right_us) * SERVO_LEDC_MAX_DUTY) / SERVO_LEDC_PERIOD_US;
+    ledcWrite(LEDC_CH_RIGHT, duty_r);
 #elif defined(ROBOT_SECONDARY)
     CANInterface::sendTrackSpeeds(left_norm, right_norm);
 #endif
@@ -124,13 +141,12 @@ void Locomotion::applyFlipperPWM(float norm) {
         digitalWrite(PIN_FLIPPER_DIR_A, LOW);
         digitalWrite(PIN_FLIPPER_DIR_B, HIGH);
     } else {
-        // Brake: both LOW + 0 duty
         digitalWrite(PIN_FLIPPER_DIR_A, LOW);
         digitalWrite(PIN_FLIPPER_DIR_B, LOW);
         pwm_duty = 0;
     }
 
-    ledcWrite(PIN_FLIPPER_PWM, pwm_duty);
+    ledcWrite(LEDC_CH_FLIPPER, pwm_duty);
 #endif
 }
 

@@ -10,6 +10,7 @@
 class QLabel;
 class QProgressBar;
 class QSpinBox;
+class QDoubleSpinBox;
 class QPushButton;
 
 // ─── PpmCalibDialog ───────────────────────────────────────────────────────────
@@ -59,4 +60,6 @@ private:
     QSpinBox*     max_spins_[6];
 
     int live_us_[6] = {};   // latest raw values — used by "Capture Center"
+
+    QDoubleSpinBox* deadband_spin_{nullptr};
 };

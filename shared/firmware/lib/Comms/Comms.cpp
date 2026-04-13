@@ -285,6 +285,13 @@ void Comms::sendStatus(const SystemStatus& s) {
     sendFrame(MSG_STATUS, buf, sizeof(buf));
 }
 
+void Comms::sendGripper(float norm) {
+    int16_t val = static_cast<int16_t>(norm * 1000.0f);
+    sendFrame(MSG_GRIPPER,
+              reinterpret_cast<const uint8_t*>(&val),
+              sizeof(val));
+}
+
 bool Comms::isConnected() {
     return (millis() - s_last_rx_ms) < 1000;
 }

@@ -40,14 +40,18 @@ struct AppSettings {
     std::mutex       ppm_calib_mutex;
     PpmChannelCalib  ppm_calib[6] = {};
 
+    // RC stick deadband — normalised [0, 0.5], stored ×1000 (e.g. 50 = 5%)
+    std::atomic<int> ppm_deadband_x1000{50};
+
     // Keybind configuration — 3 modes × 5 channel slots (Ch1,Ch2,Ch3,Ch4,Ch6)
     // Values are ChannelFunction enum (see keybind_dialog.hpp)
     std::mutex  keybind_mutex;
     uint8_t     keybind[3][5] = {
-        // Default Jaguar: mode0=FLIPPER, mode1=NORMAL, mode2=ARM
-        {3, 1, 0, 2, 0},   // mode0: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
-        {3, 1, 0, 2, 0},   // mode1: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
-        {11, 10, 12, 14, 13},   // mode2: ARM_Y, ARM_X, ARM_Z, ARM_YAW, ARM_PITCH
+        // Default Jaguar: mode0=traction+flipper, mode1=arm movement, mode2=arm orientation
+        // Slot 4 (Ch6) is always NONE — Ch6 is a dedicated hardware ESTOP
+        {3, 1, 0, 2, 0},       // mode0: FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
+        {11, 10, 12, 0, 0},    // mode1: ARM_Y, ARM_X, ARM_Z, NONE, NONE
+        {13, 14, 15, 0, 0},    // mode2: ARM_PITCH, ARM_YAW, ARM_ROLL, NONE, NONE
     };
 
     // Speech — comma-separated vocabulary, empty = unrestricted

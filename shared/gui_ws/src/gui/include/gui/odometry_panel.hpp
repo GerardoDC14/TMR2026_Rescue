@@ -35,6 +35,7 @@ signals:
     void vescStatusUpdated(int id, float erpm, float current, float duty,
                            float temp_fet, float temp_motor, float voltage);
     void mainMotorUpdated(float left_duty, float right_duty, float flipper_duty);
+    void odriveArmUpdated(int joint_idx, float iq_a, float vbus_v);
 
 private slots:
     void onTelemetryUpdated(float spd_l, float spd_r, float flip_angle, float uptime);
@@ -45,6 +46,7 @@ private slots:
     void onVescStatusUpdated(int id, float erpm, float current, float duty,
                              float temp_fet, float temp_motor, float voltage);
     void onMainMotorUpdated(float left_duty, float right_duty, float flipper_duty);
+    void onOdriveArmUpdated(int joint_idx, float iq_a, float vbus_v);
 
 private:
     void buildLayout();
@@ -97,6 +99,11 @@ private:
     QLabel* main_right_duty_{nullptr};
     QLabel* main_flip_duty_{nullptr};
 
+    // Arm ODrive telemetry section (primary robot, J1–J3)
+    QWidget* odrive_arm_section_{nullptr};
+    QLabel*  arm_vbus_{nullptr};
+    QLabel*  arm_iq_[3]{};
+
     // ROS subscriptions
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr telem_sub_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr flipper_sub_;
@@ -105,4 +112,5 @@ private:
     rclcpp::Subscription<geometry_msgs::msg::Vector3>::SharedPtr tracks_sub_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr vesc_sub_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr main_motor_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr odrive_sub_;
 };

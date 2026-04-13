@@ -23,8 +23,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'esp32_bridge_node = esp32_bridge.esp32_bridge_node:main',
+            'main_bridge = esp32_bridge.main_bridge:main',
+            'servo_bridge = esp32_bridge.servo_bridge:main',
             'audio_node = esp32_bridge.audio_node:main',
+            'rc_control = esp32_bridge.rc_control:main'
         ],
     },
 )

@@ -25,6 +25,8 @@ const QStringList KeybindDialog::FUNCTION_NAMES = {
     "Arm Z",          // 12 up / down
     "Arm Pitch",      // 13
     "Arm Yaw",        // 14
+    "Arm Roll",       // 15
+    "Gripper",        // 16
 };
 
 const char* KeybindDialog::MODE_NAMES[3] = {
@@ -33,8 +35,8 @@ const char* KeybindDialog::MODE_NAMES[3] = {
     "Mode 3 (High)",  // Ch5 ~2000us
 };
 
-const char* KeybindDialog::CHANNEL_NAMES[5] = {
-    "Ch1", "Ch2", "Ch3", "Ch4", "Ch6"
+const char* KeybindDialog::CHANNEL_NAMES[4] = {
+    "Ch1", "Ch2", "Ch3", "Ch4"
 };
 
 KeybindDialog::KeybindDialog(QWidget* parent)
@@ -65,7 +67,8 @@ KeybindDialog::KeybindDialog(QWidget* parent)
     // Explanation
     auto* info = new QLabel(
         "Ch5 is always the mode switch (3-position lever).\n"
-        "Configure what each other channel does in each mode position.", this);
+        "Ch6 is a dedicated hardware E-Stop (not configurable).\n"
+        "Configure what channels 1-4 do in each mode position.", this);
     info->setStyleSheet("color: #888; font-size: 10px;");
     info->setWordWrap(true);
     root->addWidget(info);
@@ -78,7 +81,7 @@ KeybindDialog::KeybindDialog(QWidget* parent)
 
     // Column headers
     grid->addWidget(new QLabel("", this), 0, 0);
-    for (int c = 0; c < 5; ++c) {
+    for (int c = 0; c < 4; ++c) {
         auto* lbl = new QLabel(CHANNEL_NAMES[c], this);
         lbl->setAlignment(Qt::AlignHCenter);
         lbl->setStyleSheet("color: #4fc3f7; font-weight: bold;");
@@ -91,7 +94,7 @@ KeybindDialog::KeybindDialog(QWidget* parent)
         row_lbl->setStyleSheet("color: #ccc; font-weight: bold;");
         grid->addWidget(row_lbl, m + 1, 0);
 
-        for (int c = 0; c < 5; ++c) {
+        for (int c = 0; c < 4; ++c) {
             combos_[m][c] = new QComboBox(grid_group);
             combos_[m][c]->addItems(FUNCTION_NAMES);
             grid->addWidget(combos_[m][c], m + 1, c + 1);
@@ -153,7 +156,7 @@ void KeybindDialog::reloadFromSettings()
     auto& S = AppSettings::instance();
     std::lock_guard<std::mutex> lk(S.keybind_mutex);
     for (int m = 0; m < 3; ++m)
-        for (int c = 0; c < 5; ++c) {
+        for (int c = 0; c < 4; ++c) {
             int val = S.keybind[m][c];
             if (val >= 0 && val < FUNCTION_NAMES.size())
                 combos_[m][c]->setCurrentIndex(val);
@@ -166,9 +169,11 @@ void KeybindDialog::applyToSettings()
 {
     auto& S = AppSettings::instance();
     std::lock_guard<std::mutex> lk(S.keybind_mutex);
-    for (int m = 0; m < 3; ++m)
-        for (int c = 0; c < 5; ++c)
+    for (int m = 0; m < 3; ++m) {
+        for (int c = 0; c < 4; ++c)
             S.keybind[m][c] = static_cast<uint8_t>(combos_[m][c]->currentIndex());
+        S.keybind[m][4] = 0;  // Ch6 slot always NONE (dedicated ESTOP)
+    }
 }
 
 void KeybindDialog::onApply()
@@ -179,27 +184,26 @@ void KeybindDialog::onApply()
 
 void KeybindDialog::onPresetDefault()
 {
-    // Default: mode0=flipper, mode1=normal (traction+flipper), mode2=arm
-    // Ch1=flipper, Ch2=fwd, Ch3=none, Ch4=turn, Ch6=none
-    int preset[3][5] = {
-        {3, 1, 0, 2, 0},   // mode0 (low): FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN, NONE
-        {3, 1, 0, 2, 0},   // mode1 (mid): same
-        {11, 10, 12, 14, 13},   // mode2 (high): ARM_Y, ARM_X, ARM_Z, ARM_YAW, ARM_PITCH
+    // Default: mode0=traction+flipper, mode1=arm movement, mode2=arm orientation
+    int preset[3][4] = {
+        {3, 1, 0, 2},          // mode0 (low): FLIPPER_ALL, TRACTION_FWD, NONE, TRACTION_TURN
+        {11, 10, 12, 0},       // mode1 (mid): ARM_Y, ARM_X, ARM_Z, NONE
+        {13, 14, 15, 0},       // mode2 (high): ARM_PITCH, ARM_YAW, ARM_ROLL, NONE
     };
     for (int m = 0; m < 3; ++m)
-        for (int c = 0; c < 5; ++c)
+        for (int c = 0; c < 4; ++c)
             combos_[m][c]->setCurrentIndex(preset[m][c]);
 }
 
 void KeybindDialog::onPresetMixed()
 {
     // Mixed: Ch1/Ch2 always traction, lever changes which flippers Ch3/Ch4 control
-    int preset[3][5] = {
-        {1, 2, 4, 5, 0},   // mode0 (low): FWD, TURN, FL, FR, NONE
-        {1, 2, 6, 7, 0},   // mode1 (mid): FWD, TURN, RL, RR, NONE
-        {1, 2, 0, 0, 9},   // mode2 (high): FWD, TURN, NONE, NONE, ESTOP
+    int preset[3][4] = {
+        {1, 2, 4, 5},   // mode0 (low): FWD, TURN, FL, FR
+        {1, 2, 6, 7},   // mode1 (mid): FWD, TURN, RL, RR
+        {1, 2, 0, 0},   // mode2 (high): FWD, TURN, NONE, NONE
     };
     for (int m = 0; m < 3; ++m)
-        for (int c = 0; c < 5; ++c)
+        for (int c = 0; c < 4; ++c)
             combos_[m][c]->setCurrentIndex(preset[m][c]);
 }

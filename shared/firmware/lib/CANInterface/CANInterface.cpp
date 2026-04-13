@@ -565,9 +565,16 @@ bool CANInterface::begin() {
         (gpio_num_t)PIN_CAN_RX,
         TWAI_MODE_NORMAL
     );
-    // 1 Mbps — shared bus for ODrive, VESC, LKTech, ZE300.
-    // Every controller must be pre-configured to 1 Mbps before flashing.
+    // Bitrate from config.h — every controller on the bus must match.
+#if CAN_BITRATE_BPS == 1000000
     twai_timing_config_t  t_cfg = TWAI_TIMING_CONFIG_1MBITS();
+#elif CAN_BITRATE_BPS == 500000
+    twai_timing_config_t  t_cfg = TWAI_TIMING_CONFIG_500KBITS();
+#elif CAN_BITRATE_BPS == 250000
+    twai_timing_config_t  t_cfg = TWAI_TIMING_CONFIG_250KBITS();
+#else
+    #error "Unsupported CAN_BITRATE_BPS — add a TWAI_TIMING_CONFIG case"
+#endif
     twai_filter_config_t  f_cfg = TWAI_FILTER_CONFIG_ACCEPT_ALL();
 
     if (twai_driver_install(&g_cfg, &t_cfg, &f_cfg) != ESP_OK) {
@@ -581,15 +588,35 @@ bool CANInterface::begin() {
     }
     s_ok = true;
 
+#ifdef DEBUG_ARM
+    Serial.printf("[ARM] CAN bus started OK (%d bps)\n", CAN_BITRATE_BPS);
+#endif
     // ── ODrive arm startup (J1–J3, both robots) ────────────────────────────────
     for (uint8_t j = 0; j < ODRIVE_NUM_JOINTS; j++) {
+#ifdef DEBUG_ARM
+        Serial.printf("[ARM] J%d: clearing errors on node 0x%02X", j+1, s_node[j]);
+#endif
+        odriveSendClearErrors(s_node[j]);
+    }
+    delay(10); // Give the ODrives a few milliseconds to process the clear
+
+
+    // ── ODrive arm startup (J1–J3, both robots) ────────────────────────────────
+    for (uint8_t j = 0; j < ODRIVE_NUM_JOINTS; j++) {
+#ifdef DEBUG_ARM
+        Serial.printf("[ARM] J%d: sending CLOSED_LOOP to node 0x%02X\n", j+1, s_node[j]);
+#endif
         odriveSendAxisState(s_node[j], 8 /*CLOSED_LOOP_CONTROL*/);
     }
     delay(50);
     for (uint8_t j = 0; j < ODRIVE_NUM_JOINTS; j++) {
         float zero = 0.0f;
-        odriveReadEncoderZero(s_node[j], zero);
+        bool got = odriveReadEncoderZero(s_node[j], zero);
         s_odrive_zero[j] = zero;
+#ifdef DEBUG_ARM
+        Serial.printf("[ARM] J%d: zero capture %s (%.3f turns)\n",
+                      j+1, got ? "OK" : "FAIL", zero);
+#endif
     }
 
 #ifdef ROBOT_SECONDARY
@@ -638,6 +665,16 @@ bool CANInterface::sendArmJoints(const float angles_deg[6]) {
         float turns = s_odrive_zero[j] + (rad / TWO_PI_F) * s_gear[j] * s_dir[j];
         ok &= odriveSendInputPos(s_node[j], turns);
     }
+
+#ifdef DEBUG_ARM
+    static uint32_t _arm_dbg_last = 0;
+    uint32_t _arm_dbg_now = millis();
+    if (_arm_dbg_now - _arm_dbg_last >= 200) {
+        _arm_dbg_last = _arm_dbg_now;
+        Serial.printf("[ARM] cmd deg=[%.1f %.1f %.1f] ok=%d\n",
+                      angles_deg[0], angles_deg[1], angles_deg[2], ok);
+    }
+#endif
 
 #ifdef ROBOT_SECONDARY
     // J4: ZE300 ABSOLUTE_POSITION — counts = zero_offset + deg × cnt/rev / 360.
@@ -1014,6 +1051,20 @@ bool CANInterface::getOdriveStatus(uint8_t joint_idx, OdriveStatusPayload& out) 
         out.bus_voltage_10  = static_cast<int16_t>(s_odrive_fb[joint_idx].bus_voltage_v * 10.0f);
         out.bus_current_100 = static_cast<int16_t>(s_odrive_fb[joint_idx].bus_current_a * 100.0f);
         s_odrive_fb[joint_idx].fresh = false;
+
+#ifdef DEBUG_ARM
+        static uint32_t _fb_dbg_last[ODRIVE_MAX_JOINTS] = {};
+        uint32_t now = millis();
+        if (now - _fb_dbg_last[joint_idx] >= 500) {
+            _fb_dbg_last[joint_idx] = now;
+            Serial.printf("[ARM] J%d fb: pos=%.2ft vel=%.1ft/s Iq=%.2fA Vbus=%.1fV\n",
+                          joint_idx + 1,
+                          s_odrive_fb[joint_idx].pos_turns,
+                          s_odrive_fb[joint_idx].vel_turns_s,
+                          s_odrive_fb[joint_idx].iq_measured_a,
+                          s_odrive_fb[joint_idx].bus_voltage_v);
+        }
+#endif
     }
     portEXIT_CRITICAL(&s_odrive_mux);
     return have;

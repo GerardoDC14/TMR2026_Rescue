@@ -15,7 +15,7 @@
 // GPIO assignments — route TX→CTX and RX←CRX on the SN65HVD230.
 #define PIN_CAN_TX          22   // ESP32 CTX → SN65HVD230 D
 #define PIN_CAN_RX          21   // ESP32 CRX ← SN65HVD230 R
-#define CAN_BITRATE_BPS 1000000  // 1 Mbps — shared by ODrive, VESC, LKTech, ZE300
+#define CAN_BITRATE_BPS 500000  // 1 Mbps — shared by ODrive, VESC, LKTech, ZE300
 
 // Set to 0 to remove ODrive Get_Error (0x03) from the telemetry round-robin.
 // This disables MSG_ODRIVE_ERROR forwarding but frees one slot in the poll cycle.
@@ -86,12 +86,24 @@
 #define TRACTION_VEL_PID_RIGHT_I_MAX   2.0f
 #define TRACTION_VEL_PID_RIGHT_D_ALPHA 0.8f
 
-// #define ENABLE_COMMS  // uncomment for mini-PC binary protocol (disables Serial debug)
+#define ENABLE_COMMS  // uncomment for mini-PC binary protocol (disables Serial debug)
+ //define DEBUG_ARM     // arm/ODrive debug over Serial (works alongside ENABLE_COMMS)
 
-// LEDC channel for flipper PWM+DIR motor (traction uses ESP32Servo).
-// Must not overlap with channels auto-allocated by ESP32Servo (0-3 on timer 0).
-// Channel 6 → timer 3, safely separated.
-#define LEDC_CH_FLIPPER      6
+// LEDC channel assignments (v2 API: ledcSetup/ledcAttachPin/ledcWrite).
+// Left track uses ESP32Servo library on timer 0 (channels 0-1).
+// Right track and flipper use explicit channels on separate timers.
+//   Channel 2 → timer 1 (right track, 50 Hz servo)
+//   Channel 4 → timer 2 (flipper, 20 kHz PWM+DIR)
+#define LEDC_CH_RIGHT           2
+#define LEDC_CH_FLIPPER         4
+
+#define SERVO_LEDC_FREQ_HZ      50
+#define SERVO_LEDC_RESOLUTION   16       // 16-bit → 65535 ticks/period
+#define SERVO_LEDC_MAX_DUTY     65535
+#define SERVO_LEDC_PERIOD_US    20000    // = 1/50 Hz in µs
+
+#define FLIPPER_PWM_FREQ_HZ     20000
+#define FLIPPER_PWM_RESOLUTION  10       // 10-bit → 0–1023
 
 // ─── Quadrature Encoders (PCNT hardware) ─────────────────────────────────────
 // Pins shared by both robots (track encoders)
@@ -297,6 +309,7 @@
 #define MSG_ESTOP_CLEAR      0x13        // 0-byte payload — resume
 #define MSG_KEYBIND          0x14        // 15 bytes: 3 modes × 5 channel slots
 #define MSG_PPM_CALIB        0x15        // 6 bytes: min_us, neutral_us, max_us (uint16 each)
+#define MSG_GRIPPER          0x16        // 2 bytes: int16 normalised × 1000 (−1000 to +1000)
 
 // ─── Sensor rate caps (Hz) ────────────────────────────────────────────────────
 // Throttle individual sensors so we don't flood the UART or waste CPU.

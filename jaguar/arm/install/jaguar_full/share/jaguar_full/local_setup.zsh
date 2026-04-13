@@ -1,1 +1,0 @@
-/home/arepo/TMR2026_Rescue/jaguar/arm/build/jaguar_full/ament_cmake_environment_hooks/local_setup.zsh

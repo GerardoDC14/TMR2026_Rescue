@@ -13,9 +13,15 @@
 
 // ─── TWAI (ESP32 built-in CAN) + SN65HVD230 transceiver ──────────────────────
 // GPIO assignments — route TX→CTX and RX←CRX on the SN65HVD230.
-#define PIN_CAN_TX          22   // ESP32 CTX → SN65HVD230 D
-#define PIN_CAN_RX          21   // ESP32 CRX ← SN65HVD230 R
-#define CAN_BITRATE_BPS  500000  // 500 kbps
+//#define PIN_CAN_TX          22   // ESP32 CTX → SN65HVD230 D
+//#define PIN_CAN_RX          21   // ESP32 CRX ← SN65HVD230 R
+//#define CAN_BITRATE_BPS  500000  // 500 kbps
+
+// --- SPI ---------------------------------------------------------------------
+#define PIN_CAN_CS          5
+#define PIN_CAN_SCK         18
+#define PIN_CAN_MISO        19
+#define PIN_CAN_MOSI        23
 
 // ─── UART2 — Mini PC ─────────────────────────────────────────────────────────
 #define MINIPC_BAUD     921600
@@ -32,9 +38,9 @@
 #define PPM_CH_MODE          5   // Ch5 → main mode vs arm mode switch
 
 // ─── Motor PWM outputs (servo-style: 50 Hz, 1000–2000 µs) ───────────────────
-#define PIN_MOTOR_LEFT      16
-#define PIN_MOTOR_RIGHT     23
-#define PIN_MOTOR_FLIPPER   17
+//#define PIN_MOTOR_LEFT      16
+//#define PIN_MOTOR_RIGHT     23
+//#define PIN_MOTOR_FLIPPER   17
 
 #define MOTOR_NEUTRAL_US  1500   // no movement
 #define MOTOR_MIN_US      1000   // full reverse

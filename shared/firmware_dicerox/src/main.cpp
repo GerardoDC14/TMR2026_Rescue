@@ -18,18 +18,22 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+/*
 #include <SPI.h>
 #include <mcp2515.h>
 #include <ODrive.hpp>
+*/
 #include <Adafruit_AMG88xx.h>
 #include <Adafruit_LIS3MDL.h>
 #include <Adafruit_Sensor.h>
 
 // ─── Pin map ────────────────────────────────────────────────────────────────
-#define PIN_PPM         4
 #define PIN_MQ2        12
 #define PIN_I2C_SDA    21
 #define PIN_I2C_SCL    22
+
+/*
+#define PIN_PPM         4
 #define PIN_CAN_CS      5
 #define PIN_CAN_SCK    18
 #define PIN_CAN_MISO   19
@@ -80,6 +84,8 @@ static const uint32_t FAILSAFE_MS            = 300;
 #define INVERT_FLIP_RL   false
 #define INVERT_FLIP_RR   false
 
+*/
+
 // ─── MQ-2 ADC thresholds ────────────────────────────────────────────────────
 static const int   MQ2_CLEAN_ADC = 3750;
 static const int   MQ2_MAX_ADC   = 4095;
@@ -98,19 +104,23 @@ static const uint8_t BIT_MAG     = (1 << 0);
 static const uint8_t BIT_THERMAL = (1 << 1);
 static const uint8_t BIT_GAS     = (1 << 2);
 
+/*
 // ─── Hardware objects ───────────────────────────────────────────────────────
 MCP2515          mcp2515(PIN_CAN_CS);
 ODrive           rearLeft (ODRIVE_REAR_LEFT_ID,  &mcp2515);
 ODrive           rearRight(ODRIVE_REAR_RIGHT_ID, &mcp2515);
+*/
 Adafruit_AMG88xx amg;
 Adafruit_LIS3MDL lis3mdl;
 
+/*
 // ─── PPM ISR state ──────────────────────────────────────────────────────────
 volatile uint32_t ppmValues[PPM_CHANNELS] = {1500, 1500, 1500, 1500, 1500, 1500};
 volatile uint8_t  ppmCh            = 0;
 volatile uint32_t ppmLastEdgeUs    = 0;
 volatile uint32_t ppmLastFrameUs   = 0;
 volatile bool     ppmFrameReady    = false;
+*/
 
 // ─── Sensor state ───────────────────────────────────────────────────────────
 static bool    has_amg = false, has_lis3mdl = false;
@@ -119,6 +129,7 @@ static float   mq2_ppm = 0.0f;
 static float   mag_x = 0.0f, mag_y = 0.0f, mag_z = 0.0f;
 static uint8_t sensor_enable = 0x00;
 
+/*
 // ─── Control state ──────────────────────────────────────────────────────────
 static bool  armed      = false;
 static bool  inFailsafe = true;
@@ -126,6 +137,7 @@ static bool  softEstop  = false;
 static float rpmLeftCmd = 0.0f,  rpmRightCmd = 0.0f;
 static float rpmFlFlCmd = 0.0f,  rpmFlFrCmd  = 0.0f;   // front flippers (VESC)
 static float rpmFlRlCmd = 0.0f,  rpmFlRrCmd  = 0.0f;   // rear flippers (ODrive)
+*/
 
 // ────────────────────────────────────────────────────────────────────────────
 // Binary frame TX / RX
@@ -147,8 +159,10 @@ static uint8_t  rxBuf[32];
 
 static void handleIncoming(uint8_t type, const uint8_t* buf, uint16_t len) {
     if (type == MSG_SENSOR_ENABLE && len >= 1)  sensor_enable = buf[0];
+    /*
     else if (type == MSG_ESTOP)                 softEstop = true;
     else if (type == MSG_ESTOP_CLEAR)           softEstop = false;
+    */
 }
 
 static void processRxByte(uint8_t b) {
@@ -177,6 +191,7 @@ static void processRxByte(uint8_t b) {
 // ────────────────────────────────────────────────────────────────────────────
 // PPM ISR + helpers
 // ────────────────────────────────────────────────────────────────────────────
+/*
 void IRAM_ATTR ppmISR() {
     uint32_t now = micros();
     uint32_t w   = now - ppmLastEdgeUs;
@@ -236,6 +251,7 @@ static float rampTowards(float cur, float tgt, float accel, float dt) {
     if (tgt < cur - step) return cur - step;
     return tgt;
 }
+*/
 
 // ────────────────────────────────────────────────────────────────────────────
 // Sensor reads + publishers
@@ -284,7 +300,7 @@ static void publishThermal() {
     // the 8×8 block inside the 32×24 frame, pad rest with zeros.
     static const int ROWS = 24, COLS = 32, SZ = 8;
     static const int R0 = (ROWS - SZ) / 2;   // 8
-    static const int C0 = (COLS - SZ) / 2;   // 12
+    static const int C0 = (COLS - SZ) / 2;   // 1  2
     static uint8_t buf[ROWS * COLS * 2];     // 1536 bytes
     memset(buf, 0, sizeof(buf));
     for (int r = 0; r < SZ; r++) {
@@ -303,39 +319,21 @@ static void publishTelemetry() {
     //   i16 spd_l×10, i16 spd_r×10, i16 flipper_angle×10, u32 uptime_ms
     // MODE_NAMES in the bridge: 0=INIT 1=STANDBY 2=NORMAL 3=ARM 4=ESTOP 5=FLIPPER
     uint8_t mode = 1;                              // STANDBY
-    if (softEstop)       mode = 4;                 // ESTOP
-    else if (inFailsafe) mode = 0;                 // INIT (no RC)
-    else if (armed)      mode = 2;                 // NORMAL
 
     uint8_t flags = 0;
-    if (!inFailsafe)   flags |= 0x01;              // ppm_ok
     if (sensor_enable) flags |= 0x02;              // sensors_on
     flags |= 0x04;                                 // can_ok (optimistic)
-    if (softEstop)     flags |= 0x08;              // estop
 
-    uint16_t ppmCopy[PPM_CHANNELS];
-    noInterrupts();
-    for (int i = 0; i < PPM_CHANNELS; i++) ppmCopy[i] = (uint16_t)ppmValues[i];
-    interrupts();
-
-    // We don't have track encoder feedback; report commanded RPM as approx
-    // (bridge scales by /10 when publishing on /encoders/tracks).
-    int16_t spdL = (int16_t)constrain(rpmLeftCmd,  -32768.0f, 32767.0f);
-    int16_t spdR = (int16_t)constrain(rpmRightCmd, -32768.0f, 32767.0f);
-    int16_t flip = 0;
     uint32_t uptime = millis();
 
     uint8_t pl[24];
     pl[0] = mode;
     pl[1] = flags;
-    for (int i = 0; i < PPM_CHANNELS; i++) {
-        pl[2 + i*2]     = ppmCopy[i] & 0xFF;
-        pl[2 + i*2 + 1] = (ppmCopy[i] >> 8) & 0xFF;
-    }
+    
     int idx = 14;
-    pl[idx++] = spdL & 0xFF;            pl[idx++] = (uint16_t)spdL >> 8;
-    pl[idx++] = spdR & 0xFF;            pl[idx++] = (uint16_t)spdR >> 8;
-    pl[idx++] = flip & 0xFF;            pl[idx++] = (uint16_t)flip >> 8;
+    pl[idx++] = 0;            pl[idx++] = 0;
+    pl[idx++] = 0;            pl[idx++] = 0;
+    pl[idx++] = 0;            pl[idx++] = 0;
     pl[idx++] =  uptime        & 0xFF;
     pl[idx++] = (uptime >>  8) & 0xFF;
     pl[idx++] = (uptime >> 16) & 0xFF;
@@ -366,6 +364,7 @@ void setup() {
     }
     has_amg = amg.begin();
 
+    /*
     // PPM input
     pinMode(PIN_PPM, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(PIN_PPM), ppmISR, FALLING);
@@ -381,12 +380,15 @@ void setup() {
     delay(10);
     rearLeft.setControllerMode (ODrive::VELOCITY_CONTROL, ODrive::PASSTHROUGH);
     rearRight.setControllerMode(ODrive::VELOCITY_CONTROL, ODrive::PASSTHROUGH);
-    delay(10);
+    delay(10);    pl[idx++] = spdL & 0xFF;            pl[idx++] = (uint16_t)spdL >> 8;
+    pl[idx++] = spdR & 0xFF;            pl[idx++] = (uint16_t)spdR >> 8;
+    pl[idx++] = flip & 0xFF;            pl[idx++] = (uint16_t)flip >> 8;
     setOdriveRPM(rearLeft,  0.0f);
     setOdriveRPM(rearRight, 0.0f);
     delay(10);
     rearLeft.setAxisState (ODrive::CLOSED_LOOP_CONTROL);
     rearRight.setAxisState(ODrive::CLOSED_LOOP_CONTROL);
+    */
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -397,6 +399,7 @@ void loop() {
     while (Serial.available()) processRxByte(Serial.read());
 
     // Drain incoming CAN frames into both ODrive state trackers
+    /*
     can_frame f;
     while (mcp2515.readMessage(&f) == MCP2515::ERROR_OK) {
         rearLeft.feedMsg(f);
@@ -406,11 +409,14 @@ void loop() {
     // Hard-stop on ODrive fatal error → trip the soft e-stop; keep running so
     // the bridge still sees telemetry and can issue ESTOP_CLEAR/clearErrors.
     if (rearLeft.axisError != 0 || rearRight.axisError != 0) softEstop = true;
+    */
 
     static uint32_t lastCtrlMs  = 0;
     static uint32_t lastSensMs  = 0;
     static uint32_t lastTelemMs = 0;
     uint32_t now = millis();
+
+    /*
 
     // ── 50 Hz control cycle ───────────────────────────────────────────────
     if (now - lastCtrlMs >= CAN_PERIOD_MS) {
@@ -503,6 +509,7 @@ void loop() {
         setOdriveRPM(rearLeft,  rpmFlRlCmd);
         setOdriveRPM(rearRight, rpmFlRrCmd);
     }
+    */
 
     // ── 10 Hz sensor publishing (only enabled streams) ────────────────────
     if (now - lastSensMs >= 100) {

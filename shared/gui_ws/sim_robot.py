@@ -102,10 +102,10 @@ class SimRobot(Node):
 
         # ── Timers ───────────────────────────────────────────────────────────
 
-        self.create_timer(1.0 / 30.0, self._fast_tick)   # 30 Hz — camera, joints
-        self.create_timer(0.1,        self._slow_tick)   # 10 Hz — mag, thermal
-        self.create_timer(0.5,        self._gas_tick)    #  2 Hz — gas
-        self.create_timer(1.0,        self._heartbeat_tick)  #  1 Hz — heartbeat
+        #self.create_timer(1.0 / 30.0, self._fast_tick)   # 30 Hz — camera, joints
+        #self.create_timer(0.1,        self._slow_tick)   # 10 Hz — mag, thermal
+        #self.create_timer(0.5,        self._gas_tick)    #  2 Hz — gas
+        #self.create_timer(1.0,        self._heartbeat_tick)  #  1 Hz — heartbeat
 
         self._publish_config()
         self.get_logger().info("sim_robot node started")

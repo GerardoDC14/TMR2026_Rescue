@@ -238,12 +238,12 @@ void setup() {
     // ── Core 1: control + sensor tasks ───────────────────────────────────────
     xTaskCreatePinnedToCore(controlTask,  "Control",  STACK_CONTROL, nullptr,
                             PRIO_CONTROL, nullptr, TASK_CORE_CONTROL);
-                            /*
+                            
     xTaskCreatePinnedToCore(sensorTask,   "Sensors",  STACK_SENSORS, nullptr,
                             PRIO_SENSORS, nullptr, TASK_CORE_SENSORS);
     xTaskCreatePinnedToCore(thermalTask,  "Thermal",  STACK_THERMAL, nullptr,
                             PRIO_THERMAL, nullptr, TASK_CORE_THERMAL);
-                            */
+                            
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

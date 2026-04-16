@@ -54,6 +54,7 @@ baud_rate     (int)   921600
 import math
 import struct
 import threading
+import time
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
@@ -120,12 +121,11 @@ class ESP32BridgeNode(Node):
         # Parameters
         self.declare_parameter('serial_port', '/dev/ttyUSB0')
         self.declare_parameter('baud_rate', 921600)
-        port      = self.get_parameter('serial_port').get_parameter_value().string_value
-        baud_rate = self.get_parameter('baud_rate').get_parameter_value().integer_value
-
-        # Open serial port
-        self._ser = serial.Serial(port, baud_rate, timeout=0.1)
-        self.get_logger().info(f'Opened serial port {port} @ {baud_rate} baud')
+        self.declare_parameter('reconnect_period', 3.0)
+        self._serial_port     = self.get_parameter('serial_port').get_parameter_value().string_value
+        self._baud_rate       = self.get_parameter('baud_rate').get_parameter_value().integer_value
+        self._reconnect_period = float(self.get_parameter('reconnect_period').value)
+        self._ser: serial.Serial | None = None
 
         qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
@@ -167,20 +167,31 @@ class ESP32BridgeNode(Node):
         self.create_subscription(UInt8MultiArray,   '/robot/keybind',    self._on_keybind,    keybind_qos)
         self.create_subscription(UInt16MultiArray,  '/robot/ppm_calib',  self._on_ppm_calib,  keybind_qos)
 
-        # Serial read thread
+        # Serial read thread — opens the port with retry, reconnects on error
         self._rx_buf = bytearray()
         self._rx_thread = threading.Thread(target=self._rx_loop, daemon=True)
         self._rx_thread.start()
 
-        # Start with all sensors disabled (0x00); the GUI sends enable commands via /sensors/enable_mask
-        self._send(_build_frame(MSG_SENSOR_ENABLE, bytes([0x00])))
-        self.get_logger().info('Sensor enable mask initialised: 0x00 (all sensors off)')
-
-        self.get_logger().info('ESP32 bridge node ready')
+        self.get_logger().info('ESP32 bridge node ready (serial connection handled asynchronously)')
 
     # ── RX loop ───────────────────────────────────────────────────────────────
+    def _open_serial(self) -> bool:
+        try:
+            self._ser = serial.Serial(self._serial_port, self._baud_rate, timeout=0.1)
+            self.get_logger().info(
+                f'Opened serial port {self._serial_port} @ {self._baud_rate} baud')
+            # Start with all sensors disabled; the GUI sends enable commands via /sensors/enable_mask
+            self._send(_build_frame(MSG_SENSOR_ENABLE, bytes([0x00])))
+            return True
+        except (serial.SerialException, OSError) as e:
+            self._ser = None
+            self.get_logger().warn(
+                f'Serial port {self._serial_port} unavailable ({e}); '
+                f'retrying in {self._reconnect_period:.0f}s')
+            return False
+
     def _rx_loop(self):
-        """Read bytes from serial and parse frames in a background thread."""
+        """Open serial (retry on failure), read bytes, and parse frames."""
         state = 'SOF0'
         msg_type = 0
         length = 0
@@ -188,11 +199,22 @@ class ESP32BridgeNode(Node):
         running_crc = 0
 
         while rclpy.ok():
+            if self._ser is None:
+                if not self._open_serial():
+                    time.sleep(self._reconnect_period)
+                    continue
+                state, payload, running_crc = 'SOF0', bytearray(), 0
+
             try:
                 raw = self._ser.read(256)
-            except serial.SerialException as e:
-                self.get_logger().error(f'Serial read error: {e}')
-                break
+            except (serial.SerialException, OSError) as e:
+                self.get_logger().error(f'Serial read error: {e}; will reconnect')
+                try:
+                    self._ser.close()
+                except Exception:
+                    pass
+                self._ser = None
+                continue
             if not raw:
                 continue
 
@@ -571,10 +593,17 @@ class ESP32BridgeNode(Node):
 
     # ── TX helpers ────────────────────────────────────────────────────────────
     def _send(self, frame: bytes):
+        if self._ser is None:
+            return
         try:
             self._ser.write(frame)
-        except serial.SerialException as e:
-            self.get_logger().error(f'Serial write error: {e}')
+        except (serial.SerialException, OSError) as e:
+            self.get_logger().error(f'Serial write error: {e}; will reconnect')
+            try:
+                self._ser.close()
+            except Exception:
+                pass
+            self._ser = None
 
     # ── Subscribers ───────────────────────────────────────────────────────────
     def _on_estop(self, msg: Bool):

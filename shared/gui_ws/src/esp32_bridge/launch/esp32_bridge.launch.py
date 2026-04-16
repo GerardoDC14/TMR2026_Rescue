@@ -16,6 +16,15 @@ def generate_launch_description():
             default_value='-1',
             description='Audio device index (-1 for default)'
         ),
+        DeclareLaunchArgument(
+            'laptop_ip',
+            description='Destination IP for video streams (required)'
+        ),
+        DeclareLaunchArgument(
+            'cameras',
+            default_value='[auto]',
+            description='YAML list of /dev/video* paths, or [auto] to discover'
+        ),
         Node(
             package='esp32_bridge',
             executable='main_bridge',
@@ -49,6 +58,16 @@ def generate_launch_description():
                 'sample_rate': 16000,
                 'chunk_size': 1024,
                 'device_index': LaunchConfiguration('audio_device'),
+            }]
+        ),
+        Node(
+            package='esp32_bridge',
+            executable='gst_sender',
+            name='gst_sender',
+            output='screen',
+            parameters=[{
+                'laptop_ip': LaunchConfiguration('laptop_ip'),
+                'cameras':   LaunchConfiguration('cameras'),
             }]
         ),
     ])

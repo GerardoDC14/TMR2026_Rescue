@@ -58,7 +58,7 @@
 // ROBOT_MAIN only: cap traction output magnitude (1.0 = full PWM range,
 // 0.5 = ±50% of the configured min/max pulse around neutral). Flipper PWM
 // is unaffected.
-#define TRACTION_MAX_NORM   0.1f
+#define TRACTION_MAX_NORM   0.08f
 
 // Motor direction correction (1.0 = normal, -1.0 = reversed wiring)
 #define TRACTION_DIR_LEFT    (1.0f)

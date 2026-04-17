@@ -346,6 +346,26 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     connect(clear_btn_, &QPushButton::clicked, this, &DashboardPanel::onClearAll);
     btn_row->addWidget(clear_btn_);
 
+    // Solver toggle — picks between real-time DLS servo and MoveIt plan-and-execute.
+    // Checked (green) = "servo"  (damped_servo takes joint trajectories from twist cmds)
+    // Unchecked (gray) = "planner" (damped_servo paused; RViz / move_group plan-and-execute
+    //                                can drive the arm through the JointTrajectoryController)
+    solver_btn_ = new QPushButton("Solver: Servo", this);
+    solver_btn_->setCheckable(true);
+    solver_btn_->setChecked(true);
+    solver_btn_->setMinimumHeight(28);
+    solver_btn_->setToolTip(
+        "Servo: real-time jogging (RC / Xbox / keyboard)\n"
+        "Planner: MoveIt plan-and-execute (RViz markers)");
+    solver_btn_->setStyleSheet(
+        "QPushButton { background-color: #3a3a5a; color: #bbb; padding: 6px; "
+        "border: 1px solid #4a4a7a; border-radius: 3px; }"
+        "QPushButton:hover { background-color: #4a4a7a; }"
+        "QPushButton:checked { background-color: #1a5a3a; color: #8afa8a; "
+        "border-color: #2a8a5a; }");
+    connect(solver_btn_, &QPushButton::toggled, this, &DashboardPanel::onSolverToggled);
+    btn_row->addWidget(solver_btn_);
+
     settings_btn_ = new QPushButton(this);
     settings_btn_->setFixedSize(28, 28);
     settings_btn_->setToolTip("Settings");
@@ -376,6 +396,20 @@ DashboardPanel::DashboardPanel(rclcpp::Node::SharedPtr node, QWidget* parent)
     estop_timer_ = new QTimer(this);
     connect(estop_timer_, &QTimer::timeout, this, &DashboardPanel::publishEstopState);
     estop_timer_->start(100);
+
+    // ── Solver-mode topic wiring ──────────────────────────────────────────────
+    // Latched (transient_local) so a late-joining damped_servo picks up the
+    // current GUI selection even if it was chosen before the servo came up.
+    auto solver_qos = rclcpp::QoS(1).reliable().transient_local();
+    solver_mode_pub_ = node_->create_publisher<std_msgs::msg::String>(
+        "/arm/solver_mode", solver_qos);
+    solver_mode_sub_ = node_->create_subscription<std_msgs::msg::String>(
+        "/arm/solver_mode", solver_qos,
+        [this](std_msgs::msg::String::SharedPtr msg) {
+            emit solverModeReceived(QString::fromStdString(msg->data));
+        });
+    connect(this, &DashboardPanel::solverModeReceived,
+            this, &DashboardPanel::onSolverModeReceived, Qt::QueuedConnection);
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -474,6 +508,25 @@ void DashboardPanel::setThermalEnabled(bool enabled)
     else
         sensor_mask_ &= ~static_cast<uint8_t>(1 << 1);
     publishSensorMask();
+}
+
+void DashboardPanel::onSolverToggled(bool checked)
+{
+    solver_btn_->setText(checked ? "Solver: Servo" : "Solver: Planner");
+    std_msgs::msg::String msg;
+    msg.data = checked ? "servo" : "planner";
+    solver_mode_pub_->publish(msg);
+}
+
+void DashboardPanel::onSolverModeReceived(const QString& mode)
+{
+    const bool is_servo = (mode.trimmed().toLower() == "servo");
+    if (is_servo == solver_btn_->isChecked()) return;  // already in sync
+    // Update the button without retriggering onSolverToggled (which would
+    // publish right back and bounce on the topic).
+    QSignalBlocker block(solver_btn_);
+    solver_btn_->setChecked(is_servo);
+    solver_btn_->setText(is_servo ? "Solver: Servo" : "Solver: Planner");
 }
 
 void DashboardPanel::onEstopToggled(bool checked)

@@ -100,6 +100,10 @@ MODE_NAMES = {0: 'INIT', 1: 'STANDBY', 2: 'NORMAL', 3: 'ARM', 4: 'ESTOP', 5: 'FL
 
 PPM_CHANNELS = 6
 
+# Largest legitimate payload is the thermal image (32*24*2 = 1536 bytes).
+# Anything larger is a false SOF match inside another frame's payload.
+MAX_PAYLOAD_LEN = 2048
+
 
 # ─── Frame builder ────────────────────────────────────────────────────────────
 def _build_frame(msg_type: int, payload: bytes) -> bytes:
@@ -178,6 +182,13 @@ class ESP32BridgeNode(Node):
     def _open_serial(self) -> bool:
         try:
             self._ser = serial.Serial(self._serial_port, self._baud_rate, timeout=0.1)
+            # Discard any stale bytes the kernel buffered before we opened.
+            # Without this, partial frames sitting in the OS buffer can trip
+            # a false SOF match and stall the parser in PAYLOAD state.
+            try:
+                self._ser.reset_input_buffer()
+            except Exception:
+                pass
             self.get_logger().info(
                 f'Opened serial port {self._serial_port} @ {self._baud_rate} baud')
             # Start with all sensors disabled; the GUI sends enable commands via /sensors/enable_mask
@@ -240,7 +251,13 @@ class ESP32BridgeNode(Node):
                     length |= byte
                     running_crc ^= byte
                     payload = bytearray()
-                    state = 'CRC' if length == 0 else 'PAYLOAD'
+                    if length > MAX_PAYLOAD_LEN:
+                        # False SOF match — the claimed length is impossible.
+                        # Bail out to resync instead of swallowing thousands of
+                        # bytes (which would eat real frame boundaries).
+                        state = 'SOF0'
+                    else:
+                        state = 'CRC' if length == 0 else 'PAYLOAD'
 
                 elif state == 'PAYLOAD':
                     payload.append(byte)

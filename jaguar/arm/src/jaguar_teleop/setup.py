@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name + '/launch', [
             'launch/joystick.launch.py',
             'launch/rc_arm.launch.py',
+            'launch/xbox.launch.py',
         ]),
     ],
     install_requires=['setuptools'],
@@ -30,6 +31,7 @@ setup(
             'serial_bridge = jaguar_teleop.serial_bridge:main',
             'damped_servo = jaguar_teleop.damped_servo:main',
             'rc_servo = jaguar_teleop.rc_servo:main',
+            'xbox_servo = jaguar_teleop.xbox_servo:main',
             'joint_relay = jaguar_teleop.joint_relay:main',
         ],
     },

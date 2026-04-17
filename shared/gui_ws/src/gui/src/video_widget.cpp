@@ -1,3 +1,4 @@
+
 #include "gui/video_widget.hpp"
 #include "gui/camera_hub.hpp"
 #include "gui/filter_registry.hpp"
@@ -153,17 +154,34 @@ void VideoWidget::onSourceChanged(int index)
         emit thermalActiveChanged(false);
 
     if (source.startsWith("topic:")) {
-        std::string topic = source.mid(6).toStdString();
-        auto sub = node_->create_subscription<sensor_msgs::msg::Image>(
-            topic, rclcpp::SensorDataQoS(),
-            [this](sensor_msgs::msg::Image::SharedPtr msg) {
-                onImageReceived(msg);
-            });
-        {
-            std::lock_guard<std::mutex> lock(sub_mutex_);
-            image_sub_ = sub;
+        QString topic_name = source.mid(6); 
+
+        if (topic_name.startsWith("/camera/video")) {
+            // ── INTERCEPTAR EL STREAM UDP DE LA JETSON ──
+            int jetson_index = topic_name.mid(13).toInt();
+            int target_cam_id = 5000 + jetson_index; // <-- Variable declarada aquí
+
+            if (camera_hub_) {
+                camera_hub_->subscribe(target_cam_id); // <-- Usamos target_cam_id
+            }
+
+            current_local_id_ = target_cam_id;         // <-- Usamos target_cam_id
+            source_type_ = SourceType::LOCAL; 
+            
+        } else {
+            // ── TÓPICOS DE IMAGEN NATIVOS DE ROS 2 ──
+            std::string topic = topic_name.toStdString();
+            auto sub = node_->create_subscription<sensor_msgs::msg::Image>(
+                topic, rclcpp::SensorDataQoS(),
+                [this](sensor_msgs::msg::Image::SharedPtr msg) {
+                    onImageReceived(msg);
+                });
+            {
+                std::lock_guard<std::mutex> lock(sub_mutex_);
+                image_sub_ = sub;
+            }
+            source_type_ = SourceType::ROS_TOPIC;
         }
-        source_type_ = SourceType::ROS_TOPIC;
     } else if (source.startsWith("local:")) {
         int cam_id = source.mid(6).toInt();
         if (camera_hub_)

@@ -1,4 +1,5 @@
 #include "gui/camera_hub.hpp"
+#include <iostream>
 
 #include <chrono>
 
@@ -74,11 +75,43 @@ std::vector<int> CameraHub::activeCameraIds() const
 
 void CameraHub::captureLoop(int camera_id, Stream* stream)
 {
-    stream->capture.open(camera_id, cv::CAP_V4L2);
+    // 1. IMPRIMIR EL ID RECIBIDO
+    std::cout << "\n[DEBUG CameraHub] Iniciando hilo para camera_id: " << camera_id << std::endl;
+
+    bool is_network_stream = (camera_id >= 5000);
+
+    if (is_network_stream) {
+        // Añadí 'drop=true max-buffers=1' al appsink para evitar lag
+        std::string pipeline = 
+            "udpsrc port=" + std::to_string(camera_id) + " caps=\"application/x-rtp, "
+            "media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, "
+            "payload=(int)96\" ! rtph264depay ! h264parse ! decodebin ! "
+            "videoconvert ! appsink sync=false drop=true max-buffers=1";
+            
+        std::cout << "[DEBUG CameraHub] Es stream de RED. Abriendo pipeline:\n  " << pipeline << std::endl;
+        stream->capture.open(pipeline, cv::CAP_GSTREAMER);
+    } else {
+        std::cout << "[DEBUG CameraHub] Es camara LOCAL. Abriendo V4L2 en /dev/video" << camera_id << std::endl;
+        stream->capture.open(camera_id, cv::CAP_V4L2);
+    }
+
+    // 2. VERIFICAR SI ABRIÓ
+    if (!stream->capture.isOpened()) {
+        std::cerr << "[ERROR CameraHub] Falla al abrir la camara/stream con ID: " << camera_id << std::endl;
+    } else {
+        std::cout << "[ÉXITO CameraHub] Capture abierto correctamente para ID: " << camera_id << std::endl;
+    }
 
     while (stream->running) {
+        // ... (el resto de tu ciclo while se queda igual) ...
         if (!stream->capture.isOpened()) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            if (is_network_stream) {
+                std::string pipeline = "udpsrc port=" + std::to_string(camera_id) + " caps=\"application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96\" ! rtph264depay ! h264parse ! decodebin ! videoconvert ! appsink sync=false drop=true max-buffers=1";
+                stream->capture.open(pipeline, cv::CAP_GSTREAMER);
+            } else {
+                stream->capture.open(camera_id, cv::CAP_V4L2);
+            }
             continue;
         }
 

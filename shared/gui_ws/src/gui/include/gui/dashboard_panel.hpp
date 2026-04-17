@@ -21,6 +21,7 @@
 #include <std_msgs/msg/float32_multi_array.hpp>
 #include <std_msgs/msg/bool.hpp>
 #include <std_msgs/msg/u_int8.hpp>
+#include <std_msgs/msg/string.hpp>
 
 #include <atomic>
 
@@ -40,6 +41,7 @@ signals:
     void telemetryReceived();   // used as heartbeat
     void uptimeUpdated(float uptime_s);
     void hwEstopChanged(bool active);  // firmware reports hardware ESTOP state
+    void solverModeReceived(const QString& mode);  // marshals ROS cb onto Qt thread
 
 private slots:
     void onEstopToggled(bool checked);
@@ -55,6 +57,8 @@ private slots:
     void publishEstopState();
     void onSensorToggled();
     void onHwEstopChanged(bool active);
+    void onSolverToggled(bool checked);
+    void onSolverModeReceived(const QString& mode);
 
 private:
     void setConnState(const QString& color, const QString& label);
@@ -111,6 +115,11 @@ private:
     QPushButton* reset_btn_;
     QPushButton* settings_btn_;
     QPushButton* estop_btn_;
+    QPushButton* solver_btn_;
+
+    // Solver mode (/arm/solver_mode: "servo" | "planner")
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr    solver_mode_pub_;
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr solver_mode_sub_;
 
 public:
     void setSpeechGrammar(const std::string& words_csv);

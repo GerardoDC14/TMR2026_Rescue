@@ -30,7 +30,7 @@ from std_msgs.msg import String, Int16MultiArray, UInt8MultiArray
 
 # ─── Tunables (change here) ──────────────────────────────────────────────────
 SPEED       = 1.0          # overall velocity scale applied to all axes
-FRAME_ID    = 'Link6'      # 'Link6' = local / end-effector,  'base_link' = global
+FRAME_ID    = 'base_link'   # 'base_link' = global,  'Link6' = local / end-effector
 PUBLISH_HZ  = 30.0
 DEADBAND    = 0.08         # normalised dead-zone around stick centre
 PPM_MIN     = 1000         # us

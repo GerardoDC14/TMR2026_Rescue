@@ -5,7 +5,7 @@ import threading
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
-from std_msgs.msg import Float32
+from std_msgs.msg import Bool, Float32
 import serial
 import math
 
@@ -28,6 +28,8 @@ class ESP32SerialForwarder(Node):
         self._connect_thread = threading.Thread(target=self._connect_loop, daemon=True)
         self._connect_thread.start()
 
+        self._estop_active = False
+
         self.subscription = self.create_subscription(
             JointState,
             '/joint_states',
@@ -42,7 +44,13 @@ class ESP32SerialForwarder(Node):
             self.gripper_callback,
             10
         )
-        self.get_logger().info("Listening to /joint_states and /gripper...")
+        self.create_subscription(
+            Bool,
+            '/robot/estop',
+            self._estop_callback,
+            10
+        )
+        self.get_logger().info("Listening to /joint_states, /gripper, and /robot/estop...")
 
     def _connect_loop(self):
         while rclpy.ok() and self.serial_port is None:
@@ -58,6 +66,13 @@ class ESP32SerialForwarder(Node):
 
     def gripper_callback(self, msg):
         self.gripper_value = msg.data
+
+    def _estop_callback(self, msg: Bool):
+        if msg.data and not self._estop_active:
+            self.get_logger().warn('ESTOP active — suppressing serial output')
+        elif not msg.data and self._estop_active:
+            self.get_logger().info('ESTOP cleared — resuming serial output')
+        self._estop_active = msg.data
 
     def _serial_write(self, data: bytes):
         if self.serial_port is None:
@@ -75,6 +90,8 @@ class ESP32SerialForwarder(Node):
             self._connect_thread.start()
 
     def joint_state_callback(self, msg):
+        if self._estop_active:
+            return
         try:
             indices = []
             for name in self.target_joints:

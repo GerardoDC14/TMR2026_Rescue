@@ -27,11 +27,12 @@ import os
 import rclpy
 from rclpy.node import Node
 from rclpy.callback_groups import ReentrantCallbackGroup
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from sensor_msgs.msg import JointState
 from geometry_msgs.msg import TwistStamped
 from control_msgs.msg import JointJog
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-from std_msgs.msg import Int8
+from std_msgs.msg import Int8, String
 from std_srvs.srv import Trigger
 from builtin_interfaces.msg import Duration
 
@@ -270,6 +271,23 @@ class DampedServo(Node):
         self.create_subscription(
             JointJog, '~/delta_joint_cmds', self._joint_jog_cb, 10)
 
+        # ── solver mode switching (GUI topic) ─────────────────────────
+        # Publish: "servo" when DLS servo is active, "planner" when paused
+        # Subscribe: GUI sends "servo" or "planner" to switch
+        # transient_local so a late-joining GUI (or a GUI restart) always
+        # sees the current solver state without needing the user to toggle.
+        solver_qos = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE,
+            durability=DurabilityPolicy.TRANSIENT_LOCAL,
+            depth=1)
+        self._solver_mode_pub = self.create_publisher(
+            String, '/arm/solver_mode', solver_qos)
+        self.create_subscription(
+            String, '/arm/solver_mode', self._solver_mode_cb, solver_qos)
+        # Emit the initial state (paused) so subscribers don't have to wait
+        # for the first start/pause transition to learn the current mode.
+        self._publish_solver_mode()
+
         # ── services (MoveIt Servo compatible) ────────────────────────
         cb_group = ReentrantCallbackGroup()
         self.create_service(
@@ -363,6 +381,7 @@ class DampedServo(Node):
 
     def _srv_start(self, _req, resp):
         self._running = True
+        self._publish_solver_mode()
         resp.success = True
         resp.message = 'DLS servo started'
         self.get_logger().info('Servo STARTED')
@@ -370,10 +389,35 @@ class DampedServo(Node):
 
     def _srv_pause(self, _req, resp):
         self._running = False
+        self._publish_solver_mode()
         resp.success = True
         resp.message = 'DLS servo paused'
         self.get_logger().info('Servo PAUSED')
         return resp
+
+    def _solver_mode_cb(self, msg: String):
+        """Handle GUI-driven solver switch.
+
+        "servo"   → DLS servo active (real-time jogging).
+        "planner" → DLS paused, MoveIt plan-and-execute / RViz markers work.
+
+        Ignores an echo of our own published state so the pub/sub on the
+        same topic doesn't bounce.
+        """
+        requested = msg.data.strip().lower()
+        if requested == 'servo' and not self._running:
+            self._running = True
+            self.get_logger().info('Solver mode → SERVO (real-time jogging)')
+            self._publish_solver_mode()
+        elif requested == 'planner' and self._running:
+            self._running = False
+            self.get_logger().info('Solver mode → PLANNER (MoveIt plan-and-execute)')
+            self._publish_solver_mode()
+
+    def _publish_solver_mode(self):
+        msg = String()
+        msg.data = 'servo' if self._running else 'planner'
+        self._solver_mode_pub.publish(msg)
 
     # ------------------------------------------------------------------
     # Main control loop  (~30 Hz)

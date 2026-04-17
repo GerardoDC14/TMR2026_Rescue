@@ -23,7 +23,7 @@
 #include <mcp2515.h>
 #include <ODrive.hpp>
 */
-#include <Adafruit_AMG88xx.h>
+#include <Adafruit_MLX90640.h>
 #include <Adafruit_LIS3MDL.h>
 #include <Adafruit_Sensor.h>
 
@@ -110,7 +110,7 @@ MCP2515          mcp2515(PIN_CAN_CS);
 ODrive           rearLeft (ODRIVE_REAR_LEFT_ID,  &mcp2515);
 ODrive           rearRight(ODRIVE_REAR_RIGHT_ID, &mcp2515);
 */
-Adafruit_AMG88xx amg;
+Adafruit_MLX90640 mlx;
 Adafruit_LIS3MDL lis3mdl;
 
 /*
@@ -123,8 +123,8 @@ volatile bool     ppmFrameReady    = false;
 */
 
 // ─── Sensor state ───────────────────────────────────────────────────────────
-static bool    has_amg = false, has_lis3mdl = false;
-static float   amg_pixels[64] = {};
+static bool    has_mlx = false, has_lis3mdl = false;
+static float   mlx_pixels[32 * 24] = {};
 static float   mq2_ppm = 0.0f;
 static float   mag_x = 0.0f, mag_y = 0.0f, mag_z = 0.0f;
 static uint8_t sensor_enable = 0x00;
@@ -272,9 +272,9 @@ static void readLIS3MDL() {
     mag_z = ev.magnetic.z;
 }
 
-static void readAMG8833() {
-    if (!has_amg) return;
-    amg.readPixels(amg_pixels);
+static void readMLX90640() {
+    if (!has_mlx) return;
+    mlx.getFrame(mlx_pixels);
 }
 
 static void publishGas() {
@@ -296,20 +296,12 @@ static void publishMag() {
 }
 
 static void publishThermal() {
-    // Bridge expects 32×24 = 768 i16 pixels (°C × 10). AMG8833 is 8×8; centre
-    // the 8×8 block inside the 32×24 frame, pad rest with zeros.
-    static const int ROWS = 24, COLS = 32, SZ = 8;
-    static const int R0 = (ROWS - SZ) / 2;   // 8
-    static const int C0 = (COLS - SZ) / 2;   // 1  2
-    static uint8_t buf[ROWS * COLS * 2];     // 1536 bytes
-    memset(buf, 0, sizeof(buf));
-    for (int r = 0; r < SZ; r++) {
-        for (int c = 0; c < SZ; c++) {
-            int i     = (r + R0) * COLS + (c + C0);
-            int16_t v = (int16_t)(amg_pixels[r * SZ + c] * 10.0f);
-            buf[i*2]   = (uint8_t)(v & 0xFF);
-            buf[i*2+1] = (uint8_t)((uint16_t)v >> 8);
-        }
+    static const int N = 32 * 24;
+    static uint8_t buf[N * 2];
+    for (int i = 0; i < N; i++) {
+        int16_t v = (int16_t)(mlx_pixels[i] * 10.0f);
+        buf[i*2]   = (uint8_t)(v & 0xFF);
+        buf[i*2+1] = (uint8_t)((uint16_t)v >> 8);
     }
     sendFrame(MSG_THERMAL, buf, sizeof(buf));
 }
@@ -326,14 +318,11 @@ static void publishTelemetry() {
 
     uint32_t uptime = millis();
 
-    uint8_t pl[24];
+    uint8_t pl[24] = {};
     pl[0] = mode;
     pl[1] = flags;
-    
-    int idx = 14;
-    pl[idx++] = 0;            pl[idx++] = 0;
-    pl[idx++] = 0;            pl[idx++] = 0;
-    pl[idx++] = 0;            pl[idx++] = 0;
+
+    int idx = 20;
     pl[idx++] =  uptime        & 0xFF;
     pl[idx++] = (uptime >>  8) & 0xFF;
     pl[idx++] = (uptime >> 16) & 0xFF;
@@ -362,7 +351,13 @@ void setup() {
         lis3mdl.setDataRate(LIS3MDL_DATARATE_155_HZ);
         lis3mdl.setRange(LIS3MDL_RANGE_16_GAUSS);
     }
-    has_amg = amg.begin();
+    has_mlx = mlx.begin(MLX90640_I2CADDR_DEFAULT, &Wire);
+    if (has_mlx) {
+        mlx.setMode(MLX90640_CHESS);
+        mlx.setResolution(MLX90640_ADC_18BIT);
+        mlx.setRefreshRate(MLX90640_8_HZ);
+        Wire.setClock(400000);
+    }
 
     /*
     // PPM input
@@ -516,7 +511,7 @@ void loop() {
         lastSensMs = now;
         if (sensor_enable & BIT_GAS)     { readMQ2();     publishGas();     }
         if (sensor_enable & BIT_MAG)     { readLIS3MDL(); publishMag();     }
-        if (sensor_enable & BIT_THERMAL) { readAMG8833(); publishThermal(); }
+        if (sensor_enable & BIT_THERMAL) { readMLX90640(); publishThermal(); }
     }
 
     // ── 10 Hz mode / PPM / commanded-speed telemetry ─────────────────────

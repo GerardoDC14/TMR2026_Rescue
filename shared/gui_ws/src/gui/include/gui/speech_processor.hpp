@@ -6,6 +6,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/int16_multi_array.hpp>
 
+#include <chrono>
+#include <cstdint>
 #include <mutex>
 
 struct VoskModel;
@@ -42,4 +44,12 @@ private:
 
     pa_simple* pa_{nullptr};
     bool playback_enabled_{true};
+
+    // Diagnostic counters (reset each periodic log)
+    std::chrono::steady_clock::time_point last_log_time_{std::chrono::steady_clock::now()};
+    std::uint64_t msgs_received_{0};
+    std::uint64_t samples_received_{0};
+    std::int64_t rms_sq_sum_{0};
+    std::int16_t peak_{0};
+    std::uint64_t pa_write_errors_{0};
 };

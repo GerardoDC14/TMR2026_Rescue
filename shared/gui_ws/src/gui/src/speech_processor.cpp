@@ -10,6 +10,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include <cmath>
+#include <cstdlib>
 #include <filesystem>
 
 static const std::string& voskModelPath() {
@@ -38,19 +40,33 @@ SpeechProcessor::SpeechProcessor(rclcpp::Node::SharedPtr node, QObject* parent)
     // Set up PulseAudio output
     pa_sample_spec ss{PA_SAMPLE_S16LE, 16000, 1};
     int pa_error;
+    const char* pa_server = std::getenv("PULSE_SERVER");
     pa_ = pa_simple_new(nullptr, "gui", PA_STREAM_PLAYBACK, nullptr,
                         "Audio Monitor", &ss, nullptr, nullptr, &pa_error);
-    if (!pa_)
-        RCLCPP_WARN(node_->get_logger(), "[Audio] PulseAudio init failed: %s",
-                    pa_strerror(pa_error));
+    if (!pa_) {
+        RCLCPP_ERROR(node_->get_logger(),
+            "[Audio] PulseAudio init FAILED: %s. "
+            "Playback disabled. PULSE_SERVER=%s",
+            pa_strerror(pa_error), pa_server ? pa_server : "<unset>");
+    } else {
+        RCLCPP_INFO(node_->get_logger(),
+            "[Audio] PulseAudio playback stream opened "
+            "(S16LE 16000Hz mono). PULSE_SERVER=%s",
+            pa_server ? pa_server : "<unset — using default>");
+    }
 
     audio_sub_ = node_->create_subscription<std_msgs::msg::Int16MultiArray>(
         "/audio", rclcpp::SensorDataQoS(),
         [this](std_msgs::msg::Int16MultiArray::SharedPtr msg) {
             onAudioReceived(msg);
         });
+    last_log_time_ = std::chrono::steady_clock::now();
 
-    RCLCPP_INFO(node_->get_logger(), "Speech processor ready, listening on /audio");
+    RCLCPP_INFO(node_->get_logger(),
+        "[Audio] Subscribed to /audio (SensorDataQoS: BEST_EFFORT). "
+        "Playback enabled=%s. Publish true on /audio_enable from the robot "
+        "to start the stream.",
+        playback_enabled_ ? "true" : "false");
 }
 
 SpeechProcessor::~SpeechProcessor()
@@ -77,6 +93,9 @@ bool SpeechProcessor::loadModel()
 
 void SpeechProcessor::setPlaybackEnabled(bool enabled)
 {
+    if (playback_enabled_ != enabled)
+        RCLCPP_INFO(node_->get_logger(),
+                    "[Audio] Playback %s", enabled ? "ENABLED" : "DISABLED");
     playback_enabled_ = enabled;
 }
 
@@ -125,10 +144,49 @@ void SpeechProcessor::onAudioReceived(const std_msgs::msg::Int16MultiArray::Shar
 {
     if (msg->data.empty()) return;
 
+    // ── Diagnostic stats ─────────────────────────────────────────────────────
+    ++msgs_received_;
+    samples_received_ += msg->data.size();
+    for (int16_t s : msg->data) {
+        int16_t a = s < 0 ? static_cast<int16_t>(-s) : s;
+        if (a > peak_) peak_ = a;
+        rms_sq_sum_ += static_cast<int64_t>(s) * s;
+    }
+
+    auto now = std::chrono::steady_clock::now();
+    auto since_log = std::chrono::duration<double>(now - last_log_time_).count();
+    if (since_log >= 2.0) {
+        double rms = samples_received_ > 0
+            ? std::sqrt(static_cast<double>(rms_sq_sum_) / samples_received_)
+            : 0.0;
+        double dbfs = rms > 0 ? 20.0 * std::log10(rms / 32767.0) : -120.0;
+        RCLCPP_INFO(node_->get_logger(),
+            "[Audio] rx msgs/s=%.1f samples/s=%.0f peak=%d rms=%.0f (%+.1f dBFS) "
+            "pa_errors=%lu%s",
+            msgs_received_ / since_log,
+            samples_received_ / since_log,
+            peak_, rms, dbfs,
+            static_cast<unsigned long>(pa_write_errors_),
+            dbfs < -60 ? " — SILENT (mic on robot muted/gain low?)" : "");
+        last_log_time_ = now;
+        msgs_received_ = 0;
+        samples_received_ = 0;
+        rms_sq_sum_ = 0;
+        peak_ = 0;
+    }
+
     if (playback_enabled_ && pa_) {
         int error;
-        pa_simple_write(pa_, msg->data.data(),
-                        msg->data.size() * sizeof(int16_t), &error);
+        if (pa_simple_write(pa_, msg->data.data(),
+                            msg->data.size() * sizeof(int16_t), &error) < 0) {
+            ++pa_write_errors_;
+            RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
+                "[Audio] pa_simple_write failed: %s", pa_strerror(error));
+        }
+    } else if (!pa_) {
+        RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 5000,
+            "[Audio] Receiving audio but PulseAudio is not initialised — "
+            "nothing will be heard.");
     }
 
     std::lock_guard<std::mutex> lock(recognizer_mutex_);

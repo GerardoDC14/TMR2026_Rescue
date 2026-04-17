@@ -10,11 +10,11 @@ servo_node:
     publish_rate: 30.0
 
     ## Maximum Cartesian speeds (applied to unitless [-1,1] commands)
-    max_linear_speed: 0.2        # m/s
-    max_rotational_speed: 0.35   # rad/s
+    max_linear_speed: 0.4        # m/s
+    max_rotational_speed: 0.7   # rad/s
 
     ## Maximum joint velocity (rad/s) — caps any single joint
-    max_joint_speed: 0.35
+    max_joint_speed: 0.4
 
     ## Singularity handling — based on Jacobian condition number
     ##   cond < condition_lower   →  no damping (perfect tracking)

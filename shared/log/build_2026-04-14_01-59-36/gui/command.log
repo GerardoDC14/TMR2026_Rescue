@@ -1,0 +1,6 @@
+Invoking command in '/home/gerardo/TMR2026_Rescue/shared/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/shared/install/gui
+Invoked command in '/home/gerardo/TMR2026_Rescue/shared/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/shared/install/gui
+Invoking command in '/home/gerardo/TMR2026_Rescue/shared/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/shared/build/gui -- -j16 -l16
+Invoked command in '/home/gerardo/TMR2026_Rescue/shared/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/shared/build/gui -- -j16 -l16
+Invoking command in '/home/gerardo/TMR2026_Rescue/shared/build/gui': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/shared/build/gui
+Invoked command in '/home/gerardo/TMR2026_Rescue/shared/build/gui' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/shared/build/gui

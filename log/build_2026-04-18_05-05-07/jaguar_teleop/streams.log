@@ -1,0 +1,69 @@
+[0.850s] Invoking command in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/jaguar_teleop build --build-base /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build install --record /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log --single-version-externally-managed install_data
+[1.035s] running egg_info
+[1.036s] creating ../../../../build/jaguar_teleop/jaguar_teleop.egg-info
+[1.036s] writing ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/PKG-INFO
+[1.036s] writing dependency_links to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/dependency_links.txt
+[1.036s] writing entry points to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/entry_points.txt
+[1.036s] writing requirements to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/requires.txt
+[1.037s] writing top-level names to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/top_level.txt
+[1.037s] writing manifest file '../../../../build/jaguar_teleop/jaguar_teleop.egg-info/SOURCES.txt'
+[1.038s] reading manifest file '../../../../build/jaguar_teleop/jaguar_teleop.egg-info/SOURCES.txt'
+[1.038s] writing manifest file '../../../../build/jaguar_teleop/jaguar_teleop.egg-info/SOURCES.txt'
+[1.038s] running build
+[1.038s] running build_py
+[1.038s] creating /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build
+[1.039s] creating /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib
+[1.039s] creating /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.039s] copying jaguar_teleop/joystick_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.040s] copying jaguar_teleop/rc_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.040s] copying jaguar_teleop/keyboard_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.040s] copying jaguar_teleop/xbox_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.040s] copying jaguar_teleop/serial_bridge.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.041s] copying jaguar_teleop/teleop_tk.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.041s] copying jaguar_teleop/joint_relay.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.041s] copying jaguar_teleop/damped_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.041s] copying jaguar_teleop/__init__.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop
+[1.041s] running install
+[1.041s] running install_lib
+[1.042s] creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.042s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/joystick_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.042s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/rc_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.042s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/keyboard_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.042s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/xbox_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.043s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/serial_bridge.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.043s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/teleop_tk.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.043s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/joint_relay.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.043s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/damped_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.043s] copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/__init__.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop
+[1.043s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/joystick_servo.py to joystick_servo.cpython-310.pyc
+[1.045s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/rc_servo.py to rc_servo.cpython-310.pyc
+[1.046s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/keyboard_servo.py to keyboard_servo.cpython-310.pyc
+[1.047s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/xbox_servo.py to xbox_servo.cpython-310.pyc
+[1.048s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/serial_bridge.py to serial_bridge.cpython-310.pyc
+[1.049s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/teleop_tk.py to teleop_tk.cpython-310.pyc
+[1.052s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/joint_relay.py to joint_relay.cpython-310.pyc
+[1.052s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/damped_servo.py to damped_servo.cpython-310.pyc
+[1.055s] byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/__init__.py to __init__.cpython-310.pyc
+[1.055s] running install_data
+[1.055s] creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index
+[1.055s] creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index/resource_index
+[1.055s] creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index/resource_index/packages
+[1.055s] copying resource/jaguar_teleop -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index/resource_index/packages
+[1.055s] copying package.xml -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop
+[1.055s] creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch
+[1.055s] copying launch/joystick.launch.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch
+[1.055s] copying launch/rc_arm.launch.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch
+[1.055s] copying launch/xbox.launch.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch
+[1.056s] running install_egg_info
+[1.057s] Copying ../../../../build/jaguar_teleop/jaguar_teleop.egg-info to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop-0.0.0-py3.10.egg-info
+[1.058s] running install_scripts
+[1.075s] Installing damped_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing joint_relay script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing joystick_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing keyboard_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing rc_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing serial_bridge script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing teleop_tk script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.075s] Installing xbox_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop
+[1.076s] writing list of installed files to '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log'
+[1.099s] Invoked command in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop' returned '0': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/jaguar_teleop build --build-base /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build install --record /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log --single-version-externally-managed install_data

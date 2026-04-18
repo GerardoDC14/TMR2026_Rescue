@@ -1,0 +1,64 @@
+[0.007s] Invoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_full
+[0.059s] -- The C compiler identification is GNU 11.4.0
+[0.106s] -- The CXX compiler identification is GNU 11.4.0
+[0.112s] -- Detecting C compiler ABI info
+[0.175s] -- Detecting C compiler ABI info - done
+[0.180s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.180s] -- Detecting C compile features
+[0.181s] -- Detecting C compile features - done
+[0.183s] -- Detecting CXX compiler ABI info
+[0.257s] -- Detecting CXX compiler ABI info - done
+[0.264s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.264s] -- Detecting CXX compile features
+[0.265s] -- Detecting CXX compile features - done
+[0.266s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.397s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.516s] -- Configuring done
+[0.517s] -- Generating done
+[0.518s] -- Build files have been written to: /home/gerardo/TMR2026_Rescue/build/jaguar_full
+[0.521s] Invoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full' returned '0': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_full
+[0.522s] Invoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/jaguar_full -- -j16 -l16
+[0.552s] Invoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full' returned '0': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/jaguar_full -- -j16 -l16
+[0.553s] Invoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/jaguar_full
+[0.558s] -- Install configuration: ""
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/ament_index/resource_index/package_run_dependencies/jaguar_full
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/ament_index/resource_index/parent_prefix_path/jaguar_full
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/ament_prefix_path.sh
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/ament_prefix_path.dsv
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/path.sh
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/path.dsv
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.bash
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.sh
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.zsh
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.dsv
+[0.558s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.dsv
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/ament_index/resource_index/packages/jaguar_full
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/cmake/jaguar_fullConfig.cmake
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/cmake/jaguar_fullConfig-version.cmake
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.xml
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/damped_servo.launch.py
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/moveit_rviz.launch.py
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/warehouse_db.launch.py
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/spawn_controllers.launch.py
+[0.559s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/servo.launch.py
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/move_group.launch.py
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/setup_assistant.launch.py
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/static_virtual_joint_tfs.launch.py
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/rsp.launch.py
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/demo.launch.py
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/jaguar_robot_full.srdf
+[0.560s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/jaguar_robot_full.urdf.xacro
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/pilz_cartesian_limits.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/moveit_controllers.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/damped_servo_params.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/jaguar_robot_full.ros2_control.xacro
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/initial_positions.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/joint_limits.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/ros2_controllers.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/kinematics.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/servo_params.yaml
+[0.561s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/moveit.rviz
+[0.562s] -- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/.setup_assistant
+[0.563s] Invoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full' returned '0': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/jaguar_full

@@ -21,6 +21,7 @@ using namespace zbar;
 #include <set>
 #include <thread>
 #include <vector>
+#include <numeric>
 
 // ── YOLO model path ──────────────────────────────────────────────────────────
 static const std::string& yoloModelPath() {
@@ -100,7 +101,7 @@ static std::vector<std::string> loadClassNamesFromOnnx(const std::string& onnx_p
         if (!cls_map.empty()) {
             for (int k = 0; k < (int)cls_map.size(); ++k)
                 names.push_back(cls_map.count(k) ? cls_map[k]
-                                                  : "Class " + std::to_string(k));
+                                                 : "Class " + std::to_string(k));
             return names;
         }
     }
@@ -318,8 +319,6 @@ void registerFilters()
     });
 
     // ═══ 2. YOLO Detection ══════════════════════════════════════════════════
-    // Model is shared globally — loaded once at startup, reused across all
-    // widgets and filter re-selections. ORT Session::Run() is thread-safe.
     reg.registerFilter("Hazmat",
         [](std::shared_ptr<FilterConfig> config) -> FilterFunc
     {
@@ -770,6 +769,148 @@ void registerFilters()
             fr.height = std::min(box.height + 20,
                                  result.rows - fr.y);
             cv::rectangle(result, fr, cv::Scalar(0, 255, 0), 5);
+            return result;
+        };
+    });
+
+    // ═══ 5. Circle Gap Detector ══════════════════════════════════════════════════
+    reg.registerFilter("Circle Gap",
+        [](std::shared_ptr<FilterConfig> config) -> FilterFunc
+    {
+        return [config](const cv::Mat& frame) -> cv::Mat {
+            cv::Mat result = frame.clone();
+            
+            // Reemplazo de los valores que faltaban en FilterConfig
+            int rad_checks = 360; 
+            float scale = 2.0f; 
+
+            // 1. Preprocesamiento
+            cv::Mat gray;
+            cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+            
+            // Detección inicial de ROI (Círculo exterior)
+            std::vector<cv::Vec3f> outer_circles;
+            cv::HoughCircles(gray, outer_circles, cv::HOUGH_GRADIENT, 1, gray.rows / 8, 100, 50, gray.rows / 8, gray.rows / 3);
+
+            if (outer_circles.empty()) {
+                cv::putText(result, "MISSING TASK SECTOR", cv::Point(30, 30), cv::FONT_HERSHEY_SIMPLEX, 0.8, cv::Scalar(0, 0, 255), 2);
+                return result;
+            }
+
+            // Tomamos el primer círculo detectado y armamos su caja delimitadora (ROI) matemáticamente
+            int cx = std::round(outer_circles[0][0]);
+            int cy = std::round(outer_circles[0][1]);
+            int r  = std::round(outer_circles[0][2]);
+            cv::Rect roi_rect(cx - r, cy - r, 2 * r, 2 * r);
+            
+            // Ajuste de límites del ROI para que no se salga de la imagen
+            roi_rect &= cv::Rect(0, 0, gray.cols, gray.rows);
+            
+            if (roi_rect.width < 8 || roi_rect.height < 8) return result;
+
+            cv::Mat frame_roi = gray(roi_rect);
+
+            // 2. Detección de círculo interno
+            std::vector<cv::Vec3f> inn_circles;
+            cv::HoughCircles(frame_roi, inn_circles, cv::HOUGH_GRADIENT, 1, frame_roi.rows / 8, 100, 50, frame_roi.rows / 8, frame_roi.rows / 3);
+
+            if (inn_circles.empty()) {
+                cv::putText(result, "MISSING INNER CIRCLE", cv::Point(30, 60), cv::FONT_HERSHEY_SIMPLEX, 0.8, cv::Scalar(0, 0, 255), 2);
+                return result;
+            }
+
+            // Crear máscara para aislar el área de interés
+            int inn_cx = std::round(inn_circles[0][0]);
+            int inn_cy = std::round(inn_circles[0][1]);
+            int inn_r  = std::round(inn_circles[0][2]) - 10;
+            if (inn_r <= 0) inn_r = 1; // Salvaguarda: si el radio es muy pequeño, evitamos un círculo negativo
+
+            cv::Mat mask_roi = cv::Mat::zeros(frame_roi.size(), CV_8UC1);
+            cv::circle(mask_roi, cv::Point(inn_cx, inn_cy), inn_r, 255, -1);
+
+            cv::Mat final_img;
+            cv::bitwise_and(frame_roi, frame_roi, final_img, mask_roi);
+
+            cv::Rect final_rect = cv::boundingRect(mask_roi);
+            final_img = final_img(final_rect);
+            cv::resize(final_img, final_img, cv::Size(), scale, scale, cv::INTER_LINEAR);
+
+            // Segmentación
+            cv::Mat thresh;
+            cv::threshold(final_img, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+            
+            cv::Mat kernel = cv::Mat::ones(3, 3, CV_8UC1);
+            cv::morphologyEx(thresh, thresh, cv::MORPH_OPEN, kernel, cv::Point(-1, -1), 2);
+
+            // 3. Encontrar contornos y procesar brecha
+            std::vector<std::vector<cv::Point>> contours;
+            cv::findContours(thresh, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
+
+            std::vector<std::vector<cv::Point>> filtered_contours;
+            for (const auto& cnt : contours) {
+                if (cv::contourArea(cnt) > (100 * scale))
+                    filtered_contours.push_back(cnt);
+            }
+
+            std::sort(filtered_contours.begin(), filtered_contours.end(), [](const std::vector<cv::Point>& a, const std::vector<cv::Point>& b) {
+                return cv::contourArea(a) > cv::contourArea(b);
+            });
+
+            std::vector<cv::Scalar> colors = { cv::Scalar(0,255,0), cv::Scalar(255,0,0), cv::Scalar(0,0,255) };
+
+            for (std::size_t i = 0; i < filtered_contours.size() && i < 3; ++i) {
+                cv::Rect bbox = cv::boundingRect(filtered_contours[i]);
+                float aspect_ratio = static_cast<float>(bbox.width) / bbox.height;
+
+                if (aspect_ratio > 0.85f && aspect_ratio < 1.15f) {
+                    cv::Point2f center;
+                    float r_enc;
+                    cv::minEnclosingCircle(filtered_contours[i], center, r_enc);
+
+                    int min_touch = INT_MAX;
+                    double best_angle = 0.0;
+                    std::vector<double> angles;
+
+                    cv::Mat mask = cv::Mat::zeros(final_img.size(), CV_8UC1);
+                    cv::drawContours(mask, filtered_contours, (int)i, 255, -1);
+
+                    for (int j = 0; j < rad_checks; ++j) {
+                        double angle = 2.0 * CV_PI * j / rad_checks;
+                        int x3 = static_cast<int>(center.x + r_enc * std::cos(angle));
+                        int y3 = static_cast<int>(center.y + r_enc * std::sin(angle));
+
+                        cv::LineIterator it(mask, center, cv::Point(x3, y3));
+                        int overlap_count = 0;
+                        for(int k = 0; k < it.count; k++, ++it) {
+                            if (*(const uchar*)*it > 0) overlap_count++;
+                        }
+
+                        if (overlap_count < min_touch) {
+                            min_touch = overlap_count;
+                            best_angle = angle;
+                        }
+                        if (overlap_count == 0) angles.push_back(angle);
+                    }
+
+                    if (!angles.empty()) {
+                        double sum = 0;
+                        for(double a : angles) sum += a;
+                        best_angle = sum / angles.size();
+                    }
+
+                    // Proyección de regreso al frame original
+                    int gap_x = static_cast<int>(center.x + r_enc * std::cos(best_angle));
+                    int gap_y = static_cast<int>(center.y + r_enc * std::sin(best_angle));
+
+                    cv::Point pt1(static_cast<int>((center.x / scale) + roi_rect.x + final_rect.x),
+                                  static_cast<int>((center.y / scale) + roi_rect.y + final_rect.y));
+                    cv::Point pt2(static_cast<int>((gap_x / scale) + roi_rect.x + final_rect.x),
+                                  static_cast<int>((gap_y / scale) + roi_rect.y + final_rect.y));
+
+                    cv::line(result, pt1, pt2, colors[i % 3], 4);
+                }
+            }
+
             return result;
         };
     });

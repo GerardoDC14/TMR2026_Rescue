@@ -1,0 +1,852 @@
+[0.000000] (-) TimerEvent: {}
+[0.000505] (dicerox_mapping) JobQueued: {'identifier': 'dicerox_mapping', 'dependencies': OrderedDict()}
+[0.000533] (esp32_bridge) JobQueued: {'identifier': 'esp32_bridge', 'dependencies': OrderedDict()}
+[0.000552] (ginkgo_odrive_bridge) JobQueued: {'identifier': 'ginkgo_odrive_bridge', 'dependencies': OrderedDict()}
+[0.000569] (gui) JobQueued: {'identifier': 'gui', 'dependencies': OrderedDict()}
+[0.000586] (jaguar_robot_full_description) JobQueued: {'identifier': 'jaguar_robot_full_description', 'dependencies': OrderedDict()}
+[0.000603] (jaguar_teleop) JobQueued: {'identifier': 'jaguar_teleop', 'dependencies': OrderedDict()}
+[0.000618] (jaguar_full) JobQueued: {'identifier': 'jaguar_full', 'dependencies': OrderedDict([('jaguar_robot_full_description', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description')])}
+[0.000637] (jaguar_robot_full_description) JobStarted: {'identifier': 'jaguar_robot_full_description'}
+[0.005365] (dicerox_mapping) JobStarted: {'identifier': 'dicerox_mapping'}
+[0.007098] (esp32_bridge) JobStarted: {'identifier': 'esp32_bridge'}
+[0.009904] (ginkgo_odrive_bridge) JobStarted: {'identifier': 'ginkgo_odrive_bridge'}
+[0.012491] (gui) JobStarted: {'identifier': 'gui'}
+[0.014079] (jaguar_teleop) JobStarted: {'identifier': 'jaguar_teleop'}
+[0.017115] (jaguar_robot_full_description) JobProgress: {'identifier': 'jaguar_robot_full_description', 'progress': 'cmake'}
+[0.017461] (jaguar_robot_full_description) Command: {'cmd': ['/usr/bin/cmake', '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_robot_full_description', '-DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.019555] (dicerox_mapping) JobProgress: {'identifier': 'dicerox_mapping', 'progress': 'cmake'}
+[0.020268] (dicerox_mapping) Command: {'cmd': ['/usr/bin/cmake', '/home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping', '-DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/dicerox_mapping'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.099928] (-) TimerEvent: {}
+[0.200189] (-) TimerEvent: {}
+[0.300504] (-) TimerEvent: {}
+[0.349909] (gui) JobProgress: {'identifier': 'gui', 'progress': 'cmake'}
+[0.350467] (gui) Command: {'cmd': ['/usr/bin/cmake', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui', '-DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/gui'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/gui'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.352502] (jaguar_robot_full_description) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.353446] (jaguar_robot_full_description) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.353678] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.353722] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.353762] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.353795] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.353829] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.353862] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.353895] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.353926] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.353959] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.353995] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.354029] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.354065] (dicerox_mapping) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.354481] (dicerox_mapping) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.354522] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.354557] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.354590] (dicerox_mapping) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.354622] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.354655] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.354686] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.354718] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.354750] (dicerox_mapping) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.354782] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.354813] (dicerox_mapping) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.354845] (dicerox_mapping) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.386252] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.387022] (dicerox_mapping) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.393965] (gui) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.400587] (-) TimerEvent: {}
+[0.448316] (gui) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.454723] (gui) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.500722] (-) TimerEvent: {}
+[0.516925] (gui) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.522736] (gui) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.522920] (gui) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.523198] (gui) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.524478] (dicerox_mapping) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.525566] (gui) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.525836] (dicerox_mapping) StdoutLine: {'line': b'-- Generating done\n'}
+[0.527095] (dicerox_mapping) StdoutLine: {'line': b'-- Build files have been written to: /home/gerardo/TMR2026_Rescue/build/dicerox_mapping\n'}
+[0.532537] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.534123] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Generating done\n'}
+[0.535308] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Build files have been written to: /home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description\n'}
+[0.555649] (jaguar_robot_full_description) CommandEnded: {'returncode': 0}
+[0.557121] (jaguar_robot_full_description) JobProgress: {'identifier': 'jaguar_robot_full_description', 'progress': 'build'}
+[0.557174] (jaguar_robot_full_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description', '--', '-j16', '-l16'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.557846] (dicerox_mapping) CommandEnded: {'returncode': 0}
+[0.558997] (dicerox_mapping) JobProgress: {'identifier': 'dicerox_mapping', 'progress': 'build'}
+[0.559039] (dicerox_mapping) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping', '--', '-j16', '-l16'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.583846] (jaguar_robot_full_description) CommandEnded: {'returncode': 0}
+[0.584563] (jaguar_robot_full_description) JobProgress: {'identifier': 'jaguar_robot_full_description', 'progress': 'install'}
+[0.592946] (jaguar_robot_full_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.593903] (gui) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.595208] (dicerox_mapping) CommandEnded: {'returncode': 0}
+[0.595815] (dicerox_mapping) JobProgress: {'identifier': 'dicerox_mapping', 'progress': 'install'}
+[0.596478] (dicerox_mapping) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.599499] (gui) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.599759] (gui) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.599915] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.600207] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/launch\n'}
+[0.600332] (gui) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.600442] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/launch/launch.py\n'}
+[0.600531] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes\n'}
+[0.600647] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision\n'}
+[0.600736] (-) TimerEvent: {}
+[0.600911] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/Link2.STL\n'}
+[0.601847] (gui) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.603216] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/Link1.STL\n'}
+[0.603528] (dicerox_mapping) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.603672] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch\n'}
+[0.604111] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/save_map.launch.py\n'}
+[0.604425] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/mapping_viz.launch.py\n'}
+[0.604652] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/mapping.launch.py\n'}
+[0.604766] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/Link3.STL\n'}
+[0.604880] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/record_bag.launch.py\n'}
+[0.605007] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/mapping_robot.launch.py\n'}
+[0.605116] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/config\n'}
+[0.605468] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/config/slam_toolbox_params.yaml\n'}
+[0.605587] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/rviz\n'}
+[0.605750] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/rviz/mapping.rviz\n'}
+[0.606003] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/ament_index/resource_index/package_run_dependencies/dicerox_mapping\n'}
+[0.606124] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/ament_index/resource_index/parent_prefix_path/dicerox_mapping\n'}
+[0.606236] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/ament_prefix_path.sh\n'}
+[0.606352] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/ament_prefix_path.dsv\n'}
+[0.606441] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/path.sh\n'}
+[0.606551] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/path.dsv\n'}
+[0.606686] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.bash\n'}
+[0.606772] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.sh\n'}
+[0.606859] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.zsh\n'}
+[0.606950] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.dsv\n'}
+[0.607078] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.dsv\n'}
+[0.607163] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/ament_index/resource_index/packages/dicerox_mapping\n'}
+[0.607243] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/cmake/dicerox_mappingConfig.cmake\n'}
+[0.607322] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/cmake/dicerox_mappingConfig-version.cmake\n'}
+[0.607402] (dicerox_mapping) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.xml\n'}
+[0.608066] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/Link4.STL\n'}
+[0.608751] (dicerox_mapping) CommandEnded: {'returncode': 0}
+[0.609415] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/Link6.STL\n'}
+[0.619237] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/base_link.STL\n'}
+[0.626623] (dicerox_mapping) JobEnded: {'identifier': 'dicerox_mapping', 'rc': 0}
+[0.639147] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/collision/Link5.STL\n'}
+[0.641165] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual\n'}
+[0.641327] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/Link2.STL\n'}
+[0.643197] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/Link1.STL\n'}
+[0.645175] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/Link3.STL\n'}
+[0.647497] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/Link4.STL\n'}
+[0.648590] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/Link6.STL\n'}
+[0.655286] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/base_link.STL\n'}
+[0.670933] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/meshes/visual/Link5.STL\n'}
+[0.672911] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/urdf\n'}
+[0.673434] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/urdf/jaguar_robot_full.xacro\n'}
+[0.673625] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/rviz\n'}
+[0.673834] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/rviz/default.rviz\n'}
+[0.673970] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.xml\n'}
+[0.674131] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/resource/jaguar_robot_full_description\n'}
+[0.674259] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/ament_index/resource_index/package_run_dependencies/jaguar_robot_full_description\n'}
+[0.674356] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/ament_index/resource_index/parent_prefix_path/jaguar_robot_full_description\n'}
+[0.674451] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/environment/ament_prefix_path.sh\n'}
+[0.674665] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/environment/ament_prefix_path.dsv\n'}
+[0.674834] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/environment/path.sh\n'}
+[0.674944] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/environment/path.dsv\n'}
+[0.675061] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/local_setup.bash\n'}
+[0.675273] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/local_setup.sh\n'}
+[0.675386] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/local_setup.zsh\n'}
+[0.675488] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/local_setup.dsv\n'}
+[0.675577] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.dsv\n'}
+[0.675663] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/ament_index/resource_index/packages/jaguar_robot_full_description\n'}
+[0.675760] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/cmake/jaguar_robot_full_descriptionConfig.cmake\n'}
+[0.675858] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/cmake/jaguar_robot_full_descriptionConfig-version.cmake\n'}
+[0.675951] (jaguar_robot_full_description) StdoutLine: {'line': b'-- Up-to-date: /home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.xml\n'}
+[0.676737] (jaguar_robot_full_description) CommandEnded: {'returncode': 0}
+[0.689826] (jaguar_robot_full_description) JobEnded: {'identifier': 'jaguar_robot_full_description', 'rc': 0}
+[0.690337] (jaguar_full) JobStarted: {'identifier': 'jaguar_full'}
+[0.695440] (jaguar_full) JobProgress: {'identifier': 'jaguar_full', 'progress': 'cmake'}
+[0.695961] (jaguar_full) Command: {'cmd': ['/usr/bin/cmake', '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full', '-DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_full'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/jaguar_full', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/jaguar_full'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[0.700835] (-) TimerEvent: {}
+[0.743447] (gui) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.749010] (jaguar_full) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.796440] (jaguar_full) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.801053] (-) TimerEvent: {}
+[0.802665] (jaguar_full) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.816355] (gui) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.859427] (esp32_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../../build/esp32_bridge', 'build', '--build-base', '/home/gerardo/TMR2026_Rescue/build/esp32_bridge/build', 'install', '--record', '/home/gerardo/TMR2026_Rescue/build/esp32_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'gerardo', 'LC_TIME': 'es_MX.UTF-8', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/gerardo', 'OLDPWD': '/home/gerardo/TMR2026_Rescue/shared', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'SYSTEMD_EXEC_PID': '1943', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'gerardo', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'gerardo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.ILHGO3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.145', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '20', 'AMENT_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/gerardo/TMR2026_Rescue/build/esp32_bridge', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/gerardo/TMR2026_Rescue/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui'}, 'shell': False}
+[0.863345] (jaguar_teleop) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../../build/jaguar_teleop', 'build', '--build-base', '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build', 'install', '--record', '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'gerardo', 'LC_TIME': 'es_MX.UTF-8', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/gerardo', 'OLDPWD': '/home/gerardo/TMR2026_Rescue/shared', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'SYSTEMD_EXEC_PID': '1943', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'gerardo', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'gerardo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.ILHGO3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.145', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '20', 'AMENT_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui'}, 'shell': False}
+[0.864737] (ginkgo_odrive_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../../build/ginkgo_odrive_bridge', 'build', '--build-base', '/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build', 'install', '--record', '/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'gerardo', 'LC_TIME': 'es_MX.UTF-8', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/gerardo', 'OLDPWD': '/home/gerardo/TMR2026_Rescue/shared', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'SYSTEMD_EXEC_PID': '1943', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'gerardo', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'gerardo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.ILHGO3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.145', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '20', 'AMENT_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui'}, 'shell': False}
+[0.865639] (jaguar_full) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.865782] (gui) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.869738] (gui) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.870412] (jaguar_full) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.870644] (jaguar_full) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.871014] (jaguar_full) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.873463] (jaguar_full) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.878299] (gui) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.892355] (gui) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.901157] (-) TimerEvent: {}
+[0.908403] (gui) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.946847] (jaguar_full) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.954309] (jaguar_full) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.954493] (gui) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.954591] (jaguar_full) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.954806] (jaguar_full) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.956538] (jaguar_full) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.956742] (gui) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.001253] (-) TimerEvent: {}
+[1.042398] (esp32_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[1.042742] (esp32_bridge) StdoutLine: {'line': b'creating ../../../../build/esp32_bridge/esp32_bridge.egg-info\n'}
+[1.042862] (esp32_bridge) StdoutLine: {'line': b'writing ../../../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO\n'}
+[1.043119] (esp32_bridge) StdoutLine: {'line': b'writing dependency_links to ../../../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt\n'}
+[1.043289] (esp32_bridge) StdoutLine: {'line': b'writing entry points to ../../../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt\n'}
+[1.043385] (esp32_bridge) StdoutLine: {'line': b'writing requirements to ../../../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt\n'}
+[1.043470] (esp32_bridge) StdoutLine: {'line': b'writing top-level names to ../../../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt\n'}
+[1.043577] (esp32_bridge) StdoutLine: {'line': b"writing manifest file '../../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.044658] (esp32_bridge) StdoutLine: {'line': b"reading manifest file '../../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.045165] (esp32_bridge) StdoutLine: {'line': b"writing manifest file '../../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[1.045332] (esp32_bridge) StdoutLine: {'line': b'running build\n'}
+[1.045434] (esp32_bridge) StdoutLine: {'line': b'running build_py\n'}
+[1.045519] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build\n'}
+[1.045655] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib\n'}
+[1.045738] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.045899] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.045983] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.046081] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/gst_sender.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.046173] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.046348] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.046650] (gui) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[1.046914] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[1.047140] (esp32_bridge) StdoutLine: {'line': b'running install\n'}
+[1.047351] (esp32_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[1.047889] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048104] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048255] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048418] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/gst_sender.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048541] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048677] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048812] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[1.048919] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/audio_node.py to audio_node.cpython-310.pyc\n'}
+[1.049207] (jaguar_teleop) StdoutLine: {'line': b'running egg_info\n'}
+[1.049438] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[1.049756] (jaguar_teleop) StdoutLine: {'line': b'creating ../../../../build/jaguar_teleop/jaguar_teleop.egg-info\n'}
+[1.049895] (jaguar_teleop) StdoutLine: {'line': b'writing ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/PKG-INFO\n'}
+[1.050075] (jaguar_teleop) StdoutLine: {'line': b'writing dependency_links to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/dependency_links.txt\n'}
+[1.050261] (jaguar_teleop) StdoutLine: {'line': b'writing entry points to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/entry_points.txt\n'}
+[1.050564] (jaguar_teleop) StdoutLine: {'line': b'writing requirements to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/requires.txt\n'}
+[1.050726] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info\n'}
+[1.050856] (jaguar_teleop) StdoutLine: {'line': b'writing top-level names to ../../../../build/jaguar_teleop/jaguar_teleop.egg-info/top_level.txt\n'}
+[1.050941] (jaguar_teleop) StdoutLine: {'line': b"writing manifest file '../../../../build/jaguar_teleop/jaguar_teleop.egg-info/SOURCES.txt'\n"}
+[1.051035] (ginkgo_odrive_bridge) StdoutLine: {'line': b'writing ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/PKG-INFO\n'}
+[1.051125] (ginkgo_odrive_bridge) StdoutLine: {'line': b'writing dependency_links to ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/dependency_links.txt\n'}
+[1.051207] (ginkgo_odrive_bridge) StdoutLine: {'line': b'writing entry points to ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/entry_points.txt\n'}
+[1.051289] (ginkgo_odrive_bridge) StdoutLine: {'line': b'writing requirements to ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/requires.txt\n'}
+[1.051367] (ginkgo_odrive_bridge) StdoutLine: {'line': b'writing top-level names to ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/top_level.txt\n'}
+[1.051448] (ginkgo_odrive_bridge) StdoutLine: {'line': b"writing manifest file '../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/SOURCES.txt'\n"}
+[1.051559] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/servo_bridge.py to servo_bridge.cpython-310.pyc\n'}
+[1.051786] (ginkgo_odrive_bridge) StdoutLine: {'line': b"reading manifest file '../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/SOURCES.txt'\n"}
+[1.051871] (jaguar_teleop) StdoutLine: {'line': b"reading manifest file '../../../../build/jaguar_teleop/jaguar_teleop.egg-info/SOURCES.txt'\n"}
+[1.052226] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/gst_sender.py to gst_sender.cpython-310.pyc\n'}
+[1.052350] (jaguar_teleop) StdoutLine: {'line': b"writing manifest file '../../../../build/jaguar_teleop/jaguar_teleop.egg-info/SOURCES.txt'\n"}
+[1.052463] (jaguar_teleop) StdoutLine: {'line': b'running build\n'}
+[1.052555] (jaguar_teleop) StdoutLine: {'line': b'running build_py\n'}
+[1.052646] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build\n'}
+[1.052775] (ginkgo_odrive_bridge) StdoutLine: {'line': b"writing manifest file '../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info/SOURCES.txt'\n"}
+[1.052915] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running build\n'}
+[1.053012] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running build_py\n'}
+[1.053128] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build\n'}
+[1.053224] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build/lib\n'}
+[1.053311] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge\n'}
+[1.053405] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying ginkgo_odrive_bridge/joint_state_bridge.py -> /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge\n'}
+[1.053491] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib\n'}
+[1.053637] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.053723] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/joystick_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.053807] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/rc_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.053904] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying ginkgo_odrive_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge\n'}
+[1.053997] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/keyboard_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.054143] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/xbox_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.054225] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running install\n'}
+[1.054314] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[1.054463] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/serial_bridge.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.054579] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/main_bridge.py to main_bridge.cpython-310.pyc\n'}
+[1.054700] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge\n'}
+[1.054784] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/teleop_tk.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.054870] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge/joint_state_bridge.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge\n'}
+[1.054961] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build/lib/ginkgo_odrive_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge\n'}
+[1.055153] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/joint_relay.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.055232] (ginkgo_odrive_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge/joint_state_bridge.py to joint_state_bridge.cpython-310.pyc\n'}
+[1.055277] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/damped_servo.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.055318] (jaguar_teleop) StdoutLine: {'line': b'copying jaguar_teleop/__init__.py -> /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop\n'}
+[1.055398] (jaguar_teleop) StdoutLine: {'line': b'running install\n'}
+[1.055567] (jaguar_teleop) StdoutLine: {'line': b'running install_lib\n'}
+[1.056218] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056343] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/joystick_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056479] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/rc_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056595] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/keyboard_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056688] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/xbox_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056799] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/serial_bridge.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056895] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/teleop_tk.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.056980] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/joint_relay.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.057113] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/damped_servo.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.057195] (jaguar_teleop) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build/lib/jaguar_teleop/__init__.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop\n'}
+[1.057276] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/rc_control.py to rc_control.cpython-310.pyc\n'}
+[1.057362] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/joystick_servo.py to joystick_servo.cpython-310.pyc\n'}
+[1.057904] (ginkgo_odrive_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge/__init__.py to __init__.cpython-310.pyc\n'}
+[1.058023] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running install_data\n'}
+[1.058201] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/__init__.py to __init__.cpython-310.pyc\n'}
+[1.058366] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ament_index\n'}
+[1.058454] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ament_index/resource_index\n'}
+[1.058557] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ament_index/resource_index/packages\n'}
+[1.058644] (esp32_bridge) StdoutLine: {'line': b'running install_data\n'}
+[1.058730] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying resource/ginkgo_odrive_bridge -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ament_index/resource_index/packages\n'}
+[1.058850] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index\n'}
+[1.058937] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index/resource_index\n'}
+[1.059087] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index/resource_index/packages\n'}
+[1.059244] (esp32_bridge) StdoutLine: {'line': b'copying resource/esp32_bridge -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index/resource_index/packages\n'}
+[1.059305] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying package.xml -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge\n'}
+[1.059351] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying README.md -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge\n'}
+[1.059391] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/config\n'}
+[1.059431] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying config/joint_state_bridge.yaml -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/config\n'}
+[1.059475] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/rc_servo.py to rc_servo.cpython-310.pyc\n'}
+[1.059523] (esp32_bridge) StdoutLine: {'line': b'copying package.xml -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge\n'}
+[1.059562] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/launch\n'}
+[1.059600] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying launch/joint_state_bridge.launch.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/launch\n'}
+[1.059638] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits\n'}
+[1.059676] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/ErrorType.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits\n'}
+[1.059713] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/launch\n'}
+[1.059752] (esp32_bridge) StdoutLine: {'line': b'copying launch/esp32_bridge.launch.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/launch\n'}
+[1.059796] (esp32_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.059838] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/ControlCAN.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits\n'}
+[1.059928] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can\n'}
+[1.060012] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/keyboard_servo.py to keyboard_servo.cpython-310.pyc\n'}
+[1.060058] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/ginkgo_can/bus.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can\n'}
+[1.060101] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/ginkgo_can/odrive.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can\n'}
+[1.060141] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/ginkgo_can/__init__.py -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/ginkgo_can\n'}
+[1.060248] (esp32_bridge) StdoutLine: {'line': b'Copying ../../../../build/esp32_bridge/esp32_bridge.egg-info to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info\n'}
+[1.060292] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib\n'}
+[1.060329] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos\n'}
+[1.060363] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/macos/libusb-1.0.0.dylib -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos\n'}
+[1.060525] (esp32_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[1.060961] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/macos/libusb-0.1.4.dylib -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos\n'}
+[1.061049] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/xbox_servo.py to xbox_servo.cpython-310.pyc\n'}
+[1.061262] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/macos/libGinkgo_Driver.dylib -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/macos\n'}
+[1.061888] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows\n'}
+[1.061990] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/32bit\n'}
+[1.062028] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/32bit/Ginkgo_Driver.dll -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/32bit\n'}
+[1.062150] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/serial_bridge.py to serial_bridge.cpython-310.pyc\n'}
+[1.063022] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/teleop_tk.py to teleop_tk.cpython-310.pyc\n'}
+[1.063172] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/32bit/Ginkgo_Driver.lib -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/32bit\n'}
+[1.063323] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.063460] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/64bit/Ginkgo_Driver.dll -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.064137] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/64bit/64bit.zip -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.064374] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/64bit/libusb0.dll.x86.bak -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.064805] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/64bit/libusb0.zip -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.065024] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/64bit/libusb0.dll -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.065353] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/64bit/Ginkgo_Driver.lib -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/64bit\n'}
+[1.065782] (ginkgo_odrive_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.065837] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlI2C.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.065915] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/joint_relay.py to joint_relay.cpython-310.pyc\n'}
+[1.065969] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlCNT.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066114] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlADC.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066235] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlGPIO.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066367] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlBoot.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066430] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/damped_servo.py to damped_servo.cpython-310.pyc\n'}
+[1.066498] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlSDI.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066614] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlTest.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066677] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlCAN.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066810] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlUART.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066874] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlSMBus.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.066942] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlSPI.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.067018] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlPWM.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.067132] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/Control1Wire.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.067248] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlDigRF.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.067360] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlDAC.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.067473] (ginkgo_odrive_bridge) StdoutLine: {'line': b'copying Python_USB_CAN_Test_64bits/lib/windows/header/ControlPMBus.h -> /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/Python_USB_CAN_Test_64bits/lib/windows/header\n'}
+[1.067585] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.068899] (jaguar_teleop) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop/__init__.py to __init__.cpython-310.pyc\n'}
+[1.068982] (jaguar_teleop) StdoutLine: {'line': b'running install_data\n'}
+[1.069050] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index\n'}
+[1.069117] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index/resource_index\n'}
+[1.069179] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index/resource_index/packages\n'}
+[1.069234] (ginkgo_odrive_bridge) StdoutLine: {'line': b'Copying ../../../../build/ginkgo_odrive_bridge/ginkgo_odrive_bridge.egg-info to /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages/ginkgo_odrive_bridge-0.1.0-py3.10.egg-info\n'}
+[1.069301] (jaguar_teleop) StdoutLine: {'line': b'copying resource/jaguar_teleop -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/ament_index/resource_index/packages\n'}
+[1.069371] (jaguar_teleop) StdoutLine: {'line': b'copying package.xml -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop\n'}
+[1.069410] (jaguar_teleop) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch\n'}
+[1.069449] (jaguar_teleop) StdoutLine: {'line': b'copying launch/joystick.launch.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch\n'}
+[1.069581] (jaguar_teleop) StdoutLine: {'line': b'copying launch/rc_arm.launch.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch\n'}
+[1.069756] (jaguar_teleop) StdoutLine: {'line': b'copying launch/xbox.launch.py -> /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/launch\n'}
+[1.069822] (ginkgo_odrive_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[1.069887] (jaguar_teleop) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.071499] (jaguar_teleop) StdoutLine: {'line': b'Copying ../../../../build/jaguar_teleop/jaguar_teleop.egg-info to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages/jaguar_teleop-0.0.0-py3.10.egg-info\n'}
+[1.071910] (jaguar_teleop) StdoutLine: {'line': b'running install_scripts\n'}
+[1.076223] (gui) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[1.077638] (esp32_bridge) StdoutLine: {'line': b'Installing audio_node script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.077793] (esp32_bridge) StdoutLine: {'line': b'Installing gst_sender script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.077893] (esp32_bridge) StdoutLine: {'line': b'Installing main_bridge script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.078028] (esp32_bridge) StdoutLine: {'line': b'Installing rc_control script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.078145] (esp32_bridge) StdoutLine: {'line': b'Installing servo_bridge script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge\n'}
+[1.078229] (esp32_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/gerardo/TMR2026_Rescue/build/esp32_bridge/install.log'\n"}
+[1.087097] (ginkgo_odrive_bridge) StdoutLine: {'line': b'Installing joint_state_bridge script to /home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/ginkgo_odrive_bridge\n'}
+[1.087417] (jaguar_full) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[1.087530] (ginkgo_odrive_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/install.log'\n"}
+[1.088581] (jaguar_teleop) StdoutLine: {'line': b'Installing damped_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.088932] (jaguar_teleop) StdoutLine: {'line': b'Installing joint_relay script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089044] (jaguar_teleop) StdoutLine: {'line': b'Installing joystick_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089141] (jaguar_teleop) StdoutLine: {'line': b'Installing keyboard_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089399] (jaguar_teleop) StdoutLine: {'line': b'Installing rc_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089506] (jaguar_teleop) StdoutLine: {'line': b'Installing serial_bridge script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089596] (jaguar_teleop) StdoutLine: {'line': b'Installing teleop_tk script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089682] (jaguar_teleop) StdoutLine: {'line': b'Installing xbox_servo script to /home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/jaguar_teleop\n'}
+[1.089767] (jaguar_teleop) StdoutLine: {'line': b"writing list of installed files to '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log'\n"}
+[1.097269] (esp32_bridge) CommandEnded: {'returncode': 0}
+[1.101355] (-) TimerEvent: {}
+[1.102124] (esp32_bridge) JobEnded: {'identifier': 'esp32_bridge', 'rc': 0}
+[1.107474] (ginkgo_odrive_bridge) CommandEnded: {'returncode': 0}
+[1.109787] (gui) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.112212] (ginkgo_odrive_bridge) JobEnded: {'identifier': 'ginkgo_odrive_bridge', 'rc': 0}
+[1.113311] (jaguar_teleop) CommandEnded: {'returncode': 0}
+[1.117829] (jaguar_teleop) JobEnded: {'identifier': 'jaguar_teleop', 'rc': 0}
+[1.118360] (gui) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.181574] (gui) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.181914] (gui) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.201538] (-) TimerEvent: {}
+[1.206181] (jaguar_full) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.207535] (jaguar_full) StdoutLine: {'line': b'-- Generating done\n'}
+[1.208625] (jaguar_full) StdoutLine: {'line': b'-- Build files have been written to: /home/gerardo/TMR2026_Rescue/build/jaguar_full\n'}
+[1.211630] (jaguar_full) CommandEnded: {'returncode': 0}
+[1.212159] (jaguar_full) JobProgress: {'identifier': 'jaguar_full', 'progress': 'build'}
+[1.212180] (jaguar_full) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/gerardo/TMR2026_Rescue/build/jaguar_full', '--', '-j16', '-l16'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/jaguar_full', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/jaguar_full'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[1.242237] (jaguar_full) CommandEnded: {'returncode': 0}
+[1.242900] (jaguar_full) JobProgress: {'identifier': 'jaguar_full', 'progress': 'install'}
+[1.243006] (jaguar_full) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/gerardo/TMR2026_Rescue/build/jaguar_full'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/jaguar_full', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/jaguar_full'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[1.244065] (gui) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.244681] (gui) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.248123] (jaguar_full) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[1.248275] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/ament_index/resource_index/package_run_dependencies/jaguar_full\n'}
+[1.248340] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/ament_index/resource_index/parent_prefix_path/jaguar_full\n'}
+[1.248418] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/ament_prefix_path.sh\n'}
+[1.248465] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/ament_prefix_path.dsv\n'}
+[1.248518] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/path.sh\n'}
+[1.248563] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/environment/path.dsv\n'}
+[1.248606] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.bash\n'}
+[1.248653] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.sh\n'}
+[1.248702] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.zsh\n'}
+[1.248750] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/local_setup.dsv\n'}
+[1.248795] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.dsv\n'}
+[1.248858] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/ament_index/resource_index/packages/jaguar_full\n'}
+[1.248915] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/cmake/jaguar_fullConfig.cmake\n'}
+[1.248951] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/cmake/jaguar_fullConfig-version.cmake\n'}
+[1.249000] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.xml\n'}
+[1.249064] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch\n'}
+[1.249387] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/damped_servo.launch.py\n'}
+[1.249492] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/moveit_rviz.launch.py\n'}
+[1.249603] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/warehouse_db.launch.py\n'}
+[1.249711] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/spawn_controllers.launch.py\n'}
+[1.249821] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/servo.launch.py\n'}
+[1.249927] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/move_group.launch.py\n'}
+[1.250036] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/setup_assistant.launch.py\n'}
+[1.250159] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/static_virtual_joint_tfs.launch.py\n'}
+[1.250271] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/rsp.launch.py\n'}
+[1.250384] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/launch/demo.launch.py\n'}
+[1.250520] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config\n'}
+[1.250667] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/jaguar_robot_full.srdf\n'}
+[1.250781] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/jaguar_robot_full.urdf.xacro\n'}
+[1.250912] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/pilz_cartesian_limits.yaml\n'}
+[1.251021] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/moveit_controllers.yaml\n'}
+[1.251152] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/damped_servo_params.yaml\n'}
+[1.251300] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/jaguar_robot_full.ros2_control.xacro\n'}
+[1.251365] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/initial_positions.yaml\n'}
+[1.251422] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/joint_limits.yaml\n'}
+[1.251478] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/ros2_controllers.yaml\n'}
+[1.251585] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/kinematics.yaml\n'}
+[1.251694] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/servo_params.yaml\n'}
+[1.251801] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/config/moveit.rviz\n'}
+[1.251945] (jaguar_full) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/.setup_assistant\n'}
+[1.253191] (jaguar_full) CommandEnded: {'returncode': 0}
+[1.259982] (jaguar_full) JobEnded: {'identifier': 'jaguar_full', 'rc': 0}
+[1.291210] (gui) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.1 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[1.301702] (-) TimerEvent: {}
+[1.317626] (gui) StdoutLine: {'line': b'-- Found urdf: 2.6.1 (/opt/ros/humble/share/urdf/cmake)\n'}
+[1.371901] (gui) StdoutLine: {'line': b'-- Performing Test HAVE_STDATOMIC\n'}
+[1.401892] (-) TimerEvent: {}
+[1.457015] (gui) StdoutLine: {'line': b'-- Performing Test HAVE_STDATOMIC - Success\n'}
+[1.457628] (gui) StdoutLine: {'line': b'-- Found WrapAtomic: TRUE  \n'}
+[1.472546] (gui) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   \n'}
+[1.473236] (gui) StdoutLine: {'line': b'-- Found WrapOpenGL: TRUE  \n'}
+[1.502023] (-) TimerEvent: {}
+[1.521085] (gui) StdoutLine: {'line': b'-- Found XKB: /usr/lib/x86_64-linux-gnu/libxkbcommon.so (found suitable version "1.4.0", minimum required is "0.5.0") \n'}
+[1.526451] (gui) StdoutLine: {'line': b'-- Found WrapVulkanHeaders: /usr/include  \n'}
+[1.566878] (gui) StdoutLine: {'line': b'-- Found OpenCV: /usr (found version "4.5.4") \n'}
+[1.576106] (gui) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[1.602248] (-) TimerEvent: {}
+[1.625426] (gui) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[1.625570] (gui) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui/include>\n'}
+[1.625641] (gui) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.626115] (gui) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.626735] (gui) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.627119] (gui) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[1.629043] (gui) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.629219] (gui) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[1.629506] (gui) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.630323] (gui) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.659295] (gui) StdoutLine: {'line': b'-- Generating done\n'}
+[1.662413] (gui) StdoutLine: {'line': b'-- Build files have been written to: /home/gerardo/TMR2026_Rescue/build/gui\n'}
+[1.670477] (gui) CommandEnded: {'returncode': 0}
+[1.670832] (gui) JobProgress: {'identifier': 'gui', 'progress': 'build'}
+[1.671767] (gui) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/gerardo/TMR2026_Rescue/build/gui', '--', '-j16', '-l16'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/gui'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[1.702437] (-) TimerEvent: {}
+[1.708156] (gui) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target gui\x1b[0m\n'}
+[1.802554] (-) TimerEvent: {}
+[1.902879] (-) TimerEvent: {}
+[2.003377] (-) TimerEvent: {}
+[2.104116] (-) TimerEvent: {}
+[2.204750] (-) TimerEvent: {}
+[2.305237] (-) TimerEvent: {}
+[2.389599] (gui) StdoutLine: {'line': b'[  5%] Built target gui_autogen\n'}
+[2.406052] (-) TimerEvent: {}
+[2.408481] (gui) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o\x1b[0m\n'}
+[2.408683] (gui) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/main_window.cpp.o\x1b[0m\n'}
+[2.408760] (gui) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/gui.cpp.o\x1b[0m\n'}
+[2.408826] (gui) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/video_panel.cpp.o\x1b[0m\n'}
+[2.409331] (gui) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/video_widget.cpp.o\x1b[0m\n'}
+[2.409489] (gui) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/dashboard_panel.cpp.o\x1b[0m\n'}
+[2.409630] (gui) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/camera_hub.cpp.o\x1b[0m\n'}
+[2.409714] (gui) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/odometry_panel.cpp.o\x1b[0m\n'}
+[2.409815] (gui) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/source_manager.cpp.o\x1b[0m\n'}
+[2.409925] (gui) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/speech_processor.cpp.o\x1b[0m\n'}
+[2.410359] (gui) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/filters.cpp.o\x1b[0m\n'}
+[2.410632] (gui) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/settings_dialog.cpp.o\x1b[0m\n'}
+[2.411497] (gui) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/urdf_viewer.cpp.o\x1b[0m\n'}
+[2.411868] (gui) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/app_settings.cpp.o\x1b[0m\n'}
+[2.412034] (gui) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o\x1b[0m\n'}
+[2.412341] (gui) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/keybind_dialog.cpp.o\x1b[0m\n'}
+[2.508057] (-) TimerEvent: {}
+[2.608411] (-) TimerEvent: {}
+[2.708764] (-) TimerEvent: {}
+[2.809213] (-) TimerEvent: {}
+[2.909658] (-) TimerEvent: {}
+[3.010134] (-) TimerEvent: {}
+[3.110628] (-) TimerEvent: {}
+[3.212095] (-) TimerEvent: {}
+[3.312645] (-) TimerEvent: {}
+[3.413075] (-) TimerEvent: {}
+[3.513561] (-) TimerEvent: {}
+[3.615087] (-) TimerEvent: {}
+[3.716070] (-) TimerEvent: {}
+[3.836489] (-) TimerEvent: {}
+[3.936857] (-) TimerEvent: {}
+[4.037248] (-) TimerEvent: {}
+[4.137643] (-) TimerEvent: {}
+[4.238022] (-) TimerEvent: {}
+[4.341071] (-) TimerEvent: {}
+[4.441452] (-) TimerEvent: {}
+[4.541863] (-) TimerEvent: {}
+[4.642247] (-) TimerEvent: {}
+[4.742619] (-) TimerEvent: {}
+[4.844064] (-) TimerEvent: {}
+[4.944443] (-) TimerEvent: {}
+[5.044826] (-) TimerEvent: {}
+[5.145204] (-) TimerEvent: {}
+[5.245586] (-) TimerEvent: {}
+[5.345994] (-) TimerEvent: {}
+[5.446386] (-) TimerEvent: {}
+[5.548071] (-) TimerEvent: {}
+[5.649442] (-) TimerEvent: {}
+[5.751069] (-) TimerEvent: {}
+[5.851436] (-) TimerEvent: {}
+[5.951838] (-) TimerEvent: {}
+[6.052223] (-) TimerEvent: {}
+[6.152581] (-) TimerEvent: {}
+[6.252963] (-) TimerEvent: {}
+[6.353347] (-) TimerEvent: {}
+[6.453723] (-) TimerEvent: {}
+[6.557062] (-) TimerEvent: {}
+[6.657404] (-) TimerEvent: {}
+[6.758083] (-) TimerEvent: {}
+[6.865073] (-) TimerEvent: {}
+[6.965464] (-) TimerEvent: {}
+[7.065877] (-) TimerEvent: {}
+[7.166313] (-) TimerEvent: {}
+[7.266744] (-) TimerEvent: {}
+[7.367194] (-) TimerEvent: {}
+[7.467862] (-) TimerEvent: {}
+[7.568320] (-) TimerEvent: {}
+[7.668749] (-) TimerEvent: {}
+[7.769136] (-) TimerEvent: {}
+[7.872584] (-) TimerEvent: {}
+[7.973048] (-) TimerEvent: {}
+[8.073404] (-) TimerEvent: {}
+[8.175080] (-) TimerEvent: {}
+[8.275432] (-) TimerEvent: {}
+[8.375799] (-) TimerEvent: {}
+[8.476172] (-) TimerEvent: {}
+[8.576515] (-) TimerEvent: {}
+[8.676876] (-) TimerEvent: {}
+[8.777253] (-) TimerEvent: {}
+[8.877614] (-) TimerEvent: {}
+[8.978000] (-) TimerEvent: {}
+[9.078351] (-) TimerEvent: {}
+[9.178703] (-) TimerEvent: {}
+[9.279064] (-) TimerEvent: {}
+[9.379428] (-) TimerEvent: {}
+[9.479808] (-) TimerEvent: {}
+[9.580166] (-) TimerEvent: {}
+[9.680537] (-) TimerEvent: {}
+[9.780890] (-) TimerEvent: {}
+[9.881279] (-) TimerEvent: {}
+[9.981651] (-) TimerEvent: {}
+[10.082022] (-) TimerEvent: {}
+[10.182385] (-) TimerEvent: {}
+[10.282713] (-) TimerEvent: {}
+[10.383056] (-) TimerEvent: {}
+[10.483388] (-) TimerEvent: {}
+[10.583724] (-) TimerEvent: {}
+[10.684056] (-) TimerEvent: {}
+[10.784386] (-) TimerEvent: {}
+[10.884718] (-) TimerEvent: {}
+[10.985041] (-) TimerEvent: {}
+[11.085345] (-) TimerEvent: {}
+[11.185656] (-) TimerEvent: {}
+[11.286009] (-) TimerEvent: {}
+[11.386355] (-) TimerEvent: {}
+[11.486711] (-) TimerEvent: {}
+[11.587066] (-) TimerEvent: {}
+[11.687404] (-) TimerEvent: {}
+[11.787762] (-) TimerEvent: {}
+[11.888142] (-) TimerEvent: {}
+[11.988479] (-) TimerEvent: {}
+[12.088814] (-) TimerEvent: {}
+[12.189296] (-) TimerEvent: {}
+[12.289709] (-) TimerEvent: {}
+[12.295102] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui/src/urdf_viewer.cpp:57:20:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KGRID_FRAG\x1b[m\x1b[K\xe2\x80\x99 defined but not used [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[12.295381] (gui) StderrLine: {'line': b'   57 | static const char* \x1b[01;35m\x1b[KGRID_FRAG\x1b[m\x1b[K = R"(\n'}
+[12.295503] (gui) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[12.295608] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui/src/urdf_viewer.cpp:45:20:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KGRID_VERT\x1b[m\x1b[K\xe2\x80\x99 defined but not used [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[12.295716] (gui) StderrLine: {'line': b'   45 | static const char* \x1b[01;35m\x1b[KGRID_VERT\x1b[m\x1b[K = R"(\n'}
+[12.295815] (gui) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[12.389870] (-) TimerEvent: {}
+[12.490270] (-) TimerEvent: {}
+[12.590644] (-) TimerEvent: {}
+[12.691040] (-) TimerEvent: {}
+[12.791380] (-) TimerEvent: {}
+[12.891723] (-) TimerEvent: {}
+[12.992063] (-) TimerEvent: {}
+[13.092456] (-) TimerEvent: {}
+[13.192901] (-) TimerEvent: {}
+[13.293345] (-) TimerEvent: {}
+[13.393722] (-) TimerEvent: {}
+[13.494164] (-) TimerEvent: {}
+[13.594497] (-) TimerEvent: {}
+[13.694851] (-) TimerEvent: {}
+[13.795165] (-) TimerEvent: {}
+[13.895508] (-) TimerEvent: {}
+[13.995883] (-) TimerEvent: {}
+[14.096228] (-) TimerEvent: {}
+[14.196560] (-) TimerEvent: {}
+[14.296862] (-) TimerEvent: {}
+[14.397208] (-) TimerEvent: {}
+[14.497554] (-) TimerEvent: {}
+[14.597911] (-) TimerEvent: {}
+[14.698262] (-) TimerEvent: {}
+[14.798653] (-) TimerEvent: {}
+[14.899025] (-) TimerEvent: {}
+[14.999369] (-) TimerEvent: {}
+[15.099661] (-) TimerEvent: {}
+[15.200006] (-) TimerEvent: {}
+[15.300344] (-) TimerEvent: {}
+[15.400645] (-) TimerEvent: {}
+[15.501033] (-) TimerEvent: {}
+[15.601378] (-) TimerEvent: {}
+[15.701738] (-) TimerEvent: {}
+[15.802135] (-) TimerEvent: {}
+[15.902487] (-) TimerEvent: {}
+[16.002839] (-) TimerEvent: {}
+[16.103139] (-) TimerEvent: {}
+[16.203525] (-) TimerEvent: {}
+[16.303936] (-) TimerEvent: {}
+[16.404329] (-) TimerEvent: {}
+[16.504657] (-) TimerEvent: {}
+[16.605070] (-) TimerEvent: {}
+[16.705427] (-) TimerEvent: {}
+[16.805766] (-) TimerEvent: {}
+[16.906201] (-) TimerEvent: {}
+[17.006598] (-) TimerEvent: {}
+[17.106909] (-) TimerEvent: {}
+[17.207311] (-) TimerEvent: {}
+[17.307589] (-) TimerEvent: {}
+[17.408005] (-) TimerEvent: {}
+[17.508402] (-) TimerEvent: {}
+[17.608670] (-) TimerEvent: {}
+[17.709059] (-) TimerEvent: {}
+[17.809366] (-) TimerEvent: {}
+[17.909632] (-) TimerEvent: {}
+[18.009981] (-) TimerEvent: {}
+[18.110372] (-) TimerEvent: {}
+[18.210763] (-) TimerEvent: {}
+[18.311135] (-) TimerEvent: {}
+[18.411483] (-) TimerEvent: {}
+[18.511750] (-) TimerEvent: {}
+[18.611974] (-) TimerEvent: {}
+[18.712188] (-) TimerEvent: {}
+[18.812401] (-) TimerEvent: {}
+[18.912662] (-) TimerEvent: {}
+[19.012828] (-) TimerEvent: {}
+[19.113081] (-) TimerEvent: {}
+[19.213339] (-) TimerEvent: {}
+[19.313610] (-) TimerEvent: {}
+[19.413933] (-) TimerEvent: {}
+[19.514168] (-) TimerEvent: {}
+[19.614429] (-) TimerEvent: {}
+[19.714687] (-) TimerEvent: {}
+[19.815027] (-) TimerEvent: {}
+[19.915260] (-) TimerEvent: {}
+[20.015514] (-) TimerEvent: {}
+[20.115771] (-) TimerEvent: {}
+[20.216098] (-) TimerEvent: {}
+[20.316334] (-) TimerEvent: {}
+[20.416626] (-) TimerEvent: {}
+[20.516900] (-) TimerEvent: {}
+[20.617162] (-) TimerEvent: {}
+[20.717407] (-) TimerEvent: {}
+[20.817734] (-) TimerEvent: {}
+[20.918051] (-) TimerEvent: {}
+[21.018320] (-) TimerEvent: {}
+[21.118642] (-) TimerEvent: {}
+[21.218946] (-) TimerEvent: {}
+[21.319312] (-) TimerEvent: {}
+[21.419640] (-) TimerEvent: {}
+[21.519940] (-) TimerEvent: {}
+[21.620168] (-) TimerEvent: {}
+[21.720412] (-) TimerEvent: {}
+[21.820716] (-) TimerEvent: {}
+[21.921023] (-) TimerEvent: {}
+[22.021309] (-) TimerEvent: {}
+[22.121616] (-) TimerEvent: {}
+[22.221927] (-) TimerEvent: {}
+[22.322251] (-) TimerEvent: {}
+[22.422558] (-) TimerEvent: {}
+[22.522866] (-) TimerEvent: {}
+[22.623188] (-) TimerEvent: {}
+[22.723521] (-) TimerEvent: {}
+[22.823820] (-) TimerEvent: {}
+[22.924146] (-) TimerEvent: {}
+[23.024471] (-) TimerEvent: {}
+[23.124787] (-) TimerEvent: {}
+[23.225121] (-) TimerEvent: {}
+[23.325469] (-) TimerEvent: {}
+[23.425804] (-) TimerEvent: {}
+[23.526156] (-) TimerEvent: {}
+[23.626536] (-) TimerEvent: {}
+[23.726889] (-) TimerEvent: {}
+[23.827254] (-) TimerEvent: {}
+[23.927542] (-) TimerEvent: {}
+[23.973894] (gui) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable gui\x1b[0m\n'}
+[24.027748] (-) TimerEvent: {}
+[24.128107] (-) TimerEvent: {}
+[24.228463] (-) TimerEvent: {}
+[24.328815] (-) TimerEvent: {}
+[24.429166] (-) TimerEvent: {}
+[24.529523] (-) TimerEvent: {}
+[24.629901] (-) TimerEvent: {}
+[24.730287] (-) TimerEvent: {}
+[24.830633] (-) TimerEvent: {}
+[24.930982] (-) TimerEvent: {}
+[25.031475] (-) TimerEvent: {}
+[25.131874] (-) TimerEvent: {}
+[25.232271] (-) TimerEvent: {}
+[25.332664] (-) TimerEvent: {}
+[25.433046] (-) TimerEvent: {}
+[25.533321] (-) TimerEvent: {}
+[25.633617] (-) TimerEvent: {}
+[25.734019] (-) TimerEvent: {}
+[25.834421] (-) TimerEvent: {}
+[25.934809] (-) TimerEvent: {}
+[26.035240] (-) TimerEvent: {}
+[26.135577] (-) TimerEvent: {}
+[26.235906] (-) TimerEvent: {}
+[26.336161] (-) TimerEvent: {}
+[26.436503] (-) TimerEvent: {}
+[26.536831] (-) TimerEvent: {}
+[26.637164] (-) TimerEvent: {}
+[26.737500] (-) TimerEvent: {}
+[26.837841] (-) TimerEvent: {}
+[26.938172] (-) TimerEvent: {}
+[27.038503] (-) TimerEvent: {}
+[27.138840] (-) TimerEvent: {}
+[27.239174] (-) TimerEvent: {}
+[27.339502] (-) TimerEvent: {}
+[27.439831] (-) TimerEvent: {}
+[27.540107] (-) TimerEvent: {}
+[27.640400] (-) TimerEvent: {}
+[27.740739] (-) TimerEvent: {}
+[27.841069] (-) TimerEvent: {}
+[27.926820] (gui) StdoutLine: {'line': b'[100%] Built target gui\n'}
+[27.934877] (gui) CommandEnded: {'returncode': 0}
+[27.935445] (gui) JobProgress: {'identifier': 'gui', 'progress': 'install'}
+[27.935684] (gui) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/gerardo/TMR2026_Rescue/build/gui'], 'cwd': '/home/gerardo/TMR2026_Rescue/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-12/lib64:/usr/local/cuda/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1943'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1748,unix/gerardo-asus:/tmp/.ICE-unix/1748'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/da26d8ed_f239_4d2c_ba47_a278b31d4809'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ILHGO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.145'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '20'), ('AMENT_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/build/gui'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble')]), 'shell': False}
+[27.941124] (-) TimerEvent: {}
+[27.942733] (gui) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[27.942787] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/lib/gui/gui\n'}
+[27.954778] (gui) StdoutLine: {'line': b'-- Set runtime path of "/home/gerardo/TMR2026_Rescue/install/gui/lib/gui/gui" to ""\n'}
+[27.954870] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/lib/gui/gst_bridge\n'}
+[27.954905] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets\n'}
+[27.954934] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/vision\n'}
+[27.954965] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/vision/best.pt\n'}
+[27.995059] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/vision/best.onnx\n'}
+[28.041250] (-) TimerEvent: {}
+[28.071431] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio\n'}
+[28.071612] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15\n'}
+[28.071652] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph\n'}
+[28.071683] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/phones\n'}
+[28.071714] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/phones/word_boundary.int\n'}
+[28.071825] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/Gr.fst\n'}
+[28.095098] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/HCLr.fst\n'}
+[28.112838] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/disambig_tid.int\n'}
+[28.113376] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/README\n'}
+[28.113413] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector\n'}
+[28.113445] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/global_cmvn.stats\n'}
+[28.113565] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/online_cmvn.conf\n'}
+[28.113641] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/final.dubm\n'}
+[28.114196] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/final.mat\n'}
+[28.114383] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/final.ie\n'}
+[28.122073] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/splice.conf\n'}
+[28.122250] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/conf\n'}
+[28.122287] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/conf/mfcc.conf\n'}
+[28.122430] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/conf/model.conf\n'}
+[28.122462] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/am\n'}
+[28.122592] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/am/final.mdl\n'}
+[28.135531] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph\n'}
+[28.135568] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/phones\n'}
+[28.135596] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/phones/word_boundary.int\n'}
+[28.136038] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/phones.txt\n'}
+[28.136084] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/Gr.fst\n'}
+[28.141299] (-) TimerEvent: {}
+[28.176080] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/HCLr.fst\n'}
+[28.228632] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/words.txt\n'}
+[28.234764] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/graph/disambig_tid.int\n'}
+[28.235039] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/README\n'}
+[28.235447] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector\n'}
+[28.235476] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector/global_cmvn.stats\n'}
+[28.235609] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector/online_cmvn.conf\n'}
+[28.235837] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector/final.dubm\n'}
+[28.236670] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector/final.mat\n'}
+[28.237175] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector/final.ie\n'}
+[28.241358] (-) TimerEvent: {}
+[28.251852] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/ivector/splice.conf\n'}
+[28.252493] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/conf\n'}
+[28.252541] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/conf/mfcc.conf\n'}
+[28.252571] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/conf/model.conf\n'}
+[28.252779] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/am\n'}
+[28.252806] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/am/final.mdl\n'}
+[28.310592] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/assets/audio/am/tree\n'}
+[28.314115] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/launch\n'}
+[28.314196] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/launch/gui.launch.py\n'}
+[28.314243] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/ament_index/resource_index/package_run_dependencies/gui\n'}
+[28.314415] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/ament_index/resource_index/parent_prefix_path/gui\n'}
+[28.314491] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/environment/ament_prefix_path.sh\n'}
+[28.314526] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/environment/ament_prefix_path.dsv\n'}
+[28.314554] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/environment/path.sh\n'}
+[28.314626] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/environment/path.dsv\n'}
+[28.314670] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/local_setup.bash\n'}
+[28.314700] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/local_setup.sh\n'}
+[28.314727] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/local_setup.zsh\n'}
+[28.314756] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/local_setup.dsv\n'}
+[28.314788] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.dsv\n'}
+[28.314818] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/ament_index/resource_index/packages/gui\n'}
+[28.314844] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/cmake/guiConfig.cmake\n'}
+[28.315017] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/cmake/guiConfig-version.cmake\n'}
+[28.315093] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.xml\n'}
+[28.316313] (gui) CommandEnded: {'returncode': 0}
+[28.323323] (gui) JobEnded: {'identifier': 'gui', 'rc': 0}
+[28.323982] (-) EventReactorShutdown: {}

@@ -1,0 +1,1057 @@
+[0.113s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/usr/bin/colcon', 'build'][0m
+[0.113s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7fc0acc387c0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fc0acc38190>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fc0acc38190>>, mixin_verb=('build',))[0m
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.311s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/home/gerardo/TMR2026_Rescue'
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.311s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.323s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extensions ['ignore', 'ignore_ament_install']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'ignore'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'ignore_ament_install'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extensions ['colcon_pkg']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'colcon_pkg'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extensions ['colcon_meta']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'colcon_meta'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extensions ['ros']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'ros'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extensions ['cmake', 'python']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'cmake'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'python'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extensions ['python_setup_py']
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dicerox) by extension 'python_setup_py'
+[0.324s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['ignore', 'ignore_ament_install']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ignore'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ignore_ament_install'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['colcon_pkg']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'colcon_pkg'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['colcon_meta']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'colcon_meta'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['ros']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ros'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['cmake', 'python']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'cmake'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'python'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['python_setup_py']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'python_setup_py'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extensions ['ignore', 'ignore_ament_install']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'ignore'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'ignore_ament_install'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extensions ['colcon_pkg']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'colcon_pkg'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extensions ['colcon_meta']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'colcon_meta'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extensions ['ros']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'ros'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extensions ['cmake', 'python']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'cmake'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'python'
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extensions ['python_setup_py']
+[0.325s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar) by extension 'python_setup_py'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extensions ['ignore', 'ignore_ament_install']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'ignore'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'ignore_ament_install'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extensions ['colcon_pkg']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'colcon_pkg'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extensions ['colcon_meta']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'colcon_meta'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extensions ['ros']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'ros'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extensions ['cmake', 'python']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'cmake'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'python'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extensions ['python_setup_py']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm) by extension 'python_setup_py'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extensions ['ignore', 'ignore_ament_install']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'ignore'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'ignore_ament_install'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extensions ['colcon_pkg']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'colcon_pkg'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extensions ['colcon_meta']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'colcon_meta'
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extensions ['ros']
+[0.326s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'ros'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extensions ['cmake', 'python']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'cmake'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'python'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extensions ['python_setup_py']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware) by extension 'python_setup_py'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extensions ['ignore', 'ignore_ament_install']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'ignore'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'ignore_ament_install'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extensions ['colcon_pkg']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'colcon_pkg'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extensions ['colcon_meta']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'colcon_meta'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extensions ['ros']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'ros'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extensions ['cmake', 'python']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'cmake'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'python'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extensions ['python_setup_py']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/joint5_servo) by extension 'python_setup_py'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extensions ['ignore', 'ignore_ament_install']
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'ignore'
+[0.327s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'ignore_ament_install'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extensions ['colcon_pkg']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'colcon_pkg'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extensions ['colcon_meta']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'colcon_meta'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extensions ['ros']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'ros'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extensions ['cmake', 'python']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'cmake'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'python'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extensions ['python_setup_py']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/firmware/servo_sweep) by extension 'python_setup_py'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extensions ['ignore', 'ignore_ament_install']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'ignore'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'ignore_ament_install'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extensions ['colcon_pkg']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'colcon_pkg'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extensions ['colcon_meta']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'colcon_meta'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extensions ['ros']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'ros'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extensions ['cmake', 'python']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'cmake'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'python'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extensions ['python_setup_py']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src) by extension 'python_setup_py'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extension 'ignore'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extension 'ignore_ament_install'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extensions ['colcon_pkg']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extension 'colcon_pkg'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extensions ['colcon_meta']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extension 'colcon_meta'
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extensions ['ros']
+[0.328s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/ginkgo_odrive_bridge) by extension 'ros'
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'jaguar/arm/src/ginkgo_odrive_bridge' with type 'ros.ament_python' and name 'ginkgo_odrive_bridge'[0m
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extensions ['ignore', 'ignore_ament_install']
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extension 'ignore'
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extension 'ignore_ament_install'
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extensions ['colcon_pkg']
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extension 'colcon_pkg'
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extensions ['colcon_meta']
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extension 'colcon_meta'
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extensions ['ros']
+[0.331s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_full) by extension 'ros'
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'jaguar/arm/src/jaguar_full' with type 'ros.ament_cmake' and name 'jaguar_full'[0m
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extensions ['ignore', 'ignore_ament_install']
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extension 'ignore'
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extension 'ignore_ament_install'
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extensions ['colcon_pkg']
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extension 'colcon_pkg'
+[0.332s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extensions ['colcon_meta']
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extension 'colcon_meta'
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extensions ['ros']
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_robot_full_description) by extension 'ros'
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'jaguar/arm/src/jaguar_robot_full_description' with type 'ros.ament_cmake' and name 'jaguar_robot_full_description'[0m
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extensions ['ignore', 'ignore_ament_install']
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extension 'ignore'
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extension 'ignore_ament_install'
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extensions ['colcon_pkg']
+[0.333s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extension 'colcon_pkg'
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extensions ['colcon_meta']
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extension 'colcon_meta'
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extensions ['ros']
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(jaguar/arm/src/jaguar_teleop) by extension 'ros'
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'jaguar/arm/src/jaguar_teleop' with type 'ros.ament_python' and name 'jaguar_teleop'[0m
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.334s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extensions ['ignore', 'ignore_ament_install']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'ignore'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'ignore_ament_install'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extensions ['colcon_pkg']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'colcon_pkg'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extensions ['colcon_meta']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'colcon_meta'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extensions ['ros']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'ros'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extensions ['cmake', 'python']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'cmake'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'python'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extensions ['python_setup_py']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav) by extension 'python_setup_py'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extensions ['ignore', 'ignore_ament_install']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'ignore'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'ignore_ament_install'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extensions ['colcon_pkg']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'colcon_pkg'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extensions ['colcon_meta']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'colcon_meta'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extensions ['ros']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'ros'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extensions ['cmake', 'python']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'cmake'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'python'
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extensions ['python_setup_py']
+[0.335s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping) by extension 'python_setup_py'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extensions ['ignore', 'ignore_ament_install']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extension 'ignore'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extension 'ignore_ament_install'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extensions ['colcon_pkg']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extension 'colcon_pkg'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extensions ['colcon_meta']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extension 'colcon_meta'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extensions ['ros']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(nav/Dicerox_mapping/dicerox_mapping) by extension 'ros'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'nav/Dicerox_mapping/dicerox_mapping' with type 'ros.ament_cmake' and name 'dicerox_mapping'[0m
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'ignore'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'ignore_ament_install'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extensions ['colcon_pkg']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'colcon_pkg'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extensions ['colcon_meta']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'colcon_meta'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extensions ['ros']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'ros'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extensions ['cmake', 'python']
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'cmake'
+[0.336s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'python'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extensions ['python_setup_py']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(scripts) by extension 'python_setup_py'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extensions ['ignore', 'ignore_ament_install']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'ignore'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'ignore_ament_install'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extensions ['colcon_pkg']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'colcon_pkg'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extensions ['colcon_meta']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'colcon_meta'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extensions ['ros']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'ros'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extensions ['cmake', 'python']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'cmake'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'python'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extensions ['python_setup_py']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared) by extension 'python_setup_py'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extensions ['ignore', 'ignore_ament_install']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'ignore'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'ignore_ament_install'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extensions ['colcon_pkg']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'colcon_pkg'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extensions ['colcon_meta']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'colcon_meta'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extensions ['ros']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'ros'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extensions ['cmake', 'python']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'cmake'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'python'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extensions ['python_setup_py']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware) by extension 'python_setup_py'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extensions ['ignore', 'ignore_ament_install']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'ignore'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'ignore_ament_install'
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extensions ['colcon_pkg']
+[0.337s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'colcon_pkg'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extensions ['colcon_meta']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'colcon_meta'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extensions ['ros']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'ros'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extensions ['cmake', 'python']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'cmake'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'python'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extensions ['python_setup_py']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/include) by extension 'python_setup_py'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extensions ['ignore', 'ignore_ament_install']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'ignore'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'ignore_ament_install'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extensions ['colcon_pkg']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'colcon_pkg'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extensions ['colcon_meta']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'colcon_meta'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extensions ['ros']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'ros'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extensions ['cmake', 'python']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'cmake'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'python'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extensions ['python_setup_py']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib) by extension 'python_setup_py'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extensions ['ignore', 'ignore_ament_install']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'ignore'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'ignore_ament_install'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extensions ['colcon_pkg']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'colcon_pkg'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extensions ['colcon_meta']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'colcon_meta'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extensions ['ros']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'ros'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extensions ['cmake', 'python']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'cmake'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'python'
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extensions ['python_setup_py']
+[0.338s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/CANInterface) by extension 'python_setup_py'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extensions ['ignore', 'ignore_ament_install']
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'ignore'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'ignore_ament_install'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extensions ['colcon_pkg']
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'colcon_pkg'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extensions ['colcon_meta']
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'colcon_meta'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extensions ['ros']
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'ros'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extensions ['cmake', 'python']
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'cmake'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'python'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extensions ['python_setup_py']
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Comms) by extension 'python_setup_py'
+[0.339s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extensions ['ignore', 'ignore_ament_install']
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'ignore'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'ignore_ament_install'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extensions ['colcon_pkg']
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'colcon_pkg'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extensions ['colcon_meta']
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'colcon_meta'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extensions ['ros']
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'ros'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extensions ['cmake', 'python']
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'cmake'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'python'
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extensions ['python_setup_py']
+[0.340s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Control) by extension 'python_setup_py'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extensions ['ignore', 'ignore_ament_install']
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'ignore'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'ignore_ament_install'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extensions ['colcon_pkg']
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'colcon_pkg'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extensions ['colcon_meta']
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'colcon_meta'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extensions ['ros']
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'ros'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extensions ['cmake', 'python']
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'cmake'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'python'
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extensions ['python_setup_py']
+[0.341s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Debug) by extension 'python_setup_py'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extensions ['ignore', 'ignore_ament_install']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'ignore'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'ignore_ament_install'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extensions ['colcon_pkg']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'colcon_pkg'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extensions ['colcon_meta']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'colcon_meta'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extensions ['ros']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'ros'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extensions ['cmake', 'python']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'cmake'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'python'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extensions ['python_setup_py']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Encoders) by extension 'python_setup_py'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extensions ['ignore', 'ignore_ament_install']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'ignore'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'ignore_ament_install'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extensions ['colcon_pkg']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'colcon_pkg'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extensions ['colcon_meta']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'colcon_meta'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extensions ['ros']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'ros'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extensions ['cmake', 'python']
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'cmake'
+[0.342s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'python'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extensions ['python_setup_py']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Locomotion) by extension 'python_setup_py'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extensions ['ignore', 'ignore_ament_install']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'ignore'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'ignore_ament_install'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extensions ['colcon_pkg']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'colcon_pkg'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extensions ['colcon_meta']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'colcon_meta'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extensions ['ros']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'ros'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extensions ['cmake', 'python']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'cmake'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'python'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extensions ['python_setup_py']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/PID) by extension 'python_setup_py'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extensions ['ignore', 'ignore_ament_install']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'ignore'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'ignore_ament_install'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extensions ['colcon_pkg']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'colcon_pkg'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extensions ['colcon_meta']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'colcon_meta'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extensions ['ros']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'ros'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extensions ['cmake', 'python']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'cmake'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'python'
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extensions ['python_setup_py']
+[0.343s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/RC) by extension 'python_setup_py'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extensions ['ignore', 'ignore_ament_install']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'ignore'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'ignore_ament_install'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extensions ['colcon_pkg']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'colcon_pkg'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extensions ['colcon_meta']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'colcon_meta'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extensions ['ros']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'ros'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extensions ['cmake', 'python']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'cmake'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'python'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extensions ['python_setup_py']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/lib/Sensors) by extension 'python_setup_py'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extensions ['ignore', 'ignore_ament_install']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'ignore'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'ignore_ament_install'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extensions ['colcon_pkg']
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'colcon_pkg'
+[0.344s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extensions ['colcon_meta']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'colcon_meta'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extensions ['ros']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'ros'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extensions ['cmake', 'python']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'cmake'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'python'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extensions ['python_setup_py']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/src) by extension 'python_setup_py'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extensions ['ignore', 'ignore_ament_install']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'ignore'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'ignore_ament_install'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extensions ['colcon_pkg']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'colcon_pkg'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extensions ['colcon_meta']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'colcon_meta'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extensions ['ros']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'ros'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extensions ['cmake', 'python']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'cmake'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'python'
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extensions ['python_setup_py']
+[0.345s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware/test) by extension 'python_setup_py'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extensions ['ignore', 'ignore_ament_install']
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'ignore'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'ignore_ament_install'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extensions ['colcon_pkg']
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'colcon_pkg'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extensions ['colcon_meta']
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'colcon_meta'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extensions ['ros']
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'ros'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extensions ['cmake', 'python']
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'cmake'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'python'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extensions ['python_setup_py']
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox) by extension 'python_setup_py'
+[0.346s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extensions ['ignore', 'ignore_ament_install']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'ignore'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'ignore_ament_install'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extensions ['colcon_pkg']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'colcon_pkg'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extensions ['colcon_meta']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'colcon_meta'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extensions ['ros']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'ros'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extensions ['cmake', 'python']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'cmake'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'python'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extensions ['python_setup_py']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/include) by extension 'python_setup_py'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extensions ['ignore', 'ignore_ament_install']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'ignore'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'ignore_ament_install'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extensions ['colcon_pkg']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'colcon_pkg'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extensions ['colcon_meta']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'colcon_meta'
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extensions ['ros']
+[0.347s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'ros'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extensions ['cmake', 'python']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'cmake'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'python'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extensions ['python_setup_py']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib) by extension 'python_setup_py'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extensions ['ignore', 'ignore_ament_install']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'ignore'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'ignore_ament_install'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extensions ['colcon_pkg']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'colcon_pkg'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extensions ['colcon_meta']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'colcon_meta'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extensions ['ros']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'ros'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extensions ['cmake', 'python']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'cmake'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'python'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extensions ['python_setup_py']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/lib/ODrive) by extension 'python_setup_py'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extensions ['ignore', 'ignore_ament_install']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'ignore'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'ignore_ament_install'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extensions ['colcon_pkg']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'colcon_pkg'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extensions ['colcon_meta']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'colcon_meta'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extensions ['ros']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'ros'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extensions ['cmake', 'python']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'cmake'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'python'
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extensions ['python_setup_py']
+[0.348s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference) by extension 'python_setup_py'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'ignore'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'ignore_ament_install'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extensions ['colcon_pkg']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'colcon_pkg'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extensions ['colcon_meta']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'colcon_meta'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extensions ['ros']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'ros'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extensions ['cmake', 'python']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'cmake'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'python'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extensions ['python_setup_py']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive) by extension 'python_setup_py'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'ignore'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'ignore_ament_install'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extensions ['colcon_pkg']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'colcon_pkg'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extensions ['colcon_meta']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'colcon_meta'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extensions ['ros']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'ros'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extensions ['cmake', 'python']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'cmake'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'python'
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extensions ['python_setup_py']
+[0.349s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/reference/ODrive/examples) by extension 'python_setup_py'
+[0.350s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extensions ['ignore', 'ignore_ament_install']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'ignore'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'ignore_ament_install'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extensions ['colcon_pkg']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'colcon_pkg'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extensions ['colcon_meta']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'colcon_meta'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extensions ['ros']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'ros'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extensions ['cmake', 'python']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'cmake'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'python'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extensions ['python_setup_py']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/src) by extension 'python_setup_py'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extensions ['ignore', 'ignore_ament_install']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'ignore'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'ignore_ament_install'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extensions ['colcon_pkg']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'colcon_pkg'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extensions ['colcon_meta']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'colcon_meta'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extensions ['ros']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'ros'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extensions ['cmake', 'python']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'cmake'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'python'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extensions ['python_setup_py']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/firmware_dicerox/test) by extension 'python_setup_py'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'ignore'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'ignore_ament_install'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extensions ['colcon_pkg']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'colcon_pkg'
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extensions ['colcon_meta']
+[0.351s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'colcon_meta'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extensions ['ros']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'ros'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extensions ['cmake', 'python']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'cmake'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'python'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extensions ['python_setup_py']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws) by extension 'python_setup_py'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/build) by extensions ['ignore', 'ignore_ament_install']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/build) by extension 'ignore'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/build) ignored
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/install) by extensions ['ignore', 'ignore_ament_install']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/install) by extension 'ignore'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/install) ignored
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/log) by extensions ['ignore', 'ignore_ament_install']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/log) by extension 'ignore'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/log) ignored
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'ignore'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'ignore_ament_install'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extensions ['colcon_pkg']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'colcon_pkg'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extensions ['colcon_meta']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'colcon_meta'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extensions ['ros']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'ros'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extensions ['cmake', 'python']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'cmake'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'python'
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extensions ['python_setup_py']
+[0.352s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src) by extension 'python_setup_py'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extension 'ignore'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extension 'ignore_ament_install'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extensions ['colcon_pkg']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extension 'colcon_pkg'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extensions ['colcon_meta']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extension 'colcon_meta'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extensions ['ros']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/esp32_bridge) by extension 'ros'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'shared/gui_ws/src/esp32_bridge' with type 'ros.ament_python' and name 'esp32_bridge'[0m
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extensions ['ignore', 'ignore_ament_install']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extension 'ignore'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extension 'ignore_ament_install'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extensions ['colcon_pkg']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extension 'colcon_pkg'
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extensions ['colcon_meta']
+[0.353s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extension 'colcon_meta'
+[0.354s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extensions ['ros']
+[0.354s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/gui_ws/src/gui) by extension 'ros'
+[0.354s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'shared/gui_ws/src/gui' with type 'ros.ament_cmake' and name 'gui'[0m
+[0.355s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/log) by extensions ['ignore', 'ignore_ament_install']
+[0.355s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/log) by extension 'ignore'
+[0.355s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/log) ignored
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extensions ['ignore', 'ignore_ament_install']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'ignore'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'ignore_ament_install'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extensions ['colcon_pkg']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'colcon_pkg'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extensions ['colcon_meta']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'colcon_meta'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extensions ['ros']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'ros'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extensions ['cmake', 'python']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'cmake'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'python'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extensions ['python_setup_py']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision) by extension 'python_setup_py'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extensions ['ignore', 'ignore_ament_install']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'ignore'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'ignore_ament_install'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extensions ['colcon_pkg']
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'colcon_pkg'
+[0.356s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extensions ['colcon_meta']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'colcon_meta'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extensions ['ros']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'ros'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extensions ['cmake', 'python']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'cmake'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'python'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extensions ['python_setup_py']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs) by extension 'python_setup_py'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extensions ['ignore', 'ignore_ament_install']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'ignore'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'ignore_ament_install'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extensions ['colcon_pkg']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'colcon_pkg'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extensions ['colcon_meta']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'colcon_meta'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extensions ['ros']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'ros'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extensions ['cmake', 'python']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'cmake'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'python'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extensions ['python_setup_py']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l) by extension 'python_setup_py'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extensions ['ignore', 'ignore_ament_install']
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'ignore'
+[0.357s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'ignore_ament_install'
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extensions ['colcon_pkg']
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'colcon_pkg'
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extensions ['colcon_meta']
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'colcon_meta'
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extensions ['ros']
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'ros'
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extensions ['cmake', 'python']
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'cmake'
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'python'
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extensions ['python_setup_py']
+[0.358s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(shared/vision/runs/hazmat_yolo11l/weights) by extension 'python_setup_py'
+[0.358s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.358s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.358s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.358s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.358s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.371s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) check parameters
+[0.371s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) discover
+[0.373s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 2 installed packages in /home/gerardo/TMR2026_Rescue/shared/gui_ws/install[0m
+[0.373s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 284 installed packages in /opt/ros/humble[0m
+[0.374s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) using defaults
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'cmake_target' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'cmake_clean_cache' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'cmake_clean_first' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'cmake_force_configure' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'ament_cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'catkin_cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'dicerox_mapping' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'dicerox_mapping' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping', 'symlink_install': False, 'test_result_base': None}[0m
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'cmake_target' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'esp32_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'esp32_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/esp32_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/esp32_bridge', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge', 'symlink_install': False, 'test_result_base': None}[0m
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'cmake_args' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'cmake_target' from command line to 'None'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.394s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ginkgo_odrive_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'ginkgo_odrive_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge', 'symlink_install': False, 'test_result_base': None}[0m
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'cmake_target' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'cmake_clean_cache' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'cmake_clean_first' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'cmake_force_configure' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'ament_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'catkin_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'gui' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'gui' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/gui', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/gui', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui', 'symlink_install': False, 'test_result_base': None}[0m
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'cmake_target' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_robot_full_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'jaguar_robot_full_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_robot_full_description', 'symlink_install': False, 'test_result_base': None}[0m
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'cmake_target' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'cmake_clean_cache' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'cmake_clean_first' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'cmake_force_configure' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'ament_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'catkin_cmake_args' from command line to 'None'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_teleop' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.395s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'jaguar_teleop' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/jaguar_teleop', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop', 'symlink_install': False, 'test_result_base': None}[0m
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'cmake_args' from command line to 'None'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'cmake_target' from command line to 'None'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'cmake_clean_cache' from command line to 'False'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'cmake_clean_first' from command line to 'False'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'cmake_force_configure' from command line to 'False'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'ament_cmake_args' from command line to 'None'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'catkin_cmake_args' from command line to 'None'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'jaguar_full' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.396s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'jaguar_full' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/gerardo/TMR2026_Rescue/build/jaguar_full', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/gerardo/TMR2026_Rescue/install/jaguar_full', 'merge_install': False, 'path': '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full', 'symlink_install': False, 'test_result_base': None}[0m
+[0.396s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.396s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.397s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_robot_full_description' with build type 'ament_cmake'
+[0.397s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_robot_full_description'
+[0.400s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.400s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.400s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.401s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping' with build type 'ament_cmake'
+[0.402s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping'
+[0.402s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.402s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.403s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge' with build type 'ament_python'
+[0.403s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('esp32_bridge', 'ament_prefix_path')
+[0.403s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/hook/ament_prefix_path.ps1'
+[0.404s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/hook/ament_prefix_path.dsv'
+[0.404s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/hook/ament_prefix_path.sh'
+[0.405s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.405s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.406s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge' with build type 'ament_python'
+[0.406s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ginkgo_odrive_bridge', 'ament_prefix_path')
+[0.406s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/hook/ament_prefix_path.ps1'
+[0.407s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/hook/ament_prefix_path.dsv'
+[0.407s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/hook/ament_prefix_path.sh'
+[0.407s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.407s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.409s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui' with build type 'ament_cmake'
+[0.409s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui'
+[0.409s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.409s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.410s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop' with build type 'ament_python'
+[0.411s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('jaguar_teleop', 'ament_prefix_path')
+[0.411s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/hook/ament_prefix_path.ps1'
+[0.411s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/hook/ament_prefix_path.dsv'
+[0.411s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/hook/ament_prefix_path.sh'
+[0.411s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.411s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.415s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_robot_full_description -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description[0m
+[0.418s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/dicerox_mapping[0m
+[0.582s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge'
+[0.582s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.582s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.743s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge'
+[0.744s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.744s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.747s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/gui': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/gui[0m
+[0.945s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop'
+[0.945s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.945s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.953s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_robot_full_description -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description[0m
+[0.954s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description -- -j16 -l16[0m
+[0.955s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/dicerox_mapping[0m
+[0.956s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/dicerox_mapping -- -j16 -l16[0m
+[0.981s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description -- -j16 -l16[0m
+[0.990s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description[0m
+[0.992s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/dicerox_mapping -- -j16 -l16[0m
+[0.993s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/dicerox_mapping[0m
+[1.005s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(dicerox_mapping)
+[1.006s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/dicerox_mapping[0m
+[1.012s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping' for CMake module files
+[1.012s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping' for CMake config files
+[1.012s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('dicerox_mapping', 'cmake_prefix_path')
+[1.012s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/hook/cmake_prefix_path.ps1'
+[1.013s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/hook/cmake_prefix_path.dsv'
+[1.013s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/hook/cmake_prefix_path.sh'
+[1.014s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/bin'
+[1.014s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/lib/pkgconfig/dicerox_mapping.pc'
+[1.014s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/lib/python3.10/site-packages'
+[1.014s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/bin'
+[1.014s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.ps1'
+[1.015s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.dsv'
+[1.016s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.sh'
+[1.017s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.bash'
+[1.018s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.zsh'
+[1.018s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/colcon-core/packages/dicerox_mapping)
+[1.019s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(dicerox_mapping)
+[1.019s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping' for CMake module files
+[1.019s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping' for CMake config files
+[1.019s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('dicerox_mapping', 'cmake_prefix_path')
+[1.019s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/hook/cmake_prefix_path.ps1'
+[1.020s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/hook/cmake_prefix_path.dsv'
+[1.020s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/hook/cmake_prefix_path.sh'
+[1.020s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/bin'
+[1.020s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/lib/pkgconfig/dicerox_mapping.pc'
+[1.021s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/lib/python3.10/site-packages'
+[1.021s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/bin'
+[1.021s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.ps1'
+[1.022s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.dsv'
+[1.022s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.sh'
+[1.022s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.bash'
+[1.022s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.zsh'
+[1.023s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/colcon-core/packages/dicerox_mapping)
+[1.073s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(jaguar_robot_full_description)
+[1.074s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description' for CMake module files
+[1.074s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/jaguar_robot_full_description[0m
+[1.075s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description' for CMake config files
+[1.075s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('jaguar_robot_full_description', 'cmake_prefix_path')
+[1.075s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/hook/cmake_prefix_path.ps1'
+[1.076s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/hook/cmake_prefix_path.dsv'
+[1.077s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/hook/cmake_prefix_path.sh'
+[1.077s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/bin'
+[1.077s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/lib/pkgconfig/jaguar_robot_full_description.pc'
+[1.078s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/lib/python3.10/site-packages'
+[1.078s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/bin'
+[1.079s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.ps1'
+[1.079s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.dsv'
+[1.080s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.sh'
+[1.080s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.bash'
+[1.081s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.zsh'
+[1.081s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/colcon-core/packages/jaguar_robot_full_description)
+[1.082s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(jaguar_robot_full_description)
+[1.082s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description' for CMake module files
+[1.082s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description' for CMake config files
+[1.082s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('jaguar_robot_full_description', 'cmake_prefix_path')
+[1.082s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/hook/cmake_prefix_path.ps1'
+[1.083s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/hook/cmake_prefix_path.dsv'
+[1.083s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/hook/cmake_prefix_path.sh'
+[1.083s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/bin'
+[1.083s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/lib/pkgconfig/jaguar_robot_full_description.pc'
+[1.084s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/lib/python3.10/site-packages'
+[1.084s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/bin'
+[1.084s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.ps1'
+[1.085s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.dsv'
+[1.085s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.sh'
+[1.085s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.bash'
+[1.085s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/jaguar_robot_full_description/package.zsh'
+[1.086s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description/share/colcon-core/packages/jaguar_robot_full_description)
+[1.086s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full' with build type 'ament_cmake'
+[1.086s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full'
+[1.086s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.086s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[1.094s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_full[0m
+[1.260s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/esp32_bridge build --build-base /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build install --record /home/gerardo/TMR2026_Rescue/build/esp32_bridge/install.log --single-version-externally-managed install_data[0m
+[1.261s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/jaguar_teleop build --build-base /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build install --record /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log --single-version-externally-managed install_data[0m
+[1.262s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/ginkgo_odrive_bridge build --build-base /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build install --record /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/install.log --single-version-externally-managed install_data[0m
+[1.494s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge' for CMake module files
+[1.494s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge' returned '0': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/esp32_bridge build --build-base /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build install --record /home/gerardo/TMR2026_Rescue/build/esp32_bridge/install.log --single-version-externally-managed install_data[0m
+[1.494s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge' for CMake config files
+[1.495s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib'
+[1.495s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/bin'
+[1.495s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/pkgconfig/esp32_bridge.pc'
+[1.495s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages'
+[1.495s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('esp32_bridge', 'pythonpath')
+[1.495s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/hook/pythonpath.ps1'
+[1.496s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/hook/pythonpath.dsv'
+[1.496s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/hook/pythonpath.sh'
+[1.496s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/bin'
+[1.496s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(esp32_bridge)
+[1.497s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/package.ps1'
+[1.497s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/package.dsv'
+[1.497s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/package.sh'
+[1.498s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/package.bash'
+[1.498s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/package.zsh'
+[1.498s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/colcon-core/packages/esp32_bridge)
+[1.504s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge' for CMake module files
+[1.504s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/ginkgo_odrive_bridge' returned '0': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/ginkgo_odrive_bridge build --build-base /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/build install --record /home/gerardo/TMR2026_Rescue/build/ginkgo_odrive_bridge/install.log --single-version-externally-managed install_data[0m
+[1.505s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge' for CMake config files
+[1.505s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib'
+[1.505s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/bin'
+[1.505s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/pkgconfig/ginkgo_odrive_bridge.pc'
+[1.505s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/lib/python3.10/site-packages'
+[1.506s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ginkgo_odrive_bridge', 'pythonpath')
+[1.506s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/hook/pythonpath.ps1'
+[1.506s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/hook/pythonpath.dsv'
+[1.506s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/hook/pythonpath.sh'
+[1.507s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/bin'
+[1.507s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(ginkgo_odrive_bridge)
+[1.507s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/package.ps1'
+[1.508s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/package.dsv'
+[1.508s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/package.sh'
+[1.508s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/package.bash'
+[1.508s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/ginkgo_odrive_bridge/package.zsh'
+[1.508s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/ginkgo_odrive_bridge/share/colcon-core/packages/ginkgo_odrive_bridge)
+[1.510s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop' for CMake module files
+[1.510s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_teleop' returned '0': PYTHONPATH=/home/gerardo/TMR2026_Rescue/build/jaguar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/jaguar_teleop build --build-base /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/build install --record /home/gerardo/TMR2026_Rescue/build/jaguar_teleop/install.log --single-version-externally-managed install_data[0m
+[1.510s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop' for CMake config files
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/bin'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/pkgconfig/jaguar_teleop.pc'
+[1.511s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/lib/python3.10/site-packages'
+[1.511s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('jaguar_teleop', 'pythonpath')
+[1.511s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/hook/pythonpath.ps1'
+[1.512s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/hook/pythonpath.dsv'
+[1.512s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/hook/pythonpath.sh'
+[1.512s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/bin'
+[1.512s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(jaguar_teleop)
+[1.513s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/package.ps1'
+[1.513s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/package.dsv'
+[1.513s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/package.sh'
+[1.514s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/package.bash'
+[1.514s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/jaguar_teleop/package.zsh'
+[1.514s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/jaguar_teleop/share/colcon-core/packages/jaguar_teleop)
+[1.608s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full' returned '0': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/jaguar/arm/src/jaguar_full -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/jaguar_full[0m
+[1.609s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/jaguar_full -- -j16 -l16[0m
+[1.639s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full' returned '0': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/jaguar_full -- -j16 -l16[0m
+[1.640s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/jaguar_full[0m
+[1.650s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(jaguar_full)
+[1.650s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full' for CMake module files
+[1.650s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/jaguar_full' returned '0': AMENT_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gerardo/TMR2026_Rescue/install/jaguar_robot_full_description:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/gui:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/jaguar_full[0m
+[1.650s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full' for CMake config files
+[1.650s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('jaguar_full', 'cmake_prefix_path')
+[1.651s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/hook/cmake_prefix_path.ps1'
+[1.651s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/hook/cmake_prefix_path.dsv'
+[1.651s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/hook/cmake_prefix_path.sh'
+[1.651s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/bin'
+[1.651s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/lib/pkgconfig/jaguar_full.pc'
+[1.651s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/lib/python3.10/site-packages'
+[1.652s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/bin'
+[1.652s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.ps1'
+[1.652s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.dsv'
+[1.652s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.sh'
+[1.652s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.bash'
+[1.653s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.zsh'
+[1.653s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/colcon-core/packages/jaguar_full)
+[1.653s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(jaguar_full)
+[1.653s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full' for CMake module files
+[1.653s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full' for CMake config files
+[1.654s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('jaguar_full', 'cmake_prefix_path')
+[1.654s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/hook/cmake_prefix_path.ps1'
+[1.654s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/hook/cmake_prefix_path.dsv'
+[1.654s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/hook/cmake_prefix_path.sh'
+[1.654s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/bin'
+[1.654s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/lib/pkgconfig/jaguar_full.pc'
+[1.655s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/lib/python3.10/site-packages'
+[1.655s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/jaguar_full/bin'
+[1.655s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.ps1'
+[1.655s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.dsv'
+[1.656s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.sh'
+[1.656s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.bash'
+[1.656s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/jaguar_full/package.zsh'
+[1.656s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/jaguar_full/share/colcon-core/packages/jaguar_full)
+[2.067s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/gui' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/gui[0m
+[2.068s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/gui': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/gui -- -j16 -l16[0m
+[28.331s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/gui' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/gui -- -j16 -l16[0m
+[28.332s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/gerardo/TMR2026_Rescue/build/gui': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/gui[0m
+[28.712s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(gui)
+[28.713s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/gerardo/TMR2026_Rescue/build/gui' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/gui[0m
+[28.713s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui' for CMake module files
+[28.714s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui' for CMake config files
+[28.714s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('gui', 'cmake_prefix_path')
+[28.714s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/hook/cmake_prefix_path.ps1'
+[28.714s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/hook/cmake_prefix_path.dsv'
+[28.714s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/hook/cmake_prefix_path.sh'
+[28.715s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/lib'
+[28.715s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/bin'
+[28.715s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/lib/pkgconfig/gui.pc'
+[28.715s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/lib/python3.10/site-packages'
+[28.715s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/bin'
+[28.715s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.ps1'
+[28.716s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.dsv'
+[28.716s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.sh'
+[28.716s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.bash'
+[28.716s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.zsh'
+[28.716s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/gui/share/colcon-core/packages/gui)
+[28.717s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(gui)
+[28.717s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui' for CMake module files
+[28.717s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui' for CMake config files
+[28.717s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('gui', 'cmake_prefix_path')
+[28.717s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/hook/cmake_prefix_path.ps1'
+[28.717s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/hook/cmake_prefix_path.dsv'
+[28.718s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/hook/cmake_prefix_path.sh'
+[28.718s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/lib'
+[28.718s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/bin'
+[28.718s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/lib/pkgconfig/gui.pc'
+[28.718s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/lib/python3.10/site-packages'
+[28.718s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/gerardo/TMR2026_Rescue/install/gui/bin'
+[28.718s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.ps1'
+[28.719s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.dsv'
+[28.719s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.sh'
+[28.719s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.bash'
+[28.719s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/gerardo/TMR2026_Rescue/install/gui/share/gui/package.zsh'
+[28.720s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/gerardo/TMR2026_Rescue/install/gui/share/colcon-core/packages/gui)
+[28.720s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[28.720s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[28.720s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[28.720s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[28.725s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[28.725s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[28.725s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'notify2'
+[28.740s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[28.740s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/gerardo/TMR2026_Rescue/install/local_setup.ps1'
+[28.741s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/gerardo/TMR2026_Rescue/install/_local_setup_util_ps1.py'
+[28.742s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/gerardo/TMR2026_Rescue/install/setup.ps1'
+[28.743s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/gerardo/TMR2026_Rescue/install/local_setup.sh'
+[28.743s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/gerardo/TMR2026_Rescue/install/_local_setup_util_sh.py'
+[28.743s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/gerardo/TMR2026_Rescue/install/setup.sh'
+[28.746s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/gerardo/TMR2026_Rescue/install/local_setup.bash'
+[28.747s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/gerardo/TMR2026_Rescue/install/setup.bash'
+[28.748s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/gerardo/TMR2026_Rescue/install/local_setup.zsh'
+[28.748s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/gerardo/TMR2026_Rescue/install/setup.zsh'

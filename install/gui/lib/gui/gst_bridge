@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+"""
+gst_bridge — gui package, runs on the laptop.
+
+Subscribes to /config (transient_local) to discover how many cameras the
+robot is streaming, then opens one GStreamer/UDP H.264 pipeline per camera
+(ports 5000, 5001, …) and republishes each decoded frame as a
+sensor_msgs/Image on the topic names given in the config.
+
+Per-stream threads reopen their pipeline automatically when the sender goes
+away and comes back, so you can stop/start the robot without restarting
+the GUI.
+"""
+
+import json
+import threading
+import time
+
+import cv2
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import (DurabilityPolicy, HistoryPolicy, QoSProfile,
+                        ReliabilityPolicy)
+from sensor_msgs.msg import Image
+from std_msgs.msg import String
+
+try:
+    from cv_bridge import CvBridge
+except ImportError:
+    print("ERROR: cv_bridge not found. Install with: sudo apt install ros-humble-cv-bridge")
+    raise
+
+BASE_PORT            = 5000
+FEC_ENABLED          = True   # must match the robot's gst_sender
+UDP_TIMEOUT_NS       = 2_000_000_000   # 2s silence → cap.read() returns False
+REOPEN_DELAY_S       = 1.0
+STALL_REOPEN_SECONDS = 3.0    # after this long without a frame, rebuild the pipeline
+
+
+def _build_pipeline(port: int) -> str:
+    fec = "rtpulpfecdec pt=122 ! rtpstorage size-time=220000000 !" if FEC_ENABLED else ""
+    return (
+        f"udpsrc port={port} timeout={UDP_TIMEOUT_NS} "
+        f"caps=application/x-rtp,media=video,encoding-name=H264,payload=96 ! "
+        f"rtpjitterbuffer latency=20 ! "
+        f"{fec} "
+        f"rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! "
+        f"video/x-raw,format=BGR ! appsink drop=true max-buffers=1 sync=false"
+    )
+
+
+class _Stream:
+    def __init__(self, port, topic, publisher, bridge, clock, logger):
+        self.port      = port
+        self.topic     = topic
+        self.publisher = publisher
+        self.bridge    = bridge
+        self.clock     = clock
+        self.logger    = logger
+        self.running   = True
+        self.thread    = threading.Thread(target=self._loop, daemon=True)
+
+    def start(self):
+        self.thread.start()
+
+    def stop(self):
+        self.running = False
+
+    def _loop(self):
+        frame_id = self.topic.strip("/").split("/")[-1]
+        while self.running and rclpy.ok():
+            cap = cv2.VideoCapture(_build_pipeline(self.port), cv2.CAP_GSTREAMER)
+            if not cap.isOpened():
+                self.logger.error(
+                    f"{self.topic}: failed to open pipeline on UDP {self.port}, "
+                    f"retrying in {REOPEN_DELAY_S:.0f}s")
+                time.sleep(REOPEN_DELAY_S)
+                continue
+
+            self.logger.info(f"Stream active: {self.topic} (UDP {self.port})")
+            last_frame = time.monotonic()
+            while self.running and rclpy.ok():
+                ret, frame = cap.read()
+                if not ret:
+                    if time.monotonic() - last_frame > STALL_REOPEN_SECONDS:
+                        self.logger.warn(
+                            f"{self.topic}: no frames for {STALL_REOPEN_SECONDS:.0f}s, reopening")
+                        break
+                    time.sleep(0.05)
+                    continue
+                last_frame = time.monotonic()
+                msg = self.bridge.cv2_to_imgmsg(frame, encoding="bgr8")
+                msg.header.stamp    = self.clock.now().to_msg()
+                msg.header.frame_id = frame_id
+                self.publisher.publish(msg)
+
+            cap.release()
+
+
+class GstBridgeNode(Node):
+    def __init__(self):
+        super().__init__("gst_bridge")
+        self._bridge  = CvBridge()
+        self._streams: dict[str, _Stream] = {}
+        self._lock    = threading.Lock()
+
+        latched_qos = QoSProfile(
+            depth=1,
+            durability=DurabilityPolicy.TRANSIENT_LOCAL,
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,
+        )
+        self._config_sub = self.create_subscription(
+            String, "/config", self._on_config, latched_qos)
+
+        self.get_logger().info("Waiting for /config …")
+
+    def _on_config(self, msg: String):
+        try:
+            topics = json.loads(msg.data).get("camera_topics", []) or []
+        except (json.JSONDecodeError, AttributeError) as exc:
+            self.get_logger().error(f"Malformed /config payload: {exc}")
+            return
+
+        with self._lock:
+            if list(self._streams.keys()) == list(topics):
+                return
+
+            self.get_logger().info(
+                f"Config update: {len(topics)} camera(s), "
+                f"UDP {BASE_PORT}–{BASE_PORT + len(topics) - 1}")
+
+            for stream in self._streams.values():
+                stream.stop()
+            self._streams.clear()
+
+            img_qos = QoSProfile(
+                reliability=ReliabilityPolicy.RELIABLE,
+                history=HistoryPolicy.KEEP_LAST,
+                depth=10,
+            )
+            for i, topic in enumerate(topics):
+                port = BASE_PORT + i
+                pub  = self.create_publisher(Image, topic, img_qos)
+                stream = _Stream(port, topic, pub, self._bridge,
+                                 self.get_clock(), self.get_logger())
+                self._streams[topic] = stream
+                stream.start()
+                self.get_logger().info(f"  UDP {port} → {topic}")
+
+    def destroy_node(self):
+        with self._lock:
+            for stream in self._streams.values():
+                stream.stop()
+        super().destroy_node()
+
+
+def main(args=None):
+    for line in cv2.getBuildInformation().splitlines():
+        if "GStreamer" in line and "NO" in line.upper():
+            print("WARNING: OpenCV has no GStreamer support — streams will fail.")
+            print("Fix:     sudo apt install python3-opencv")
+            break
+
+    rclpy.init(args=args)
+    node = GstBridgeNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()

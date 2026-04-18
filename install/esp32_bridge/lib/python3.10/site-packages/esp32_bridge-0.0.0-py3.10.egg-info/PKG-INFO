@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: esp32-bridge
+Version: 0.0.0
+Summary: ROS2 bridge between the ESP32 binary UART protocol and ROS2 topics.
+Home-page: UNKNOWN
+Maintainer: arepo
+Maintainer-email: arepo90@proton.me
+License: MIT
+Platform: UNKNOWN
+
+UNKNOWN
+

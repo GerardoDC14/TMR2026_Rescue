@@ -1,0 +1,12 @@
+jaguar_arm:
+  kinematics_solver: pick_ik/PickIkPlugin
+  kinematics_solver_timeout: 0.05
+  kinematics_solver_attempts: 3
+  mode: local
+  stop_optimization_on_valid_solution: false
+  approximate_solution: true
+  position_threshold: 0.001
+  position_scale: 1.0
+  rotation_scale: 0.5
+  position_threshold: 0.001
+  orientation_threshold: 0.01

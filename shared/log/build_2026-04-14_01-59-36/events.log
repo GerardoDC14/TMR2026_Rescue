@@ -1,0 +1,431 @@
+[0.000000] (-) TimerEvent: {}
+[0.000106] (esp32_bridge) JobQueued: {'identifier': 'esp32_bridge', 'dependencies': OrderedDict()}
+[0.000168] (gui) JobQueued: {'identifier': 'gui', 'dependencies': OrderedDict()}
+[0.000201] (esp32_bridge) JobStarted: {'identifier': 'esp32_bridge'}
+[0.004494] (gui) JobStarted: {'identifier': 'gui'}
+[0.099742] (-) TimerEvent: {}
+[0.129789] (gui) JobProgress: {'identifier': 'gui', 'progress': 'cmake'}
+[0.130119] (gui) Command: {'cmd': ['/usr/bin/cmake', '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui', '-DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/shared/install/gui'], 'cwd': '/home/gerardo/TMR2026_Rescue/shared/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('ROS_APT_SOURCE_VERSION', '1.1.0'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared/gui_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '2126'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1933,unix/gerardo-asus:/tmp/.ICE-unix/1933'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c5c3c0f3_9ef1_4a31_aa09_e0a61cdab88d'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.5I4EN3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.123'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/shared/build/gui'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.168763] (gui) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199868] (-) TimerEvent: {}
+[0.200344] (gui) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.204624] (gui) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.250165] (gui) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.256106] (gui) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.256228] (gui) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.256594] (gui) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.258351] (gui) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.300074] (-) TimerEvent: {}
+[0.302697] (esp32_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/esp32_bridge', 'build', '--build-base', '/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build', 'install', '--record', '/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'gerardo', 'LC_TIME': 'es_MX.UTF-8', 'XDG_SESSION_TYPE': 'wayland', 'ROS_APT_SOURCE_VERSION': '1.1.0', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/gerardo', 'OLDPWD': '/home/gerardo/TMR2026_Rescue/shared/gui_ws', 'DESKTOP_SESSION': 'ubuntu', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'SYSTEMD_EXEC_PID': '2126', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'LOGNAME': 'gerardo', '_': '/usr/bin/colcon', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'gerardo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/gerardo-asus:@/tmp/.ICE-unix/1933,unix/gerardo-asus:/tmp/.ICE-unix/1933', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/c5c3c0f3_9ef1_4a31_aa09_e0a61cdab88d', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.5I4EN3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.123', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800'}, 'shell': False}
+[0.309699] (gui) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.314895] (gui) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.315014] (gui) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.315191] (gui) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.316256] (gui) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.400287] (-) TimerEvent: {}
+[0.412115] (gui) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.417490] (esp32_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[0.417996] (esp32_bridge) StdoutLine: {'line': b'creating ../../../build/esp32_bridge/esp32_bridge.egg-info\n'}
+[0.418097] (esp32_bridge) StdoutLine: {'line': b'writing ../../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO\n'}
+[0.418271] (esp32_bridge) StdoutLine: {'line': b'writing dependency_links to ../../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt\n'}
+[0.418381] (esp32_bridge) StdoutLine: {'line': b'writing entry points to ../../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt\n'}
+[0.418450] (esp32_bridge) StdoutLine: {'line': b'writing requirements to ../../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt\n'}
+[0.418513] (esp32_bridge) StdoutLine: {'line': b'writing top-level names to ../../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt\n'}
+[0.418574] (esp32_bridge) StdoutLine: {'line': b"writing manifest file '../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[0.419077] (esp32_bridge) StdoutLine: {'line': b"reading manifest file '../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[0.419550] (esp32_bridge) StdoutLine: {'line': b"writing manifest file '../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'\n"}
+[0.419759] (esp32_bridge) StdoutLine: {'line': b'running build\n'}
+[0.419836] (esp32_bridge) StdoutLine: {'line': b'running build_py\n'}
+[0.419905] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build\n'}
+[0.419971] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib\n'}
+[0.420079] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[0.420145] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[0.420211] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[0.420304] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[0.420367] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[0.420430] (esp32_bridge) StdoutLine: {'line': b'copying esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge\n'}
+[0.420494] (esp32_bridge) StdoutLine: {'line': b'running install\n'}
+[0.420558] (esp32_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[0.420741] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[0.420831] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[0.420903] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[0.420969] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[0.421034] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[0.421098] (esp32_bridge) StdoutLine: {'line': b'copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge\n'}
+[0.421182] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/audio_node.py to audio_node.cpython-310.pyc\n'}
+[0.421460] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/servo_bridge.py to servo_bridge.cpython-310.pyc\n'}
+[0.421928] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/main_bridge.py to main_bridge.cpython-310.pyc\n'}
+[0.424370] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/rc_control.py to rc_control.cpython-310.pyc\n'}
+[0.425083] (esp32_bridge) StdoutLine: {'line': b'byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/__init__.py to __init__.cpython-310.pyc\n'}
+[0.425177] (esp32_bridge) StdoutLine: {'line': b'running install_data\n'}
+[0.425340] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index\n'}
+[0.425436] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index/resource_index\n'}
+[0.425502] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index/resource_index/packages\n'}
+[0.425569] (esp32_bridge) StdoutLine: {'line': b'copying resource/esp32_bridge -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index/resource_index/packages\n'}
+[0.425629] (esp32_bridge) StdoutLine: {'line': b'copying package.xml -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/esp32_bridge\n'}
+[0.425696] (esp32_bridge) StdoutLine: {'line': b'creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/esp32_bridge/launch\n'}
+[0.425754] (esp32_bridge) StdoutLine: {'line': b'copying launch/esp32_bridge.launch.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/esp32_bridge/launch\n'}
+[0.425813] (esp32_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.426317] (esp32_bridge) StdoutLine: {'line': b'Copying ../../../build/esp32_bridge/esp32_bridge.egg-info to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info\n'}
+[0.426585] (esp32_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[0.439135] (esp32_bridge) StdoutLine: {'line': b'Installing audio_node script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge\n'}
+[0.439317] (esp32_bridge) StdoutLine: {'line': b'Installing main_bridge script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge\n'}
+[0.439398] (esp32_bridge) StdoutLine: {'line': b'Installing rc_control script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge\n'}
+[0.439467] (esp32_bridge) StdoutLine: {'line': b'Installing servo_bridge script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge\n'}
+[0.439610] (esp32_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/install.log'\n"}
+[0.452922] (esp32_bridge) CommandEnded: {'returncode': 0}
+[0.459319] (esp32_bridge) JobEnded: {'identifier': 'esp32_bridge', 'rc': 0}
+[0.459978] (gui) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.479893] (gui) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.481595] (gui) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.485181] (gui) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.490435] (gui) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.497428] (gui) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.500404] (-) TimerEvent: {}
+[0.515735] (gui) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.516584] (gui) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.567926] (gui) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.587856] (gui) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.600519] (-) TimerEvent: {}
+[0.610925] (gui) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.614041] (gui) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.666670] (gui) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.666918] (gui) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.700626] (-) TimerEvent: {}
+[0.724147] (gui) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.724866] (gui) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.750336] (gui) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.1 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.767307] (gui) StdoutLine: {'line': b'-- Found urdf: 2.6.1 (/opt/ros/humble/share/urdf/cmake)\n'}
+[0.796188] (gui) StdoutLine: {'line': b'-- Performing Test HAVE_STDATOMIC\n'}
+[0.800842] (-) TimerEvent: {}
+[0.863513] (gui) StdoutLine: {'line': b'-- Performing Test HAVE_STDATOMIC - Success\n'}
+[0.864336] (gui) StdoutLine: {'line': b'-- Found WrapAtomic: TRUE  \n'}
+[0.875023] (gui) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   \n'}
+[0.875550] (gui) StdoutLine: {'line': b'-- Found WrapOpenGL: TRUE  \n'}
+[0.882660] (gui) StdoutLine: {'line': b'-- Could NOT find XKB (missing: XKB_LIBRARY XKB_INCLUDE_DIR) (Required is at least version "0.5.0")\n'}
+[0.884918] (gui) StdoutLine: {'line': b'-- Found WrapVulkanHeaders: /usr/include  \n'}
+[0.900954] (-) TimerEvent: {}
+[0.907842] (gui) StdoutLine: {'line': b'-- Found OpenCV: /usr (found version "4.5.4") \n'}
+[0.910881] (gui) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[0.953611] (gui) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.977387] (gui) StdoutLine: {'line': b'-- Generating done\n'}
+[0.980377] (gui) StdoutLine: {'line': b'-- Build files have been written to: /home/gerardo/TMR2026_Rescue/shared/build/gui\n'}
+[0.988893] (gui) CommandEnded: {'returncode': 0}
+[0.989102] (gui) JobProgress: {'identifier': 'gui', 'progress': 'build'}
+[0.989116] (gui) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/gerardo/TMR2026_Rescue/shared/build/gui', '--', '-j16', '-l16'], 'cwd': '/home/gerardo/TMR2026_Rescue/shared/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('ROS_APT_SOURCE_VERSION', '1.1.0'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared/gui_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '2126'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1933,unix/gerardo-asus:/tmp/.ICE-unix/1933'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c5c3c0f3_9ef1_4a31_aa09_e0a61cdab88d'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.5I4EN3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.123'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/shared/build/gui'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.001062] (-) TimerEvent: {}
+[1.023299] (gui) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mAutomatic MOC and UIC for target gui\x1b[0m\n'}
+[1.101218] (-) TimerEvent: {}
+[1.201680] (-) TimerEvent: {}
+[1.302621] (-) TimerEvent: {}
+[1.403746] (-) TimerEvent: {}
+[1.504369] (-) TimerEvent: {}
+[1.604651] (-) TimerEvent: {}
+[1.659323] (gui) StdoutLine: {'line': b'[  5%] Built target gui_autogen\n'}
+[1.676121] (gui) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/gui.cpp.o\x1b[0m\n'}
+[1.676436] (gui) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/video_widget.cpp.o\x1b[0m\n'}
+[1.676609] (gui) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/gui_autogen/mocs_compilation.cpp.o\x1b[0m\n'}
+[1.676717] (gui) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/video_panel.cpp.o\x1b[0m\n'}
+[1.676802] (gui) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/source_manager.cpp.o\x1b[0m\n'}
+[1.676898] (gui) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/camera_hub.cpp.o\x1b[0m\n'}
+[1.676947] (gui) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/main_window.cpp.o\x1b[0m\n'}
+[1.676987] (gui) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/odometry_panel.cpp.o\x1b[0m\n'}
+[1.677027] (gui) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/speech_processor.cpp.o\x1b[0m\n'}
+[1.677065] (gui) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/urdf_viewer.cpp.o\x1b[0m\n'}
+[1.677104] (gui) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/filters.cpp.o\x1b[0m\n'}
+[1.677141] (gui) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/app_settings.cpp.o\x1b[0m\n'}
+[1.677177] (gui) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/dashboard_panel.cpp.o\x1b[0m\n'}
+[1.677217] (gui) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/settings_dialog.cpp.o\x1b[0m\n'}
+[1.678108] (gui) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/keybind_dialog.cpp.o\x1b[0m\n'}
+[1.682398] (gui) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding CXX object CMakeFiles/gui.dir/src/ppm_calib_dialog.cpp.o\x1b[0m\n'}
+[1.704766] (-) TimerEvent: {}
+[1.805205] (-) TimerEvent: {}
+[1.905734] (-) TimerEvent: {}
+[2.009320] (-) TimerEvent: {}
+[2.109682] (-) TimerEvent: {}
+[2.210120] (-) TimerEvent: {}
+[2.310622] (-) TimerEvent: {}
+[2.411029] (-) TimerEvent: {}
+[2.511468] (-) TimerEvent: {}
+[2.611902] (-) TimerEvent: {}
+[2.712345] (-) TimerEvent: {}
+[2.816530] (-) TimerEvent: {}
+[2.916987] (-) TimerEvent: {}
+[3.017427] (-) TimerEvent: {}
+[3.117826] (-) TimerEvent: {}
+[3.218228] (-) TimerEvent: {}
+[3.318630] (-) TimerEvent: {}
+[3.419071] (-) TimerEvent: {}
+[3.519519] (-) TimerEvent: {}
+[3.619950] (-) TimerEvent: {}
+[3.720336] (-) TimerEvent: {}
+[3.824342] (-) TimerEvent: {}
+[3.924755] (-) TimerEvent: {}
+[4.025170] (-) TimerEvent: {}
+[4.125595] (-) TimerEvent: {}
+[4.226023] (-) TimerEvent: {}
+[4.326430] (-) TimerEvent: {}
+[4.426829] (-) TimerEvent: {}
+[4.527228] (-) TimerEvent: {}
+[4.627655] (-) TimerEvent: {}
+[4.728054] (-) TimerEvent: {}
+[4.831330] (-) TimerEvent: {}
+[4.931721] (-) TimerEvent: {}
+[5.032135] (-) TimerEvent: {}
+[5.132569] (-) TimerEvent: {}
+[5.232931] (-) TimerEvent: {}
+[5.333321] (-) TimerEvent: {}
+[5.433720] (-) TimerEvent: {}
+[5.534111] (-) TimerEvent: {}
+[5.634507] (-) TimerEvent: {}
+[5.735335] (-) TimerEvent: {}
+[5.839334] (-) TimerEvent: {}
+[5.939724] (-) TimerEvent: {}
+[6.040122] (-) TimerEvent: {}
+[6.140512] (-) TimerEvent: {}
+[6.240910] (-) TimerEvent: {}
+[6.341328] (-) TimerEvent: {}
+[6.441734] (-) TimerEvent: {}
+[6.542117] (-) TimerEvent: {}
+[6.642525] (-) TimerEvent: {}
+[6.742944] (-) TimerEvent: {}
+[6.844327] (-) TimerEvent: {}
+[6.944701] (-) TimerEvent: {}
+[7.045062] (-) TimerEvent: {}
+[7.145434] (-) TimerEvent: {}
+[7.248331] (-) TimerEvent: {}
+[7.348774] (-) TimerEvent: {}
+[7.449143] (-) TimerEvent: {}
+[7.549566] (-) TimerEvent: {}
+[7.649937] (-) TimerEvent: {}
+[7.750295] (-) TimerEvent: {}
+[7.850618] (-) TimerEvent: {}
+[7.950968] (-) TimerEvent: {}
+[8.051332] (-) TimerEvent: {}
+[8.151696] (-) TimerEvent: {}
+[8.252097] (-) TimerEvent: {}
+[8.352458] (-) TimerEvent: {}
+[8.452819] (-) TimerEvent: {}
+[8.553199] (-) TimerEvent: {}
+[8.653552] (-) TimerEvent: {}
+[8.754030] (-) TimerEvent: {}
+[8.854354] (-) TimerEvent: {}
+[8.954678] (-) TimerEvent: {}
+[9.055017] (-) TimerEvent: {}
+[9.155345] (-) TimerEvent: {}
+[9.245405] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui/src/urdf_viewer.cpp:57:20:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KGRID_FRAG\x1b[m\x1b[K\xe2\x80\x99 defined but not used [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[9.245640] (gui) StderrLine: {'line': b'   57 | static const char* \x1b[01;35m\x1b[KGRID_FRAG\x1b[m\x1b[K = R"(\n'}
+[9.245717] (gui) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[9.245775] (gui) StderrLine: {'line': b'\x1b[01m\x1b[K/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/gui/src/urdf_viewer.cpp:45:20:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KGRID_VERT\x1b[m\x1b[K\xe2\x80\x99 defined but not used [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[9.245833] (gui) StderrLine: {'line': b'   45 | static const char* \x1b[01;35m\x1b[KGRID_VERT\x1b[m\x1b[K = R"(\n'}
+[9.245884] (gui) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[9.255472] (-) TimerEvent: {}
+[9.355818] (-) TimerEvent: {}
+[9.456144] (-) TimerEvent: {}
+[9.556481] (-) TimerEvent: {}
+[9.656825] (-) TimerEvent: {}
+[9.757157] (-) TimerEvent: {}
+[9.857506] (-) TimerEvent: {}
+[9.957805] (-) TimerEvent: {}
+[10.058117] (-) TimerEvent: {}
+[10.158444] (-) TimerEvent: {}
+[10.258786] (-) TimerEvent: {}
+[10.359181] (-) TimerEvent: {}
+[10.459546] (-) TimerEvent: {}
+[10.559909] (-) TimerEvent: {}
+[10.660242] (-) TimerEvent: {}
+[10.760615] (-) TimerEvent: {}
+[10.860957] (-) TimerEvent: {}
+[10.961288] (-) TimerEvent: {}
+[11.061653] (-) TimerEvent: {}
+[11.161995] (-) TimerEvent: {}
+[11.262334] (-) TimerEvent: {}
+[11.362667] (-) TimerEvent: {}
+[11.463000] (-) TimerEvent: {}
+[11.563333] (-) TimerEvent: {}
+[11.663692] (-) TimerEvent: {}
+[11.764019] (-) TimerEvent: {}
+[11.864362] (-) TimerEvent: {}
+[11.964656] (-) TimerEvent: {}
+[12.064945] (-) TimerEvent: {}
+[12.165272] (-) TimerEvent: {}
+[12.265679] (-) TimerEvent: {}
+[12.366091] (-) TimerEvent: {}
+[12.466518] (-) TimerEvent: {}
+[12.566934] (-) TimerEvent: {}
+[12.667361] (-) TimerEvent: {}
+[12.767700] (-) TimerEvent: {}
+[12.867998] (-) TimerEvent: {}
+[12.968332] (-) TimerEvent: {}
+[13.068622] (-) TimerEvent: {}
+[13.168935] (-) TimerEvent: {}
+[13.269226] (-) TimerEvent: {}
+[13.369536] (-) TimerEvent: {}
+[13.469831] (-) TimerEvent: {}
+[13.570149] (-) TimerEvent: {}
+[13.670447] (-) TimerEvent: {}
+[13.770732] (-) TimerEvent: {}
+[13.871109] (-) TimerEvent: {}
+[13.971394] (-) TimerEvent: {}
+[14.071705] (-) TimerEvent: {}
+[14.171981] (-) TimerEvent: {}
+[14.272300] (-) TimerEvent: {}
+[14.372598] (-) TimerEvent: {}
+[14.472950] (-) TimerEvent: {}
+[14.573346] (-) TimerEvent: {}
+[14.673565] (-) TimerEvent: {}
+[14.773812] (-) TimerEvent: {}
+[14.874055] (-) TimerEvent: {}
+[14.974301] (-) TimerEvent: {}
+[15.074510] (-) TimerEvent: {}
+[15.174768] (-) TimerEvent: {}
+[15.274989] (-) TimerEvent: {}
+[15.375310] (-) TimerEvent: {}
+[15.475535] (-) TimerEvent: {}
+[15.575786] (-) TimerEvent: {}
+[15.676044] (-) TimerEvent: {}
+[15.776279] (-) TimerEvent: {}
+[15.876511] (-) TimerEvent: {}
+[15.976767] (-) TimerEvent: {}
+[16.076984] (-) TimerEvent: {}
+[16.177210] (-) TimerEvent: {}
+[16.277510] (-) TimerEvent: {}
+[16.377756] (-) TimerEvent: {}
+[16.478016] (-) TimerEvent: {}
+[16.578239] (-) TimerEvent: {}
+[16.678574] (-) TimerEvent: {}
+[16.778813] (-) TimerEvent: {}
+[16.879070] (-) TimerEvent: {}
+[16.979396] (-) TimerEvent: {}
+[17.079731] (-) TimerEvent: {}
+[17.179965] (-) TimerEvent: {}
+[17.280320] (-) TimerEvent: {}
+[17.380551] (-) TimerEvent: {}
+[17.480876] (-) TimerEvent: {}
+[17.581198] (-) TimerEvent: {}
+[17.681551] (-) TimerEvent: {}
+[17.781845] (-) TimerEvent: {}
+[17.882117] (-) TimerEvent: {}
+[17.982333] (-) TimerEvent: {}
+[18.082559] (-) TimerEvent: {}
+[18.182839] (-) TimerEvent: {}
+[18.283113] (-) TimerEvent: {}
+[18.383407] (-) TimerEvent: {}
+[18.483660] (-) TimerEvent: {}
+[18.583960] (-) TimerEvent: {}
+[18.684201] (-) TimerEvent: {}
+[18.784435] (-) TimerEvent: {}
+[18.873358] (gui) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable gui\x1b[0m\n'}
+[18.884507] (-) TimerEvent: {}
+[18.984808] (-) TimerEvent: {}
+[19.085169] (-) TimerEvent: {}
+[19.185515] (-) TimerEvent: {}
+[19.285773] (-) TimerEvent: {}
+[19.386010] (-) TimerEvent: {}
+[19.486277] (-) TimerEvent: {}
+[19.586724] (-) TimerEvent: {}
+[19.687153] (-) TimerEvent: {}
+[19.787545] (-) TimerEvent: {}
+[19.887927] (-) TimerEvent: {}
+[19.988304] (-) TimerEvent: {}
+[20.088672] (-) TimerEvent: {}
+[20.189059] (-) TimerEvent: {}
+[20.289429] (-) TimerEvent: {}
+[20.389787] (-) TimerEvent: {}
+[20.490070] (-) TimerEvent: {}
+[20.590360] (-) TimerEvent: {}
+[20.690619] (-) TimerEvent: {}
+[20.790974] (-) TimerEvent: {}
+[20.891321] (-) TimerEvent: {}
+[20.991649] (-) TimerEvent: {}
+[21.091977] (-) TimerEvent: {}
+[21.192292] (-) TimerEvent: {}
+[21.292612] (-) TimerEvent: {}
+[21.392926] (-) TimerEvent: {}
+[21.493259] (-) TimerEvent: {}
+[21.593583] (-) TimerEvent: {}
+[21.693915] (-) TimerEvent: {}
+[21.794240] (-) TimerEvent: {}
+[21.894573] (-) TimerEvent: {}
+[21.994900] (-) TimerEvent: {}
+[22.095241] (-) TimerEvent: {}
+[22.195599] (-) TimerEvent: {}
+[22.295847] (-) TimerEvent: {}
+[22.383889] (gui) StdoutLine: {'line': b'[100%] Built target gui\n'}
+[22.392285] (gui) CommandEnded: {'returncode': 0}
+[22.392827] (gui) JobProgress: {'identifier': 'gui', 'progress': 'install'}
+[22.395941] (-) TimerEvent: {}
+[22.397745] (gui) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/gerardo/TMR2026_Rescue/shared/build/gui'], 'cwd': '/home/gerardo/TMR2026_Rescue/shared/build/gui', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'gerardo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('ROS_APT_SOURCE_VERSION', '1.1.0'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/gerardo'), ('OLDPWD', '/home/gerardo/TMR2026_Rescue/shared/gui_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '2126'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'gerardo'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'gerardo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/gerardo-asus:@/tmp/.ICE-unix/1933,unix/gerardo-asus:/tmp/.ICE-unix/1933'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c5c3c0f3_9ef1_4a31_aa09_e0a61cdab88d'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.5I4EN3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.123'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/gerardo/TMR2026_Rescue/shared/build/gui'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[22.402415] (gui) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[22.402481] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/lib/gui/gui\n'}
+[22.411369] (gui) StdoutLine: {'line': b'-- Set runtime path of "/home/gerardo/TMR2026_Rescue/shared/install/gui/lib/gui/gui" to ""\n'}
+[22.411440] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/lib/gui/gst_bridge\n'}
+[22.411477] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets\n'}
+[22.411501] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/vision\n'}
+[22.411523] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/vision/best.pt\n'}
+[22.434321] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/vision/best.onnx\n'}
+[22.482143] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio\n'}
+[22.482241] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15\n'}
+[22.482281] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph\n'}
+[22.482308] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/phones\n'}
+[22.482334] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/phones/word_boundary.int\n'}
+[22.482360] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/Gr.fst\n'}
+[22.494810] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/HCLr.fst\n'}
+[22.496124] (-) TimerEvent: {}
+[22.511318] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/graph/disambig_tid.int\n'}
+[22.511404] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/README\n'}
+[22.511438] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector\n'}
+[22.511467] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/global_cmvn.stats\n'}
+[22.511492] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/online_cmvn.conf\n'}
+[22.511610] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/final.dubm\n'}
+[22.511677] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/final.mat\n'}
+[22.511710] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/final.ie\n'}
+[22.515190] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/ivector/splice.conf\n'}
+[22.515373] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/conf\n'}
+[22.515437] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/conf/mfcc.conf\n'}
+[22.515469] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/conf/model.conf\n'}
+[22.515495] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/am\n'}
+[22.515525] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/vosk-model-small-en-us-0.15/am/final.mdl\n'}
+[22.523766] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph\n'}
+[22.523841] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/phones\n'}
+[22.523873] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/phones/word_boundary.int\n'}
+[22.523905] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/phones.txt\n'}
+[22.523930] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/Gr.fst\n'}
+[22.545386] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/HCLr.fst\n'}
+[22.574188] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/words.txt\n'}
+[22.576744] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/graph/disambig_tid.int\n'}
+[22.576819] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/README\n'}
+[22.576853] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector\n'}
+[22.576987] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector/global_cmvn.stats\n'}
+[22.577040] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector/online_cmvn.conf\n'}
+[22.577070] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector/final.dubm\n'}
+[22.577098] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector/final.mat\n'}
+[22.577124] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector/final.ie\n'}
+[22.585775] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/ivector/splice.conf\n'}
+[22.585855] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/conf\n'}
+[22.585889] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/conf/mfcc.conf\n'}
+[22.585916] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/conf/model.conf\n'}
+[22.585942] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/am\n'}
+[22.585967] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/am/final.mdl\n'}
+[22.596289] (-) TimerEvent: {}
+[22.618038] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/assets/audio/am/tree\n'}
+[22.618450] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/launch\n'}
+[22.618523] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/launch/gui.launch.py\n'}
+[22.618555] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/ament_index/resource_index/package_run_dependencies/gui\n'}
+[22.618717] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/ament_index/resource_index/parent_prefix_path/gui\n'}
+[22.618792] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/environment/ament_prefix_path.sh\n'}
+[22.618963] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/environment/ament_prefix_path.dsv\n'}
+[22.619011] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/environment/path.sh\n'}
+[22.619043] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/environment/path.dsv\n'}
+[22.619071] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/local_setup.bash\n'}
+[22.619097] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/local_setup.sh\n'}
+[22.619124] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/local_setup.zsh\n'}
+[22.619150] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/local_setup.dsv\n'}
+[22.619175] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/package.dsv\n'}
+[22.619201] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/ament_index/resource_index/packages/gui\n'}
+[22.619226] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/cmake/guiConfig.cmake\n'}
+[22.619272] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/cmake/guiConfig-version.cmake\n'}
+[22.619302] (gui) StdoutLine: {'line': b'-- Installing: /home/gerardo/TMR2026_Rescue/shared/install/gui/share/gui/package.xml\n'}
+[22.620660] (gui) CommandEnded: {'returncode': 0}
+[22.627366] (gui) JobEnded: {'identifier': 'gui', 'rc': 0}
+[22.627851] (-) EventReactorShutdown: {}

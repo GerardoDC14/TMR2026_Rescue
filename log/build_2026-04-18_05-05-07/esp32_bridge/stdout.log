@@ -1,0 +1,53 @@
+running egg_info
+creating ../../../../build/esp32_bridge/esp32_bridge.egg-info
+writing ../../../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO
+writing dependency_links to ../../../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt
+writing entry points to ../../../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt
+writing requirements to ../../../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt
+writing top-level names to ../../../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt
+writing manifest file '../../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+reading manifest file '../../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+writing manifest file '../../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build
+creating /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib
+creating /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+copying esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+copying esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+copying esp32_bridge/gst_sender.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+copying esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+copying esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+copying esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge
+running install
+running install_lib
+creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/gst_sender.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+copying /home/gerardo/TMR2026_Rescue/build/esp32_bridge/build/lib/esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/audio_node.py to audio_node.cpython-310.pyc
+byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/servo_bridge.py to servo_bridge.cpython-310.pyc
+byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/gst_sender.py to gst_sender.cpython-310.pyc
+byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/main_bridge.py to main_bridge.cpython-310.pyc
+byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/rc_control.py to rc_control.cpython-310.pyc
+byte-compiling /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index
+creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index/resource_index
+creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index/resource_index/packages
+copying resource/esp32_bridge -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/ament_index/resource_index/packages
+copying package.xml -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge
+creating /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/launch
+copying launch/esp32_bridge.launch.py -> /home/gerardo/TMR2026_Rescue/install/esp32_bridge/share/esp32_bridge/launch
+running install_egg_info
+Copying ../../../../build/esp32_bridge/esp32_bridge.egg-info to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info
+running install_scripts
+Installing audio_node script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge
+Installing gst_sender script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge
+Installing main_bridge script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge
+Installing rc_control script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge
+Installing servo_bridge script to /home/gerardo/TMR2026_Rescue/install/esp32_bridge/lib/esp32_bridge
+writing list of installed files to '/home/gerardo/TMR2026_Rescue/build/esp32_bridge/install.log'

@@ -1,0 +1,45 @@
+###############################################
+# Damped Least-Squares Servo parameters
+# Drop-in replacement for MoveIt Servo — never
+# halts on singularity, uses adaptive damping.
+###############################################
+servo_node:
+  ros__parameters:
+
+    ## Control loop rate (Hz) — match original MoveIt Servo
+    publish_rate: 30.0
+
+    ## Maximum Cartesian speeds (applied to unitless [-1,1] commands)
+    max_linear_speed: 0.4        # m/s
+    max_rotational_speed: 0.7   # rad/s
+
+    ## Maximum joint velocity (rad/s) — caps any single joint
+    max_joint_speed: 0.4
+
+    ## Singularity handling — based on Jacobian condition number
+    ##   cond < condition_lower   →  no damping (perfect tracking)
+    ##   cond_lower..cond_upper   →  linear ramp from 0 to damping_max
+    ##   cond > condition_upper   →  clamped at damping_max
+    condition_lower: 40.0
+    condition_upper: 200.0
+    damping_max: 0.1
+
+    ## Joint-limit safety
+    joint_limit_margin: 0.1          # rad — hard clamp zone
+    joint_limit_scale_zone: 0.25     # rad — soft deceleration ramp
+
+    ## Input timeout — zero commands if nothing received within this window
+    command_timeout: 0.2             # seconds
+
+    ## Exponential Moving Average on twist input (0 < alpha <= 1)
+    ##   lower = smoother but laggier,  higher = snappier
+    smoothing_alpha: 0.4
+
+    ## Collision checking (requires robot_description_semantic / SRDF)
+    check_collisions: true
+    collision_check_rate: 10.0       # Hz — how often to run collision checks
+    collision_lookahead: 10.0         # check this far ahead (1.5 = 50% margin)
+    self_collision_proximity_threshold: 0.01   # meters
+
+    ## End-effector frame name (for local Cartesian mode)
+    ee_frame_name: Link6

@@ -1,0 +1,49 @@
+[0.016s] Invoking command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/dicerox_mapping
+[0.349s] -- The C compiler identification is GNU 11.4.0
+[0.349s] -- The CXX compiler identification is GNU 11.4.0
+[0.349s] -- Detecting C compiler ABI info
+[0.349s] -- Detecting C compiler ABI info - done
+[0.349s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.349s] -- Detecting C compile features
+[0.349s] -- Detecting C compile features - done
+[0.349s] -- Detecting CXX compiler ABI info
+[0.349s] -- Detecting CXX compiler ABI info - done
+[0.349s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.349s] -- Detecting CXX compile features
+[0.349s] -- Detecting CXX compile features - done
+[0.349s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.382s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.519s] -- Configuring done
+[0.521s] -- Generating done
+[0.522s] -- Build files have been written to: /home/gerardo/TMR2026_Rescue/build/dicerox_mapping
+[0.553s] Invoked command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake /home/gerardo/TMR2026_Rescue/nav/Dicerox_mapping/dicerox_mapping -DCMAKE_INSTALL_PREFIX=/home/gerardo/TMR2026_Rescue/install/dicerox_mapping
+[0.554s] Invoking command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/dicerox_mapping -- -j16 -l16
+[0.590s] Invoked command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --build /home/gerardo/TMR2026_Rescue/build/dicerox_mapping -- -j16 -l16
+[0.591s] Invoking command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/dicerox_mapping
+[0.598s] -- Install configuration: ""
+[0.598s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch
+[0.599s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/save_map.launch.py
+[0.599s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/mapping_viz.launch.py
+[0.599s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/mapping.launch.py
+[0.600s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/record_bag.launch.py
+[0.600s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/launch/mapping_robot.launch.py
+[0.600s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/config
+[0.600s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/config/slam_toolbox_params.yaml
+[0.600s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/rviz
+[0.600s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/rviz/mapping.rviz
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/ament_index/resource_index/package_run_dependencies/dicerox_mapping
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/ament_index/resource_index/parent_prefix_path/dicerox_mapping
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/ament_prefix_path.sh
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/ament_prefix_path.dsv
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/path.sh
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/environment/path.dsv
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.bash
+[0.601s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.sh
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.zsh
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/local_setup.dsv
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.dsv
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/ament_index/resource_index/packages/dicerox_mapping
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/cmake/dicerox_mappingConfig.cmake
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/cmake/dicerox_mappingConfig-version.cmake
+[0.602s] -- Installing: /home/gerardo/TMR2026_Rescue/install/dicerox_mapping/share/dicerox_mapping/package.xml
+[0.604s] Invoked command in '/home/gerardo/TMR2026_Rescue/build/dicerox_mapping' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/gerardo/TMR2026_Rescue/shared/gui_ws/install/esp32_bridge:/opt/ros/humble /usr/bin/cmake --install /home/gerardo/TMR2026_Rescue/build/dicerox_mapping

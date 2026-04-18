@@ -1,0 +1,51 @@
+[0.304s] Invoking command in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge': PYTHONPATH=/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/esp32_bridge build --build-base /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build install --record /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/install.log --single-version-externally-managed install_data
+[0.417s] running egg_info
+[0.418s] creating ../../../build/esp32_bridge/esp32_bridge.egg-info
+[0.418s] writing ../../../build/esp32_bridge/esp32_bridge.egg-info/PKG-INFO
+[0.418s] writing dependency_links to ../../../build/esp32_bridge/esp32_bridge.egg-info/dependency_links.txt
+[0.418s] writing entry points to ../../../build/esp32_bridge/esp32_bridge.egg-info/entry_points.txt
+[0.418s] writing requirements to ../../../build/esp32_bridge/esp32_bridge.egg-info/requires.txt
+[0.418s] writing top-level names to ../../../build/esp32_bridge/esp32_bridge.egg-info/top_level.txt
+[0.418s] writing manifest file '../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+[0.419s] reading manifest file '../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+[0.420s] writing manifest file '../../../build/esp32_bridge/esp32_bridge.egg-info/SOURCES.txt'
+[0.420s] running build
+[0.420s] running build_py
+[0.420s] creating /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build
+[0.420s] creating /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib
+[0.420s] creating /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge
+[0.420s] copying esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge
+[0.420s] copying esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge
+[0.420s] copying esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge
+[0.420s] copying esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge
+[0.420s] copying esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge
+[0.420s] running install
+[0.420s] running install_lib
+[0.421s] creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.421s] copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/audio_node.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.421s] copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/servo_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.421s] copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/main_bridge.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.421s] copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/rc_control.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.421s] copying /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build/lib/esp32_bridge/__init__.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge
+[0.421s] byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/audio_node.py to audio_node.cpython-310.pyc
+[0.421s] byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/servo_bridge.py to servo_bridge.cpython-310.pyc
+[0.422s] byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/main_bridge.py to main_bridge.cpython-310.pyc
+[0.424s] byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/rc_control.py to rc_control.cpython-310.pyc
+[0.425s] byte-compiling /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge/__init__.py to __init__.cpython-310.pyc
+[0.425s] running install_data
+[0.425s] creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index
+[0.425s] creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index/resource_index
+[0.425s] creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index/resource_index/packages
+[0.425s] copying resource/esp32_bridge -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/ament_index/resource_index/packages
+[0.425s] copying package.xml -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/esp32_bridge
+[0.426s] creating /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/esp32_bridge/launch
+[0.426s] copying launch/esp32_bridge.launch.py -> /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/share/esp32_bridge/launch
+[0.426s] running install_egg_info
+[0.426s] Copying ../../../build/esp32_bridge/esp32_bridge.egg-info to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages/esp32_bridge-0.0.0-py3.10.egg-info
+[0.426s] running install_scripts
+[0.439s] Installing audio_node script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge
+[0.439s] Installing main_bridge script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge
+[0.439s] Installing rc_control script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge
+[0.439s] Installing servo_bridge script to /home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/esp32_bridge
+[0.439s] writing list of installed files to '/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/install.log'
+[0.453s] Invoked command in '/home/gerardo/TMR2026_Rescue/shared/gui_ws/src/esp32_bridge' returned '0': PYTHONPATH=/home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gerardo/TMR2026_Rescue/shared/install/esp32_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/esp32_bridge build --build-base /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/build install --record /home/gerardo/TMR2026_Rescue/shared/build/esp32_bridge/install.log --single-version-externally-managed install_data

@@ -1,0 +1,9 @@
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/uninstall.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/dicerox_mapping_uninstall.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/test.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/edit_cache.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/rebuild_cache.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/list_install_components.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/install.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/install/local.dir
+/home/gerardo/TMR2026_Rescue/build/dicerox_mapping/CMakeFiles/install/strip.dir

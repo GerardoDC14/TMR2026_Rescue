@@ -1,0 +1,7 @@
+[console_scripts]
+audio_node = esp32_bridge.audio_node:main
+gst_sender = esp32_bridge.gst_sender:main
+main_bridge = esp32_bridge.main_bridge:main
+rc_control = esp32_bridge.rc_control:main
+servo_bridge = esp32_bridge.servo_bridge:main
+

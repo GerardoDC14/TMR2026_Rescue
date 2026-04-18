@@ -2,7 +2,7 @@
 #include "gui/video_widget.hpp"
 #include "gui/odometry_panel.hpp"
 
-// Grid positions for the 3 video widgets + odometry panel
+// 2x2 grid positions: TL, TR, BL, BR
 static constexpr int POS[4][2] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
 
 VideoPanel::VideoPanel(rclcpp::Node::SharedPtr node,
@@ -14,8 +14,8 @@ VideoPanel::VideoPanel(rclcpp::Node::SharedPtr node,
     grid_->setContentsMargins(0, 0, 0, 0);
     grid_->setSpacing(2);
 
-    // 3 video widgets: top-left (0), top-right (1), bottom-left (2)
-    for (int i = 0; i < 3; ++i) {
+    // 4 video widgets fill the 2x2 grid
+    for (int i = 0; i < 4; ++i) {
         widgets_[i] = new VideoWidget(node, hub, this);
         grid_->addWidget(widgets_[i], POS[i][0], POS[i][1]);
 
@@ -26,9 +26,11 @@ VideoPanel::VideoPanel(rclcpp::Node::SharedPtr node,
                 this, &VideoPanel::onWidgetThermalChanged);
     }
 
-    // Odometry panel in bottom-right (1, 1)
+    // Odometry panel kept alive for setRobotType() callers, but not shown.
+    // Parent to `this` so it is destroyed with the panel; hidden so it never
+    // takes layout space.
     odom_panel_ = new OdometryPanel(node, this);
-    grid_->addWidget(odom_panel_, POS[3][0], POS[3][1]);
+    odom_panel_->hide();
 
     // Equal row/column stretch so all four cells stay the same size
     grid_->setRowStretch(0, 1);
@@ -39,13 +41,13 @@ VideoPanel::VideoPanel(rclcpp::Node::SharedPtr node,
 
 void VideoPanel::updateSources(const QStringList& names, const QStringList& identifiers)
 {
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 4; ++i)
         widgets_[i]->updateSources(names, identifiers);
 }
 
 void VideoPanel::updateFilters(const QStringList& names)
 {
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 4; ++i)
         widgets_[i]->updateFilters(names);
 }
 
@@ -66,18 +68,13 @@ void VideoPanel::onWidgetClicked(int index)
 {
     if (enlarged_index_ == index) {
         // ── Restore 2x2 layout ──────────────────────────────────────────────
-
-        // Remove the enlarged widget from the grid (it currently spans 2x2)
         grid_->removeWidget(widgets_[index]);
 
-        // Re-add all widgets in their original 1x1 positions
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 4; ++i) {
             grid_->addWidget(widgets_[i], POS[i][0], POS[i][1]);
             widgets_[i]->setPaused(false);
             widgets_[i]->show();
         }
-        grid_->addWidget(odom_panel_, POS[3][0], POS[3][1]);
-        odom_panel_->show();
 
         grid_->setRowStretch(0, 1);
         grid_->setRowStretch(1, 1);
@@ -87,17 +84,13 @@ void VideoPanel::onWidgetClicked(int index)
         enlarged_index_ = -1;
     } else {
         // ── Enlarge clicked widget to span 2x2 ─────────────────────────────
-
-        // Hide + pause non-selected video widgets and the odometry panel
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 4; ++i) {
             if (i != index) {
                 widgets_[i]->setPaused(true);
                 widgets_[i]->hide();
             }
         }
-        odom_panel_->hide();
 
-        // Remove the selected widget from its current cell and re-add spanning 2x2
         grid_->removeWidget(widgets_[index]);
         grid_->addWidget(widgets_[index], 0, 0, 2, 2);
         widgets_[index]->setPaused(false);

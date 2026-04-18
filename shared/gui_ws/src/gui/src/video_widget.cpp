@@ -378,6 +378,100 @@ void VideoWidget::setupFilterOptions(const std::string& name)
         r3->addWidget(btn1);
         r3->addWidget(btn2);
         opts->addLayout(r3);
+
+    } else if (name == "Shape 2") {
+        // Threshold slider (shares shape_threshold with "Detect Shape")
+        auto* r1 = new QHBoxLayout();
+        auto* t_lbl = new QLabel("Threshold:", options_container_);
+        auto* t_sl  = new QSlider(Qt::Horizontal, options_container_);
+        auto* t_val = new QLabel("100", options_container_);
+        t_val->setStyleSheet("color: #4fc3f7; font-size: 11px; "
+                             "min-width: 30px;");
+        t_sl->setRange(0, 255);
+        t_sl->setValue(config->shape_threshold.load());
+        connect(t_sl, &QSlider::valueChanged,
+                [config, t_val](int v) {
+                    config->shape_threshold.store(v);
+                    t_val->setText(QString::number(v));
+                });
+        r1->addWidget(t_lbl);
+        r1->addWidget(t_sl, 1);
+        r1->addWidget(t_val);
+        opts->addLayout(r1);
+
+        // Tolerance slider (shares shape_tolerance_pct with "Detect Shape")
+        auto* r2 = new QHBoxLayout();
+        auto* tol_lbl = new QLabel("Tolerance:", options_container_);
+        auto* tol_sl  = new QSlider(Qt::Horizontal, options_container_);
+        auto* tol_val = new QLabel("0.04", options_container_);
+        tol_val->setStyleSheet("color: #4fc3f7; font-size: 11px; "
+                               "min-width: 30px;");
+        tol_sl->setRange(1, 100);
+        tol_sl->setValue(config->shape_tolerance_pct.load());
+        tol_val->setText(QString::number(
+            config->shape_tolerance_pct.load() * 0.01, 'f', 2));
+        connect(tol_sl, &QSlider::valueChanged,
+                [config, tol_val](int v) {
+                    config->shape_tolerance_pct.store(v);
+                    tol_val->setText(
+                        QString::number(v * 0.01, 'f', 2));
+                });
+        r2->addWidget(tol_lbl);
+        r2->addWidget(tol_sl, 1);
+        r2->addWidget(tol_val);
+        opts->addLayout(r2);
+
+        // Corner selector: TL / TR / BL / BR
+        auto* r3 = new QHBoxLayout();
+        auto* b_tl = new QPushButton("TL", options_container_);
+        auto* b_tr = new QPushButton("TR", options_container_);
+        auto* b_bl = new QPushButton("BL", options_container_);
+        auto* b_br = new QPushButton("BR", options_container_);
+        for (auto* b : {b_tl, b_tr, b_bl, b_br}) {
+            b->setCheckable(true);
+            b->setStyleSheet(TOGGLE_BTN_STYLE);
+        }
+        b_tl->setChecked(true);
+
+        auto* corner_grp = new QButtonGroup(options_container_);
+        corner_grp->addButton(b_tl, 0);
+        corner_grp->addButton(b_tr, 1);
+        corner_grp->addButton(b_bl, 2);
+        corner_grp->addButton(b_br, 3);
+        corner_grp->setExclusive(true);
+
+        connect(corner_grp, QOverload<int>::of(&QButtonGroup::idClicked),
+                [config](int id) { config->shape2_corner.store(id); });
+
+        r3->addWidget(b_tl);
+        r3->addWidget(b_tr);
+        r3->addWidget(b_bl);
+        r3->addWidget(b_br);
+        opts->addLayout(r3);
+
+        // Mode toggle: Contour sector / HoughCircles sector
+        auto* r4 = new QHBoxLayout();
+        auto* b_cont = new QPushButton("Contour", options_container_);
+        auto* b_circ = new QPushButton("Circle", options_container_);
+        b_cont->setCheckable(true);
+        b_circ->setCheckable(true);
+        b_cont->setChecked(true);
+        b_cont->setStyleSheet(TOGGLE_BTN_STYLE);
+        b_circ->setStyleSheet(TOGGLE_BTN_STYLE);
+
+        auto* mode_grp = new QButtonGroup(options_container_);
+        mode_grp->addButton(b_cont, 0);
+        mode_grp->addButton(b_circ, 1);
+        mode_grp->setExclusive(true);
+
+        connect(mode_grp, QOverload<int>::of(&QButtonGroup::idClicked),
+                [config](int id) {
+                    config->shape2_circle_mode.store(id == 1);
+                });
+
+        r4->addWidget(b_cont);
+        r4->addWidget(b_circ);
+        opts->addLayout(r4);
     }
 
     static_cast<QVBoxLayout*>(layout())->addWidget(options_container_);

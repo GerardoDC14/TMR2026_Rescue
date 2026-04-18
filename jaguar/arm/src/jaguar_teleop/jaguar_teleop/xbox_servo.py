@@ -2,27 +2,29 @@
 """
 Xbox Servo Node
 ===============
-Maps an Xbox controller to MoveIt Servo twist commands, providing the
-same kind of real-time arm control as rc_servo.py (PPM) but using a
-standard gamepad via the ROS2 joy_node.
+Maps an Xbox One controller to MoveIt Servo twist commands, providing
+the same kind of real-time arm control as rc_servo.py (PPM) but using
+a standard gamepad via the ROS2 joy_node.
 
-All movements are in the global (base_link) frame so that pushing a
-stick direction always corresponds to the same world-space axis
-regardless of end-effector orientation.
+All movements are in the global (base_link) frame by default, so stick
+directions always correspond to fixed world-space axes regardless of
+end-effector orientation.  Press START to cycle to LOCAL (end-effector)
+frame if you want tool-relative motion.
 
-Hardcoded button/axis layout (Xbox Series / Xbox One / generic XInput):
+Control layout
+--------------
+    Left  stick Y   → X   (forward / back)        linear.x
+    Left  stick X   → Y   (strafe  left / right)  linear.y
+    Right stick Y   → Z   (up / down)             linear.z
+    Right stick X   → Yaw                         angular.z
 
-    Left stick Y    → X   (forward / back)
-    Left stick X    → Y   (strafe left / right)
-    Right stick Y   → Z   (up / down)
-    Right stick X   → Yaw
-    Hold LB         → Left X  → Roll,   Right Y → Pitch
-    Hold RB         → Left X  → Y,      Right Y → Pitch
+    LT (trigger)    → pitch −                     angular.y
+    RT (trigger)    → pitch +
 
-    D-pad Up/Down   → select joint (JOINT mode)
-    Left stick Y    → jog selected joint (JOINT mode)
+    LB (bumper)     → roll −                      angular.x
+    RB (bumper)     → roll +
 
-    START           → cycle mode (GLOBAL → LOCAL → JOINT)
+    START           → toggle GLOBAL / LOCAL frame
     Y               → pause / resume servo
     BACK            → stop (zero velocity)
 
@@ -34,7 +36,6 @@ Subscribes
 Publishes
 ---------
 /servo_node/delta_twist_cmds  geometry_msgs/TwistStamped
-/servo_node/delta_joint_cmds  control_msgs/JointJog
 """
 
 import threading
@@ -42,12 +43,11 @@ import threading
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Joy
-from control_msgs.msg import JointJog
 from geometry_msgs.msg import TwistStamped
 from std_msgs.msg import Int8
 from std_srvs.srv import Trigger
 
-# ── Axis indices (XInput layout) ─────────────────────────────────────
+# ── Axis indices (XInput / Linux joy_node default) ───────────────────
 AX_LX = 0
 AX_LY = 1
 AX_LT = 2
@@ -69,15 +69,12 @@ BTN_START = 7
 BTN_GUIDE = 8
 
 # ── Tunables ─────────────────────────────────────────────────────────
-SPEED     = 1.0       # overall velocity scale
-DEADZONE  = 0.10      # normalised dead-zone for stick axes
+SPEED     = 1.0       # overall velocity scale (multiplied by the servo
+                      # node's max_linear_speed / max_rotational_speed)
+DEADZONE  = 0.10      # stick centre dead-zone (normalised)
 
 FRAME_BASE = 'base_link'
 FRAME_EE   = 'Link6'
-
-JOINT_NAMES = ['Joint1', 'Joint2', 'Joint3', 'Joint4', 'Joint5', 'Joint6']
-NUM_JOINTS  = 6
-MODES       = ['global', 'local', 'joint']
 
 # Per-axis sign flip (match rc_servo conventions)
 SIGN_X     =  1.0
@@ -89,7 +86,7 @@ SIGN_YAW   = -1.0
 
 
 def _deadzone(value: float) -> float:
-    """Remove stick dead-zone and rescale the remaining range to [0, 1]."""
+    """Remove stick dead-zone and rescale the remainder to [-1, 1]."""
     if abs(value) < DEADZONE:
         return 0.0
     sign = 1.0 if value > 0 else -1.0
@@ -102,48 +99,42 @@ class XboxServo(Node):
 
         self.twist_pub = self.create_publisher(
             TwistStamped, '/servo_node/delta_twist_cmds', 10)
-        self.joint_pub = self.create_publisher(
-            JointJog, '/servo_node/delta_joint_cmds', 10)
 
         self._pause_cli = self.create_client(Trigger, '/servo_node/pause_servo')
         self._start_cli = self.create_client(Trigger, '/servo_node/start_servo')
 
-        self.mode          = 'global'
-        self.active_joint  = 0
-        self._servo_paused = False
-        self._last_status  = 0
-        self._prev_buttons = []
-        self._dpad_y_prev  = 0.0
+        self._frame_local   = False    # False → global, True → end-effector
+        self._servo_paused  = False
+        self._last_status   = 0
+        self._prev_buttons  = []
+        # Triggers report 0.0 until first touched (Linux joy_node quirk) —
+        # track "seen" so we don't ghost-pitch at startup.
+        self._lt_seen = False
+        self._rt_seen = False
 
         self.create_subscription(Joy,  '/joy',               self._joy_cb,    10)
         self.create_subscription(Int8, '/servo_node/status', self._status_cb, 10)
 
-        self.get_logger().info('Xbox Servo ready — global frame, hardcoded keybinds')
+        self.get_logger().info('Xbox Servo ready — global frame, 6-DOF mapping')
         self._print_help()
 
     def _print_help(self):
         print('\n' + '=' * 60)
-        print('  Jaguar Arm — Xbox Servo')
+        print('  Jaguar Arm — Xbox Servo (6-DOF)')
         print('=' * 60)
-        print('  GLOBAL mode (default) — base_link frame')
-        print('  LOCAL  mode           — end-effector frame')
-        print('    Left  Y      Forward / Back   (X)')
-        print('    Left  X      Strafe           (Y)')
-        print('    Right Y      Up / Down        (Z)')
-        print('    Right X      Yaw')
-        print('    Hold LB      Left X → Roll,  Right Y → Pitch')
-        print('    Hold RB      Left X → Y,     Right Y → Pitch')
+        print('  Left  Y     X   (forward / back)')
+        print('  Left  X     Y   (strafe)')
+        print('  Right Y     Z   (up / down)')
+        print('  Right X     Yaw')
+        print('  LT / RT     Pitch  (− / +)')
+        print('  LB / RB     Roll   (− / +)')
         print()
-        print('  JOINT mode')
-        print('    D-pad Up/Dn  Select joint')
-        print('    Left Y       Jog selected joint')
-        print()
-        print('  START   Cycle mode (GLOBAL → LOCAL → JOINT)')
-        print('  Y       Pause / Resume servo')
-        print('  BACK    Stop (zero velocity)')
+        print('  START       Toggle GLOBAL ↔ LOCAL frame')
+        print('  Y           Pause / Resume servo')
+        print('  BACK        Stop (zero velocity)')
         print('=' * 60 + '\n')
 
-    # ── Status ───────────────────────────────────────────────────────
+    # ── Servo status ─────────────────────────────────────────────────
 
     _STATUS_TEXT = {
         1: 'WARNING  Approaching singularity',
@@ -218,78 +209,54 @@ class XboxServo(Node):
             self._prev_buttons = buttons
             return
 
-        # START → cycle mode
+        # START → toggle frame
         if just_pressed(BTN_START):
-            idx = MODES.index(self.mode) if self.mode in MODES else 0
-            self.mode = MODES[(idx + 1) % len(MODES)]
-            self.get_logger().info(f'Mode → {self.mode.upper()}')
+            self._frame_local = not self._frame_local
+            self.get_logger().info(
+                f'Frame → {"LOCAL (EE)" if self._frame_local else "GLOBAL (base_link)"}')
 
-        if self.mode in ('global', 'local'):
-            self._handle_cart(axes, buttons)
-        else:
-            self._handle_joint(axes, buttons)
-
+        self._publish_twist(axes, buttons)
         self._prev_buttons = buttons
 
-    def _handle_cart(self, axes, buttons):
+    # ── Twist builder ────────────────────────────────────────────────
+
+    def _trigger(self, axes, idx, seen_attr) -> float:
+        """Read a trigger axis as a [0, 1] magnitude, handling the joy_node
+        "untouched = 0" quirk (first touch flips the sign convention)."""
+        raw = axes[idx] if len(axes) > idx else 0.0
+        if raw != 0.0:
+            setattr(self, seen_attr, True)
+        if not getattr(self, seen_attr):
+            return 0.0
+        # After first touch: 1.0 (released) .. -1.0 (fully pressed)
+        return max(0.0, min(1.0, (1.0 - raw) / 2.0))
+
+    def _publish_twist(self, axes, buttons):
         lx = _deadzone(axes[AX_LX]) if len(axes) > AX_LX else 0.0
         ly = _deadzone(axes[AX_LY]) if len(axes) > AX_LY else 0.0
         rx = _deadzone(axes[AX_RX]) if len(axes) > AX_RX else 0.0
         ry = _deadzone(axes[AX_RY]) if len(axes) > AX_RY else 0.0
 
-        lb = len(buttons) > BTN_LB and buttons[BTN_LB]
-        rb = len(buttons) > BTN_RB and buttons[BTN_RB]
+        lt = self._trigger(axes, AX_LT, '_lt_seen')
+        rt = self._trigger(axes, AX_RT, '_rt_seen')
+        pitch = rt - lt       # [-1, 1]
+
+        lb = 1.0 if (len(buttons) > BTN_LB and buttons[BTN_LB]) else 0.0
+        rb = 1.0 if (len(buttons) > BTN_RB and buttons[BTN_RB]) else 0.0
+        roll = rb - lb        # {-1, 0, 1}
 
         msg = TwistStamped()
         msg.header.stamp    = self.get_clock().now().to_msg()
-        msg.header.frame_id = FRAME_EE if self.mode == 'local' else FRAME_BASE
+        msg.header.frame_id = FRAME_EE if self._frame_local else FRAME_BASE
 
-        if lb:
-            # LB held: left X → roll, right Y → pitch
-            msg.twist.linear.x  =  ly * SPEED * SIGN_X
-            msg.twist.linear.y  =  0.0
-            msg.twist.linear.z  =  ry * SPEED * SIGN_Z
-            msg.twist.angular.x =  lx * SPEED * SIGN_ROLL
-            msg.twist.angular.y =  0.0
-            msg.twist.angular.z =  rx * SPEED * SIGN_YAW
-        elif rb:
-            # RB held: left X → Y, right Y → pitch
-            msg.twist.linear.x  =  ly * SPEED * SIGN_X
-            msg.twist.linear.y  =  lx * SPEED * SIGN_Y
-            msg.twist.linear.z  =  0.0
-            msg.twist.angular.x =  0.0
-            msg.twist.angular.y =  ry * SPEED * SIGN_PITCH
-            msg.twist.angular.z =  rx * SPEED * SIGN_YAW
-        else:
-            # Default: LY=X, LX=Y, RY=Z, RX=Yaw
-            msg.twist.linear.x  =  ly * SPEED * SIGN_X
-            msg.twist.linear.y  =  lx * SPEED * SIGN_Y
-            msg.twist.linear.z  =  ry * SPEED * SIGN_Z
-            msg.twist.angular.x =  0.0
-            msg.twist.angular.y =  0.0
-            msg.twist.angular.z =  rx * SPEED * SIGN_YAW
+        msg.twist.linear.x  = ly    * SPEED * SIGN_X
+        msg.twist.linear.y  = lx    * SPEED * SIGN_Y
+        msg.twist.linear.z  = ry    * SPEED * SIGN_Z
+        msg.twist.angular.x = roll  * SPEED * SIGN_ROLL
+        msg.twist.angular.y = pitch * SPEED * SIGN_PITCH
+        msg.twist.angular.z = rx    * SPEED * SIGN_YAW
 
         self.twist_pub.publish(msg)
-
-    def _handle_joint(self, axes, buttons):
-        dpad_y = axes[AX_DY] if len(axes) > AX_DY else 0.0
-        if dpad_y > 0.5 and self._dpad_y_prev <= 0.5:
-            self.active_joint = (self.active_joint - 1) % NUM_JOINTS
-            self.get_logger().info(f'Joint → {JOINT_NAMES[self.active_joint]}')
-        elif dpad_y < -0.5 and self._dpad_y_prev >= -0.5:
-            self.active_joint = (self.active_joint + 1) % NUM_JOINTS
-            self.get_logger().info(f'Joint → {JOINT_NAMES[self.active_joint]}')
-        self._dpad_y_prev = dpad_y
-
-        velocity = _deadzone(axes[AX_LY]) * SPEED if len(axes) > AX_LY else 0.0
-
-        msg = JointJog()
-        msg.header.stamp    = self.get_clock().now().to_msg()
-        msg.header.frame_id = FRAME_BASE
-        msg.joint_names     = [JOINT_NAMES[self.active_joint]]
-        msg.velocities      = [velocity]
-        msg.duration        = 0.0
-        self.joint_pub.publish(msg)
 
     def _publish_zero(self):
         msg = TwistStamped()

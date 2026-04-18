@@ -20,6 +20,10 @@ struct FilterConfig {
     std::atomic<int> shape_threshold{100};     // 0-255
     std::atomic<int> shape_tolerance_pct{4};   // 1-100 → actual = value * 0.01
     std::atomic<int> shape_mode{1};            // 1 or 2
+
+    // Shape 2 (single-corner variant, mirrors reference.cpp::detectShape)
+    std::atomic<int> shape2_corner{0};         // 0=TL, 1=TR, 2=BL, 3=BR
+    std::atomic<bool> shape2_circle_mode{false}; // false = contour sector, true = HoughCircles sector
 };
 
 using FilterFunc    = std::function<cv::Mat(const cv::Mat&)>;

@@ -143,11 +143,11 @@ class AudioNode(Node):
 
         # Parameters
         self.declare_parameter('sample_rate', 16000)        # Opus-valid: 8/12/16/24/48 kHz
-        self.declare_parameter('frame_ms', 20)              # Opus-valid: 2.5/5/10/20/40/60
+        self.declare_parameter('frame_ms', 60)              # Opus-valid: 2.5/5/10/20/40/60
         self.declare_parameter('device_index', -1)          # -1 = auto-detect C920
         self.declare_parameter('device_name_hint', '')
-        self.declare_parameter('opus_bitrate_kbps', 16)     # 6–64 is the VOIP sweet spot
-        self.declare_parameter('opus_complexity', 5)        # 0–10, higher = better quality / more CPU
+        self.declare_parameter('opus_bitrate_kbps', 10)     # 6–12 kbps = intelligible voice
+        self.declare_parameter('opus_complexity', 3)        # 0–10, lower = less CPU
         self.declare_parameter('opus_fec', True)            # forward error correction
         self.declare_parameter('opus_packet_loss_pct', 20)  # expected loss % for FEC tuning
 
@@ -206,10 +206,12 @@ class AudioNode(Node):
         self._recording_started_at = None
         self._warned_no_samples = False
 
+        # depth=2 with BEST_EFFORT: drop-oldest on congestion, so a slow
+        # subscriber never stalls the publisher or pileup-bursts the network.
         qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
             durability=DurabilityPolicy.VOLATILE,
-            depth=10,
+            depth=2,
         )
         self.audio_pub = self.create_publisher(UInt8MultiArray, '/audio', qos)
         self.audio_enable_sub = self.create_subscription(

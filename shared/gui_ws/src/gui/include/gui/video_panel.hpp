@@ -37,7 +37,7 @@ private slots:
 
 private:
     QGridLayout* grid_;
-    VideoWidget* widgets_[4];       // 2x2 grid: TL, TR, BL, BR
+    VideoWidget* widgets_[6];       // 2 rows x 3 cols, row-major
     OdometryPanel* odom_panel_;     // kept alive but not parented into the grid
     int enlarged_index_{-1};
     std::atomic<int> thermal_count_{0};  // how many widgets currently show thermal

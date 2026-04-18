@@ -6,9 +6,13 @@
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/u_int8_multi_array.hpp>
 
+#include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <cstdint>
+#include <deque>
 #include <mutex>
+#include <thread>
 #include <vector>
 
 struct VoskModel;
@@ -32,6 +36,7 @@ signals:
 
 private:
     void onAudioReceived(const std_msgs::msg::UInt8MultiArray::SharedPtr msg);
+    void audioWorkerLoop();
     bool loadModel();
 
     rclcpp::Node::SharedPtr node_;
@@ -52,6 +57,17 @@ private:
 
     pa_simple* pa_{nullptr};
     bool playback_enabled_{true};
+
+    // Worker thread isolates blocking pa_simple_write + Vosk inference from
+    // the ROS spin thread so /image_raw callbacks keep flowing while audio
+    // is active. Bounded queue drops oldest on overflow.
+    std::thread audio_worker_;
+    std::atomic<bool> audio_running_{false};
+    std::mutex queue_mutex_;
+    std::condition_variable queue_cv_;
+    std::deque<std::vector<std::uint8_t>> packet_queue_;
+    std::uint64_t queue_drops_{0};
+    static constexpr size_t kMaxQueueDepth = 8;
 
     // Diagnostic counters (reset each periodic log)
     std::chrono::steady_clock::time_point last_log_time_{std::chrono::steady_clock::now()};

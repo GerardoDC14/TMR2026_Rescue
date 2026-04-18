@@ -56,10 +56,10 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'sample_rate': 16000,
-                'frame_ms': 20,
+                'frame_ms': 60,
                 'device_index': LaunchConfiguration('audio_device'),
-                'opus_bitrate_kbps': 16,
-                'opus_complexity': 5,
+                'opus_bitrate_kbps': 10,
+                'opus_complexity': 3,
                 'opus_fec': True,
                 'opus_packet_loss_pct': 20,
             }]

@@ -31,11 +31,11 @@ MainWindow::MainWindow(rclcpp::Node::SharedPtr node, QWidget* parent)
     right_splitter->addWidget(dashboard_panel_);
     right_splitter->setSizes({450, 450});
 
-    // Main horizontal splitter: video (left 2/3) + right panels (1/3)
+    // Main horizontal splitter: video (left ~3/4) + right panels (~1/4)
     auto* main_splitter = new QSplitter(Qt::Horizontal, this);
     main_splitter->addWidget(video_panel_);
     main_splitter->addWidget(right_splitter);
-    main_splitter->setSizes({1066, 534});
+    main_splitter->setSizes({1200, 400});
 
     setCentralWidget(main_splitter);
 

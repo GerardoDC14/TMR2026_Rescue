@@ -14,6 +14,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <filesystem>
+#include <rmw/qos_profiles.h>
 
 static const std::string& voskModelPath() {
     static const std::string path =
@@ -29,13 +30,11 @@ SpeechProcessor::SpeechProcessor(rclcpp::Node::SharedPtr node, QObject* parent)
 
     if (!loadModel()) {
         RCLCPP_WARN(node_->get_logger(), "Vosk model not found. Speech transcription disabled");
-        return;
-    }
-
-    vosk_recognizer_ = vosk_recognizer_new(vosk_model_, 16000.0f);
-    if (!vosk_recognizer_) {
-        RCLCPP_ERROR(node_->get_logger(), "Failed to create Vosk recognizer");
-        return;
+    } else {
+        vosk_recognizer_ = vosk_recognizer_new(vosk_model_, 16000.0f);
+        if (!vosk_recognizer_) {
+            RCLCPP_ERROR(node_->get_logger(), "Failed to create Vosk recognizer");
+        }
     }
 
     // Opus decoder: 16 kHz mono, matches robot audio_node defaults.
@@ -72,15 +71,23 @@ SpeechProcessor::SpeechProcessor(rclcpp::Node::SharedPtr node, QObject* parent)
             pa_server ? pa_server : "<unset — using default>");
     }
 
+    // Start the worker thread BEFORE subscribing so queued packets are drained.
+    audio_running_.store(true);
+    audio_worker_ = std::thread(&SpeechProcessor::audioWorkerLoop, this);
+
+    // Match publisher QoS: BEST_EFFORT, shallow depth, drop-oldest.
+    rclcpp::QoS qos(rclcpp::KeepLast(2));
+    qos.best_effort();
+    qos.durability_volatile();
     audio_sub_ = node_->create_subscription<std_msgs::msg::UInt8MultiArray>(
-        "/audio", rclcpp::SensorDataQoS(),
+        "/audio", qos,
         [this](std_msgs::msg::UInt8MultiArray::SharedPtr msg) {
             onAudioReceived(msg);
         });
     last_log_time_ = std::chrono::steady_clock::now();
 
     RCLCPP_INFO(node_->get_logger(),
-        "[Audio] Subscribed to /audio (SensorDataQoS: BEST_EFFORT). "
+        "[Audio] Subscribed to /audio (BEST_EFFORT, depth=2). "
         "Playback enabled=%s. Publish true on /audio_enable from the robot "
         "to start the stream.",
         playback_enabled_ ? "true" : "false");
@@ -88,6 +95,12 @@ SpeechProcessor::SpeechProcessor(rclcpp::Node::SharedPtr node, QObject* parent)
 
 SpeechProcessor::~SpeechProcessor()
 {
+    // Stop the worker BEFORE tearing down decoder/recognizer/PA.
+    audio_running_.store(false);
+    queue_cv_.notify_all();
+    if (audio_worker_.joinable())
+        audio_worker_.join();
+
     if (pa_) {
         pa_simple_drain(pa_, nullptr);
         pa_simple_free(pa_);
@@ -158,92 +171,126 @@ void SpeechProcessor::setGrammar(const std::string& words_csv)
                 grammar_json.empty() ? "cleared (unrestricted)" : "updated");
 }
 
+// Runs on the ROS spin thread. MUST NOT block — just copy bytes and signal.
 void SpeechProcessor::onAudioReceived(const std_msgs::msg::UInt8MultiArray::SharedPtr msg)
 {
-    if (msg->data.empty() || !opus_decoder_) return;
+    if (msg->data.empty()) return;
 
-    // ── Decode Opus → PCM int16 ─────────────────────────────────────────────
-    int decoded = opus_decode(
-        opus_decoder_,
-        msg->data.data(),
-        static_cast<opus_int32>(msg->data.size()),
-        pcm_buf_.data(),
-        static_cast<int>(pcm_buf_.size()),
-        /*decode_fec=*/0);
-
-    if (decoded < 0) {
-        ++opus_decode_errors_;
-        RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
-            "[Audio] opus_decode failed: %s", opus_strerror(decoded));
-        return;
-    }
-    const size_t n_samples = static_cast<size_t>(decoded);
-    const int16_t* pcm = pcm_buf_.data();
-
-    // ── Diagnostic stats ────────────────────────────────────────────────────
-    ++msgs_received_;
-    samples_received_ += n_samples;
-    for (size_t i = 0; i < n_samples; ++i) {
-        int16_t s = pcm[i];
-        int16_t a = s < 0 ? static_cast<int16_t>(-s) : s;
-        if (a > peak_) peak_ = a;
-        rms_sq_sum_ += static_cast<int64_t>(s) * s;
-    }
-
-    auto now = std::chrono::steady_clock::now();
-    auto since_log = std::chrono::duration<double>(now - last_log_time_).count();
-    if (since_log >= 2.0) {
-        double rms = samples_received_ > 0
-            ? std::sqrt(static_cast<double>(rms_sq_sum_) / samples_received_)
-            : 0.0;
-        double dbfs = rms > 0 ? 20.0 * std::log10(rms / 32767.0) : -120.0;
-        RCLCPP_INFO(node_->get_logger(),
-            "[Audio] rx opus frames/s=%.1f samples/s=%.0f "
-            "peak=%d rms=%.0f (%+.1f dBFS) "
-            "pa_err=%lu opus_err=%lu%s",
-            msgs_received_ / since_log,
-            samples_received_ / since_log,
-            peak_, rms, dbfs,
-            static_cast<unsigned long>(pa_write_errors_),
-            static_cast<unsigned long>(opus_decode_errors_),
-            dbfs < -60 ? " — SILENT (mic on robot muted/gain low?)" : "");
-        last_log_time_ = now;
-        msgs_received_ = 0;
-        samples_received_ = 0;
-        rms_sq_sum_ = 0;
-        peak_ = 0;
-    }
-
-    if (playback_enabled_ && pa_) {
-        int error;
-        if (pa_simple_write(pa_, pcm,
-                            n_samples * sizeof(int16_t), &error) < 0) {
-            ++pa_write_errors_;
-            RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
-                "[Audio] pa_simple_write failed: %s", pa_strerror(error));
+    {
+        std::lock_guard<std::mutex> lock(queue_mutex_);
+        if (packet_queue_.size() >= kMaxQueueDepth) {
+            packet_queue_.pop_front();
+            ++queue_drops_;
         }
-    } else if (!pa_) {
-        RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 5000,
-            "[Audio] Receiving audio but PulseAudio is not initialised — "
-            "nothing will be heard.");
+        packet_queue_.emplace_back(msg->data.begin(), msg->data.end());
     }
+    queue_cv_.notify_one();
+}
 
-    std::lock_guard<std::mutex> lock(recognizer_mutex_);
-    if (!vosk_recognizer_) return;
+// Runs on a dedicated worker thread. Does the heavy lifting:
+// Opus decode → PulseAudio playback (blocking) → Vosk inference.
+void SpeechProcessor::audioWorkerLoop()
+{
+    while (audio_running_.load()) {
+        std::vector<std::uint8_t> packet;
+        {
+            std::unique_lock<std::mutex> lock(queue_mutex_);
+            queue_cv_.wait(lock, [this] {
+                return !packet_queue_.empty() || !audio_running_.load();
+            });
+            if (!audio_running_.load() && packet_queue_.empty())
+                return;
+            packet = std::move(packet_queue_.front());
+            packet_queue_.pop_front();
+        }
 
-    int result = vosk_recognizer_accept_waveform_s(
-        vosk_recognizer_, pcm, static_cast<int>(n_samples));
+        if (!opus_decoder_) continue;
 
-    if (result > 0) {
-        const char* json_str = vosk_recognizer_result(vosk_recognizer_);
-        QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_str));
-        QString text = doc.object().value("text").toString().trimmed();
-        if (!text.isEmpty()) {
-            std::lock_guard<std::mutex> lock2(text_mutex_);
-            if (!full_transcription_.isEmpty())
-                full_transcription_ += "\n";
-            full_transcription_ += text;
-            emit transcriptionUpdated(full_transcription_);
+        int decoded = opus_decode(
+            opus_decoder_,
+            packet.data(),
+            static_cast<opus_int32>(packet.size()),
+            pcm_buf_.data(),
+            static_cast<int>(pcm_buf_.size()),
+            /*decode_fec=*/0);
+
+        if (decoded < 0) {
+            ++opus_decode_errors_;
+            RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
+                "[Audio] opus_decode failed: %s", opus_strerror(decoded));
+            continue;
+        }
+        const size_t n_samples = static_cast<size_t>(decoded);
+        const int16_t* pcm = pcm_buf_.data();
+
+        // Diagnostic stats
+        ++msgs_received_;
+        samples_received_ += n_samples;
+        for (size_t i = 0; i < n_samples; ++i) {
+            int16_t s = pcm[i];
+            int16_t a = s < 0 ? static_cast<int16_t>(-s) : s;
+            if (a > peak_) peak_ = a;
+            rms_sq_sum_ += static_cast<int64_t>(s) * s;
+        }
+
+        auto now = std::chrono::steady_clock::now();
+        auto since_log = std::chrono::duration<double>(now - last_log_time_).count();
+        if (since_log >= 2.0) {
+            double rms = samples_received_ > 0
+                ? std::sqrt(static_cast<double>(rms_sq_sum_) / samples_received_)
+                : 0.0;
+            double dbfs = rms > 0 ? 20.0 * std::log10(rms / 32767.0) : -120.0;
+            RCLCPP_INFO(node_->get_logger(),
+                "[Audio] rx opus frames/s=%.1f samples/s=%.0f "
+                "peak=%d rms=%.0f (%+.1f dBFS) "
+                "pa_err=%lu opus_err=%lu q_drops=%lu%s",
+                msgs_received_ / since_log,
+                samples_received_ / since_log,
+                peak_, rms, dbfs,
+                static_cast<unsigned long>(pa_write_errors_),
+                static_cast<unsigned long>(opus_decode_errors_),
+                static_cast<unsigned long>(queue_drops_),
+                dbfs < -60 ? " — SILENT (mic on robot muted/gain low?)" : "");
+            last_log_time_ = now;
+            msgs_received_ = 0;
+            samples_received_ = 0;
+            rms_sq_sum_ = 0;
+            peak_ = 0;
+        }
+
+        if (playback_enabled_ && pa_) {
+            int error;
+            if (pa_simple_write(pa_, pcm,
+                                n_samples * sizeof(int16_t), &error) < 0) {
+                ++pa_write_errors_;
+                RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
+                    "[Audio] pa_simple_write failed: %s", pa_strerror(error));
+            }
+        } else if (!pa_) {
+            RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 5000,
+                "[Audio] Receiving audio but PulseAudio is not initialised — "
+                "nothing will be heard.");
+        }
+
+        {
+            std::lock_guard<std::mutex> lock(recognizer_mutex_);
+            if (!vosk_recognizer_) continue;
+
+            int result = vosk_recognizer_accept_waveform_s(
+                vosk_recognizer_, pcm, static_cast<int>(n_samples));
+
+            if (result > 0) {
+                const char* json_str = vosk_recognizer_result(vosk_recognizer_);
+                QJsonDocument doc = QJsonDocument::fromJson(QByteArray(json_str));
+                QString text = doc.object().value("text").toString().trimmed();
+                if (!text.isEmpty()) {
+                    std::lock_guard<std::mutex> lock2(text_mutex_);
+                    if (!full_transcription_.isEmpty())
+                        full_transcription_ += "\n";
+                    full_transcription_ += text;
+                    emit transcriptionUpdated(full_transcription_);
+                }
+            }
         }
     }
 }

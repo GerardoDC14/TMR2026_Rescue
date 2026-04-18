@@ -62,6 +62,64 @@ VideoWidget::VideoWidget(rclcpp::Node::SharedPtr node,
     display_->setText("No Source");
     layout->addWidget(display_);
 
+    // ── Image controls (brightness / contrast) ─────────────────────────────
+    // Always visible; sit above the per-filter options block.
+    image_controls_container_ = new QWidget(this);
+    image_controls_container_->setStyleSheet(OPTION_CONTAINER_STYLE);
+    image_controls_container_->setSizePolicy(
+        QSizePolicy::Preferred, QSizePolicy::Fixed);
+    auto* ic = new QVBoxLayout(image_controls_container_);
+    ic->setContentsMargins(2, 0, 2, 0);
+    ic->setSpacing(0);
+
+    auto build_slider_row = [this](const QString& label_text,
+                                   int range_min, int range_max,
+                                   int initial, int reset_value,
+                                   std::function<QString(int)> fmt,
+                                   std::function<void(int)> on_change) {
+        auto* row = new QHBoxLayout();
+        auto* lbl = new QLabel(label_text, image_controls_container_);
+        lbl->setMinimumWidth(56);
+        auto* sl  = new QSlider(Qt::Horizontal, image_controls_container_);
+        sl->setRange(range_min, range_max);
+        sl->setValue(initial);
+        auto* val = new QLabel(fmt(initial), image_controls_container_);
+        val->setStyleSheet("color: #4fc3f7; font-size: 11px; "
+                           "min-width: 36px;");
+        auto* reset = new QPushButton("⟲", image_controls_container_);
+        reset->setFixedSize(18, 18);
+        reset->setToolTip("Reset");
+        reset->setStyleSheet(
+            "QPushButton { background-color: #2d2d45; color: #aaa; "
+            "border: 1px solid #3a3a55; border-radius: 3px; "
+            "font-size: 10px; padding: 0; }"
+            "QPushButton:hover { background-color: #3a3a55; color: white; }");
+        QObject::connect(sl, &QSlider::valueChanged,
+            [val, fmt, on_change](int v) {
+                val->setText(fmt(v));
+                on_change(v);
+            });
+        QObject::connect(reset, &QPushButton::clicked,
+            [sl, reset_value]() { sl->setValue(reset_value); });
+        row->addWidget(lbl);
+        row->addWidget(sl, 1);
+        row->addWidget(val);
+        row->addWidget(reset);
+        return row;
+    };
+
+    ic->addLayout(build_slider_row(
+        "Brightness:", -100, 100, 0, 0,
+        [](int v) { return (v > 0 ? "+" : "") + QString::number(v); },
+        [this](int v) { brightness_.store(v); }));
+
+    ic->addLayout(build_slider_row(
+        "Contrast:", 50, 300, 100, 100,
+        [](int v) { return QString::number(v / 100.0, 'f', 2) + "x"; },
+        [this](int v) { contrast_x100_.store(v); }));
+
+    layout->addWidget(image_controls_container_);
+
     connect(source_combo_, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &VideoWidget::onSourceChanged);
     connect(filter_combo_, QOverload<int>::of(&QComboBox::currentIndexChanged),
@@ -606,6 +664,15 @@ void VideoWidget::workerLoop()
         if (frame.empty()) {
             std::this_thread::sleep_for(std::chrono::milliseconds(30));
             continue;
+        }
+
+        // Apply brightness/contrast (output = alpha * input + beta).
+        // Skip when both at default to avoid the per-pixel pass cost.
+        int brightness = brightness_.load();
+        int contrast_x100 = contrast_x100_.load();
+        if (brightness != 0 || contrast_x100 != 100) {
+            double alpha = contrast_x100 / 100.0;
+            cv::convertScaleAbs(frame, frame, alpha, brightness);
         }
 
         // Apply filter

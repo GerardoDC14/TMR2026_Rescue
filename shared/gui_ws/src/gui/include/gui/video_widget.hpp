@@ -72,6 +72,11 @@ private:
     QComboBox* filter_combo_;
     ClickableLabel* display_;
 
+    // Image controls (always visible, between display and filter options)
+    QWidget* image_controls_container_{nullptr};
+    std::atomic<int> brightness_{0};      // -100..+100, default 0
+    std::atomic<int> contrast_x100_{100}; // 50..300 → 0.5x..3.0x, default 1.0x
+
     // Filter options (dynamic, below video)
     QWidget* options_container_{nullptr};
 

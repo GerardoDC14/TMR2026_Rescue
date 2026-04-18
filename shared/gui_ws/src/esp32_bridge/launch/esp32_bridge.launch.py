@@ -56,8 +56,12 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'sample_rate': 16000,
-                'chunk_size': 1024,
+                'frame_ms': 20,
                 'device_index': LaunchConfiguration('audio_device'),
+                'opus_bitrate_kbps': 16,
+                'opus_complexity': 5,
+                'opus_fec': True,
+                'opus_packet_loss_pct': 20,
             }]
         ),
         Node(

@@ -1,12 +1,19 @@
 """
 audio_node.py
-ROS2 node that captures audio from USB microphone and publishes it to /audio topic.
+ROS2 node that captures audio from USB microphone, encodes it with Opus
+(narrowband voice-optimised), and publishes compressed frames on /audio.
 Subscribes to /audio_enable to control recording state.
 
 Auto-detects the Logitech C920 Pro webcam microphone by default. Pass
 `device_index` to force a specific PortAudio input index.
+
+Transport: UInt8MultiArray, one Opus packet per message (20 ms at 16 kHz by
+default). Typical payload is ~40–60 bytes at 16 kbps — two orders of
+magnitude smaller than the previous raw PCM stream.
 """
 
+import ctypes
+import ctypes.util
 import math
 import struct
 import threading
@@ -16,17 +23,118 @@ import pyaudio
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
-from std_msgs.msg import Bool, Int16MultiArray
+from std_msgs.msg import Bool, UInt8MultiArray
 
 
 # Substrings that identify the Logitech C920 on Linux (order = preference)
 C920_NAME_HINTS = (
-    'C920',            # "HD Pro Webcam C920"
+    'C920',
     'HD Pro Webcam',
     'Logitech Webcam',
-    'USB Audio',       # generic fallback — many USB webcams appear as this
+    'USB Audio',
     'Webcam',
 )
+
+# ── libopus minimal ctypes binding ──────────────────────────────────────────
+# Avoids the pip `opuslib` dependency; libopus0 is a standard Ubuntu package.
+
+OPUS_APPLICATION_VOIP = 2048
+OPUS_APPLICATION_AUDIO = 2049
+OPUS_SET_BITRATE_REQUEST = 4002
+OPUS_SET_COMPLEXITY_REQUEST = 4010
+OPUS_SET_INBAND_FEC_REQUEST = 4012
+OPUS_SET_PACKET_LOSS_PERC_REQUEST = 4014
+OPUS_SET_SIGNAL_REQUEST = 4024
+OPUS_SIGNAL_VOICE = 3001
+
+
+def _load_libopus():
+    name = ctypes.util.find_library('opus') or 'libopus.so.0'
+    lib = ctypes.CDLL(name)
+
+    lib.opus_strerror.restype = ctypes.c_char_p
+    lib.opus_strerror.argtypes = [ctypes.c_int]
+
+    lib.opus_encoder_get_size.restype = ctypes.c_int
+    lib.opus_encoder_get_size.argtypes = [ctypes.c_int]
+
+    lib.opus_encoder_create.restype = ctypes.c_void_p
+    lib.opus_encoder_create.argtypes = [
+        ctypes.c_int, ctypes.c_int, ctypes.c_int,
+        ctypes.POINTER(ctypes.c_int),
+    ]
+    lib.opus_encoder_destroy.restype = None
+    lib.opus_encoder_destroy.argtypes = [ctypes.c_void_p]
+
+    # opus_encode(st, pcm, frame_size, data, max_data_bytes)
+    lib.opus_encode.restype = ctypes.c_int
+    lib.opus_encode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_int16),
+        ctypes.c_int,
+        ctypes.POINTER(ctypes.c_ubyte),
+        ctypes.c_int32,
+    ]
+
+    # opus_encoder_ctl is variadic — we only ever pass one int arg, which
+    # shares the C va_list ABI with a fixed int parameter on Linux/amd64+arm64.
+    lib.opus_encoder_ctl.restype = ctypes.c_int
+    lib.opus_encoder_ctl.argtypes = [
+        ctypes.c_void_p, ctypes.c_int, ctypes.c_int,
+    ]
+    return lib
+
+
+class OpusEncoder:
+    def __init__(self, sample_rate: int, bitrate_bps: int,
+                 complexity: int, packet_loss_pct: int, use_fec: bool):
+        self._lib = _load_libopus()
+        err = ctypes.c_int(0)
+        self._enc = self._lib.opus_encoder_create(
+            sample_rate, 1, OPUS_APPLICATION_VOIP, ctypes.byref(err))
+        if err.value != 0 or not self._enc:
+            raise RuntimeError(
+                f'opus_encoder_create failed: '
+                f'{self._lib.opus_strerror(err.value).decode()}')
+
+        def ctl(req, val, name):
+            r = self._lib.opus_encoder_ctl(self._enc, req, val)
+            if r < 0:
+                raise RuntimeError(
+                    f'opus CTL {name}({val}) failed: '
+                    f'{self._lib.opus_strerror(r).decode()}')
+
+        ctl(OPUS_SET_BITRATE_REQUEST, bitrate_bps, 'SET_BITRATE')
+        ctl(OPUS_SET_COMPLEXITY_REQUEST, complexity, 'SET_COMPLEXITY')
+        ctl(OPUS_SET_SIGNAL_REQUEST, OPUS_SIGNAL_VOICE, 'SET_SIGNAL')
+        ctl(OPUS_SET_INBAND_FEC_REQUEST, 1 if use_fec else 0, 'SET_FEC')
+        ctl(OPUS_SET_PACKET_LOSS_PERC_REQUEST,
+            max(0, min(100, packet_loss_pct)), 'SET_PLC')
+
+        self._max_packet = 4000  # RFC 6716 max
+        self._buf = (ctypes.c_ubyte * self._max_packet)()
+
+    def encode(self, pcm_int16: bytes, frame_size: int) -> bytes:
+        pcm_arr = (ctypes.c_int16 * frame_size).from_buffer_copy(pcm_int16)
+        n = self._lib.opus_encode(
+            self._enc, pcm_arr, frame_size,
+            self._buf, self._max_packet)
+        if n < 0:
+            raise RuntimeError(
+                f'opus_encode failed: '
+                f'{self._lib.opus_strerror(n).decode()}')
+        return bytes(self._buf[:n])
+
+    def close(self):
+        if self._enc:
+            self._lib.opus_encoder_destroy(self._enc)
+            self._enc = None
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception:
+            pass
 
 
 class AudioNode(Node):
@@ -34,15 +142,54 @@ class AudioNode(Node):
         super().__init__('audio_capture')
 
         # Parameters
-        self.declare_parameter('sample_rate', 16000)
-        self.declare_parameter('chunk_size', 1024)
-        self.declare_parameter('device_index', -1)  # -1 = auto-detect C920
-        self.declare_parameter('device_name_hint', '')  # optional override
+        self.declare_parameter('sample_rate', 16000)        # Opus-valid: 8/12/16/24/48 kHz
+        self.declare_parameter('frame_ms', 20)              # Opus-valid: 2.5/5/10/20/40/60
+        self.declare_parameter('device_index', -1)          # -1 = auto-detect C920
+        self.declare_parameter('device_name_hint', '')
+        self.declare_parameter('opus_bitrate_kbps', 16)     # 6–64 is the VOIP sweet spot
+        self.declare_parameter('opus_complexity', 5)        # 0–10, higher = better quality / more CPU
+        self.declare_parameter('opus_fec', True)            # forward error correction
+        self.declare_parameter('opus_packet_loss_pct', 20)  # expected loss % for FEC tuning
 
-        self.sample_rate = self.get_parameter('sample_rate').get_parameter_value().integer_value
-        self.chunk_size = self.get_parameter('chunk_size').get_parameter_value().integer_value
-        self.device_index = self.get_parameter('device_index').get_parameter_value().integer_value
-        self.name_hint = self.get_parameter('device_name_hint').get_parameter_value().string_value
+        self.sample_rate = self.get_parameter('sample_rate').value
+        self.frame_ms = self.get_parameter('frame_ms').value
+        self.device_index = self.get_parameter('device_index').value
+        self.name_hint = self.get_parameter('device_name_hint').value
+        bitrate_kbps = self.get_parameter('opus_bitrate_kbps').value
+        complexity = self.get_parameter('opus_complexity').value
+        use_fec = bool(self.get_parameter('opus_fec').value)
+        plc_pct = self.get_parameter('opus_packet_loss_pct').value
+
+        # Opus frame size in samples (= PyAudio chunk size)
+        self.frame_size = int(self.sample_rate * self.frame_ms / 1000)
+        if self.sample_rate not in (8000, 12000, 16000, 24000, 48000):
+            self.get_logger().error(
+                f'sample_rate={self.sample_rate} not valid for Opus '
+                '(must be 8000, 12000, 16000, 24000, or 48000)')
+            return
+        if self.frame_ms not in (5, 10, 20, 40, 60):
+            self.get_logger().error(
+                f'frame_ms={self.frame_ms} not valid for Opus '
+                '(must be 5, 10, 20, 40, or 60)')
+            return
+
+        # ── Opus encoder ────────────────────────────────────────────────────
+        try:
+            self.encoder = OpusEncoder(
+                sample_rate=self.sample_rate,
+                bitrate_bps=bitrate_kbps * 1000,
+                complexity=complexity,
+                packet_loss_pct=plc_pct,
+                use_fec=use_fec,
+            )
+            self.get_logger().info(
+                f'Opus encoder ready: {self.sample_rate}Hz mono, '
+                f'{self.frame_ms}ms frames ({self.frame_size} samples), '
+                f'{bitrate_kbps} kbps, complexity={complexity}, '
+                f'FEC={"on" if use_fec else "off"} @ {plc_pct}% expected loss')
+        except Exception as e:
+            self.get_logger().error(f'Opus encoder init failed: {e}')
+            return
 
         self.pa = pyaudio.PyAudio()
         self.stream = None
@@ -51,6 +198,7 @@ class AudioNode(Node):
 
         # Diagnostic counters
         self._chunks_published = 0
+        self._bytes_out = 0
         self._last_log_time = time.monotonic()
         self._last_peak = 0
         self._last_rms_sq_sum = 0.0
@@ -58,20 +206,18 @@ class AudioNode(Node):
         self._recording_started_at = None
         self._warned_no_samples = False
 
-        # QoS for best-effort audio streaming
         qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
             durability=DurabilityPolicy.VOLATILE,
             depth=10,
         )
-        self.audio_pub = self.create_publisher(Int16MultiArray, '/audio', qos)
+        self.audio_pub = self.create_publisher(UInt8MultiArray, '/audio', qos)
         self.audio_enable_sub = self.create_subscription(
             Bool, '/audio_enable', self._on_audio_enable, 10)
 
-        # Enumerate and pick device
+        # ── Device selection ───────────────────────────────────────────────
         self._log_all_input_devices()
         chosen_index, chosen_info = self._resolve_input_device()
-
         if chosen_index is None:
             self.get_logger().error(
                 'No usable input device found. Audio capture disabled. '
@@ -85,7 +231,6 @@ class AudioNode(Node):
             f'max_in_ch={int(chosen_info["maxInputChannels"])}, '
             f'default_rate={int(chosen_info["defaultSampleRate"])} Hz)')
 
-        # Verify the requested sample rate is supported, warn otherwise
         try:
             supported = self.pa.is_format_supported(
                 rate=self.sample_rate,
@@ -96,13 +241,11 @@ class AudioNode(Node):
             self.get_logger().info(
                 f'Device supports {self.sample_rate}Hz mono int16: {supported}')
         except ValueError as e:
-            self.get_logger().warn(
+            self.get_logger().error(
                 f'Device does NOT support {self.sample_rate}Hz mono int16: {e}. '
-                f'Falling back to device default '
-                f'{int(chosen_info["defaultSampleRate"])} Hz.')
-            self.sample_rate = int(chosen_info['defaultSampleRate'])
+                f'Change sample_rate or pick a different device.')
+            return
 
-        # Open stream
         try:
             self.stream = self.pa.open(
                 format=pyaudio.paInt16,
@@ -110,11 +253,11 @@ class AudioNode(Node):
                 rate=self.sample_rate,
                 input=True,
                 input_device_index=chosen_index,
-                frames_per_buffer=self.chunk_size,
+                frames_per_buffer=self.frame_size,
             )
             self.get_logger().info(
                 f'Audio stream OPEN: rate={self.sample_rate}Hz, '
-                f'chunk={self.chunk_size} ({self.chunk_size / self.sample_rate * 1000:.1f}ms), '
+                f'frame={self.frame_size} ({self.frame_ms}ms), '
                 f'device_index={chosen_index}')
         except Exception as e:
             self.get_logger().error(f'Failed to open audio stream: {e}')
@@ -138,7 +281,7 @@ class AudioNode(Node):
                 continue
             max_in = int(info.get('maxInputChannels', 0))
             if max_in <= 0:
-                continue  # skip output-only devices in the listing
+                continue
             self.get_logger().info(
                 f'  [{i}] name="{info["name"]}" '
                 f'host_api={info["hostApi"]} '
@@ -146,8 +289,6 @@ class AudioNode(Node):
                 f'default_rate={int(info["defaultSampleRate"])} Hz')
 
     def _resolve_input_device(self):
-        """Return (index, info_dict) of the chosen input device, or (None, None)."""
-        # 1. Explicit index wins
         if self.device_index >= 0:
             try:
                 info = self.pa.get_device_info_by_index(self.device_index)
@@ -164,9 +305,7 @@ class AudioNode(Node):
                     f'device_index={self.device_index} invalid: {e}')
                 return None, None
 
-        # 2. Custom name hint
         hints = [self.name_hint] if self.name_hint else list(C920_NAME_HINTS)
-
         count = self.pa.get_device_count()
         for hint in hints:
             for i in range(count):
@@ -182,7 +321,6 @@ class AudioNode(Node):
                         f'[{i}] "{info["name"]}"')
                     return i, info
 
-        # 3. Fall back to default input
         try:
             info = self.pa.get_default_input_device_info()
             self.get_logger().warn(
@@ -202,6 +340,7 @@ class AudioNode(Node):
                 self._recording_started_at = time.monotonic()
                 self._warned_no_samples = False
                 self._chunks_published = 0
+                self._bytes_out = 0
             elif not msg.data and was:
                 self._recording_started_at = None
         state = 'ON' if msg.data else 'OFF'
@@ -217,16 +356,20 @@ class AudioNode(Node):
                 continue
 
             try:
-                data = self.stream.read(self.chunk_size, exception_on_overflow=False)
-                samples = struct.unpack(f'<{self.chunk_size}h', data)
+                data = self.stream.read(self.frame_size, exception_on_overflow=False)
 
-                msg = Int16MultiArray()
-                msg.data = list(samples)
+                # Encode to Opus
+                packet = self.encoder.encode(data, self.frame_size)
+
+                msg = UInt8MultiArray()
+                msg.data = list(packet)
                 self.audio_pub.publish(msg)
 
                 self._chunks_published += 1
+                self._bytes_out += len(packet)
 
-                # accumulate stats for periodic log
+                # Stats on raw PCM (for mic dBFS)
+                samples = struct.unpack(f'<{self.frame_size}h', data)
                 peak = max(abs(s) for s in samples)
                 if peak > self._last_peak:
                     self._last_peak = peak
@@ -236,14 +379,13 @@ class AudioNode(Node):
                 self._maybe_log_stats()
 
             except Exception as e:
-                self.get_logger().warn(f'Audio capture error: {e}')
+                self.get_logger().warn(f'Audio capture/encode error: {e}')
                 time.sleep(0.01)
 
     def _maybe_log_stats(self):
         now = time.monotonic()
         dt = now - self._last_log_time
         if dt < 1.0:
-            # Warn if we've been recording for a while with zero samples
             if (self._recording_started_at
                 and now - self._recording_started_at > 3.0
                 and self._chunks_published == 0
@@ -255,29 +397,38 @@ class AudioNode(Node):
 
         if self._last_sample_count > 0:
             rms = math.sqrt(self._last_rms_sq_sum / self._last_sample_count)
-            # dBFS relative to full-scale int16 (32767)
             dbfs = 20 * math.log10(rms / 32767.0) if rms > 0 else -120.0
-            rate = self._chunks_published / dt if dt > 0 else 0.0
+            frames_per_sec = self._chunks_published / dt if dt > 0 else 0.0
+            kbps = (self._bytes_out * 8) / dt / 1000.0
+            avg_bytes = (self._bytes_out / self._chunks_published
+                         if self._chunks_published else 0)
             self.get_logger().info(
-                f'[mic] chunks/s={rate:.1f} peak={self._last_peak} '
-                f'rms={rms:.0f} ({dbfs:+.1f} dBFS)'
+                f'[mic] {frames_per_sec:.1f} fps peak={self._last_peak} '
+                f'rms={rms:.0f} ({dbfs:+.1f} dBFS) '
+                f'→ opus {kbps:.1f} kbps, avg {avg_bytes:.0f} B/frame'
                 + (' — SILENT (check mic mute / gain)' if dbfs < -60 else ''))
         self._last_log_time = now
         self._last_peak = 0
         self._last_rms_sq_sum = 0.0
         self._last_sample_count = 0
         self._chunks_published = 0
+        self._bytes_out = 0
 
     def __del__(self):
-        if self.stream:
+        if getattr(self, 'stream', None):
             try:
                 self.stream.stop_stream()
                 self.stream.close()
             except Exception:
                 pass
-        if self.pa:
+        if getattr(self, 'pa', None):
             try:
                 self.pa.terminate()
+            except Exception:
+                pass
+        if getattr(self, 'encoder', None):
+            try:
+                self.encoder.close()
             except Exception:
                 pass
 

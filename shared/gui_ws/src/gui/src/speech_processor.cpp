@@ -5,6 +5,7 @@
 #include <vosk_api.h>
 #include <pulse/simple.h>
 #include <pulse/error.h>
+#include <opus/opus.h>
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -37,6 +38,22 @@ SpeechProcessor::SpeechProcessor(rclcpp::Node::SharedPtr node, QObject* parent)
         return;
     }
 
+    // Opus decoder: 16 kHz mono, matches robot audio_node defaults.
+    // Max frame at 16 kHz = 60 ms = 960 samples.
+    {
+        int err = 0;
+        opus_decoder_ = opus_decoder_create(16000, 1, &err);
+        if (err != OPUS_OK || !opus_decoder_) {
+            RCLCPP_ERROR(node_->get_logger(),
+                "[Audio] opus_decoder_create failed: %s",
+                opus_strerror(err));
+        } else {
+            RCLCPP_INFO(node_->get_logger(),
+                "[Audio] Opus decoder ready (16kHz mono)");
+        }
+        pcm_buf_.resize(960);
+    }
+
     // Set up PulseAudio output
     pa_sample_spec ss{PA_SAMPLE_S16LE, 16000, 1};
     int pa_error;
@@ -55,9 +72,9 @@ SpeechProcessor::SpeechProcessor(rclcpp::Node::SharedPtr node, QObject* parent)
             pa_server ? pa_server : "<unset — using default>");
     }
 
-    audio_sub_ = node_->create_subscription<std_msgs::msg::Int16MultiArray>(
+    audio_sub_ = node_->create_subscription<std_msgs::msg::UInt8MultiArray>(
         "/audio", rclcpp::SensorDataQoS(),
-        [this](std_msgs::msg::Int16MultiArray::SharedPtr msg) {
+        [this](std_msgs::msg::UInt8MultiArray::SharedPtr msg) {
             onAudioReceived(msg);
         });
     last_log_time_ = std::chrono::steady_clock::now();
@@ -77,6 +94,7 @@ SpeechProcessor::~SpeechProcessor()
     }
     if (vosk_recognizer_) vosk_recognizer_free(vosk_recognizer_);
     if (vosk_model_) vosk_model_free(vosk_model_);
+    if (opus_decoder_) opus_decoder_destroy(opus_decoder_);
 }
 
 bool SpeechProcessor::loadModel()
@@ -140,14 +158,33 @@ void SpeechProcessor::setGrammar(const std::string& words_csv)
                 grammar_json.empty() ? "cleared (unrestricted)" : "updated");
 }
 
-void SpeechProcessor::onAudioReceived(const std_msgs::msg::Int16MultiArray::SharedPtr msg)
+void SpeechProcessor::onAudioReceived(const std_msgs::msg::UInt8MultiArray::SharedPtr msg)
 {
-    if (msg->data.empty()) return;
+    if (msg->data.empty() || !opus_decoder_) return;
 
-    // ── Diagnostic stats ─────────────────────────────────────────────────────
+    // ── Decode Opus → PCM int16 ─────────────────────────────────────────────
+    int decoded = opus_decode(
+        opus_decoder_,
+        msg->data.data(),
+        static_cast<opus_int32>(msg->data.size()),
+        pcm_buf_.data(),
+        static_cast<int>(pcm_buf_.size()),
+        /*decode_fec=*/0);
+
+    if (decoded < 0) {
+        ++opus_decode_errors_;
+        RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
+            "[Audio] opus_decode failed: %s", opus_strerror(decoded));
+        return;
+    }
+    const size_t n_samples = static_cast<size_t>(decoded);
+    const int16_t* pcm = pcm_buf_.data();
+
+    // ── Diagnostic stats ────────────────────────────────────────────────────
     ++msgs_received_;
-    samples_received_ += msg->data.size();
-    for (int16_t s : msg->data) {
+    samples_received_ += n_samples;
+    for (size_t i = 0; i < n_samples; ++i) {
+        int16_t s = pcm[i];
         int16_t a = s < 0 ? static_cast<int16_t>(-s) : s;
         if (a > peak_) peak_ = a;
         rms_sq_sum_ += static_cast<int64_t>(s) * s;
@@ -161,12 +198,14 @@ void SpeechProcessor::onAudioReceived(const std_msgs::msg::Int16MultiArray::Shar
             : 0.0;
         double dbfs = rms > 0 ? 20.0 * std::log10(rms / 32767.0) : -120.0;
         RCLCPP_INFO(node_->get_logger(),
-            "[Audio] rx msgs/s=%.1f samples/s=%.0f peak=%d rms=%.0f (%+.1f dBFS) "
-            "pa_errors=%lu%s",
+            "[Audio] rx opus frames/s=%.1f samples/s=%.0f "
+            "peak=%d rms=%.0f (%+.1f dBFS) "
+            "pa_err=%lu opus_err=%lu%s",
             msgs_received_ / since_log,
             samples_received_ / since_log,
             peak_, rms, dbfs,
             static_cast<unsigned long>(pa_write_errors_),
+            static_cast<unsigned long>(opus_decode_errors_),
             dbfs < -60 ? " — SILENT (mic on robot muted/gain low?)" : "");
         last_log_time_ = now;
         msgs_received_ = 0;
@@ -177,8 +216,8 @@ void SpeechProcessor::onAudioReceived(const std_msgs::msg::Int16MultiArray::Shar
 
     if (playback_enabled_ && pa_) {
         int error;
-        if (pa_simple_write(pa_, msg->data.data(),
-                            msg->data.size() * sizeof(int16_t), &error) < 0) {
+        if (pa_simple_write(pa_, pcm,
+                            n_samples * sizeof(int16_t), &error) < 0) {
             ++pa_write_errors_;
             RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
                 "[Audio] pa_simple_write failed: %s", pa_strerror(error));
@@ -193,8 +232,7 @@ void SpeechProcessor::onAudioReceived(const std_msgs::msg::Int16MultiArray::Shar
     if (!vosk_recognizer_) return;
 
     int result = vosk_recognizer_accept_waveform_s(
-        vosk_recognizer_, msg->data.data(),
-        static_cast<int>(msg->data.size()));
+        vosk_recognizer_, pcm, static_cast<int>(n_samples));
 
     if (result > 0) {
         const char* json_str = vosk_recognizer_result(vosk_recognizer_);

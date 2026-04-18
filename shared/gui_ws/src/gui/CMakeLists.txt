@@ -20,6 +20,7 @@ find_package(ament_index_cpp REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets)
 find_library(PULSE_SIMPLE_LIB pulse-simple REQUIRED)
 find_library(PULSE_LIB pulse REQUIRED)
+find_library(OPUS_LIB opus REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(assimp REQUIRED)
 
@@ -73,6 +74,7 @@ target_link_libraries(gui
   Qt6::OpenGLWidgets
   ${PULSE_SIMPLE_LIB}
   ${PULSE_LIB}
+  ${OPUS_LIB}
   ${OpenCV_LIBS}
   ${ASSIMP_LIBRARIES}
   ${ONNXRUNTIME_LIB}

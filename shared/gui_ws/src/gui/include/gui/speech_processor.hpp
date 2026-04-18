@@ -4,14 +4,16 @@
 #include <QString>
 
 #include <rclcpp/rclcpp.hpp>
-#include <std_msgs/msg/int16_multi_array.hpp>
+#include <std_msgs/msg/u_int8_multi_array.hpp>
 
 #include <chrono>
 #include <cstdint>
 #include <mutex>
+#include <vector>
 
 struct VoskModel;
 struct VoskRecognizer;
+struct OpusDecoder;
 typedef struct pa_simple pa_simple;
 
 class SpeechProcessor : public QObject {
@@ -29,11 +31,17 @@ signals:
     void transcriptionUpdated(const QString& text);
 
 private:
-    void onAudioReceived(const std_msgs::msg::Int16MultiArray::SharedPtr msg);
+    void onAudioReceived(const std_msgs::msg::UInt8MultiArray::SharedPtr msg);
     bool loadModel();
 
     rclcpp::Node::SharedPtr node_;
-    rclcpp::Subscription<std_msgs::msg::Int16MultiArray>::SharedPtr audio_sub_;
+    rclcpp::Subscription<std_msgs::msg::UInt8MultiArray>::SharedPtr audio_sub_;
+
+    // Opus decoder (16 kHz mono voice). Buffer sized for the largest Opus
+    // frame at 16 kHz: 60 ms = 960 samples.
+    OpusDecoder* opus_decoder_{nullptr};
+    std::vector<int16_t> pcm_buf_;
+    std::uint64_t opus_decode_errors_{0};
 
     VoskModel* vosk_model_{nullptr};
     VoskRecognizer* vosk_recognizer_{nullptr};

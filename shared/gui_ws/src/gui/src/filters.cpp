@@ -627,4 +627,150 @@ void registerFilters()
             return result;
         };
     });
+
+    // ═══ 4. Shape 2 (single-corner, mirrors reference.cpp::detectShape) ═════
+    reg.registerFilter("Shape 2",
+        [](std::shared_ptr<FilterConfig> config) -> FilterFunc
+    {
+        return [config](const cv::Mat& frame) -> cv::Mat {
+            cv::Mat result = frame.clone();
+
+            const int    corner          = config->shape2_corner.load();          // 0..3
+            const bool   circle_mode     = config->shape2_circle_mode.load();
+            const int    threshold       = config->shape_threshold.load();
+            const double shape_tolerance = config->shape_tolerance_pct.load() * 0.01;
+
+            const double scale = 1.0;
+            cv::Mat gray_frame, gray_resized, inv_thresh;
+            cv::cvtColor(frame, gray_frame, cv::COLOR_BGR2GRAY);
+            cv::resize(gray_frame, gray_resized, cv::Size(),
+                       1.0 / scale, 1.0 / scale, cv::INTER_AREA);
+            cv::threshold(gray_resized, inv_thresh,
+                          threshold, 255, cv::THRESH_BINARY_INV);
+
+            cv::Rect sector;
+            cv::Mat  inv_task_sector;
+            double   min_dis = DBL_MAX;
+
+            if (circle_mode) {
+                std::vector<cv::Vec3f> circles;
+                cv::HoughCircles(gray_resized, circles,
+                    cv::HOUGH_GRADIENT, 1,
+                    gray_resized.rows / 8.0,
+                    100, 50,
+                    gray_resized.rows / 8,
+                    gray_resized.rows / 4);
+
+                cv::Vec3f circ_sector;
+                for (size_t i = 0; i < circles.size(); ++i) {
+                    double x = circles[i][0] * scale;
+                    double y = circles[i][1] * scale;
+                    double r = circles[i][2] * scale;
+                    double dis = x * x +
+                        (frame.rows - y) * (frame.rows - y);
+                    cv::circle(result, cv::Point(int(x), int(y)),
+                               int(r), cv::Scalar(255, 0, 0), 4);
+                    if (dis < min_dis) {
+                        min_dis = dis;
+                        circ_sector = cv::Vec3f(
+                            float(x), float(y), float(r));
+                    }
+                }
+                if (min_dis == DBL_MAX) return result;
+
+                cv::Mat mask = cv::Mat::zeros(
+                    inv_thresh.size(), CV_8UC1);
+                cv::circle(mask,
+                    cv::Point(int(circ_sector[0]), int(circ_sector[1])),
+                    int(circ_sector[2]), cv::Scalar(255), -1);
+                cv::bitwise_and(inv_thresh, inv_thresh,
+                                inv_task_sector, mask);
+                sector = cv::boundingRect(mask);
+                if (sector.width <= 0 || sector.height <= 0)
+                    return result;
+                inv_task_sector = inv_task_sector(sector);
+            } else {
+                std::vector<std::vector<cv::Point>> contours;
+                cv::findContours(inv_thresh, contours,
+                    cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+                std::sort(contours.begin(), contours.end(),
+                    [](const std::vector<cv::Point>& a,
+                       const std::vector<cv::Point>& b) {
+                        return cv::contourArea(a) >
+                               cv::contourArea(b);
+                    });
+
+                // corner lookup table matches reference.cpp indexing
+                //   0=TL(0,0)  1=TR(cols,0)  2=BL(0,rows)  3=BR(cols,rows)
+                const cv::Point corner_pt(
+                    (corner == 0 || corner == 2) ? 0 : inv_thresh.cols,
+                    (corner <= 1)                ? 0 : inv_thresh.rows);
+
+                for (size_t i = 0; i < contours.size(); ++i) {
+                    if (cv::contourArea(contours[i]) < 1000) break;
+                    cv::Rect r = cv::boundingRect(contours[i]);
+                    cv::Point ctr(r.x + r.width / 2,
+                                  r.y + r.height / 2);
+                    double dis = cv::norm(ctr - corner_pt);
+                    if (dis < min_dis) {
+                        min_dis = dis;
+                        sector = r;
+                    }
+                }
+                if (min_dis == DBL_MAX) return result;
+                if (sector.width <= 0 || sector.height <= 0)
+                    return result;
+                inv_task_sector = inv_thresh(sector);
+            }
+            cv::rectangle(result, sector, cv::Scalar(0, 0, 255), 3);
+
+            cv::Mat task_sector;
+            cv::bitwise_not(inv_task_sector, task_sector);
+
+            std::vector<std::vector<cv::Point>> shapes;
+            cv::findContours(task_sector, shapes,
+                cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
+
+            double s_min = DBL_MAX;
+            std::vector<cv::Point> best_shape;
+            cv::Point s_center(task_sector.cols / 2,
+                               task_sector.rows / 2);
+
+            for (size_t i = 0; i < shapes.size(); ++i) {
+                double area = cv::contourArea(shapes[i]);
+                if (area <= 100.0) continue;
+                cv::Rect box = cv::boundingRect(shapes[i]);
+                std::vector<cv::Point> hull;
+                cv::convexHull(shapes[i], hull);
+                if (box.height == 0 || hull.empty()) continue;
+                double ar = double(box.width) / box.height;
+                double sol = area / cv::contourArea(hull);
+                if (ar < 1.0 - shape_tolerance ||
+                    ar > 1.0 + shape_tolerance ||
+                    sol < 1.0 - shape_tolerance) continue;
+                cv::Point sc(box.x + box.width / 2,
+                             box.y + box.height / 2);
+                double d = double(sc.x - s_center.x) *
+                                  (sc.x - s_center.x) +
+                           double(sc.y - s_center.y) *
+                                  (sc.y - s_center.y);
+                if (d < s_min) {
+                    s_min = d;
+                    best_shape = shapes[i];
+                }
+            }
+            if (s_min == DBL_MAX) return result;
+
+            cv::Rect box = cv::boundingRect(best_shape);
+            cv::Rect fr;
+            fr.x = std::max(0, box.x + sector.x - 10);
+            fr.y = std::max(0, box.y + sector.y - 10);
+            fr.width  = std::min(box.width  + 20,
+                                 result.cols - fr.x);
+            fr.height = std::min(box.height + 20,
+                                 result.rows - fr.y);
+            cv::rectangle(result, fr, cv::Scalar(0, 255, 0), 5);
+            return result;
+        };
+    });
 }
